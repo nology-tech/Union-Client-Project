@@ -10,11 +10,8 @@
   width: 19.4375rem;
   height: 4.125rem;
   border-radius: 0.3125rem;
-
-  &--default {
-    background: $color-red;
-    color: $color-white;
-  }
+  background: $color-red;
+  color: $color-white;
 
   &--secondary {
     background: $color-light-grey;

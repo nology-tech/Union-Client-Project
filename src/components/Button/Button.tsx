@@ -3,7 +3,7 @@ import { MouseEventHandler } from "react";
 
 type ButtonProps = {
   label: string;
-  variant: "default" | "secondary" | "custom";
+  variant: "secondary" | "custom";
   onClick: MouseEventHandler<HTMLButtonElement>;
 };
 
