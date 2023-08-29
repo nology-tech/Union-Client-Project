@@ -5,6 +5,31 @@ $desktop-breakpoint: 1024px;
 $large-desktop-breakpoint: 1440px;
 $extra-large-desktop-breakpoint: 2560px;
 
+// Modern
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans&family=Poppins:wght@400;500;600;700&display=swap");
+// Classic
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=Playfair+Display:wght@400;500;600;700&display=swap");
+// breakpoints
+$mobile-breakpoint: 320px;
+$tablet-breakpoint: 768px;
+$desktop-breakpoint: 1024px;
+$large-desktop-breakpoint: 1440px;
+$extra-large-desktop-breakpoint: 2560px;
 //colors
-$text-color: #f3f2e8;
-$background-color: #1f1b1b;
+$color-charcoal: #393939;
+$color-dark-grey: #5F6068;
+$color-grey: #CACBCD;
+$color-light-grey: #E4E5F0;
+$color-red: #B42004;
+$color-yellow: #FFB61D;
+$color-white: #FFFFFF;
+$color-off-white: #FAFAFC;
+$text-color: $color-charcoal;
+$background-color: $color-off-white;
+
+$modern-header: "Poppins", sans-serif;
+$modern-content: "PT Sans", sans-serif;
+// Classic - Use for body on page
+
+$classic-header: "Playfair Display", serif;
+$classic-content: "Lato", sans-serif;
