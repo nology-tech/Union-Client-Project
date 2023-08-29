@@ -23,3 +23,34 @@
 ## Code Quality 🌟
 
 - This project uses prettier and ESlint to increase code readability and consistency.
+
+## Button Component
+
+- Variant prop is optional and can take "secondary" and "custom"
+
+- Custom creates a button with the classname "button--custom" which has no stylings and can be modified/styled.
+
+- Below are the styles for the "secondary" variant:
+
+```typescript
+&--secondary {
+    background: $color-light-grey;
+    color: $color-dark-grey;
+  }
+```
+
+- Below are the stylings for thr default variant, if no variant is selected, these stylings are applied:
+
+```typescript
+.button {
+  width: 19.4375rem;
+  height: 4.125rem;
+  border-radius: 0.3125rem;
+  background: $color-red;
+  color: $color-white;
+}
+```
+
+- It also take a prop "onclick" which takes a function.
+
+- And takes a "label" prop which takes a string.
