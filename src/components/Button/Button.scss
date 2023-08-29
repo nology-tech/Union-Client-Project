@@ -1,18 +1,22 @@
 @use "../../styles/variables" as *;
 
-.Button {
+.button--container {
+  display: flex;
+  justify-content: center;
+  font-family: $modern-header;
+}
+
+.button {
+  width: 19.4375rem;
+  height: 4.125rem;
+  border-radius: 0.3125rem;
+
   &--default {
-    width: 19.4375rem;
-    height: 4.125rem;
-    border-radius: 0.3125rem;
     background: $color-red;
     color: $color-white;
   }
 
   &--secondary {
-    width: 19.4375rem;
-    height: 4.125rem;
-    border-radius: 0.3125rem;
     background: $color-light-grey;
     color: $color-dark-grey;
   }

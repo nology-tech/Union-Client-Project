@@ -9,9 +9,11 @@ type ButtonProps = {
 
 const Button = ({ label, variant, onClick }: ButtonProps) => {
   return (
-    <button className={`button button--${variant}`} onClick={onClick}>
-      {label}
-    </button>
+    <div className="button--container">
+      <button className={`button button--${variant}`} onClick={onClick}>
+        {label}
+      </button>
+    </div>
   );
 };
 
