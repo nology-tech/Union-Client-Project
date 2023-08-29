@@ -10,20 +10,27 @@ type HeaderProps = {
 const Header = ({ title, subTitle, imageUrl, videoUrl }: HeaderProps) => {
   return (
     <div className="header">
-      <h2 className="header__brand">DOT TO DOT - LOCAL MAKERS</h2>
+      <h4 className="header__brand">DOT TO DOT - LOCAL MAKERS</h4>
       <h1 className="header__title">{title}</h1>
-      <h3 className="header__subtitle">{subTitle}</h3>
+      <p className="header__subtitle">{subTitle}</p>
       {imageUrl !== undefined ? (
         <img className="header__image" src={imageUrl} alt="header-image" />
       ) : null}
+
       {videoUrl !== undefined ? (
-        <video
-          className="header__video"
-          src={videoUrl}
-          width={380}
-          height={260}
-          controls
-        ></video>
+        <div className="header__video-positioning">
+          <div className="header__video-container">
+            <div className="header__video-container header__video-container--upper-half"></div>
+            <video
+              className="header__video"
+              src={videoUrl}
+              width={350}
+              height={240}
+              controls
+            ></video>
+            <div className="header__video-container header__video-container--lower-half"></div>
+          </div>
+        </div>
       ) : null}
     </div>
   );

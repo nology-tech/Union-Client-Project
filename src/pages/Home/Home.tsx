@@ -4,7 +4,11 @@ import Header from "../../components/Header/Header";
 const Home = () => {
   return (
     <div>
-      <Header title="Title" />
+      <Header
+        title="Title"
+        videoUrl="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+        subTitle="Hello this is Max and Chu trying stuff out"
+      />
 
       <Layout>
         <h1>Page Heading</h1>
