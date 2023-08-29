@@ -5,15 +5,15 @@
     width: 19.4375rem;
     height: 4.125rem;
     border-radius: 0.3125rem;
-    background: #b42004;
-    color: #fff;
+    background: $color-red;
+    color: $color-white;
   }
 
   &--secondary {
     width: 19.4375rem;
     height: 4.125rem;
     border-radius: 0.3125rem;
-    background: #e4e5f0;
-    color: #5f6068;
+    background: $color-light-grey;
+    color: $color-dark-grey;
   }
 }
