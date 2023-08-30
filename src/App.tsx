@@ -38,6 +38,7 @@ const App = () => {
 
   return (
     <div>
+      <h1>{`Welcome ${user}`}</h1>
       <Form
         handleLogin={handleLogin}
         setEmail={setEmail}
