@@ -60,6 +60,11 @@ const fakeStyle = {
     ```
 ````
 
+## Homepage
+
+Created a homepage that replicated 
+
+
 ## Features
 
 ### Nav

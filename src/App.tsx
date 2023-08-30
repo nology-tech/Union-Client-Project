@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import "./styles/main.scss";
 import { useState } from "react";
-import Nav from "./components/Nav/Nav";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 
