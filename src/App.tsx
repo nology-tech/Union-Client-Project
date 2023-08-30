@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 import { auth } from "./firebase";
 import { useState } from "react";
+import { FirebaseError } from "firebase/app";
 
 const App = () => {
   const [user, setUser] = useState({});
@@ -18,8 +19,10 @@ const App = () => {
     try {
       const userData = await signInWithEmailAndPassword(auth, email, password);
       setUser(userData.user);
-    } catch (error: any) {
-      console.log(error.message);
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError) {
+        console.error(error.code);
+      }
     }
   };
 
