@@ -1,12 +1,13 @@
-import { MockEvent } from "../types/MockEvents";
+import { MockEvent } from "../types/mockEvent";
 
 export const mockEvents: MockEvent[] = [
   {
-    name: "AutoFest 2023",
-    category: "Car Show",
-    date: "2023-08-15",
+    id: 1,
+    name: "The Furniture Workshop",
+    category: "Furniture",
+    date: "28 January 2023",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit officiis consequuntur quas qui fuga minus iusto distinctio eum, ratione hic accusamus minima vitae quisquam libero nostrum et totam voluptates suscipit?",
+      "The Furniture Workshop, led by a master tinkerer, is a haven for craftsmanship, where artisans bring raw materials to life, sculpting timeless pieces that transform spaces into works of art. With meticulous attention to detail and a passion for innovation, this workshop embraces the art of furniture making, creating bespoke designs that embody the perfect blend of functionality and aesthetic appeal.",
     images: [
       "https://www.goodwood.com/globalassets/.road--racing/event-coverage/fos/2020/3-march/post/goodwood-festival-of-speed-2020-postponed-m-sport-ford-fiesta-wrc-fos-2019-drew-gibson-goodwood-26032020.jpg?crop=(0,270,2600,1733)&width=1600",
       "https://www.throttle-blips.com/wp-content/uploads/2019/07/Goodwood-FOS-2017-1-1500x1000.jpg",
@@ -14,116 +15,51 @@ export const mockEvents: MockEvent[] = [
     ],
   },
   {
-    name: "Craft Brews Expo",
-    category: "Beer Festival",
-    date: "2023-09-25",
+    id: 2,
+    name: "Lazy Bowl Ceramics",
+    category: "Ceramics",
+    date: "01 February 2023",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit officiis consequuntur quas qui fuga minus iusto distinctio eum, ratione hic accusamus minima vitae quisquam libero nostrum et totam voluptates suscipit?",
-
+      "Lazy Bowl Ceramics is a pottery workshop, led by a skilled team of potters and mould makers. Come and be hold unique ceramic pieces that blend functionality with artistic expression, infusing a touch of magic into everyday objects.",
     images: [
       "https://example.com/craft-brews-expo-image1.jpg",
       "https://example.com/craft-brews-expo-image2.jpg",
     ],
   },
   {
-    name: "Vineyard Vibes",
-    category: "Wine Tasting",
-    date: "2023-10-10",
+    id: 3,
+    name: "Block and Anvil",
+    category: "Forge",
+    date: "10 February 2024",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit officiis consequuntur quas qui fuga minus iusto distinctio eum, ratione hic accusamus minima vitae quisquam libero nostrum et totam voluptates suscipit?",
-
+      "Block and Anvil is a wrought iron forge, where raw metal is transformed into captivating works of art through the heat of their craft. This workshop embraces the traditions of ironworking while infusing innovative techniques, resulting in timeless pieces that exude the unmistakable beauty of forged iron.",
     images: [
       "https://example.com/vineyard-vibes-image1.jpg",
       "https://example.com/vineyard-vibes-image2.jpg",
     ],
   },
   {
-    name: "GrooveFest 2023",
-    category: "Music Festival",
-    date: "2023-07-30",
+    id: 4,
+    name: "Coronado Ceramics",
+    category: "Ceramics",
+    date: "16 February 2024",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit officiis consequuntur quas qui fuga minus iusto distinctio eum, ratione hic accusamus minima vitae quisquam libero nostrum et totam voluptates suscipit?",
-
+      "Coronado Ceramics, where the artistry of the pottery wheel and the captivating allure of raku firing converge to produce handcrafted ceramic masterpieces. Immerse yourself in our vibrant community, explore the transformative power of clay, and witness the birth of stunning creations that embody the beauty of tradition and artistic expression.",
     images: [
       "https://example.com/groovefest-image1.jpg",
       "https://example.com/groovefest-image2.jpg",
     ],
   },
   {
-    name: "Art of Tufting Exhibition",
-    category: "Craft Show",
-    date: "2023-11-05",
+    id: 5,
+    name: "Sweet Sewer Brewer",
+    category: "Beer",
+    date: "22 March 2024",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit officiis consequuntur quas qui fuga minus iusto distinctio eum, ratione hic accusamus minima vitae quisquam libero nostrum et totam voluptates suscipit?",
-
+      "Sweet Sewer Brewer, where the art of craft beer takes a delightfully unexpected twist. Our innovative brewery is a haven for beer enthusiasts and adventurers seeking bold flavors and boundary-pushing brews.",
     images: [
       "https://example.com/tufting-exhibition-image1.jpg",
       "https://example.com/tufting-exhibition-image2.jpg",
-    ],
-  },
-
-  {
-    name: "Art Expo",
-    category: "Art",
-    date: "2023-08-10",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit officiis consequuntur quas qui fuga minus iusto distinctio eum, ratione hic accusamus minima vitae quisquam libero nostrum et totam voluptates suscipit?",
-
-    images: [
-      "https://example.com/art-exhibition-image1.jpg",
-      "https://example.com/art-exhibition-image2.jpg",
-    ],
-  },
-
-  {
-    name: "Gourmet Cooking Class",
-    category: "Food",
-    date: "2023-10-20",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit officiis consequuntur quas qui fuga minus iusto distinctio eum, ratione hic accusamus minima vitae quisquam libero nostrum et totam voluptates suscipit?",
-
-    images: [
-      "https://example.com/gourmet-cooking-class-image1.jpg",
-      "https://example.com/gourmet-cooking-class-image2.jpg",
-    ],
-  },
-
-  {
-    name: "Crafting for Beginners",
-    category: "Craft",
-    date: "2023-06-05",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit officiis consequuntur quas qui fuga minus iusto distinctio eum, ratione hic accusamus minima vitae quisquam libero nostrum et totam voluptates suscipit?",
-
-    images: [
-      "https://example.com/crafting-workshop-image.jpg",
-      "https://example.com/crafting-workshop-image2.jpg",
-    ],
-  },
-
-  {
-    name: "Art Workshop: Acrylic Painting",
-    category: "Art",
-    date: "2023-08-10",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit officiis consequuntur quas qui fuga minus iusto distinctio eum, ratione hic accusamus minima vitae quisquam libero nostrum et totam voluptates suscipit?",
-
-    images: [
-      "https://example.com/acrylic-painting-workshop-image1.jpg",
-      "https://example.com/acrylic-painting-workshop-image2.jpg",
-    ],
-  },
-
-  {
-    name: "Artisan Craft Fair",
-    category: "Craft",
-    date: "2023-07-15",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit officiis consequuntur quas qui fuga minus iusto distinctio eum, ratione hic accusamus minima vitae quisquam libero nostrum et totam voluptates suscipit?",
-
-    images: [
-      "https://example.com/craft-fair-image1.jpg",
-      "https://example.com/craft-fair-image2.jpg",
     ],
   },
 ];
