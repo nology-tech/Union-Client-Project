@@ -22,10 +22,11 @@
     color: $color-yellow;
     font-family: $modern-content;
     padding-left: 2rem;
+    padding-bottom: 1rem;
   }
 
   &__image {
-    top: 30vh;
+    top: 34vh;
     left: 30px;
     z-index: 2;
     position: absolute;
@@ -47,12 +48,12 @@
 
   &__image-container--upper-half {
     background-color: $color-red;
-    height: 20vh;
+    height: 17vh;
   }
 
   &__image-container--lower-half {
     background-color: #fafafc;
-    height: 15vh;
+    height: 14vh;
   }
 
   &__image-positioning {
@@ -63,16 +64,17 @@
     color: $color-white;
     font-family: $modern-header;
     padding-left: 2rem;
+    line-height: 2.5rem;
+    margin-bottom: 2rem;
   }
 
   &__subtitle {
     color: $color-white;
     font-family: $modern-content;
     padding-left: 2rem;
-    padding-bottom: 1rem;
   }
   &__video {
-    top: 25vh;
+    top: 34vh;
     left: 5vw;
     border-radius: 20px;
     z-index: 2;
@@ -116,11 +118,11 @@
 @media screen and (max-width: 375px) {
   .header {
     &__video {
-      top: 34vh;
+      top: 44vh;
       left: 3vw;
     }
     &__image {
-      top: 38vh;
+      top: 43vh;
       left: 30px;
     }
 
@@ -136,11 +138,11 @@
 @media screen and (max-width: 360px) {
   .header {
     &__video {
-      top: 30vh;
+      top: 38vh;
       left: 1vw;
     }
     &__image {
-      top: 34vh;
+      top: 40vh;
       left: 30px;
     }
 
