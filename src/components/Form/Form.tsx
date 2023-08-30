@@ -2,13 +2,13 @@ import { FormEvent, MouseEventHandler } from "react";
 import "./Form.scss";
 
 type FormProps = {
-  setUser: (user: string) => void;
   handleLogin: MouseEventHandler<HTMLButtonElement>;
   setEmail: (email: string) => void;
   setPassword: (password: string) => void;
+  label: string;
 };
 
-const Form = ({ setUser, handleLogin, setEmail, setPassword }: FormProps) => {
+const Form = ({ handleLogin, setEmail, setPassword, label }: FormProps) => {
   const handleEmailInput = (event: FormEvent<HTMLInputElement>) => {
     setEmail(event.currentTarget.value);
   };
@@ -19,9 +19,10 @@ const Form = ({ setUser, handleLogin, setEmail, setPassword }: FormProps) => {
 
   return (
     <div>
-      <label htmlFor="email">email</label>
+      <h1>{label}</h1>
+      <label htmlFor="email">Email Address</label>
       <input type="text" id="email" onChange={handleEmailInput} />
-      <label htmlFor="password">password</label>
+      <label htmlFor="password">Password</label>
       <input type="text" id="password" onChange={handlePasswordInput} />
       <button type="submit" onClick={handleLogin}>
         Submit

@@ -39,16 +39,16 @@ const App = () => {
   return (
     <div>
       <Form
-        setUser={setUser}
         handleLogin={handleLogin}
         setEmail={setEmail}
         setPassword={setPassword}
+        label="Welcome Back"
       />
       <Form
-        setUser={setUser}
         handleLogin={handleRegister}
         setEmail={setEmail}
         setPassword={setPassword}
+        label="Create An Account"
       />
       <Routes>
         <Route path="*" element={<Home />} />
