@@ -67,3 +67,24 @@ const fakeStyle = {
 - Simple navbar created with links to the respective pages.
 - Clients main priority was ease of use, this has been implemented by having a self explained navbar with only 4 navigation buttons.
 - We've added an active class to the scss file to darken the icon of the page which the user is viewing.
+
+## Header Component
+
+<Header
+  title="Made by Makers Studio Tour"
+  subTitle="Sat 20 | Sun 21 Nov 2021"
+  imageUrl="url"
+  locationVenue="Venue"
+  locationCity="City"
+/>
+
+- Header component needs 1 prop (title) and takes 5 optional props.
+- Prop #1 (title) is a string that is then outputted into a h1 tag
+- Prop #2 (subTitle) is an optional string that is then outputted into a p tag underneath the title
+- Prop #3 (imageUrl) is an optional string that is then used as the source for the img tag
+- Prop #4 (videoUrl) is an optional string that is then used as the source for the video tag
+- Prop #5 (locationVenue) is an optional string that is used in the homepage to display additional information about the event
+- Prop #6 (locationCity) is an optional string that is used in the homepage to display additional information about the event
+
+- The component is built to only handle 1 image or 1 video, having both video and image url props will not display correctly on screen.
+- The component will always display "DOT TO DOT - LOCAL MAKERS" at the top in "$color-yellow"
