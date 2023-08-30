@@ -14,7 +14,7 @@ const App = () => {
         <Route path="/calendar" element={""} />
         <Route path="/about" element={""} />
       </Routes>
-      {window.location.pathname !== "/" && <Nav />}
+      {<Nav />}
     </>
   );
 };
