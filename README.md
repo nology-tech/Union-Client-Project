@@ -60,6 +60,13 @@ const fakeStyle = {
     ```
 ````
 
+## SplashPage
+
+- SplashPage is an entry point to the app in order to get the user to sign in or create an account
+- It uses the button component in both default and secondary styles
+- Links to the paths: "/sign-up" and "/login" applied to their respective buttons
+- Uses global variables in line with clients brand
+
 ## Features
 
 ### Nav
