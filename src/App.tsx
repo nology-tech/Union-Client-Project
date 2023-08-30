@@ -24,6 +24,7 @@ const App = () => {
               password={password}
               setPassword={setPassword}
               setUserId={setUserId}
+              userId={userId}
             />
           }
         />

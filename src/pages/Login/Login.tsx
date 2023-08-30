@@ -10,6 +10,7 @@ type LoginProps = {
   password: string;
   setPassword: (password: string) => void;
   setUserId: (userId: string) => void;
+  userId: string;
 };
 
 const Login = ({
@@ -18,6 +19,7 @@ const Login = ({
   password,
   setPassword,
   setUserId,
+  userId,
 }: LoginProps) => {
   const handleLogin = async () => {
     try {
@@ -38,6 +40,8 @@ const Login = ({
         setPassword={setPassword}
         label="Welcome Back"
       />
+
+      {userId && <p>You are logged in with this id: {userId}.</p>}
     </div>
   );
 };
