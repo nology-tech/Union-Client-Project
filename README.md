@@ -74,6 +74,7 @@ Created a homepage that replicated
 
 ## Header Component
 
+```typescript
 <Header
   title="Made by Makers Studio Tour"
   subTitle="Sat 20 | Sun 21 Nov 2021"
@@ -81,7 +82,7 @@ Created a homepage that replicated
   locationVenue="Venue"
   locationCity="City"
 />
-
+```
 - Header component needs 1 prop (title) and takes 5 optional props.
 - Prop #1 (title) is a string that is then outputted into a h1 tag
 - Prop #2 (subTitle) is an optional string that is then outputted into a p tag underneath the title
