@@ -44,18 +44,7 @@ const App = () => {
   return (
     <div>
       <h1>{`Welcome ${user}`}</h1>
-      <Form
-        handleLogin={handleLogin}
-        setEmail={setEmail}
-        setPassword={setPassword}
-        label="Welcome Back"
-      />
-      <Form
-        handleLogin={handleRegister}
-        setEmail={setEmail}
-        setPassword={setPassword}
-        label="Create An Account"
-      />
+
       <Routes>
         <Route path="*" element={<Home />} />
       </Routes>
