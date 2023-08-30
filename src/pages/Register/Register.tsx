@@ -1,16 +1,24 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import Form from "../../components/Form/Form";
-
 import "./Register.scss";
 import { FirebaseError } from "firebase/app";
+import { auth } from "../../firebase";
 
 type RegisterProps = {
+  email: string;
   setEmail: (email: string) => void;
+  password: string;
   setPassword: (password: string) => void;
-  label: string;
+  setUserId: (userId: string) => void;
 };
 
-const Register = ({ setEmail, setPassword, label }: RegisterProps) => {
+const Register = ({
+  email,
+  setEmail,
+  password,
+  setPassword,
+  setUserId,
+}: RegisterProps) => {
   const handleRegister = async () => {
     try {
       const userData = await createUserWithEmailAndPassword(
@@ -18,7 +26,7 @@ const Register = ({ setEmail, setPassword, label }: RegisterProps) => {
         email,
         password
       );
-      setUser(userData.user);
+      setUserId(userData.user.uid);
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {
         console.error(error.code);
@@ -32,7 +40,7 @@ const Register = ({ setEmail, setPassword, label }: RegisterProps) => {
         handleLogin={handleRegister}
         setEmail={setEmail}
         setPassword={setPassword}
-        label={label}
+        label="Create An Account"
       />
     </div>
   );

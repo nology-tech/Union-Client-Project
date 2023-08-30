@@ -23,7 +23,7 @@ const Form = ({ handleLogin, setEmail, setPassword, label }: FormProps) => {
       <label htmlFor="email">Email Address</label>
       <input type="text" id="email" onChange={handleEmailInput} />
       <label htmlFor="password">Password</label>
-      <input type="text" id="password" onChange={handlePasswordInput} />
+      <input type="password" id="password" onChange={handlePasswordInput} />
       <button type="submit" onClick={handleLogin}>
         Submit
       </button>
