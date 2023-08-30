@@ -1,64 +1,28 @@
-import { useState } from "react";
+import { FormEvent, MouseEventHandler } from "react";
 import "./Form.scss";
-import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase";
 
-const Form = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+type FormProps = {
+  setUser: (user: string) => void;
+  handleLogin: MouseEventHandler<HTMLButtonElement>;
+  setEmail: (email: string) => void;
+  setPassword: (password: string) => void;
+};
 
-  const [user, setUser] = useState({});
-
-  const handleLogin = async () => {
-    try {
-      const user = await signInWithEmailAndPassword(auth, email, password);
-      console.log(user);
-    } catch (error) {
-      console.log(error.message);
-    }
+const Form = ({ setUser, handleLogin, setEmail, setPassword }: FormProps) => {
+  const handleEmailInput = (event: FormEvent<HTMLInputElement>) => {
+    setEmail(event.currentTarget.value);
   };
 
-  onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-  });
-
-  // const handleInput = async (event) => {
-  //   setEmail(event.currentTarget.value);
-  //   setPassword(event.currentTarget.value);
-
-  //   signInWithEmailAndPassword(auth, email, password);
-
-  //   // Signed in
-  //   const userCredential = await signInWithEmailAndPassword(
-  //     auth,
-  //     email,
-  //     password
-  //   );
-  //   const user = userCredential.user;
-  //   // ...
-  //   console.log(user);
-  // };
-
-  // console.log(email, password);
+  const handlePasswordInput = (event: FormEvent<HTMLInputElement>) => {
+    setPassword(event.currentTarget.value);
+  };
 
   return (
     <div>
       <label htmlFor="email">email</label>
-      <input
-        type="text"
-        id="email"
-        onChange={(event) => {
-          setEmail(event.target.value);
-        }}
-      />
+      <input type="text" id="email" onChange={handleEmailInput} />
       <label htmlFor="password">password</label>
-      <input
-        type="text"
-        id="password"
-        onChange={(event) => {
-          setPassword(event.target.value);
-        }}
-      />
+      <input type="text" id="password" onChange={handlePasswordInput} />
       <button type="submit" onClick={handleLogin}>
         Submit
       </button>
