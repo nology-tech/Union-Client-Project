@@ -34,8 +34,10 @@ const App = () => {
         password
       );
       setUser(userData.user);
-    } catch (error: any) {
-      console.log(error.message);
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError) {
+        console.error(error.code);
+      }
     }
   };
 
