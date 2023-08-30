@@ -1,8 +1,12 @@
 @use "../../styles/variables" as *;
 
+.header * {
+  margin: 0;
+  padding: 0;
+}
 .header {
   background-color: $color-red;
-  padding-top: 6rem;
+  padding-top: 4rem;
   width: 100vw;
   height: auto;
 
@@ -26,7 +30,9 @@
     z-index: 2;
     position: absolute;
     height: 25vh;
-    width: auto;
+    width: 80vw;
+    object-fit: cover;
+    border-radius: 20px;
   }
 
   &__image-positioning {
@@ -41,11 +47,11 @@
 
   &__image-container--upper-half {
     background-color: $color-red;
-    height: 10vh;
+    height: 20vh;
   }
 
   &__image-container--lower-half {
-    background-color: $color-white;
+    background-color: #fafafc;
     height: 15vh;
   }
 
@@ -66,8 +72,9 @@
     padding-bottom: 1rem;
   }
   &__video {
-    top: 28vh;
+    top: 25vh;
     left: 5vw;
+    border-radius: 20px;
     z-index: 2;
     position: absolute;
   }
@@ -84,7 +91,7 @@
 
   &__video-container--upper-half {
     background-color: $color-red;
-    height: 15vh;
+    height: 19vh;
   }
 
   &__video-container--lower-half {
@@ -95,13 +102,33 @@
   &__video-positioning {
     display: inline;
   }
-}
 
+  &__location {
+    color: $color-white;
+    padding-left: 2rem;
+    font-family: $modern-content;
+    &--venue {
+      font-weight: bold;
+      color: $color-white;
+    }
+  }
+}
 @media screen and (max-width: 375px) {
   .header {
     &__video {
       top: 34vh;
       left: 3vw;
+    }
+    &__image {
+      top: 38vh;
+      left: 30px;
+    }
+
+    &__video-container--upper-half {
+      height: 25vh;
+    }
+    &__video-container--lower-half {
+      height: 20vh;
     }
   }
 }
@@ -109,7 +136,19 @@
 @media screen and (max-width: 360px) {
   .header {
     &__video {
+      top: 30vh;
       left: 1vw;
+    }
+    &__image {
+      top: 34vh;
+      left: 30px;
+    }
+
+    &__video-container--upper-half {
+      height: 22vh;
+    }
+    &__video-container--lower-half {
+      height: 20vh;
     }
   }
 }
