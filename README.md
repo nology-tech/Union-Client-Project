@@ -60,6 +60,10 @@ const fakeStyle = {
     ```
 ````
 
+## Mock Data
+
+- The data has been added for the project.
+
 ## Features
 
 ### Nav
