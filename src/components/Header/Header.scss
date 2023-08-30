@@ -75,9 +75,8 @@
   }
 
   &__video {
-    top: 34vh;
-    left: 5vw;
-    border-radius: 20px;
+    top: 24vh;
+    margin: 0 calc((100vw - 350px) / 2);
     z-index: 2;
     position: absolute;
   }

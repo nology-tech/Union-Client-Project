@@ -5,6 +5,7 @@ import { useState } from "react";
 import Nav from "./components/Nav/Nav";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import About from "./pages/About/About";
 
 const App = () => {
   const [userId, setUserId] = useState<string>("");
@@ -42,7 +43,7 @@ const App = () => {
         />
         <Route path="/events" element={""} />
         <Route path="/calendar" element={""} />
-        <Route path="/about" element={""} />
+        <Route path="/about" element={<About />} />
       </Routes>
       <Nav />
     </>
