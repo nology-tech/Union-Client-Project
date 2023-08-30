@@ -5,7 +5,7 @@ type ButtonProps = {
   label: string;
   style?: CSSProperties;
   variant?: "secondary";
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 const Button = ({ label, style, onClick, variant }: ButtonProps) => {

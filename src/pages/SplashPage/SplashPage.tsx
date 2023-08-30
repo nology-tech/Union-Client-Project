@@ -4,8 +4,6 @@ import paintingWoman from "../../images/paintingWoman.png";
 import { Link } from "react-router-dom";
 
 const SplashPage = () => {
-  const dummyClick = () => {};
-
   return (
     <div className="splashPage">
       <div className="splashPage--imageContainer">
@@ -34,11 +32,11 @@ const SplashPage = () => {
         id="splashPage--buttonsContainerId"
       >
         <Link style={{ textDecoration: "none" }} to="/sign-up">
-          <Button label="create an account" onClick={dummyClick} />
+          <Button label="create an account" />
         </Link>
 
         <Link style={{ textDecoration: "none" }} to="/login">
-          <Button label="sign in" variant="secondary" onClick={dummyClick} />
+          <Button label="sign in" variant="secondary" />
         </Link>
       </div>
     </div>
