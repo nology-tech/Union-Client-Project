@@ -11,6 +11,7 @@ type EventCardProps = {
   date: string;
   textContent: string;
   galleryArray: string[];
+  buttonLabel: string;
   handleClick: MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -21,6 +22,7 @@ const EventCard = ({
   textContent,
   galleryArray,
   handleClick,
+  buttonLabel,
 }: EventCardProps) => {
   const [showInfo, setShowInfo] = useState<boolean>(false);
 
@@ -64,9 +66,14 @@ const EventCard = ({
           <p className="event-card__text">{textContent}</p>
           <div className="event-card__gallery">
             <h4>Gallery</h4>
-            <Gallery galleryArray={galleryArray} />
+            {galleryArray.length > 0 && (
+              <Gallery
+                galleryArray={galleryArray}
+                imageAltTag={`image for ${maker}`}
+              />
+            )}
           </div>
-          <Button label="BOOK A PLACE" onClick={handleClick} />
+          <Button label={buttonLabel} onClick={handleClick} />
         </div>
       )}
     </div>

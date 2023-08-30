@@ -1,13 +1,14 @@
-
 .gallery {
   display: flex;
-  justify-content: center;
   margin: auto;
-  overflow: auto;
-  white-space: nowrap;
+  overflow-x: scroll;
   padding: 10px 0;
-  .gallery__images--image {
-    width: 200px;
-    border-radius: 10px 10px;
+  &__images {
+    padding: 0 10px;
+    &--image {
+      width: 200px;
+      height: 200px;
+      border-radius: 10px 10px;
+    }
   }
 }

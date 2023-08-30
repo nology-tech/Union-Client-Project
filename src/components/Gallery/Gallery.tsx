@@ -1,22 +1,26 @@
-import './Gallery.scss'
+import "./Gallery.scss";
 
-type GalleryProps = { galleryArray: string[] }
+type GalleryProps = {
+  galleryArray: string[];
+  imageAltTag: string;
+};
 
-const Gallery = ( { galleryArray }: GalleryProps) => {
-
-const gallery = galleryArray ?? ["Sorry! Image not found."]
-
+const Gallery = ({ galleryArray, imageAltTag }: GalleryProps) => {
   return (
-
-    <div className="gallery"> 
-      {gallery.map((image: string) => {
-        return <div className="gallery__images"><img className="gallery__images--image" src={image} alt="Image of a product from maker" /></div>
-      })
-      }
-
-      </div>
-
-  )
-}
+    <div className="gallery">
+      {galleryArray.map((image: string, index) => {
+        return (
+          <div className="gallery__images" key={`gallery-image-${index}`}>
+            <img
+              className="gallery__images--image"
+              src={image}
+              alt={imageAltTag}
+            />
+          </div>
+        );
+      })}
+    </div>
+  );
+};
 
 export default Gallery;
