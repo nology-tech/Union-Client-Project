@@ -12,7 +12,6 @@ const App = () => {
         <Route path="/calendar" element={""} />
         <Route path="/about" element={""} />
       </Routes>
-      <Nav />
     </>
   );
 };

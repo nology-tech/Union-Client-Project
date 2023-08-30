@@ -67,3 +67,4 @@ const fakeStyle = {
 - Simple navbar created with links to the respective pages.
 - Clients main priority was ease of use, this has been implemented by having a self explained navbar with only 4 navigation buttons.
 - We've added an active class to the scss file to darken the icon of the page which the user is viewing.
+
