@@ -1,0 +1,15 @@
+.nav {
+  &__links {
+    display: flex;
+    justify-content: space-between;
+    margin: 1.5rem;
+  }
+
+  &__link {
+    opacity: 0.25;
+
+    &--active {
+      opacity: 1;
+    }
+  }
+}

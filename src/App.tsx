@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import "./styles/main.scss";
-import Form from "./components/Form/Form";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -9,6 +8,7 @@ import {
 import { auth } from "./firebase";
 import { useState } from "react";
 import { FirebaseError } from "firebase/app";
+import Nav from "./components/Nav/Nav";
 
 const App = () => {
   const [user, setUser] = useState({});
@@ -42,13 +42,15 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>{`Welcome ${user}`}</h1>
-
+    <>
       <Routes>
-        <Route path="*" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/events" element={""} />
+        <Route path="/calendar" element={""} />
+        <Route path="/about" element={""} />
       </Routes>
-    </div>
+      <Nav />
+    </>
   );
 };
 
