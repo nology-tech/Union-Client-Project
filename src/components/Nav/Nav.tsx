@@ -9,25 +9,25 @@ const Nav = () => {
   return (
     <>
       <nav className="Nav">
-        <ul className="Nav__image">
-          <Link to={"/"}>
+        <ul className="Nav__links">
+          <Link to={"/"} className="Nav__link">
             <img src={Home} alt="Home link" className="Nav__image--home" />
           </Link>
-          <Link to={""}>
+          <Link to={"/events"} className="Nav__link">
             <img
               src={Events}
               alt="Events link"
               className="Nav__image--events"
             />
           </Link>
-          <Link to={""}>
+          <Link to={"/calendar"} className="Nav__link">
             <img
               src={Calendar}
               alt="Calendar link"
               className="Nav__image--calendar"
             />
           </Link>
-          <Link to={""}>
+          <Link to={"/about"} className="Nav__link">
             <img src={About} alt="About link" className="Nav__image--about" />
           </Link>
         </ul>
