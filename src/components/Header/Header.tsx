@@ -23,6 +23,7 @@ const Header = ({ title, subTitle, imageUrl, videoUrl }: HeaderProps) => {
               className="header__image"
               src={imageUrl}
               alt="image for event"
+              data-testid="image"
             />
             <div className="header__image-container--lower-half"></div>
           </div>
@@ -39,6 +40,7 @@ const Header = ({ title, subTitle, imageUrl, videoUrl }: HeaderProps) => {
               width={350}
               height={240}
               controls
+              data-testid="video"
             ></video>
             <div className="header__video-container--lower-half"></div>
           </div>

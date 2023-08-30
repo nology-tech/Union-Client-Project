@@ -67,7 +67,7 @@
   }
   &__video {
     top: 28vh;
-    left: 20px;
+    left: 5vw;
     z-index: 2;
     position: absolute;
   }
@@ -94,5 +94,22 @@
 
   &__video-positioning {
     display: inline;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .header {
+    &__video {
+      top: 34vh;
+      left: 3vw;
+    }
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .header {
+    &__video {
+      left: 1vw;
+    }
   }
 }
