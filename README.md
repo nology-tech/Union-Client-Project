@@ -67,3 +67,9 @@ const fakeStyle = {
 - Simple navbar created with links to the respective pages.
 - Clients main priority was ease of use, this has been implemented by having a self explained navbar with only 4 navigation buttons.
 - We've added an active class to the scss file to darken the icon of the page which the user is viewing.
+
+### 404 Not Found Page
+
+- **Error Message**: When a user lands on a non-existent route or page, they are presented with an error message indicating that the requested content could not be found.
+
+- **Return to Home Button**: To enhance user navigation and convenience, a button is provided on the 404 Not Found Page. When clicked, this button redirects the user back to the home page.
