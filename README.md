@@ -23,3 +23,39 @@
 ## Code Quality 🌟
 
 - This project uses prettier and ESlint to increase code readability and consistency.
+
+## Button Component
+
+```typescript
+<Button
+  label="working"
+  onClick={handleClick}
+  variant="secondary"
+  style={fakeStyle}
+/>
+```
+
+- Button Component needs 2 variables with 2 optional variables that can be used.
+
+- First, variable/prop is label which is a string. This is the text you want to show on your button.
+
+- Second, onClick needs a function to handle the clicking, this will most likely be an mouseEventHandler.
+
+- Third, style is an inbuilt react hook that allows you to create an object with the styles you need and pass it into the button. This prop is optional and if not added the style for the button will be the default styles for the project. e.g:
+
+```typescript
+const fakeStyle = {
+  padding: "2rem",
+  color: "red",
+  backgroundColor: "blue",
+  fontWeight: "bold",
+};
+```
+
+- Lastly, variant prop is optional but can take only the string "secondary" that will give you the following styles:
+
+````typescript
+    background: $color-light-grey;
+    color: $color-charcoal;
+    ```
+````
