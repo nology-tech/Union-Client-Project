@@ -12,11 +12,12 @@ const App = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
+  console.log(userId);
+  console.log(userId ? "true" : "force");
+
   return (
     <>
       <Routes>
-        <Route path="/" element={<SplashPage />} />
-        <Route path="/home" element={<Home />} />
         <Route
           path="/login"
           element={
@@ -42,11 +43,18 @@ const App = () => {
             />
           }
         />
-        <Route path="/events" element={""} />
-        <Route path="/calendar" element={""} />
-        <Route path="/about" element={""} />
+        {userId ? (
+          <>
+            <Route path="/home" element={<Home />} />
+            <Route path="/events" element={""} />
+            <Route path="/calendar" element={""} />
+            <Route path="/about" element={""} />
+            <Nav />
+          </>
+        ) : (
+          <Route path="/" element={<SplashPage />} />
+        )}
       </Routes>
-      {<Nav />}
     </>
   );
 };
