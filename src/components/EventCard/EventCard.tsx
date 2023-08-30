@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { MouseEventHandler, useState } from "react";
 import "./EventCard.scss";
 import arrowUp from "../../assets/images/arrow-up.svg";
 import arrowDown from "../../assets/images/arrow-down.svg";
-import "../Gallery/Gallery"
 import Gallery from "../Gallery/Gallery";
+import Button from "../Button/Button";
 
 type EventCardProps = {
   title: string;
@@ -11,9 +11,7 @@ type EventCardProps = {
   date: string;
   textContent: string;
   galleryArray: string[];
-  //   buttonText: string;
-  //   buttonVariant: string;
-  //   buttonFunction: ChangeEventHandler<HTMLButtonElement>;
+  handleClick: MouseEventHandler<HTMLButtonElement>;
 };
 
 const EventCard = ({
@@ -22,10 +20,8 @@ const EventCard = ({
   date,
   textContent,
   galleryArray,
-}: //   buttonText,
-//   buttonVariant,
-//   buttonFunction,
-EventCardProps) => {
+  handleClick,
+}: EventCardProps) => {
   const [showInfo, setShowInfo] = useState<boolean>(false);
 
   const toggleDisplay = () => {
@@ -41,22 +37,26 @@ EventCardProps) => {
       <div className="event-card__main">
         <div className="event-card__header">
           <h4 className="event-card__title">{title}</h4>
-          {!showInfo && <img
-            className="event-card__arrow"
-            src={arrowDown}
-            alt="arrow"
-            onClick={toggleDisplay}
-          />}
-          {showInfo && <img
-            className="event-card__arrow"
-            src={arrowUp}
-            alt="arrow"
-            onClick={toggleDisplay}
-          />}
+          {!showInfo && (
+            <img
+              className="event-card__arrow"
+              src={arrowDown}
+              alt="arrow"
+              onClick={toggleDisplay}
+            />
+          )}
+          {showInfo && (
+            <img
+              className="event-card__arrow"
+              src={arrowUp}
+              alt="arrow"
+              onClick={toggleDisplay}
+            />
+          )}
         </div>
         <div className="event-card__ul">
-          <li className="even-card__li">{maker}</li>
-          <li className="even-card__li">{date}</li>
+          <li className="event-card__li">{maker}</li>
+          <li className="event-card__li">{date}</li>
         </div>
       </div>
       {showInfo && (
@@ -64,8 +64,9 @@ EventCardProps) => {
           <p className="event-card__text">{textContent}</p>
           <div className="event-card__gallery">
             <h4>Gallery</h4>
-            <Gallery galleryArray={galleryArray}/>
+            <Gallery galleryArray={galleryArray} />
           </div>
+          <Button label="BOOK A PLACE" onClick={handleClick} />
         </div>
       )}
     </div>
