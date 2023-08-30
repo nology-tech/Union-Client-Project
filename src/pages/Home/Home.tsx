@@ -1,4 +1,3 @@
-import EventCard from "../../components/EventCard/EventCard";
 import Layout from "../../components/Layout/Layout";
 
 const Home = () => {
@@ -13,13 +12,6 @@ const Home = () => {
         maxime tempora, temporibus beatae voluptas repellat rerum. Dignissimos,
         necessitatibus.
       </p>
-      <EventCard
-        title="The Founder"
-        maker="maker"
-        date="10 feb 2020"
-        textContent="blahblah"
-        gallery="pictures"
-      />
     </Layout>
   );
 };
