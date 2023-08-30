@@ -1,16 +1,16 @@
 import "../Button/Button.scss";
-import { MouseEventHandler } from "react";
+import { CSSProperties, MouseEventHandler } from "react";
 
 type ButtonProps = {
   label: string;
-  variant?: "secondary" | "custom";
+  style?: CSSProperties;
   onClick: MouseEventHandler<HTMLButtonElement>;
 };
 
-const Button = ({ label, variant, onClick }: ButtonProps) => {
+const Button = ({ label, style, onClick }: ButtonProps) => {
   return (
     <div className="button--container">
-      <button className={`button button--${variant}`} onClick={onClick}>
+      <button className="button" style={style} onClick={onClick}>
         {label}
       </button>
     </div>

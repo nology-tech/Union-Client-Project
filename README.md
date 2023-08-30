@@ -26,31 +26,23 @@
 
 ## Button Component
 
-- Variant prop is optional and can take "secondary" and "custom"
-
-- Custom creates a button with the classname "button--custom" which has no stylings and can be modified/styled.
-
-- Below are the styles for the "secondary" variant:
-
 ```typescript
-&--secondary {
-    background: $color-light-grey;
-    color: $color-dark-grey;
-  }
+<Button label="working" onClick={handleClick} style={fakeStyle} />
 ```
 
-- Below are the stylings for thr default variant, if no variant is selected, these stylings are applied:
+- Button Component needs 2 variables with an optional third listed below.
+
+- First, variable/prop is label which is a string. This is the text you want to show on your button.
+
+- Second, onClick needs a function to handle the clicking, this will most likely be an mouseEventHandler.
+
+- Third, style is an inbuilt react hook that allows you to create an object with the styles you need and pass it into the button. This prop is optional and if not added the style for the button will be the default styles for the project. e.g:
 
 ```typescript
-.button {
-  width: 19.4375rem;
-  height: 4.125rem;
-  border-radius: 0.3125rem;
-  background: $color-red;
-  color: $color-white;
-}
+const fakeStyle = {
+  padding: "2rem",
+  color: "red",
+  backgroundColor: "blue",
+  fontWeight: "bold",
+};
 ```
-
-- It also take a prop "onclick" which takes a function.
-
-- And takes a "label" prop which takes a string.
