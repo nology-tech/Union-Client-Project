@@ -12,9 +12,6 @@ const App = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  console.log(userId);
-  console.log(userId ? "true" : "force");
-
   return (
     <>
       <Routes>
