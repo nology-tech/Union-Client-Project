@@ -1,13 +1,16 @@
 import { useState } from "react";
 import "./EventCard.scss";
-import arrow from "../../assets/images/arrow.svg";
+import arrowUp from "../../assets/images/arrow-up.svg";
+import arrowDown from "../../assets/images/arrow-down.svg";
+import "../Gallery/Gallery"
+import Gallery from "../Gallery/Gallery";
 
 type EventCardProps = {
   title: string;
   maker: string;
   date: string;
   textContent: string;
-  gallery: string;
+  galleryArray: string[];
   //   buttonText: string;
   //   buttonVariant: string;
   //   buttonFunction: ChangeEventHandler<HTMLButtonElement>;
@@ -18,7 +21,7 @@ const EventCard = ({
   maker,
   date,
   textContent,
-  gallery,
+  galleryArray,
 }: //   buttonText,
 //   buttonVariant,
 //   buttonFunction,
@@ -38,12 +41,18 @@ EventCardProps) => {
       <div className="event-card__main">
         <div className="event-card__header">
           <h4 className="event-card__title">{title}</h4>
-          <img
+          {!showInfo && <img
             className="event-card__arrow"
-            src={arrow}
+            src={arrowDown}
             alt="arrow"
             onClick={toggleDisplay}
-          />
+          />}
+          {showInfo && <img
+            className="event-card__arrow"
+            src={arrowUp}
+            alt="arrow"
+            onClick={toggleDisplay}
+          />}
         </div>
         <div className="event-card__ul">
           <li className="even-card__li">{maker}</li>
@@ -55,7 +64,7 @@ EventCardProps) => {
           <p className="event-card__text">{textContent}</p>
           <div className="event-card__gallery">
             <h4>Gallery</h4>
-            <div className="event-card__gallery--scroll">{gallery}</div>
+            <Gallery galleryArray={galleryArray}/>
           </div>
         </div>
       )}

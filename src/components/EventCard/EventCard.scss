@@ -2,14 +2,15 @@
 
 .event-card {
   margin: auto;
-  max-width: 85%;
+  width: 85%;
+  max-width: 100%;
   padding: 5px 10px;
-  font-family: $classic-content;
+  font-family: $modern-content;
   border-bottom: 1px solid $color-light-grey;
   &__header {
+
     display: flex;
     align-items: center;
-    font-family: $classic-header;
   }
   &__arrow {
     height: 22px;
