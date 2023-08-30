@@ -1,0 +1,17 @@
+@use "../../styles/variables" as *;
+
+.error {
+  text-align: center;
+  margin: 5vh auto 0 auto;
+
+  &__heading {
+    padding: 2.5rem;
+    font-family: $modern-header;
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+  }
+}
