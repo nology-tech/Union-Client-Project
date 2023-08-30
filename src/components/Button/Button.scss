@@ -7,9 +7,16 @@
 }
 
 .button {
-  width: 19.4375rem;
-  height: 4.125rem;
-  border-radius: 0.3125rem;
+  width: 20rem;
+  height: 4rem;
+  border-radius: 0.3rem;
   background: $color-red;
   color: $color-white;
+  text-transform: uppercase;
+  border: none;
+
+  &--secondary {
+    background: $color-light-grey;
+    color: $color-charcoal;
+  }
 }

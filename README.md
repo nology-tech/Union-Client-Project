@@ -27,10 +27,15 @@
 ## Button Component
 
 ```typescript
-<Button label="working" onClick={handleClick} style={fakeStyle} />
+<Button
+  label="working"
+  onClick={handleClick}
+  variant="secondary"
+  style={fakeStyle}
+/>
 ```
 
-- Button Component needs 2 variables with an optional third listed below.
+- Button Component needs 2 variables with 2 optional variables that can be used.
 
 - First, variable/prop is label which is a string. This is the text you want to show on your button.
 
@@ -46,3 +51,11 @@ const fakeStyle = {
   fontWeight: "bold",
 };
 ```
+
+- Lastly, variant prop is optional but can take only the string "secondary" that will give you the following styles:
+
+````typescript
+    background: $color-light-grey;
+    color: $color-charcoal;
+    ```
+````
