@@ -62,7 +62,22 @@ const fakeStyle = {
 
 ## Mock Data
 
-- The data has been added for the project.
+- We have added mockEvents.ts that holds the mock data for our events.
+- A mockEvent type has been added for the mock data:
+
+```typescript
+  export type MockEvent = {
+    id: number;
+    name: string;
+    category: string;
+    date: string;
+    description: string;
+    images: string[];
+};
+```
+
+- We currently have 5 mock events that have been taken from the Figma page with the ability to add further events as and when needed.
+- we have added 2 events with a data that's in past so they can be used to show in the "Historic" section.
 
 ## Features
 
