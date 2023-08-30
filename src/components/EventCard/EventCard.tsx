@@ -12,6 +12,7 @@ type EventCardProps = {
   textContent: string;
   galleryArray: string[];
   buttonLabel: string;
+  buttonVariant?: boolean;
   handleClick: MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -21,8 +22,9 @@ const EventCard = ({
   date,
   textContent,
   galleryArray,
-  handleClick,
+  buttonVariant,
   buttonLabel,
+  handleClick,
 }: EventCardProps) => {
   const [showInfo, setShowInfo] = useState<boolean>(false);
 
@@ -73,7 +75,15 @@ const EventCard = ({
               />
             )}
           </div>
-          <Button label={buttonLabel} onClick={handleClick} />
+          {buttonVariant ? (
+            <Button
+              variant="secondary"
+              label={buttonLabel}
+              onClick={handleClick}
+            />
+          ) : (
+            <Button label={buttonLabel} onClick={handleClick} />
+          )}
         </div>
       )}
     </div>
