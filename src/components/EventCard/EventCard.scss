@@ -1,0 +1,24 @@
+@use "../../styles/variables" as *;
+
+.event-card {
+  margin: auto;
+  width: 85%;
+  max-width: 100%;
+  font-family: $modern-content;
+  border-bottom: 1px solid $color-light-grey;
+  padding: 0 0 20px 0;
+  &__header {
+    display: flex;
+    align-items: center;
+  }
+  &__arrow {
+    height: 22px;
+    cursor: pointer;
+  }
+  &__ul {
+    list-style: none;
+  }
+  &__li {
+    color: $color-dark-grey;
+  }
+}
