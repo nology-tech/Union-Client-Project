@@ -1,34 +1,34 @@
 import { Link } from "react-router-dom";
 import "./Nav.scss";
-import Home from "../../assets/icons/Home.svg";
-import Events from "../../assets/icons/Events.svg";
-import Calendar from "../../assets/icons/Calendar.svg";
-import About from "../../assets/icons/About.svg";
+import home from "../../assets/icons/home.svg";
+import events from "../../assets/icons/events.svg";
+import calendar from "../../assets/icons/calendar.svg";
+import about from "../../assets/icons/about.svg";
 
 const Nav = () => {
   return (
     <>
-      <nav className="Nav">
-        <ul className="Nav__links">
-          <Link to={"/"} className="Nav__link">
-            <img src={Home} alt="Home link" className="Nav__image--home" />
+      <nav className="nav">
+        <ul className="nav__links">
+          <Link to={"/"} className="nav__link">
+            <img src={home} alt="Home link" className="nav__image--home" />
           </Link>
-          <Link to={"/events"} className="Nav__link">
+          <Link to={"/events"} className="nav__link">
             <img
-              src={Events}
+              src={events}
               alt="Events link"
-              className="Nav__image--events"
+              className="nav__image--events"
             />
           </Link>
-          <Link to={"/calendar"} className="Nav__link">
+          <Link to={"/calendar"} className="nav__link">
             <img
-              src={Calendar}
+              src={calendar}
               alt="Calendar link"
-              className="Nav__image--calendar"
+              className="nav__image--calendar"
             />
           </Link>
-          <Link to={"/about"} className="Nav__link">
-            <img src={About} alt="About link" className="Nav__image--about" />
+          <Link to={"/about"} className="nav__link">
+            <img src={about} alt="About link" className="nav__image--about" />
           </Link>
         </ul>
       </nav>

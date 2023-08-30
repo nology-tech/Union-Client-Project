@@ -1,15 +1,15 @@
-.Nav {
+.nav {
   &__links {
     display: flex;
     justify-content: space-between;
     margin: 1.5rem;
+  }
 
-    .Nav__link {
-      opacity: 0.25;
-    }
+  &__link {
+    opacity: 0.25;
+  }
 
-    .Nav__link:hover {
-      opacity: 1;
-    }
+  &__link:hover {
+    opacity: 1;
   }
 }
