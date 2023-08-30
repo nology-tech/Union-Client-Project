@@ -3,6 +3,7 @@ import Button from "../../components/Button/Button";
 import Layout from "../../components/Layout/Layout";
 import Nav from "../../components/Nav/Nav";
 import "./Home.scss";
+import Header from "../../components/Header/Header";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -17,6 +18,13 @@ const Home = () => {
 
   return (
     <Layout>
+      <Header
+        title={"Made by Makers Studio Tour"}
+        subTitle="Sat 20 | Sun 21 Nov 2021"
+        locationVenue="Paintworks"
+        locationCity="Bristol"
+        imageUrl="https://s3-alpha-sig.figma.com/img/5cbc/1239/c903cf9f08cf280d3136dde87c9eece0?Expires=1694390400&Signature=KAu-7gkxKmuDkEzIfKYX0ntDfAARyCYK3Hh9FoDh1I2n46y9b5unkrPSbrJCN9r656F9NZjq~GWQ55Flb9CasXagv~lLAxi90yyGKbjPn~Zc64xJt04VxtbaARkinC8HXtHCWoENgPFY30X1SPnDW2nm5nsMSWKof2OtcvLE-XtlbwAjsLwsNeXPivUDT3LuPiN7a-ktR7oF8txlX51k7xpqh67xD0nKLPJXk9C8YQbKuRtc8eSfZvzhZyE5I6KulKAVmWkzjkTafXku8qDTSAJvsuQKRXFInxf4Izxf~rxjgf186uj0ayPpb3MSDBW3yis7ghHKFT1C6elCNc4WBw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
+      />
       <div className="homepage">
         <Button label="View Events" onClick={handleViewEvents} />
         <h2 className="homepage__header">
@@ -39,11 +47,11 @@ const Home = () => {
           organized and presented by Chelsea Handmade & Local.
         </p>
         <div className="homepage__quote">
-        <div className="homepage__quote--box"></div>
-        <h3 className="homepage__header homepage__quote--header">
-          A note from our Principal Organiser, Steven Devine, about this
-          weekends programme:
-        </h3>
+          <div className="homepage__quote--box"></div>
+          <h3 className="homepage__header homepage__quote--header">
+            A note from our Principal Organiser, Steven Devine, about this
+            weekends programme:
+          </h3>
         </div>
         <p className="homepage__content">
           Local producer of bath and beauty products. Check out the bath and
