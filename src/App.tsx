@@ -18,7 +18,7 @@ const App = () => {
       <Routes>
         {userId ? (
           <>
-            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="/events" element={""} />
             <Route path="/calendar" element={""} />
             <Route path="/about" element={""} />
@@ -54,6 +54,7 @@ const App = () => {
             />
           </>
         )}
+        <Route path="*" element={<Error />} />
       </Routes>
     </>
   );
