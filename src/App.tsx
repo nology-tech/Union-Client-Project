@@ -7,6 +7,7 @@ import SplashPage from "./pages/SplashPage/SplashPage";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Events from "./pages/Events/Events";
+import { mockEvents } from "./data/mockEvents";
 
 const App = () => {
   const [userId, setUserId] = useState<string>("test please remove");
@@ -19,7 +20,7 @@ const App = () => {
         {userId ? (
           <>
             <Route path="/home" element={<Home />} />
-            <Route path="/events" element={<Events />} />
+            <Route path="/events" element={<Events mockData={mockEvents} />} />
             <Route path="/calendar" element={""} />
             <Route path="/about" element={""} />
           </>

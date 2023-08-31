@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import Nav from "../Nav/Nav";
 import "./Layout.scss";
-import Nav from "../Nav/Nav";
 
 type LayoutProps = {
   children: ReactNode;
