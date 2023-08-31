@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router";
 import Button from "../../components/Button/Button";
 import Layout from "../../components/Layout/Layout";
-import Nav from "../../components/Nav/Nav";
 import "./Home.scss";
 import Header from "../../components/Header/Header";
 
