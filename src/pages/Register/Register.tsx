@@ -2,15 +2,11 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import "./Register.scss";
 import { FirebaseError } from "firebase/app";
 import { auth } from "../../firebase";
-<<<<<<< HEAD
 import arrow from "../../images/arrow.png";
 import InputBox from "../../components/InputBox/InputBox";
 import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
-import { FormEvent } from "react";
-=======
-import { useNavigate } from "react-router-dom";
->>>>>>> 4753a3cca8b79c5a0f60785d1971273ae582a4e5
+import { FormEvent, useState } from "react";
 
 type RegisterProps = {
   email: string;
@@ -35,7 +31,8 @@ const Register = ({
   setPassword,
   setUserId,
 }: RegisterProps) => {
-  const navigate = useNavigate();
+  const [userinput, setUserInput] = useState<boolean>(false);
+  const [checkPassword, setCheckPassword] = useState<string>("");
 
   const handleRegister = async () => {
     try {
@@ -45,17 +42,17 @@ const Register = ({
         password
       );
       setUserId(userData.user.uid);
-      navigate("/home");
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {
         console.error(error.code);
       }
     }
   };
-  const handleClickNext = () => {
-    handleRegister();
-    navigate("/register/2");
+
+  const navigateBack = () => {
+    navigate("/");
   };
+
   const navigate = useNavigate();
 
   const handleFirstName = (event: FormEvent<HTMLInputElement>) => {
@@ -66,15 +63,71 @@ const Register = ({
     setLastName(event.currentTarget.value);
   };
 
+  const handleEmailInput = (event: FormEvent<HTMLInputElement>) => {
+    setEmail(event.currentTarget.value);
+  };
+
+  const handlePasswordInput = (event: FormEvent<HTMLInputElement>) => {
+    if (checkPassword === event.currentTarget.value) {
+      setPassword(event.currentTarget.value);
+    }
+  };
+
+  const handleClickNext = () => {
+    if (firstName && lastName) {
+      handleRegister();
+    }
+    toggle();
+  };
+
+  const toggle = () => {
+    if (userinput) {
+      setUserInput(false);
+    } else {
+      setUserInput(true);
+    }
+  };
+
+  const handleCheckPasswordInput = (event: FormEvent<HTMLInputElement>) => {
+    setCheckPassword(event.currentTarget.value);
+  };
+
   return (
     <div className="register-page">
       <div className="image-container">
-        <img className="image-container__image" src={arrow} alt="" />
+        <img
+          className="image-container__image"
+          src={arrow}
+          alt=""
+          onClick={navigateBack}
+        />
       </div>
       <div className="register-page__heading">
         <h1 className="register-page__heading__header">Create An Account</h1>
       </div>
       <div className="register-page__input">
+        {userinput && (
+          <>
+            <InputBox
+              label="Email Address"
+              inputPlaceholder="you@example.com"
+              inputType="text"
+              handleInput={handleEmailInput}
+            />
+            <InputBox
+              label="Password"
+              inputPlaceholder="Your Password"
+              inputType="password"
+              handleInput={handleCheckPasswordInput}
+            />
+            <InputBox
+              label="Confirm Password"
+              inputType="password"
+              handleInput={handlePasswordInput}
+            />
+          </>
+        )}
+
         <div className="register-page__first-name">
           <InputBox
             label="First Name"
