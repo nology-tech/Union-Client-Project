@@ -9,11 +9,11 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handleViewEvents = () => {
-    navigate("./events");
+    navigate("/events");
   };
 
   const handleViewAbout = () => {
-    navigate("./about");
+    navigate("/about");
   };
 
   return (
