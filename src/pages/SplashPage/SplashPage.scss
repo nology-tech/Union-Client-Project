@@ -1,29 +1,29 @@
 @use "../../styles/variables" as *;
 @import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
 
-.splashPage {
+.splash-page {
   &__imageContainer {
     width: 100%;
     display: flex;
     justify-content: center;
     padding-top: 2.5rem;
+  }
 
-    img {
-      width: 23rem;
-    }
+  &__image {
+    width: 23rem;
   }
 
   .bold {
     font-weight: 700;
   }
 
-  &__textContainer {
+  &__text-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 
-    &--line1 {
+    &--line-1 {
       font-family: "Oswald", sans-serif;
       font-weight: 700;
       font-size: 0.8rem;
@@ -31,7 +31,7 @@
       margin-top: 3rem;
     }
 
-    &--line2 {
+    &--line-2 {
       font-family: $modern-header;
       font-weight: 700;
       font-size: 2rem;
@@ -39,14 +39,14 @@
       margin-top: -0.2rem;
     }
 
-    &--line3 {
+    &--line-3 {
       font-family: $modern-content;
       padding-bottom: 2rem;
       display: block;
     }
   }
 
-  &__buttonsContainer {
+  &__buttons-container {
     display: flex;
     flex-direction: column;
     gap: 2rem;
