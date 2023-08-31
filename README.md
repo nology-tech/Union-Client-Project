@@ -60,9 +60,31 @@ const fakeStyle = {
     ```
 ````
 
+## Mock Data
+
+- We have added mockEvents.ts that holds the mock data for our events.
+- A mockEvent type has been added for the mock data:
+
+```typescript
+export type MockEvent = {
+  id: number;
+  name: string;
+  category: string;
+  date: string;
+  description: string;
+  images: string[];
+};
+```
+
+- We currently have 5 mock events that have been taken from the Figma page with the ability to add further events as and when needed.
+- we have added 2 events with a data that's in past so they can be used to show in the "Historic" section.
+
 ## Homepage
 
-Created a homepage that replicated
+- Created a homepage that replicated the design given on figma
+- Homepage uses <Header/> at the top of the page
+- Homepage uses two <Button/> one for routing to the events page ("/events") and another routing to the about page ("/about")
+- Homepage currently displays event information about "Made by Makers Studio Tour"
 
 ## Features
 
@@ -83,6 +105,7 @@ Created a homepage that replicated
   locationCity="City"
 />
 ```
+
 - Header component needs 1 prop (title) and takes 5 optional props.
 - Prop #1 (title) is a string that is then outputted into a h1 tag
 - Prop #2 (subTitle) is an optional string that is then outputted into a p tag underneath the title

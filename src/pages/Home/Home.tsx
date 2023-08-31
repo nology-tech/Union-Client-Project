@@ -15,10 +15,22 @@ const Home = () => {
     navigate("/about");
   };
 
+  const eventButtonStyling = {
+    margin: "1rem 0",
+  };
+
+  const aboutButtonStyling = {
+    margin: "2rem 0",
+  };
+
   return (
     <Layout>
       <div className="homepage">
-        <Button label="View Events" onClick={handleViewEvents} />
+        <Button
+          style={eventButtonStyling}
+          label="View Events"
+          onClick={handleViewEvents}
+        />
         <h2 className="homepage__header">
           If this is your first Made by makers for the people, welcome!
         </h2>
@@ -72,9 +84,12 @@ const Home = () => {
           as a building material for small clay bricks. Using the tools you
           learned from the workshop you will make a few pieces.
         </p>
-        <Button label="ABOUT" onClick={handleViewAbout} />
+        <Button
+          label="ABOUT"
+          onClick={handleViewAbout}
+          style={aboutButtonStyling}
+        />
       </div>
-      <Nav />
     </Layout>
   );
 };
