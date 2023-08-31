@@ -1,25 +1,44 @@
 @use "../../styles/variables" as *;
 
 .about {
-  &__content {
-    margin: 10vw;
-  }
   &__subheading {
     margin-bottom: 2vh;
+    padding: 0 10vw;
+    font-weight: 800;
   }
 
   &__text {
     margin-bottom: 2vh;
     line-height: 1.5;
+    padding: 0 10vw;
+
+    &--artisan {
+      padding-bottom: 10vh;
+    }
   }
 
   &__image {
     width: 80vw;
+    padding: 0 10vw;
   }
 
   &__yellow {
     background-color: $color-yellow;
-    margin: unset;
     width: 100vw;
+    margin-bottom: 5vh;
+    // position: absolute;
+  }
+
+  &__video {
+    // position: relative;
+    // top: -9vh;
+    transform: translate(0, -9vh);
+    margin: 0 calc((100vw - 350px) / 2);
+  }
+
+  &__quote {
+    padding: 0 10vw;
+    margin: 0;
+    transform: translate(0, -5vh);
   }
 }
