@@ -95,15 +95,23 @@ const About = () => {
           locally made goods and celebrating the collective spirit of makers'
           communities.
         </p>
-        <img src={reading} alt="Reading Image" />
-        <h2 className="about__subheading">Doing Things Differently</h2>
-        <p className="about__text">
-          The tour will take visitors to three unique cities: Detroit, NY and
-          Los Angeles. In each city, the tour will provide insight into how
-          makers have been making for centuries, highlighting the benefits of
-          locally made goods and celebrating the collective spirit of makers'
-          communities.
-        </p>
+        <div className="about__grey">
+          <img
+            className="about__image about__image--grey"
+            src={reading}
+            alt="Reading Image"
+          />
+          <h2 className="about__subheading about__subheading--white">
+            Doing Things Differently
+          </h2>
+          <p className="about__text about__text--white">
+            The tour will take visitors to three unique cities: Detroit, NY and
+            Los Angeles. In each city, the tour will provide insight into how
+            makers have been making for centuries, highlighting the benefits of
+            locally made goods and celebrating the collective spirit of makers'
+            communities.
+          </p>
+        </div>
         <h2 className="about__subheading">Growing Up</h2>
         <p className="about__text">
           The tour will have something for everyone. Over forty makers and

@@ -26,12 +26,9 @@
     background-color: $color-yellow;
     width: 100vw;
     margin-bottom: 5vh;
-    // position: absolute;
   }
 
   &__video {
-    // position: relative;
-    // top: -9vh;
     transform: translate(0, -9vh);
     margin: 0 calc((100vw - 350px) / 2);
   }
@@ -40,5 +37,29 @@
     padding: 0 10vw;
     margin: 0;
     transform: translate(0, -5vh);
+  }
+
+  &__grey {
+    background-color: $color-charcoal;
+    width: 100vw;
+    margin: 25vh 0 5vh;
+    border-bottom-left-radius: 55% 10vh;
+    border-bottom-right-radius: 55% 10vh;
+  }
+
+  &__image--grey {
+    padding: 0;
+    transform: translate(0, -18vh);
+    margin: 0 calc((100vw - 350px) / 2);
+  }
+
+  &__subheading--white,
+  &__text--white {
+    color: $color-white;
+    transform: translate(0, -15vh);
+  }
+
+  &__subheading--white {
+    text-align: right;
   }
 }
