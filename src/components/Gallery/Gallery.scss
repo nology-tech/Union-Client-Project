@@ -1,0 +1,14 @@
+.gallery {
+  display: flex;
+  margin: auto;
+  overflow-x: scroll;
+  padding: 10px 0;
+  &__images {
+    padding: 0 10px;
+    &--image {
+      width: 200px;
+      height: 200px;
+      border-radius: 10px 10px;
+    }
+  }
+}
