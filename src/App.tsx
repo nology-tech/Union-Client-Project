@@ -15,31 +15,6 @@ const App = () => {
   return (
     <>
       <Routes>
-        <Route
-          path="/login"
-          element={
-            <Login
-              email={email}
-              setEmail={setEmail}
-              password={password}
-              setPassword={setPassword}
-              setUserId={setUserId}
-              userId={userId}
-            />
-          }
-        />
-        <Route
-          path="/register"
-          element={
-            <Register
-              email={email}
-              setEmail={setEmail}
-              password={password}
-              setPassword={setPassword}
-              setUserId={setUserId}
-            />
-          }
-        />
         {userId ? (
           <>
             <Route path="/home" element={<Home />} />
@@ -49,7 +24,34 @@ const App = () => {
             <Nav />
           </>
         ) : (
-          <Route path="/" element={<SplashPage />} />
+          <>
+            <Route path="/" element={<SplashPage />} />
+            <Route
+              path="/login"
+              element={
+                <Login
+                  email={email}
+                  setEmail={setEmail}
+                  password={password}
+                  setPassword={setPassword}
+                  setUserId={setUserId}
+                  userId={userId}
+                />
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <Register
+                  email={email}
+                  setEmail={setEmail}
+                  password={password}
+                  setPassword={setPassword}
+                  setUserId={setUserId}
+                />
+              }
+            />
+          </>
         )}
       </Routes>
     </>
