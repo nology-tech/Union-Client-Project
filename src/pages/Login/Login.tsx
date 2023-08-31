@@ -6,7 +6,8 @@ import { FirebaseError } from "firebase/app";
 import { auth } from "../../firebase";
 import { ChangeEvent } from "react";
 import arrow from "../../assets/images/arrow.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 type LoginProps = {
   email: string;
@@ -25,6 +26,8 @@ const Login = ({
 }: LoginProps) => {
   const navigate = useNavigate();
 
+  const [loginError, setLoginError] = useState<boolean>(false);
+
   const handleLogin = async () => {
     try {
       const userData = await signInWithEmailAndPassword(auth, email, password);
@@ -33,12 +36,12 @@ const Login = ({
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {
         console.error(error.code);
+        setLoginError(true);
       }
     }
   };
 
   const handleEmailInput = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(event);
     setEmail(event.currentTarget.value);
   };
 
@@ -57,6 +60,11 @@ const Login = ({
         <h1 className="login-page__heading--header">Welcome Back</h1>
       </div>
       <div className="login-page__input-container">
+        {loginError && (
+          <p className="login-page__error">
+            Sorry, we don't recognise that login
+          </p>
+        )}
         <InputBox
           label="Email Address"
           inputPlaceholder="you@example.com"
@@ -73,8 +81,6 @@ const Login = ({
       <div className="login-page__button-container">
         <Button label="SIGN IN" onClick={handleLogin} />
       </div>
-
-      {userId && <p>You are logged in with this id: {userId}.</p>}
     </div>
   );
 };

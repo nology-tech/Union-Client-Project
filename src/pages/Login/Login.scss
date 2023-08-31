@@ -1,21 +1,19 @@
-@use '../../styles/variables' as *;
-
-.image-container {
-  height: 12.5rem;
-  width: 100vw;
-  padding-top: 3.5rem;
-}
+@use "../../styles/variables" as *;
 
 .login-page {
   margin: auto;
   width: 21rem;
+  .image-container {
+    height: 12.5rem;
+    width: 100vw;
+    padding-top: 3.5rem;
+  }
   &__heading {
     margin: auto;
     text-align: center;
     height: 7.5rem;
     width: 21rem;
   }
-
   &__heading--header {
     font-family: $modern-header;
     font-size: 2.25rem;
@@ -24,7 +22,12 @@
     color: $color-charcoal;
     margin-top: -1rem;
   }
-    .login-page__button-container {
+  .login-page__button-container {
     padding-top: 8rem;
+  }
+  &__error {
+    font-size: 0.8rem;
+    text-align: center;
+    color: $color-red;
   }
 }
