@@ -66,13 +66,13 @@ const fakeStyle = {
 - A mockEvent type has been added for the mock data:
 
 ```typescript
-  export type MockEvent = {
-    id: number;
-    name: string;
-    category: string;
-    date: string;
-    description: string;
-    images: string[];
+export type MockEvent = {
+  id: number;
+  name: string;
+  category: string;
+  date: string;
+  description: string;
+  images: string[];
 };
 ```
 
@@ -81,8 +81,10 @@ const fakeStyle = {
 
 ## Homepage
 
-Created a homepage that replicated 
-
+- Created a homepage that replicated the design given on figma
+- Homepage uses <Header/> at the top of the page
+- Homepage uses two <Button/> one for routing to the events page ("/events") and another routing to the about page ("/about")
+- Homepage currently displays event information about "Made by Makers Studio Tour"
 
 ## Features
 
@@ -103,6 +105,7 @@ Created a homepage that replicated
   locationCity="City"
 />
 ```
+
 - Header component needs 1 prop (title) and takes 5 optional props.
 - Prop #1 (title) is a string that is then outputted into a h1 tag
 - Prop #2 (subTitle) is an optional string that is then outputted into a p tag underneath the title
@@ -113,4 +116,3 @@ Created a homepage that replicated
 
 - The component is built to only handle 1 image or 1 video, having both video and image url props will not display correctly on screen.
 - The component will always display "DOT TO DOT - LOCAL MAKERS" at the top in "$color-yellow"
-

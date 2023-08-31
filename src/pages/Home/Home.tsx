@@ -16,6 +16,14 @@ const Home = () => {
     navigate("/about");
   };
 
+  const eventButtonStyling = {
+    margin: "1rem 0",
+  };
+
+  const aboutButtonStyling = {
+    margin: "2rem 0",
+  };
+
   return (
     <Layout>
       <Header
@@ -26,7 +34,11 @@ const Home = () => {
         imageUrl="https://s3-alpha-sig.figma.com/img/5cbc/1239/c903cf9f08cf280d3136dde87c9eece0?Expires=1694390400&Signature=KAu-7gkxKmuDkEzIfKYX0ntDfAARyCYK3Hh9FoDh1I2n46y9b5unkrPSbrJCN9r656F9NZjq~GWQ55Flb9CasXagv~lLAxi90yyGKbjPn~Zc64xJt04VxtbaARkinC8HXtHCWoENgPFY30X1SPnDW2nm5nsMSWKof2OtcvLE-XtlbwAjsLwsNeXPivUDT3LuPiN7a-ktR7oF8txlX51k7xpqh67xD0nKLPJXk9C8YQbKuRtc8eSfZvzhZyE5I6KulKAVmWkzjkTafXku8qDTSAJvsuQKRXFInxf4Izxf~rxjgf186uj0ayPpb3MSDBW3yis7ghHKFT1C6elCNc4WBw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
       />
       <div className="homepage">
-        <Button label="View Events" onClick={handleViewEvents} />
+        <Button
+          style={eventButtonStyling}
+          label="View Events"
+          onClick={handleViewEvents}
+        />
         <h2 className="homepage__header">
           If this is your first Made by makers for the people, welcome!
         </h2>
@@ -80,9 +92,12 @@ const Home = () => {
           as a building material for small clay bricks. Using the tools you
           learned from the workshop you will make a few pieces.
         </p>
-        <Button label="ABOUT" onClick={handleViewAbout} />
+        <Button
+          label="ABOUT"
+          onClick={handleViewAbout}
+          style={aboutButtonStyling}
+        />
       </div>
-      <Nav />
     </Layout>
   );
 };
