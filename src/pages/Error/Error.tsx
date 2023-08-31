@@ -7,7 +7,7 @@ const Error = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/");
+    navigate("/home");
   };
 
   return (
@@ -17,7 +17,7 @@ const Error = () => {
       </h1>
       <img className="error__image" src={errorImage} alt="Error Image" />
       <div className="error__button">
-        <Button label="Home" onClick={handleClick} />
+        <Button label="Back" onClick={handleClick} />
       </div>
     </div>
   );
