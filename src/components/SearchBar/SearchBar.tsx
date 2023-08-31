@@ -1,5 +1,6 @@
 import "./SearchBar.scss";
 import search from "../../assets/icons/eva_search-fill.svg";
+import { ChangeEvent } from "react";
 
 type SearchBarProps = {
   searchEvents: string;
@@ -24,3 +25,7 @@ const SearchBar = ({ handleInput, searchEvents }: SearchBarProps) => {
 };
 
 export default SearchBar;
+
+// const handleInput = (event: ChangeEvent) => {
+//   console.log(event.currentTarget);
+// };
