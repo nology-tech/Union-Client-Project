@@ -1,8 +1,8 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import Form from "../../components/Form/Form";
 import "./Register.scss";
 import { FirebaseError } from "firebase/app";
 import { auth } from "../../firebase";
+import arrow from "../../images/arrow.png";
 
 type RegisterProps = {
   email: string;
@@ -35,13 +35,14 @@ const Register = ({
   };
 
   return (
-    <div>
-      <Form
-        handleLogin={handleRegister}
-        setEmail={setEmail}
-        setPassword={setPassword}
-        label="Create An Account"
-      />
+    <div className="register-page">
+      <div className="image-container">
+        <img className="image-container__image" src={arrow} alt="" />
+      </div>
+
+      <div className="register-page__heading">
+        <h1>Create An Account</h1>
+      </div>
     </div>
   );
 };
