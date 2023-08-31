@@ -114,3 +114,9 @@ export type MockEvent = {
 
 - The component is built to only handle 1 image or 1 video, having both video and image url props will not display correctly on screen.
 - The component will always display "DOT TO DOT - LOCAL MAKERS" at the top in "$color-yellow"
+
+### 404 Not Found Page
+
+- **Error Message**: When a user lands on a non-existent route or page, they are presented with an error message indicating that the requested content could not be found.
+
+- **Return to Home Button**: To enhance user navigation and convenience, a button is provided on the 404 Not Found Page. When clicked, this button redirects the user back to the home page.
