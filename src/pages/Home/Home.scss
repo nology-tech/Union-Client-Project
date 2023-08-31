@@ -1,0 +1,28 @@
+@use "../../styles/variables" as *;
+
+.homepage {
+  margin: 2.5rem;
+
+  &__content {
+    font-family: $modern-content;
+  }
+
+  &__header {
+    font-family: $modern-header;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  &__quote {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    &--box {
+      width: 0.4rem;
+      height: 8rem;
+      background-color: $color-grey;
+      margin-right: 1rem;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+@use "../../styles/variables" as *;
+
+.error {
+  max-height: 100vh;
+  text-align: center;
+  margin: auto auto;
+
+  &__heading {
+    padding: 8vh 3vh 2vh 3vh;
+    font-family: $modern-header;
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+  }
+
+  &__image {
+    width: 100vw;
+  }
+}
