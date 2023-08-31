@@ -3,6 +3,7 @@ import Form from "../../components/Form/Form";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
 import { auth } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 
 type LoginProps = {
   email: string;
@@ -10,7 +11,6 @@ type LoginProps = {
   password: string;
   setPassword: (password: string) => void;
   setUserId: (userId: string) => void;
-  userId: string;
 };
 
 const Login = ({
@@ -19,12 +19,14 @@ const Login = ({
   password,
   setPassword,
   setUserId,
-  userId,
 }: LoginProps) => {
+  const navigate = useNavigate();
+
   const handleLogin = async () => {
     try {
       const userData = await signInWithEmailAndPassword(auth, email, password);
       setUserId(userData.user.uid);
+      navigate("/home");
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {
         console.error(error.code);
@@ -40,8 +42,6 @@ const Login = ({
         setPassword={setPassword}
         label="Welcome Back"
       />
-
-      {userId && <p>You are logged in with this id: {userId}.</p>}
     </div>
   );
 };
