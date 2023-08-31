@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import Nav from "../Nav/Nav";
 import "./Layout.scss";
 
 type LayoutProps = {
@@ -6,7 +7,12 @@ type LayoutProps = {
 };
 
 const Layout = ({ children }: LayoutProps) => {
-  return <div className="layout">{children}</div>;
+  return (
+    <div className="layout">
+      {children}
+      <Nav />
+    </div>
+  );
 };
 
 export default Layout;

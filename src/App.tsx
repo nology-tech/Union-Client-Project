@@ -6,9 +6,10 @@ import Nav from "./components/Nav/Nav";
 import SplashPage from "./pages/SplashPage/SplashPage";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import Events from "./pages/Events/Events";
 
 const App = () => {
-  const [userId, setUserId] = useState<string>("");
+  const [userId, setUserId] = useState<string>("test please remove");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -18,10 +19,9 @@ const App = () => {
         {userId ? (
           <>
             <Route path="/home" element={<Home />} />
-            <Route path="/events" element={""} />
+            <Route path="/events" element={<Events />} />
             <Route path="/calendar" element={""} />
             <Route path="/about" element={""} />
-            <Nav />
           </>
         ) : (
           <>

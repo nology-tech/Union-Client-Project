@@ -1,10 +1,10 @@
 import "./SearchBar.scss";
 import search from "../../assets/icons/eva_search-fill.svg";
-import { ChangeEvent } from "react";
+import { FormEventHandler } from "react";
 
 type SearchBarProps = {
   searchEvents: string;
-  handleInput: () => void;
+  handleInput: FormEventHandler<HTMLInputElement>;
 };
 
 const SearchBar = ({ handleInput, searchEvents }: SearchBarProps) => {
