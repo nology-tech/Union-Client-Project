@@ -46,6 +46,7 @@ const Register = ({
     }
   };
   const handleClickNext = () => {
+    handleRegister();
     navigate("/register/2");
   };
   const navigate = useNavigate();
