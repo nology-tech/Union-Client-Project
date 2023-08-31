@@ -86,6 +86,13 @@ export type MockEvent = {
 - We currently have 5 mock events that have been taken from the Figma page with the ability to add further events as and when needed.
 - we have added 2 events with a data that's in past so they can be used to show in the "Historic" section.
 
+## Homepage
+
+- Created a homepage that replicated the design given on figma
+- Homepage uses <Header/> at the top of the page
+- Homepage uses two <Button/> one for routing to the events page ("/events") and another routing to the about page ("/about")
+- Homepage currently displays event information about "Made by Makers Studio Tour"
+
 ## Features
 
 ### Nav
@@ -94,8 +101,15 @@ export type MockEvent = {
 - Clients main priority was ease of use, this has been implemented by having a self explained navbar with only 4 navigation buttons.
 - We've added an active class to the scss file to darken the icon of the page which the user is viewing.
 
+### 404 Not Found Page
+
+- **Error Message**: When a user lands on a non-existent route or page, they are presented with an error message indicating that the requested content could not be found.
+
+- **Return to Home Button**: To enhance user navigation and convenience, a button is provided on the 404 Not Found Page. When clicked, this button redirects the user back to the home page.
+
 ## Header Component
 
+```typescript
 <Header
   title="Made by Makers Studio Tour"
   subTitle="Sat 20 | Sun 21 Nov 2021"
@@ -103,6 +117,7 @@ export type MockEvent = {
   locationVenue="Venue"
   locationCity="City"
 />
+```
 
 - Header component needs 1 prop (title) and takes 5 optional props.
 - Prop #1 (title) is a string that is then outputted into a h1 tag
@@ -114,3 +129,9 @@ export type MockEvent = {
 
 - The component is built to only handle 1 image or 1 video, having both video and image url props will not display correctly on screen.
 - The component will always display "DOT TO DOT - LOCAL MAKERS" at the top in "$color-yellow"
+
+### 404 Not Found Page
+
+- **Error Message**: When a user lands on a non-existent route or page, they are presented with an error message indicating that the requested content could not be found.
+
+- **Return to Home Button**: To enhance user navigation and convenience, a button is provided on the 404 Not Found Page. When clicked, this button redirects the user back to the home page.

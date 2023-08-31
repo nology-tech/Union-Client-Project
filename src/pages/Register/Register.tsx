@@ -2,11 +2,15 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import "./Register.scss";
 import { FirebaseError } from "firebase/app";
 import { auth } from "../../firebase";
+<<<<<<< HEAD
 import arrow from "../../images/arrow.png";
 import InputBox from "../../components/InputBox/InputBox";
 import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
 import { FormEvent } from "react";
+=======
+import { useNavigate } from "react-router-dom";
+>>>>>>> 4753a3cca8b79c5a0f60785d1971273ae582a4e5
 
 type RegisterProps = {
   email: string;
@@ -31,6 +35,8 @@ const Register = ({
   setPassword,
   setUserId,
 }: RegisterProps) => {
+  const navigate = useNavigate();
+
   const handleRegister = async () => {
     try {
       const userData = await createUserWithEmailAndPassword(
@@ -39,6 +45,7 @@ const Register = ({
         password
       );
       setUserId(userData.user.uid);
+      navigate("/home");
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {
         console.error(error.code);
