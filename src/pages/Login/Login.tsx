@@ -4,6 +4,9 @@ import Button from "../../components/Button/Button";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
 import { auth } from "../../firebase";
+import { ChangeEvent } from "react";
+import arrow from "../../assets/images/arrow.png";
+import { Link } from "react-router-dom";
 
 type LoginProps = {
   email: string;
