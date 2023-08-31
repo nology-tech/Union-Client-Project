@@ -4,13 +4,17 @@
   &__subheading {
     margin-bottom: 2vh;
     padding: 0 10vw;
-    font-weight: 800;
+    color: $color-charcoal;
+    font-family: $modern-header;
+    line-height: 1.2;
   }
 
   &__text {
     margin-bottom: 2vh;
     line-height: 1.5;
     padding: 0 10vw;
+    color: $color-dark-grey;
+    font-family: $modern-content;
 
     &--artisan {
       padding-bottom: 10vh;
@@ -26,19 +30,42 @@
     background-color: $color-yellow;
     width: 100vw;
     margin-bottom: 5vh;
-    // position: absolute;
   }
 
   &__video {
-    // position: relative;
-    // top: -9vh;
     transform: translate(0, -9vh);
     margin: 0 calc((100vw - 350px) / 2);
+    border: none;
   }
 
   &__quote {
     padding: 0 10vw;
     margin: 0;
     transform: translate(0, -5vh);
+    color: $color-charcoal;
+  }
+
+  &__grey {
+    background-color: $color-charcoal;
+    width: 100vw;
+    margin: 25vh 0 10vh;
+    -webkit-clip-path: ellipse(100% 100% at 50% 0%);
+    clip-path: ellipse(100% 100% at 50% 0%);
+  }
+
+  &__image--grey {
+    padding: 0;
+    transform: translate(0, -18vh);
+    margin: 0 calc((100vw - 350px) / 2);
+  }
+
+  &__subheading--white,
+  &__text--white {
+    color: $color-white;
+    transform: translate(0, -15vh);
+  }
+
+  &__subheading--white {
+    text-align: right;
   }
 }
