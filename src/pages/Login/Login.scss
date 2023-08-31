@@ -1,0 +1,30 @@
+@use '../../styles/variables' as *;
+
+.image-container {
+  height: 12.5rem;
+  width: 100vw;
+  padding-top: 3.5rem;
+}
+
+.login-page {
+  margin: auto;
+  width: 21rem;
+  &__heading {
+    margin: auto;
+    text-align: center;
+    height: 7.5rem;
+    width: 21rem;
+  }
+
+  &__heading--header {
+    font-family: $modern-header;
+    font-size: 2.25rem;
+    font-weight: 700;
+    letter-spacing: -0.1rem;
+    color: $color-charcoal;
+    margin-top: -1rem;
+  }
+    .login-page__button-container {
+    padding-top: 8rem;
+  }
+}
