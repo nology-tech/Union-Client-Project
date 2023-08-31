@@ -57,7 +57,7 @@ const About = () => {
             src="https://www.youtube.com/embed/2hR-uWjBAgw?si=9bfRSIat5EZao8iP"
             width={350}
             height={240}
-            data-testid="video"
+            data-testid="video2"
           ></iframe>
           <p className="about__text about__quote">
             <strong>
