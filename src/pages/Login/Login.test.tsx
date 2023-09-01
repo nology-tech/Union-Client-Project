@@ -4,10 +4,10 @@ import { MemoryRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event"
 
   const email = "daniela.gutperl@gmail.com"
-  const setEmail = () => {}
+  const setEmail = () => {return}
   const password = "password"
-  const setPassword = () => {}
-  const setUserId = () => {}
+  const setPassword = () => {return}
+  const setUserId = () => {return}
 
 it("should render elements to allow login", () => {
   render(<MemoryRouter><Login 
