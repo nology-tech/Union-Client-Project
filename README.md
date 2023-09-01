@@ -152,3 +152,8 @@ export type MockEvent = {
   data-testid="video"
 ></iframe>
 ```
+
+### Calendar
+
+- Added dummy layout for Calendar to show proof of concept.
+- Added padding bottom to Header subtitle.
