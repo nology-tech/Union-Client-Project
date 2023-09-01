@@ -30,6 +30,7 @@ const Header = ({
             {locationCity}
           </p>
         )}
+        <div className="header__border"></div>
       </div>
       {imageUrl && (
         <div className="header__image-positioning">

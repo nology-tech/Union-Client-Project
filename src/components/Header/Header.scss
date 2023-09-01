@@ -19,6 +19,10 @@
     padding: 0;
   }
 
+  &__border {
+    padding-bottom: 2.5rem;
+  }
+
   &__brand {
     color: $color-yellow;
     font-family: $modern-content;
@@ -48,7 +52,7 @@
     width: auto;
     &--upper-half {
       background-color: $color-red;
-      height: 17vh;
+      height: 12vh;
     }
 
     &--lower-half {
@@ -95,7 +99,7 @@
 
     &--upper-half {
       background-color: $color-red;
-      height: 19vh;
+      height: 16.5vh;
     }
 
     &--lower-half {
