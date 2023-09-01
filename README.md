@@ -152,3 +152,27 @@ export type MockEvent = {
   data-testid="video"
 ></iframe>
 ```
+
+## Register-Page
+
+- Register Page takes nine props, these props are almost entirely to do with authentication in the creation of a user account.
+
+- First name and Last name are currently unused useState variables, however we anticipate them to be used later in development
+
+```typescript
+type RegisterProps = {
+  email: string;
+  setEmail: (email: string) => void;
+  password: string;
+  setPassword: (password: string) => void;
+  setUserId: (userId: string) => void;
+  firstName: string;
+  lastName: string;
+  setFirstName: (firstName: string) => void;
+  setLastName: (lastName: string) => void;
+};
+```
+
+- The initial Register page has two input text boxes "First Name" and "last Name". The next button uses the toggle function to conditionally render an alternative register page for the second half of the account creation process. On the initial page the back arrow navigates back to the splash page.
+
+- The secondary register page has three input boxes. Email, Password and Confirm Password. The create account button checks the password and email eligibility and then if correct submits that information to the fireBase. The Back button on this page sends the user back to the first Register page.
