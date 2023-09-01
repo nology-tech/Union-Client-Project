@@ -1,5 +1,4 @@
 import { screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import Events from "./Events";
 import { mockEvents } from "../../data/mockEvents";
 import { customRender } from "../../utils/testUtils";
