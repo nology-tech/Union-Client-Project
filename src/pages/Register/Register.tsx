@@ -102,33 +102,61 @@ const Register = ({
   return (
     <div className="register-page">
       {!userinput && (
-        <div className="image-container">
-          <img
-            className="image-container__image"
-            src={arrow}
-            alt=""
-            onClick={navigateBack}
-          />
-        </div>
+        <>
+          {" "}
+          <div className="image-container">
+            <img
+              className="image-container__image"
+              src={arrow}
+              alt=""
+              onClick={navigateBack}
+            />
+          </div>
+          <div className="register-page__heading">
+            <h1 className="register-page__heading__header">
+              Create An Account
+            </h1>
+          </div>
+          <div className="register-page__input">
+            <div className="register-page__first-name">
+              <InputBox
+                label="First Name"
+                inputType="text"
+                inputPlaceholder="  John"
+                handleInput={handleFirstName}
+              />
+            </div>
+            <div className="register-page__last-name">
+              <InputBox
+                label="Last Name"
+                inputType="text"
+                inputPlaceholder="  Doe"
+                handleInput={handleLastName}
+              />
+            </div>
+            <div className="register-page__next-button">
+              <Button label="Next" onClick={handleClickNext} />
+            </div>
+          </div>
+        </>
       )}
 
       {userinput && (
-        <div className="image-container">
-          <img
-            className="image-container__image"
-            src={arrow}
-            alt=""
-            onClick={toggle}
-          />
-        </div>
-      )}
-
-      <div className="register-page__heading">
-        <h1 className="register-page__heading__header">Create An Account</h1>
-      </div>
-      <div className="register-page__input">
-        {userinput && (
-          <>
+        <>
+          <div className="image-container">
+            <img
+              className="image-container__image"
+              src={arrow}
+              alt=""
+              onClick={toggle}
+            />
+          </div>
+          <div className="register-page__heading">
+            <h1 className="register-page__heading__header">
+              Create An Account
+            </h1>
+          </div>
+          <div className="register-page__input">
             <div className="register-page__email">
               <InputBox
                 label="Email Address"
@@ -154,41 +182,12 @@ const Register = ({
                 handleInput={handlePasswordInput}
               />
             </div>
-          </>
-        )}
-
-        {!userinput && (
-          <>
-            <div className="register-page__first-name">
-              <InputBox
-                label="First Name"
-                inputType="text"
-                inputPlaceholder="  John"
-                handleInput={handleFirstName}
-              />
+            <div className="register-page__create-account">
+              <Button label="Create Account" onClick={handleRegister} />
             </div>
-            <div className="register-page__last-name">
-              <InputBox
-                label="Last Name"
-                inputType="text"
-                inputPlaceholder="  Doe"
-                handleInput={handleLastName}
-              />
-            </div>
-          </>
-        )}
-        {!userinput && (
-          <div className="register-page__next-button">
-            <Button label="Next" onClick={handleClickNext} />
           </div>
-        )}
-
-        {userinput && (
-          <div className="register-page__create-account">
-            <Button label="Create Account" onClick={handleRegister} />
-          </div>
-        )}
-      </div>
+        </>
+      )}
     </div>
   );
 };
