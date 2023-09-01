@@ -7,13 +7,13 @@ import EventCard from "../../components/EventCard/EventCard";
 import Layout from "../../components/Layout/Layout";
 
 type EventsProps = {
-  mockData: MockEvent[];
+  eventData: MockEvent[];
 };
 
-const Events = ({ mockData }: EventsProps) => {
+const Events = ({ eventData }: EventsProps) => {
   const [searchEvents, setSearchEvents] = useState<string>("");
   const [buttonVariants, setButtonVariants] = useState<boolean[]>(
-    new Array(mockData.length).fill(false)
+    new Array(eventData.length).fill(false)
   );
 
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +21,7 @@ const Events = ({ mockData }: EventsProps) => {
     setSearchEvents(searchTerm);
   };
 
-  const filteredSearch = mockData.filter((event) => {
+  const filteredSearch = eventData.filter((event) => {
     return (
       event.name.toLowerCase().includes(searchEvents) ||
       event.category.toLowerCase().includes(searchEvents) ||
