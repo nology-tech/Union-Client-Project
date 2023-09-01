@@ -11,7 +11,7 @@ import { mockEvents } from "./data/mockEvents";
 import About from "./pages/About/About";
 
 const App = () => {
-  const [userId, setUserId] = useState<string>("test please remove");
+  const [userId, setUserId] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
