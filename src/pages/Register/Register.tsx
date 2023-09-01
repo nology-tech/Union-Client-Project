@@ -128,22 +128,27 @@ const Register = ({
           </>
         )}
 
-        <div className="register-page__first-name">
-          <InputBox
-            label="First Name"
-            inputType="text"
-            inputPlaceholder="  John"
-            handleInput={handleFirstName}
-          />
-        </div>
-        <div className="register-page__last-name">
-          <InputBox
-            label="Last Name"
-            inputType="text"
-            inputPlaceholder="  Doe"
-            handleInput={handleLastName}
-          />
-        </div>
+        {!userinput && (
+          <>
+            <div className="register-page__first-name">
+              <InputBox
+                label="First Name"
+                inputType="text"
+                inputPlaceholder="  John"
+                handleInput={handleFirstName}
+              />
+            </div>
+            <div className="register-page__last-name">
+              <InputBox
+                label="Last Name"
+                inputType="text"
+                inputPlaceholder="  Doe"
+                handleInput={handleLastName}
+              />
+            </div>
+          </>
+        )}
+
         <div className="register-page__next-button">
           <Button label="Next" onClick={handleClickNext} />
         </div>
