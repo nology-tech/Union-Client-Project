@@ -30,12 +30,8 @@ const Events = ({ mockData }: EventsProps) => {
   });
 
   const handleClick = (eventIndex: number) => {
-    console.log(eventIndex);
-
     const newButtonVariants = [...buttonVariants];
     newButtonVariants[eventIndex] = !newButtonVariants[eventIndex];
-    console.log(newButtonVariants);
-
     setButtonVariants(newButtonVariants);
   };
 
@@ -43,23 +39,25 @@ const Events = ({ mockData }: EventsProps) => {
     <Layout>
       <Header title="Events" subTitle="MADE MY MAKERS STUDIO TOUR" />
       <SearchBar searchEvents={searchEvents} handleInput={handleSearch} />
-      {filteredSearch.map((event: MockEvent, index: number) => {
-        return (
-          <EventCard
-            key={event.id}
-            title={event.name}
-            maker={event.category}
-            date={event.date}
-            textContent={event.description}
-            galleryArray={event.images}
-            buttonLabel={
-              buttonVariants[index] ? "CANCEL BOOKING" : "BOOK A PLACE"
-            }
-            buttonVariant={buttonVariants[index]}
-            handleClick={() => handleClick(index)}
-          />
-        );
-      })}
+      <div className="displayed-events">
+        {filteredSearch.map((event: MockEvent, index: number) => {
+          return (
+            <EventCard
+              key={event.id}
+              title={event.name}
+              maker={event.category}
+              date={event.date}
+              textContent={event.description}
+              galleryArray={event.images}
+              buttonLabel={
+                buttonVariants[index] ? "CANCEL BOOKING" : "BOOK A PLACE"
+              }
+              buttonVariant={buttonVariants[index]}
+              handleClick={() => handleClick(index)}
+            />
+          );
+        })}
+      </div>
     </Layout>
   );
 };

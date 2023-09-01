@@ -25,7 +25,3 @@ const SearchBar = ({ handleInput, searchEvents }: SearchBarProps) => {
 };
 
 export default SearchBar;
-
-// const handleInput = (event: ChangeEvent) => {
-//   console.log(event.currentTarget);
-// };
