@@ -33,6 +33,7 @@ const Register = ({
   const [checkPassword, setCheckPassword] = useState<string>("");
   const [colorChange, setColorChange] = useState<boolean>(true);
   const [checkConfirmPassword, setCheckConfirmPassword] = useState<string>("");
+  const [emailColorChange, setEmailColorChange] = useState<boolean>(true);
 
   const handleRegister = async () => {
     try {
@@ -64,8 +65,25 @@ const Register = ({
     setLastName(event.currentTarget.value);
   };
 
+  const isEmailValid = (email: string) => {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+    return emailRegex.test(email);
+  };
+
   const handleEmailInput = (event: FormEvent<HTMLInputElement>) => {
     setEmail(event.currentTarget.value);
+  };
+
+  const beforeRegister = () => {
+    if (isEmailValid(email) == true && colorChange == false) {
+      setEmailColorChange(true);
+      return;
+    } else if (isEmailValid(email) == false) {
+      setEmailColorChange(false);
+    } else {
+      handleRegister();
+    }
   };
 
   const handlePasswordInput = (event: FormEvent<HTMLInputElement>) => {
@@ -154,7 +172,7 @@ const Register = ({
             </h1>
           </div>
           <div className="register-page__input">
-            <div className="register-page__email">
+            <div className={`register-page__email email--${emailColorChange}`}>
               <InputBox
                 label="Email Address"
                 inputPlaceholder="you@example.com"
@@ -180,7 +198,7 @@ const Register = ({
               />
             </div>
             <div className="register-page__create-account">
-              <Button label="Create Account" onClick={handleRegister} />
+              <Button label="Create Account" onClick={beforeRegister} />
             </div>
           </div>
         </>
