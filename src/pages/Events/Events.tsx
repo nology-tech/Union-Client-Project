@@ -1,7 +1,7 @@
 import "./Events.scss";
 import Header from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import { ChangeEvent, MouseEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { MockEvent } from "../../types/types";
 import EventCard from "../../components/EventCard/EventCard";
 import Layout from "../../components/Layout/Layout";
@@ -12,7 +12,9 @@ type EventsProps = {
 
 const Events = ({ mockData }: EventsProps) => {
   const [searchEvents, setSearchEvents] = useState<string>("");
-  const [buttonVariant, setButtonVariant] = useState<boolean>(false);
+  const [buttonVariants, setButtonVariants] = useState<boolean[]>(
+    new Array(mockData.length).fill(false)
+  );
 
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
     const searchTerm = event.target.value.toLowerCase();
@@ -27,25 +29,21 @@ const Events = ({ mockData }: EventsProps) => {
     );
   });
 
-  /* Need to correct the handleClick function that will allow us to click individual buttons rather than clicking one and changing all of them. */
-  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
-    const eventTarget = event.currentTarget.parentElement as HTMLElement;
-    console.log(eventTarget);
+  const handleClick = (eventIndex: number) => {
+    console.log(eventIndex);
 
-    setButtonVariant(true);
+    const newButtonVariants = [...buttonVariants];
+    newButtonVariants[eventIndex] = !newButtonVariants[eventIndex];
+    console.log(newButtonVariants);
+
+    setButtonVariants(newButtonVariants);
   };
-
-  // const handleClick = (event: MouseEvent, eventId: number) => {
-  //   const bookedEvents = mockData.map((event) => {
-  //     if (event.id === eventId)
-  //   })
-  // }
 
   return (
     <Layout>
       <Header title="Events" subTitle="MADE MY MAKERS STUDIO TOUR" />
       <SearchBar searchEvents={searchEvents} handleInput={handleSearch} />
-      {filteredSearch.map((event: MockEvent) => {
+      {filteredSearch.map((event: MockEvent, index: number) => {
         return (
           <EventCard
             key={event.id}
@@ -54,13 +52,14 @@ const Events = ({ mockData }: EventsProps) => {
             date={event.date}
             textContent={event.description}
             galleryArray={event.images}
-            buttonLabel={buttonVariant ? "CANCEL BOOKING" : "BOOK A PLACE"}
-            buttonVariant={buttonVariant}
-            handleClick={handleClick}
+            buttonLabel={
+              buttonVariants[index] ? "CANCEL BOOKING" : "BOOK A PLACE"
+            }
+            buttonVariant={buttonVariants[index]}
+            handleClick={() => handleClick(index)}
           />
         );
       })}
-      ;
     </Layout>
   );
 };
