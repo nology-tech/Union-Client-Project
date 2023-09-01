@@ -8,6 +8,7 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Events from "./pages/Events/Events";
 import { mockEvents } from "./data/mockEvents";
+import About from "./pages/About/About";
 
 const App = () => {
   const [userId, setUserId] = useState<string>("test please remove");
@@ -22,7 +23,7 @@ const App = () => {
             <Route path="/home" element={<Home />} />
             <Route path="/events" element={<Events mockData={mockEvents} />} />
             <Route path="/calendar" element={""} />
-            <Route path="/about" element={""} />
+            <Route path="/about" element={<About />} />
           </>
         ) : (
           <>
