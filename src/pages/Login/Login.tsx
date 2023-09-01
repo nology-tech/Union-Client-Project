@@ -3,11 +3,9 @@ import InputBox from "../../components/InputBox/InputBox";
 import Button from "../../components/Button/Button";
 import {
   browserLocalPersistence,
-  browserSessionPersistence,
   setPersistence,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { FirebaseError } from "firebase/app";
 import { auth } from "../../firebase";
 import { ChangeEvent } from "react";
 import arrow from "../../assets/images/arrow.png";
@@ -44,6 +42,7 @@ const Login = ({
           })
           .catch((error) => {
             window.alert(error.message);
+            console.error(error.code);
           });
       })
       .catch((error) => {
@@ -100,8 +99,6 @@ const Login = ({
 };
 
 export default Login;
-
-// test@test.com
 
 // type LoginProps = {
 //   email: string;
