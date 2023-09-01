@@ -1,5 +1,11 @@
 @use "../../styles/variables" as *;
 
+.password-false {
+  .input-box__input--box {
+    border: 0.2px solid rgb(216, 147, 147);
+  }
+}
+
 .image-container {
   height: 12.5rem;
   width: 100vw;

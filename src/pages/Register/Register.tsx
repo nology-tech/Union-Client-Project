@@ -34,6 +34,7 @@ const Register = ({
   const [userinput, setUserInput] = useState<boolean>(false);
   const [checkPassword, setCheckPassword] = useState<string>("");
   const [colorChange, setColorChange] = useState<boolean>(false);
+  const [checkConfirmPassword, setCheckConfirmPassword] = useState<string>("");
 
   const handleRegister = async () => {
     try {
@@ -43,16 +44,12 @@ const Register = ({
         password
       );
       setUserId(userData.user.uid);
+      navigate("/home");
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {
         console.error(error.code);
       }
     }
-  };
-
-  const createAccount = () => {
-    handleRegister;
-    navigate("/home");
   };
 
   const navigateBack = () => {
@@ -74,9 +71,12 @@ const Register = ({
   };
 
   const handlePasswordInput = (event: FormEvent<HTMLInputElement>) => {
+    setCheckConfirmPassword(event.currentTarget.value);
     if (checkPassword === event.currentTarget.value) {
       setPassword(event.currentTarget.value);
+      setColorChange(true);
     } else {
+      setColorChange(false);
     }
   };
 
@@ -97,6 +97,9 @@ const Register = ({
 
   const handleCheckPasswordInput = (event: FormEvent<HTMLInputElement>) => {
     setCheckPassword(event.currentTarget.value);
+    if (event.currentTarget.value != checkConfirmPassword) {
+      setColorChange(false);
+    } else setColorChange(true);
   };
 
   return (
@@ -145,7 +148,9 @@ const Register = ({
                 handleInput={handleCheckPasswordInput}
               />
             </div>
-            <div className="register-page__confirm-password">
+            <div
+              className={`register-page__confirm-password password-${colorChange}`}
+            >
               <InputBox
                 label="Confirm Password"
                 inputType="password"
@@ -183,7 +188,7 @@ const Register = ({
 
         {userinput && (
           <div className="register-page__create-account">
-            <Button label="Create Account" onClick={createAccount} />
+            <Button label="Create Account" onClick={handleRegister} />
           </div>
         )}
       </div>
