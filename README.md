@@ -86,6 +86,13 @@ export type MockEvent = {
 - We currently have 5 mock events that have been taken from the Figma page with the ability to add further events as and when needed.
 - we have added 2 events with a data that's in past so they can be used to show in the "Historic" section.
 
+## Homepage
+
+- Created a homepage that replicated the design given on figma
+- Homepage uses <Header/> at the top of the page
+- Homepage uses two <Button/> one for routing to the events page ("/events") and another routing to the about page ("/about")
+- Homepage currently displays event information about "Made by Makers Studio Tour"
+
 ## Features
 
 ### Nav
@@ -102,6 +109,7 @@ export type MockEvent = {
 
 ## Header Component
 
+```typescript
 <Header
   title="Made by Makers Studio Tour"
   subTitle="Sat 20 | Sun 21 Nov 2021"
@@ -109,6 +117,7 @@ export type MockEvent = {
   locationVenue="Venue"
   locationCity="City"
 />
+```
 
 - Header component needs 1 prop (title) and takes 5 optional props.
 - Prop #1 (title) is a string that is then outputted into a h1 tag

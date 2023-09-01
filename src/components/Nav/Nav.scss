@@ -1,8 +1,13 @@
 .nav {
+  position: fixed;
+  bottom: 0;
+  height: 9vh;
+
   &__links {
+    width: 100vw;
     display: flex;
-    justify-content: space-between;
-    margin: 1.5rem;
+    justify-content: space-around;
+    align-items: center;
   }
 
   &__link {
