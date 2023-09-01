@@ -5,14 +5,14 @@ import { mockEvents } from "../../data/mockEvents";
 import { customRender } from "../../utils/testUtils";
 
 it("should render all the events once page loads", () => {
-  customRender(<Events mockData={mockEvents} />);
+  customRender(<Events eventData={mockEvents} />);
 
   const eventCardButtons = screen.getAllByTestId(/event-card/i);
   expect(eventCardButtons.length).toBe(mockEvents.length);
 });
 
 it("should render only 1 related event once beer has been searched", async () => {
-  customRender(<Events mockData={mockEvents} />);
+  customRender(<Events eventData={mockEvents} />);
 
   const searchBar = screen.getByRole("textbox");
   await userEvents.type(searchBar, "beer");
@@ -22,7 +22,7 @@ it("should render only 1 related event once beer has been searched", async () =>
 });
 
 it("should not render any events if search not matched", async () => {
-  customRender(<Events mockData={mockEvents} />);
+  customRender(<Events eventData={mockEvents} />);
 
   const searchBar = screen.getByRole("textbox");
   await userEvents.type(searchBar, "cooking");
