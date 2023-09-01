@@ -151,3 +151,21 @@ export type MockEvent = {
   data-testid="video"
 ></iframe>
 ```
+
+### Events Page
+
+- Created events page to render the search bar and events passed in.
+- The search bar filters the events by event name, category and description
+- State for each events' "booking" button is kept in Events as an array
+
+```tsx
+const [buttonVariants, setButtonVariants] = useState<boolean[]>(
+  new Array(mockData.length).fill(false)
+);
+```
+
+- Use index when mapping over events to target the buttons individually
+
+```tsx
+{filteredSearch.map((event: MockEvent, index: number))}
+```
