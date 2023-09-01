@@ -2,14 +2,11 @@ import "./Login.scss";
 import Form from "../../components/Form/Form";
 import {
   browserLocalPersistence,
-  browserSessionPersistence,
   setPersistence,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { FirebaseError } from "firebase/app";
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
 
 type LoginProps = {
   email: string;
@@ -27,6 +24,7 @@ const Login = ({
   setUserId,
 }: LoginProps) => {
   const navigate = useNavigate();
+
   const handleLogin = async () => {
     setPersistence(auth, browserLocalPersistence)
       .then(() => {
@@ -39,10 +37,12 @@ const Login = ({
           })
           .catch((error) => {
             window.alert(error.message);
+            console.error(error.code);
           });
       })
       .catch((error) => {
         window.alert(error.message);
+        console.error(error.code);
       });
   };
 
@@ -59,8 +59,6 @@ const Login = ({
 };
 
 export default Login;
-
-// test@test.com
 
 // type LoginProps = {
 //   email: string;
