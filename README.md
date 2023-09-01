@@ -170,3 +170,7 @@ const [buttonVariants, setButtonVariants] = useState<boolean[]>(
 ```tsx
 {filteredSearch.map((event: MockEvent, index: number))}
 ```
+### Calendar
+
+- Added dummy layout for Calendar to show proof of concept.
+- Added padding bottom to Header subtitle.
