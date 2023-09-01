@@ -16,7 +16,7 @@ const Nav = () => {
               isActive ? "nav__link--active" : "nav__link"
             }
           >
-            <img src={home} alt="Home link" className="nav__image--home" />
+            <img src={home} alt="Home link" className="nav__image" />
           </NavLink>
 
           <NavLink
@@ -25,11 +25,7 @@ const Nav = () => {
               isActive ? "nav__link--active" : "nav__link"
             }
           >
-            <img
-              src={events}
-              alt="Events link"
-              className="nav__image--events"
-            />
+            <img src={events} alt="Events link" className="nav__image" />
           </NavLink>
 
           <NavLink
@@ -38,11 +34,7 @@ const Nav = () => {
               isActive ? "nav__link--active" : "nav__link"
             }
           >
-            <img
-              src={calendar}
-              alt="Calendar link"
-              className="nav__image--calendar"
-            />
+            <img src={calendar} alt="Calendar link" className="nav__image" />
           </NavLink>
 
           <NavLink
@@ -51,7 +43,7 @@ const Nav = () => {
               isActive ? "nav__link--active" : "nav__link"
             }
           >
-            <img src={about} alt="About link" className="nav__image--about" />
+            <img src={about} alt="About link" className="nav__image" />
           </NavLink>
         </ul>
       </nav>
