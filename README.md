@@ -161,7 +161,7 @@ export type MockEvent = {
 
 ```tsx
 const [buttonVariants, setButtonVariants] = useState<boolean[]>(
-  new Array(mockData.length).fill(false)
+  new Array(eventData.length).fill(false)
 );
 ```
 
@@ -170,6 +170,7 @@ const [buttonVariants, setButtonVariants] = useState<boolean[]>(
 ```tsx
 {filteredSearch.map((event: MockEvent, index: number))}
 ```
+
 ### Calendar
 
 - Added dummy layout for Calendar to show proof of concept.
