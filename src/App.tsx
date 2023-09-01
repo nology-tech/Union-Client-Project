@@ -6,6 +6,7 @@ import { useState } from "react";
 import SplashPage from "./pages/SplashPage/SplashPage";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import About from "./pages/About/About";
 
 const App = () => {
   const [userId, setUserId] = useState<string>("");
@@ -22,7 +23,7 @@ const App = () => {
             <Route path="/home" element={<Home />} />
             <Route path="/events" element={""} />
             <Route path="/calendar" element={""} />
-            <Route path="/about" element={""} />
+            <Route path="/about" element={<About />} />
           </>
         ) : (
           <>
