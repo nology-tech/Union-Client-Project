@@ -29,6 +29,7 @@ const Header = ({
             {locationCity}
           </p>
         )}
+        <div className="header__border"></div>
       </div>
       {imageUrl && (
         <div className="header__image-positioning">
@@ -49,14 +50,13 @@ const Header = ({
         <div className="header__video-positioning">
           <div className="header__video-container">
             <div className="header__video-container--upper-half"></div>
-            <video
+            <iframe
               className="header__video"
               src={videoUrl}
               width={350}
               height={240}
-              controls
               data-testid="video"
-            ></video>
+            ></iframe>
             <div className="header__video-container--lower-half"></div>
           </div>
         </div>

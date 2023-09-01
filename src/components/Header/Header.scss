@@ -3,6 +3,7 @@
 .header * {
   margin: 0;
   padding: 0;
+  height: auto;
 }
 .header {
   background-color: $color-red;
@@ -16,6 +17,10 @@
     flex-direction: column;
     margin: 0;
     padding: 0;
+  }
+
+  &__border {
+    padding-bottom: 2.5rem;
   }
 
   &__brand {
@@ -47,11 +52,11 @@
     width: auto;
     &--upper-half {
       background-color: $color-red;
-      height: 17vh;
+      height: 12vh;
     }
 
     &--lower-half {
-      background-color: $color-white;
+      background-color: $color-off-white;
       height: 14vh;
     }
   }
@@ -72,14 +77,16 @@
     color: $color-white;
     font-family: $modern-content;
     padding-left: 2rem;
+    padding-bottom: 2rem;
   }
 
   &__video {
-    top: 34vh;
-    left: 5vw;
-    border-radius: 20px;
+    height: 240px;
+    top: 30vh;
+    margin: 0 calc((100vw - 350px) / 2);
     z-index: 2;
     position: absolute;
+    border: none;
   }
 
   &__video-positioning {
@@ -94,11 +101,11 @@
 
     &--upper-half {
       background-color: $color-red;
-      height: 19vh;
+      height: 16.5vh;
     }
 
     &--lower-half {
-      background-color: $color-white;
+      background-color: $color-off-white;
       height: 15vh;
     }
   }
