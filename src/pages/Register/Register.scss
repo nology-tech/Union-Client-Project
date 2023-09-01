@@ -45,4 +45,26 @@
   &__next-button {
     padding-top: 8rem;
   }
+
+  &__email {
+    width: 23rem;
+    height: 5rem;
+    margin-left: 2rem;
+  }
+
+  &__password {
+    width: 23rem;
+    height: 5rem;
+    margin-left: 2rem;
+  }
+
+  &__confirm-password {
+    width: 23rem;
+    height: 5rem;
+    margin-left: 2rem;
+  }
+
+  &__create-account {
+    padding-top: 3rem;
+  }
 }

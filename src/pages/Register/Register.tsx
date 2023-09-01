@@ -94,37 +94,57 @@ const Register = ({
 
   return (
     <div className="register-page">
-      <div className="image-container">
-        <img
-          className="image-container__image"
-          src={arrow}
-          alt=""
-          onClick={navigateBack}
-        />
-      </div>
+      {!userinput && (
+        <div className="image-container">
+          <img
+            className="image-container__image"
+            src={arrow}
+            alt=""
+            onClick={navigateBack}
+          />
+        </div>
+      )}
+
+      {userinput && (
+        <div className="image-container">
+          <img
+            className="image-container__image"
+            src={arrow}
+            alt=""
+            onClick={toggle}
+          />
+        </div>
+      )}
+
       <div className="register-page__heading">
         <h1 className="register-page__heading__header">Create An Account</h1>
       </div>
       <div className="register-page__input">
         {userinput && (
           <>
-            <InputBox
-              label="Email Address"
-              inputPlaceholder="you@example.com"
-              inputType="text"
-              handleInput={handleEmailInput}
-            />
-            <InputBox
-              label="Password"
-              inputPlaceholder="Your Password"
-              inputType="password"
-              handleInput={handleCheckPasswordInput}
-            />
-            <InputBox
-              label="Confirm Password"
-              inputType="password"
-              handleInput={handlePasswordInput}
-            />
+            <div className="register-page__email">
+              <InputBox
+                label="Email Address"
+                inputPlaceholder="you@example.com"
+                inputType="text"
+                handleInput={handleEmailInput}
+              />
+            </div>
+            <div className="register-page__password">
+              <InputBox
+                label="Password"
+                inputPlaceholder="Your Password"
+                inputType="password"
+                handleInput={handleCheckPasswordInput}
+              />
+            </div>
+            <div className="register-page__confirm-password">
+              <InputBox
+                label="Confirm Password"
+                inputType="password"
+                handleInput={handlePasswordInput}
+              />
+            </div>
           </>
         )}
 
@@ -148,10 +168,17 @@ const Register = ({
             </div>
           </>
         )}
+        {!userinput && (
+          <div className="register-page__next-button">
+            <Button label="Next" onClick={handleClickNext} />
+          </div>
+        )}
 
-        <div className="register-page__next-button">
-          <Button label="Next" onClick={handleClickNext} />
-        </div>
+        {userinput && (
+          <div className="register-page__create-account">
+            <Button label="Create Account" onClick={handleClickNext} />
+          </div>
+        )}
       </div>
     </div>
   );
