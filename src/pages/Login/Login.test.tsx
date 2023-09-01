@@ -3,7 +3,6 @@ import Login from "./Login";
 import { MemoryRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event"
 
-
   const email = "daniela.gutperl@gmail.com"
   const setEmail = () => {}
   const password = "password"
@@ -25,7 +24,6 @@ it("should render elements to allow login", () => {
     expect(passwordInput).toBeInTheDocument();
     expect(emailInput).toBeInTheDocument();
 });
-
 
 it("should not authenticate the user, given incorrect credentials", async () => {
   render(<MemoryRouter><Login 
