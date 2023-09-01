@@ -33,7 +33,7 @@ const Register = ({
 }: RegisterProps) => {
   const [userinput, setUserInput] = useState<boolean>(false);
   const [checkPassword, setCheckPassword] = useState<string>("");
-  const [colorChange, setColorChange] = useState<boolean>(false);
+  const [colorChange, setColorChange] = useState<boolean>(true);
   const [checkConfirmPassword, setCheckConfirmPassword] = useState<string>("");
 
   const handleRegister = async () => {
