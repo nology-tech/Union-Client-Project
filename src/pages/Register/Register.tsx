@@ -81,9 +81,6 @@ const Register = ({
   };
 
   const handleClickNext = () => {
-    if (firstName && lastName) {
-      handleRegister();
-    }
     toggle();
   };
 
