@@ -33,6 +33,7 @@ const Register = ({
 }: RegisterProps) => {
   const [userinput, setUserInput] = useState<boolean>(false);
   const [checkPassword, setCheckPassword] = useState<string>("");
+  const [colorChange, setColorChange] = useState<boolean>(false);
 
   const handleRegister = async () => {
     try {
@@ -47,6 +48,11 @@ const Register = ({
         console.error(error.code);
       }
     }
+  };
+
+  const createAccount = () => {
+    handleRegister;
+    navigate("/home");
   };
 
   const navigateBack = () => {
@@ -70,6 +76,7 @@ const Register = ({
   const handlePasswordInput = (event: FormEvent<HTMLInputElement>) => {
     if (checkPassword === event.currentTarget.value) {
       setPassword(event.currentTarget.value);
+    } else {
     }
   };
 
@@ -176,7 +183,7 @@ const Register = ({
 
         {userinput && (
           <div className="register-page__create-account">
-            <Button label="Create Account" onClick={handleClickNext} />
+            <Button label="Create Account" onClick={createAccount} />
           </div>
         )}
       </div>
