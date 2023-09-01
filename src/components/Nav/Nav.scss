@@ -1,7 +1,12 @@
+@use "../../styles/variables" as *;
+
 .nav {
   position: fixed;
   bottom: 0;
   height: 9vh;
+  background-color: $color-white;
+  padding-top: calc((9vh - 50px) / 2);
+  box-shadow: 0px -2vh 2vh rgba($color-dark-grey, 0.1);
 
   &__links {
     width: 100vw;
