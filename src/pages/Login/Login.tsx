@@ -1,7 +1,12 @@
 import "./Login.scss";
 import InputBox from "../../components/InputBox/InputBox";
 import Button from "../../components/Button/Button";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  browserLocalPersistence,
+  browserSessionPersistence,
+  setPersistence,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { FirebaseError } from "firebase/app";
 import { auth } from "../../firebase";
 import { ChangeEvent } from "react";
@@ -28,16 +33,23 @@ const Login = ({
   const [loginError, setLoginError] = useState<boolean>(false);
 
   const handleLogin = async () => {
-    try {
-      const userData = await signInWithEmailAndPassword(auth, email, password);
-      setUserId(userData.user.uid);
-      navigate("/home");
-    } catch (error: unknown) {
-      if (error instanceof FirebaseError) {
-        console.error(error.code);
+    setPersistence(auth, browserLocalPersistence)
+      .then(() => {
+        signInWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            const user = userCredential.user;
+            setUserId(user.uid);
+            navigate("/home");
+            window.alert("Login Success");
+          })
+          .catch((error) => {
+            window.alert(error.message);
+          });
+      })
+      .catch((error) => {
+        window.alert(error.message);
         setLoginError(true);
-      }
-    }
+      });
   };
 
   const handleEmailInput = (event: ChangeEvent<HTMLInputElement>) => {
@@ -51,6 +63,9 @@ const Login = ({
   return (
     <div className="login-page">
       <div className="image-container">
+        <Link to={"/"}>
+          <img className="image-container__image" src={arrow} alt="" />
+        </Link>
         <Link to={"/"}>
           <img className="image-container__image" src={arrow} alt="" />
         </Link>
@@ -85,6 +100,8 @@ const Login = ({
 };
 
 export default Login;
+
+// test@test.com
 
 // type LoginProps = {
 //   email: string;
