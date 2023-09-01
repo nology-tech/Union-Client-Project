@@ -123,7 +123,7 @@ const Register = ({
             <img
               className="image-container__image"
               src={arrow}
-              alt=""
+              alt="back-arrow"
               onClick={navigateBack}
             />
           </div>
@@ -162,7 +162,7 @@ const Register = ({
             <img
               className="image-container__image"
               src={arrow}
-              alt=""
+              alt="back-arrow"
               onClick={toggle}
             />
           </div>
