@@ -9,7 +9,6 @@ import userEvent from "@testing-library/user-event"
   const password = "password"
   const setPassword = () => {}
   const setUserId = () => {}
-  const userId = "userId"
 
 it("should render elements to allow login", () => {
   render(<MemoryRouter><Login 
@@ -18,7 +17,6 @@ it("should render elements to allow login", () => {
       password = {password}
       setPassword = {setPassword}
       setUserId = {setUserId}
-      userId = {userId}
       /></MemoryRouter>);
       
     const emailInput = screen.getByText("Email Address");
@@ -36,7 +34,6 @@ it("should not authenticate the user, given incorrect credentials", async () => 
       password = {password}
       setPassword = {setPassword}
       setUserId = {setUserId}
-      userId = {userId}
       /></MemoryRouter>);
       
     const emailInput = screen.getByPlaceholderText("you@example.com");
@@ -44,14 +41,9 @@ it("should not authenticate the user, given incorrect credentials", async () => 
     const passwordInput = screen.getByPlaceholderText("Your password");
     await userEvent.type(passwordInput, "notsomethignvalid")
 
-    const button = screen.getByText(/IN/i)
+    const button = screen.getByRole("button")
     await userEvent.click(button);
 
-    const alert = screen.getByText("")
+    const alert = screen.findByText("Sorry, we don't recognise that login")
     expect(alert).toBeTruthy();
 });
-
-
-
-
-
