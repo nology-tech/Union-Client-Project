@@ -21,8 +21,6 @@ type RegisterProps = {
 };
 
 const Register = ({
-  firstName,
-  lastName,
   setFirstName,
   setLastName,
   email,
@@ -103,7 +101,6 @@ const Register = ({
     <div className="register-page">
       {!userinput && (
         <>
-          {" "}
           <div className="image-container">
             <img
               className="image-container__image"
