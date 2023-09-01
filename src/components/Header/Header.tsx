@@ -1,3 +1,4 @@
+import { CSSProperties } from "react";
 import "./Header.scss";
 
 type HeaderProps = {

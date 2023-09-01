@@ -24,22 +24,3 @@ const app = initializeApp(firebaseConfig);
 
 // init services
 export const auth = getAuth(app);
-
-const db = getFirestore();
-
-// collection ref
-const colRef = collection(db, "events");
-
-// get collection data
-
-getDocs(colRef)
-.then((snapshot) => {
-  let events = []
-  snapshot.docs.forEach((doc)=>{
-    events.push({ ...doc.data()}, id: doc.id)
-  })
-  console.log(events);
-})
-.catch(err=>{
-  console.log(err.message);
-})
