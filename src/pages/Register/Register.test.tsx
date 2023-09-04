@@ -15,11 +15,7 @@ it("should render the Header", () => {
     <Register
       email={fakeString}
       password={fakeString}
-      firstName={fakeString}
-      lastName={fakeString}
       setEmail={fakeFunction}
-      setFirstName={fakeFunction}
-      setLastName={fakeFunction}
       setPassword={fakeFunction}
       setUserId={fakeFunction}
     />
@@ -34,11 +30,7 @@ it("should render the back arrow image", () => {
     <Register
       email={fakeString}
       password={fakeString}
-      firstName={fakeString}
-      lastName={fakeString}
       setEmail={fakeFunction}
-      setFirstName={fakeFunction}
-      setLastName={fakeFunction}
       setPassword={fakeFunction}
       setUserId={fakeFunction}
     />
@@ -54,11 +46,7 @@ it("should render both input boxes", () => {
     <Register
       email={fakeString}
       password={fakeString}
-      firstName={fakeString}
-      lastName={fakeString}
       setEmail={fakeFunction}
-      setFirstName={fakeFunction}
-      setLastName={fakeFunction}
       setPassword={fakeFunction}
       setUserId={fakeFunction}
     />
