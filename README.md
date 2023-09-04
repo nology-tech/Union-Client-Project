@@ -175,3 +175,11 @@ const [buttonVariants, setButtonVariants] = useState<boolean[]>(
 
 - Added dummy layout for Calendar to show proof of concept.
 - Added padding bottom to Header subtitle.
+
+### SnapshotFirebase
+
+-Database has been created inside Firebase
+-Firebase.ts has been updated to import Firestore
+-Data from Firestore is stored as a variable called filteredData as an array
+-Exported component "SnapshotFirebase" that handles collecting data from Firebase using UseEffect
+-Data in the database contains fields: category, date, description, id, images and a name
