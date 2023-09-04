@@ -23,8 +23,8 @@
   }
 
   &__day {
-    color: red !important;
-    border-radius: 10px;
+    color: white;
+    border-radius: 10% !important;
   }
 }
 
@@ -39,13 +39,7 @@
     font-weight: 900 !important;
   }
 
-  // &__day.-selected:hover {
-  //   background: red;
-  // }
-}
-
-.Calendar__day:not(.-blank):not(.-selectedStart):not(.-selectedEnd):not(
-    .-selectedBetween
-  ):not(.-selected):hover {
-  background: red;
+  &__day.-selected:hover {
+    // color: white;
+  }
 }
