@@ -8,7 +8,7 @@ import Button from "../Button/Button";
 type EventCardProps = {
   title: string;
   maker: string;
-  date: string;
+  date: Date;
   textContent: string;
   galleryArray: string[];
   buttonLabel: string;
@@ -60,7 +60,7 @@ const EventCard = ({
         </div>
         <div className="event-card__ul">
           <li className="event-card__li">{maker}</li>
-          <li className="event-card__li">{date}</li>
+          <li className="event-card__li">{date.toLocaleDateString("en-GB")}</li>
         </div>
       </div>
       {showInfo && (

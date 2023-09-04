@@ -5,7 +5,7 @@ export const mockEvents: MockEvent[] = [
     id: 1,
     name: "The Furniture Workshop",
     category: "Furniture",
-    date: "28 January 2023",
+    date: new Date("2023-01-28"),
     description:
       "The Furniture Workshop, led by a master tinkerer, is a haven for craftsmanship, where artisans bring raw materials to life, sculpting timeless pieces that transform spaces into works of art. With meticulous attention to detail and a passion for innovation, this workshop embraces the art of furniture making, creating bespoke designs that embody the perfect blend of functionality and aesthetic appeal.",
     images: [
@@ -18,7 +18,7 @@ export const mockEvents: MockEvent[] = [
     id: 2,
     name: "Lazy Bowl Ceramics",
     category: "Ceramics",
-    date: "01 February 2023",
+    date: new Date("01 February 2023"),
     description:
       "Lazy Bowl Ceramics is a pottery workshop, led by a skilled team of potters and mould makers. Come and be hold unique ceramic pieces that blend functionality with artistic expression, infusing a touch of magic into everyday objects.",
     images: [
@@ -30,7 +30,7 @@ export const mockEvents: MockEvent[] = [
     id: 3,
     name: "Block and Anvil",
     category: "Forge",
-    date: "10 February 2024",
+    date: new Date("10 February 2024"),
     description:
       "Block and Anvil is a wrought iron forge, where raw metal is transformed into captivating works of art through the heat of their craft. This workshop embraces the traditions of ironworking while infusing innovative techniques, resulting in timeless pieces that exude the unmistakable beauty of forged iron.",
     images: [
@@ -42,7 +42,7 @@ export const mockEvents: MockEvent[] = [
     id: 4,
     name: "Coronado Ceramics",
     category: "Ceramics",
-    date: "16 February 2024",
+    date: new Date("16 February 2024"),
     description:
       "Coronado Ceramics, where the artistry of the pottery wheel and the captivating allure of raku firing converge to produce handcrafted ceramic masterpieces. Immerse yourself in our vibrant community, explore the transformative power of clay, and witness the birth of stunning creations that embody the beauty of tradition and artistic expression.",
     images: [
@@ -54,7 +54,7 @@ export const mockEvents: MockEvent[] = [
     id: 5,
     name: "Sweet Sewer Brewer",
     category: "Beer",
-    date: "22 March 2024",
+    date: new Date("22 March 2024"),
     description:
       "Sweet Sewer Brewer, where the art of craft beer takes a delightfully unexpected twist. Our innovative brewery is a haven for beer enthusiasts and adventurers seeking bold flavors and boundary-pushing brews.",
     images: [

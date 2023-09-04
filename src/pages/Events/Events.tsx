@@ -1,7 +1,7 @@
 import "./Events.scss";
 import Header from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState, useEffect } from "react";
 import { MockEvent } from "../../types/types";
 import EventCard from "../../components/EventCard/EventCard";
 import Layout from "../../components/Layout/Layout";
@@ -15,13 +15,21 @@ const Events = ({ eventData }: EventsProps) => {
   const [buttonVariants, setButtonVariants] = useState<boolean[]>(
     new Array(eventData.length).fill(false)
   );
+  const [date, setDate] = useState<string>("");
 
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
     const searchTerm = event.target.value.toLowerCase();
     setSearchEvents(searchTerm);
   };
 
-  const filteredSearch = eventData.filter((event) => {
+  const filterByDate = eventData.filter((event) => {
+    const currentDate = new Date();
+    if (event.date > currentDate) {
+      return event;
+    }
+  });
+
+  const filteredSearch = filterByDate.filter((event) => {
     return (
       event.name.toLowerCase().includes(searchEvents) ||
       event.category.toLowerCase().includes(searchEvents) ||
@@ -35,9 +43,27 @@ const Events = ({ eventData }: EventsProps) => {
     setButtonVariants(newButtonVariants);
   };
 
+  useEffect(() => {
+    const today = new Date();
+
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+
+    const formattedDate = today.toLocaleDateString("en-GB", options);
+    setDate(formattedDate);
+  }, []);
+
   return (
     <Layout>
-      <Header title="Events" subTitle="MADE MY MAKERS STUDIO TOUR" />
+      <Header
+        title="Events"
+        subTitle={`MADE MY MAKERS STUDIO TOUR`}
+        date={date}
+      />
       <SearchBar searchEvents={searchEvents} handleInput={handleSearch} />
       <div className="displayed-events">
         {filteredSearch.map((event: MockEvent, index: number) => {

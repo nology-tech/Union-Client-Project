@@ -123,6 +123,11 @@
       color: $color-white;
     }
   }
+  &__date {
+    color: $color-white;
+    padding-left: 2rem;
+    font-family: $modern-content;
+  }
 }
 
 @media screen and (max-width: 375px) {
