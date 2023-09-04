@@ -14,15 +14,9 @@ type RegisterProps = {
   password: string;
   setPassword: (password: string) => void;
   setUserId: (userId: string) => void;
-  firstName: string;
-  lastName: string;
-  setFirstName: (firstName: string) => void;
-  setLastName: (lastName: string) => void;
 };
 
 const Register = ({
-  setFirstName,
-  setLastName,
   email,
   setEmail,
   password,
@@ -34,6 +28,10 @@ const Register = ({
   const [colorChange, setColorChange] = useState<boolean>(true);
   const [checkConfirmPassword, setCheckConfirmPassword] = useState<string>("");
   const [emailColorChange, setEmailColorChange] = useState<boolean>(true);
+
+  // because we only need the set function, we can get access to that without destructuring, just by accessing the second part of the array.
+  const setFirstName = useState<string>("")[1];
+  const setLastName = useState<string>("")[1];
 
   const handleRegister = async () => {
     try {
@@ -124,9 +122,7 @@ const Register = ({
             />
           </div>
           <div className="register-page__heading">
-            <h1 className="register-page__heading__header">
-              Create An Account
-            </h1>
+            <h1 className="register-page__header">Create An Account</h1>
           </div>
           <div className="register-page__input">
             <div className="register-page__first-name">
@@ -163,9 +159,7 @@ const Register = ({
             />
           </div>
           <div className="register-page__heading">
-            <h1 className="register-page__heading__header">
-              Create An Account
-            </h1>
+            <h1 className="register-page__header">Create An Account</h1>
           </div>
           <div className="register-page__input">
             <div className={`register-page__email email--${emailColorChange}`}>

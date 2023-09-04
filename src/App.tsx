@@ -15,8 +15,6 @@ const App = () => {
   const [userId, setUserId] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [firstName, setFirstName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
 
   return (
     <>
@@ -47,10 +45,6 @@ const App = () => {
               path="/register"
               element={
                 <Register
-                  firstName={firstName}
-                  lastName={lastName}
-                  setFirstName={setFirstName}
-                  setLastName={setLastName}
                   email={email}
                   setEmail={setEmail}
                   password={password}
