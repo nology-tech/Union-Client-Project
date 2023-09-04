@@ -81,7 +81,6 @@ const Login = ({
       <div className="login-page__button-container">
         <Button label="SIGN IN" onClick={handleLogin} />
       </div>
-      <FedSignIn />
     </div>
   );
 };
