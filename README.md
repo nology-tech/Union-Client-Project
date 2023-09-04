@@ -100,6 +100,7 @@ export type MockEvent = {
 - Simple navbar created with links to the respective pages.
 - Clients main priority was ease of use, this has been implemented by having a self explained navbar with only 4 navigation buttons.
 - We've added an active class to the scss file to darken the icon of the page which the user is viewing.
+- Added white background color and box shadow to match to brief.
 
 ### 404 Not Found Page
 
@@ -135,3 +136,42 @@ export type MockEvent = {
 - **Error Message**: When a user lands on a non-existent route or page, they are presented with an error message indicating that the requested content could not be found.
 
 - **Return to Home Button**: To enhance user navigation and convenience, a button is provided on the 404 Not Found Page. When clicked, this button redirects the user back to the home page.
+
+### About Page
+
+- **Layout**: The layout has been changed to improve readability and user engagement. We've incorporated videos, images and more information about the company to create a more user friendly experience.
+
+- **Header Formatting**: Changed formatting in the header to account for spacing and playback issues with the video. This includes using the iframe HTML element as opposed to the video element.
+
+```js
+<iframe
+  className="header__video"
+  src={videoUrl}
+  width={350}
+  height={240}
+  data-testid="video"
+></iframe>
+```
+
+### Events Page
+
+- Created events page to render the search bar and events passed in.
+- The search bar filters the events by event name, category and description
+- State for each events' "booking" button is kept in Events as an array
+
+```tsx
+const [buttonVariants, setButtonVariants] = useState<boolean[]>(
+  new Array(eventData.length).fill(false)
+);
+```
+
+- Use index when mapping over events to target the buttons individually
+
+```tsx
+{filteredSearch.map((event: MockEvent, index: number))}
+```
+
+### Calendar
+
+- Added dummy layout for Calendar to show proof of concept.
+- Added padding bottom to Header subtitle.
