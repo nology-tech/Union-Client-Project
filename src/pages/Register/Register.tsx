@@ -97,10 +97,6 @@ const Register = ({
   };
 
   const handleClickNext = () => {
-    toggle();
-  };
-
-  const toggle = () => {
     if (userinput) {
       setUserInput(false);
     } else {
@@ -163,7 +159,7 @@ const Register = ({
               className="image-container__image"
               src={arrow}
               alt="back-arrow"
-              onClick={toggle}
+              onClick={handleClickNext}
             />
           </div>
           <div className="register-page__heading">
