@@ -4,7 +4,7 @@ import { getDocs, collection } from "firebase/firestore";
 import db from "../../firebase";
 
 const SnapshotFirebase = () => {
-  const [eventsList, setEventsList] = useState<{ id: string }[]>([]);
+  const [eventsList, setEventsList] = useState<any[]>([]);
 
   const eventsCollectionRef = collection(db, "events");
 
@@ -14,7 +14,6 @@ const SnapshotFirebase = () => {
         const data = await getDocs(eventsCollectionRef);
         const filteredData = data.docs.map((doc) => ({
           ...doc.data(),
-          id: doc.id,
         }));
         setEventsList(filteredData);
       } catch (err) {
