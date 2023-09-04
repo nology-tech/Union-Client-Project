@@ -8,7 +8,6 @@ import { ChangeEvent } from "react";
 import arrow from "../../assets/images/arrow.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import FedSignIn from "../../components/FedSignIn/FedSignIn";
 
 type LoginProps = {
   email: string;
