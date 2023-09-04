@@ -2,10 +2,10 @@ import "./Events.scss";
 import Header from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { ChangeEvent, useState, useEffect } from "react";
-import { MockEvent } from "../../types/types";
+import { Event } from "../../types/types";
 import EventCard from "../../components/EventCard/EventCard";
 import Layout from "../../components/Layout/Layout";
-import { getEventList } from "../../utils/testingFirebase";
+import { getEvents } from "../../utils/firebaseSnapshots";
 
 type EventsProps = {
   eventData: Event[];
@@ -46,7 +46,7 @@ const Events = ({ eventData }: EventsProps) => {
   console.log(dbData);
 
   const getDbData = async () => {
-    const data = await getEventList();
+    const data = await getEvents();
     setDbData(data);
   };
 
@@ -55,7 +55,7 @@ const Events = ({ eventData }: EventsProps) => {
       <Header title="Events" subTitle="MADE MY MAKERS STUDIO TOUR" />
       <SearchBar searchEvents={searchEvents} handleInput={handleSearch} />
       <div className="displayed-events">
-        {filteredSearch.map((event: MockEvent, index: number) => {
+        {filteredSearch.map((event: Event, index: number) => {
           console.log(event.date);
           return (
             <EventCard
