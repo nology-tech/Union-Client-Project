@@ -1,12 +1,13 @@
 import "./Login.scss";
-import Form from "../../components/Form/Form";
-import {
-  browserLocalPersistence,
-  setPersistence,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import InputBox from "../../components/InputBox/InputBox";
+import Button from "../../components/Button/Button";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { FirebaseError } from "firebase/app";
 import { auth } from "../../firebase";
-import { useNavigate } from "react-router-dom";
+import { ChangeEvent } from "react";
+import arrow from "../../assets/images/arrow.png";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 type LoginProps = {
   email: string;
@@ -24,36 +25,61 @@ const Login = ({
   setUserId,
 }: LoginProps) => {
   const navigate = useNavigate();
+  const [loginError, setLoginError] = useState<boolean>(false);
 
   const handleLogin = async () => {
-    setPersistence(auth, browserLocalPersistence)
-      .then(() => {
-        signInWithEmailAndPassword(auth, email, password)
-          .then((userCredential) => {
-            const user = userCredential.user;
-            setUserId(user.uid);
-            navigate("/home");
-            window.alert("Login Success");
-          })
-          .catch((error) => {
-            window.alert(error.message);
-            console.error(error.code);
-          });
-      })
-      .catch((error) => {
-        window.alert(error.message);
+    try {
+      const userData = await signInWithEmailAndPassword(auth, email, password);
+      setUserId(userData.user.uid);
+      navigate("/home");
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError) {
         console.error(error.code);
-      });
+        setLoginError(true);
+      }
+    }
+  };
+
+  const handleEmailInput = (event: ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.currentTarget.value);
+  };
+
+  const handlePasswordInput = (event: ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.currentTarget.value);
   };
 
   return (
-    <div>
-      <Form
-        handleLogin={handleLogin}
-        setEmail={setEmail}
-        setPassword={setPassword}
-        label="Welcome Back"
-      />
+    <div className="login-page">
+      <div className="image-container">
+        <Link to={"/"}>
+          <img className="image-container__image" src={arrow} alt="" />
+        </Link>
+      </div>
+      <div className="login-page__heading">
+        <h1 className="login-page__heading--header">Welcome Back</h1>
+      </div>
+      <div className="login-page__input-container">
+        {loginError && (
+          <p className="login-page__error">
+            Sorry, we don't recognise that login
+          </p>
+        )}
+        <InputBox
+          label="Email Address"
+          inputPlaceholder="you@example.com"
+          inputType="text"
+          handleInput={handleEmailInput}
+        />
+        <InputBox
+          label="Password"
+          inputPlaceholder="Your password"
+          inputType="password"
+          handleInput={handlePasswordInput}
+        />
+      </div>
+      <div className="login-page__button-container">
+        <Button label="SIGN IN" onClick={handleLogin} />
+      </div>
     </div>
   );
 };
