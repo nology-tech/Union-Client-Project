@@ -9,7 +9,7 @@ import Register from "./pages/Register/Register";
 import Events from "./pages/Events/Events";
 import { mockEvents } from "./data/mockEvents";
 import About from "./pages/About/About";
-import Calendar from "./pages/Calendar/Calendar";
+import CalendarPage from "./pages/Calendar/Calendar";
 
 const App = () => {
   const [userId, setUserId] = useState<string>("");
@@ -23,7 +23,7 @@ const App = () => {
           <>
             <Route path="/home" element={<Home />} />
             <Route path="/events" element={<Events eventData={mockEvents} />} />
-            <Route path="/calendar" element={<Calendar />} />
+            <Route path="/calendar" element={<CalendarPage />} />
             <Route path="/about" element={<About />} />
           </>
         ) : (

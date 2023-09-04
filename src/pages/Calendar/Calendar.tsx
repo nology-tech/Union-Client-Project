@@ -1,14 +1,28 @@
 import "./Calendar.scss";
 import Layout from "../../components/Layout/Layout";
-import calendarImg from "../../assets/images/calendar.svg";
 import Header from "../../components/Header/Header";
 import { useState } from "react";
+import "react-modern-calendar-datepicker/lib/DatePicker.css";
+import { Calendar } from "react-modern-calendar-datepicker";
+import EventCard from "../../components/EventCard/EventCard";
 
-const Calendar = () => {
+const CalendarPage = () => {
   const [isActive, setIsActive] = useState(true);
 
   const handleClick = () => {
     setIsActive(!isActive);
+  };
+
+  const defaultValue = {
+    year: 2023,
+    month: 9,
+    day: 16,
+  };
+
+  const [selectedDay, setSelectedDay] = useState(defaultValue);
+
+  const handleChange = () => {
+    setSelectedDay;
   };
 
   return (
@@ -35,14 +49,19 @@ const Calendar = () => {
             Historic
           </p>
         </div>
-        <img
-          className="calendar__image"
-          src={calendarImg}
-          alt="Calendar image"
-        />
+        <div className="calendar__container">
+          <Calendar
+            value={selectedDay}
+            onChange={handleChange}
+            colorPrimary="#b42004"
+            // colorPrimaryLight="#b42004"
+            calendarSelectedDayClassName="calendar__day"
+          />
+        </div>
+        {/* <EventCard /> */}
       </div>
     </Layout>
   );
 };
 
-export default Calendar;
+export default CalendarPage;
