@@ -25,7 +25,11 @@ const CalendarPage = () => {
 
   const [selectedDay, setSelectedDay] = useState(defaultValue);
 
-  console.log(selectedDay);
+  const timeStampDay = new Date(
+    `${selectedDay.year}, ${selectedDay.month}, ${selectedDay.day}`
+  );
+
+  console.log(timeStampDay);
 
   return (
     <Layout>
