@@ -4,37 +4,42 @@ import {
   getRedirectResult,
   signInWithRedirect,
   GoogleAuthProvider,
-  FacebookAuthProvider,
-  OAuthProvider,
 } from "firebase/auth";
 import appleIcon from "../../assets/icons/apple.svg";
 import facebookIcon from "../../assets/icons/facebook.svg";
 import googleIcon from "../../assets/icons/google.svg";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Button from "../Button/Button";
 
 type FedSignInProps = {
   setUserId: (userId: string) => void;
 };
 
 const providerGoogle = new GoogleAuthProvider();
-const providerFacebook = new FacebookAuthProvider();
-const providerApple = new OAuthProvider(`apple.com`);
+
 const auth = getAuth();
 
 const FedSignIn = ({ setUserId }: FedSignInProps) => {
+  const [popUp, setPopUp] = useState<boolean>(false);
+
+  const buttonObject = {
+    width: "5rem",
+    height: "3rem",
+  };
+
+  const handleNoLogin = () => {
+    if (popUp) {
+      setPopUp(false);
+    } else {
+      setPopUp(true);
+    }
+  };
+
   const navigate = useNavigate();
 
   const handleGoogleLogin = async () => {
     await signInWithRedirect(auth, providerGoogle);
-  };
-
-  const handleFacebookLogin = async () => {
-    await signInWithRedirect(auth, providerFacebook);
-  };
-
-  const handleAppleLogin = async () => {
-    await signInWithRedirect(auth, providerApple);
   };
 
   const handleResult = async () => {
@@ -54,6 +59,12 @@ const FedSignIn = ({ setUserId }: FedSignInProps) => {
 
   return (
     <div className="fed-sign-in">
+      {popUp && (
+        <div className="fed-sign-in__pop-up">
+          This login option is in development
+          <Button style={buttonObject} label="Back" onClick={handleNoLogin} />
+        </div>
+      )}
       <div className="fed-sign-in__top">
         <div className="fed-sign-in__line"></div>
         <div className="fed-sign-in__text">Sign in with</div>
@@ -65,7 +76,7 @@ const FedSignIn = ({ setUserId }: FedSignInProps) => {
             src={facebookIcon}
             alt="facebook sign in"
             className="fed-sign-in__image"
-            onClick={handleFacebookLogin}
+            onClick={handleNoLogin}
           />
         </div>
         <div className="fed-sign-in__box">
@@ -81,7 +92,7 @@ const FedSignIn = ({ setUserId }: FedSignInProps) => {
             src={appleIcon}
             alt="apple sign in"
             className="fed-sign-in__image"
-            onClick={handleAppleLogin}
+            onClick={handleNoLogin}
           />
         </div>
       </div>
