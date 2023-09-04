@@ -3,8 +3,21 @@ import Button from "../../components/Button/Button";
 import Layout from "../../components/Layout/Layout";
 import "./Home.scss";
 import Header from "../../components/Header/Header";
+import { useState, useEffect } from "react";
+import { getEventList } from "../../utils/firebaseSnapshots";
 
 const Home = () => {
+  const [dbData, setDbData] = useState<any>([]);
+
+  useEffect(() => {
+    getDbData();
+  }, []);
+
+  const getDbData = async () => {
+    const data = await getEventList();
+    setDbData(data);
+  };
+
   const navigate = useNavigate();
 
   const handleViewEvents = () => {
