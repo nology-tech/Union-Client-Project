@@ -1,0 +1,20 @@
+@use "../../styles/variables" as *;
+
+.fed-sign-in {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  &__top {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  &__line {
+    height: 0;
+    border: 1px solid $color-light-grey;
+  }
+}
