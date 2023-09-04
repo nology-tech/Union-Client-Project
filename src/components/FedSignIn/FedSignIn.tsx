@@ -1,39 +1,43 @@
 import "./FedSignIn.scss";
-import {
-  getAuth,
-  getRedirectResult,
-  signInWithRedirect,
-  GoogleAuthProvider,
-} from "firebase/auth";
+// import {
+//   getAuth,
+// //   getRedirectResult,
+// //   signInWithRedirect,
+//   GoogleAuthProvider,
+// } from "firebase/auth";
 import appleIcon from "../../assets/icons/apple.svg";
 import facebookIcon from "../../assets/icons/facebook.svg";
 import googleIcon from "../../assets/icons/google.svg";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+// import { useState, useEffect } from "react";
 
 type FedSignInProps = {
   setUserId: (userId: string) => void;
 };
 
+// const providerGoogle = new GoogleAuthProvider();
+// const auth = getAuth();
+
 const FedSignIn = ({ setUserId }: FedSignInProps) => {
-  const navigate = useNavigate();
+  //   const [signedIn, setSignedIn] = useState<boolean>(false);
+  //   const navigate = useNavigate();
 
-  const providerGoogle = new GoogleAuthProvider();
-  providerGoogle.addScope("profile");
-  providerGoogle.addScope("email");
-  const auth = getAuth();
+  //   const handleFedLogin = async () => {
+  //     console.log("clicked");
 
-  const handleFedLogin = async () => {
-    console.log("func clicked");
-
-    const user = await signInWithRedirect(auth, providerGoogle);
-    console.log("user: " + user);
-
-    const result = await getRedirectResult(user);
-    setUserId("someone");
-    console.log(result);
-
-    navigate("/home");
-  };
+  //     const user = await signInWithRedirect(auth, providerGoogle);
+  //   };
+  //   const handleResult = () => {
+  //     const result = getRedirectResult(auth);
+  //     if (result) {
+  //       console.log(GoogleAuthProvider.credential(result));
+  //       console.log(result.user);
+  //     }
+  //   };
+  //   useEffect(() => {
+  //     handleResult();
+  //   }, [signedIn]);
+  setUserId;
 
   return (
     <div className="fed-sign-in">
@@ -55,7 +59,7 @@ const FedSignIn = ({ setUserId }: FedSignInProps) => {
             src={googleIcon}
             alt="google sign in"
             className="fed-sign-in__image"
-            onClick={handleFedLogin}
+            // onClick={handleFedLogin}
           />
         </div>
         <div className="fed-sign-in__box">
