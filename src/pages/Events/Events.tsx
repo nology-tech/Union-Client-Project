@@ -43,7 +43,7 @@ const Events = ({ eventData }: EventsProps) => {
     getDbData();
   }, []);
 
-  console.log(eventData);
+  console.log(dbData);
 
   const getDbData = async () => {
     const data = await getEventList();
@@ -56,12 +56,13 @@ const Events = ({ eventData }: EventsProps) => {
       <SearchBar searchEvents={searchEvents} handleInput={handleSearch} />
       <div className="displayed-events">
         {filteredSearch.map((event: MockEvent, index: number) => {
+          console.log(event.date);
           return (
             <EventCard
               key={event.id}
               title={event.name}
               maker={event.category}
-              date={event.date}
+              date={ new Date (event.date.seconds * 1000).toLocaleDateString()}
               textContent={event.description}
               galleryArray={event.images}
               buttonLabel={
