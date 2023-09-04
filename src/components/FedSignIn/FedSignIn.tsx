@@ -1,31 +1,40 @@
 import "./FedSignIn.scss";
-import { getAuth, getRedirectResult, GoogleAuthProvider } from "firebase/auth";
+import {
+  getAuth,
+  getRedirectResult,
+  signInWithRedirect,
+  GoogleAuthProvider,
+} from "firebase/auth";
 import appleIcon from "../../assets/icons/apple.svg";
 import facebookIcon from "../../assets/icons/facebook.svg";
 import googleIcon from "../../assets/icons/google.svg";
+import { useNavigate } from "react-router-dom";
 
-const provider = new GoogleAuthProvider();
-const auth = getAuth();
-getRedirectResult(auth)
-  .then((result) => {
-    // This gives you a Google Access Token. You can use it to access Google APIs.
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
+type FedSignInProps = {
+  setUserId: (userId: string) => void;
+};
 
-    // The signed-in user info.
-    const user = result.user;
-  })
-  .catch((error) => {
-    // Handle errors
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.customData.email;
-    // The AuthCredential type that was used.
-    const credential = GoogleAuthProvider.credentialFromError(error);
-  });
+const FedSignIn = ({ setUserId }: FedSignInProps) => {
+  const navigate = useNavigate();
 
-const FedSignIn = () => {
+  const providerGoogle = new GoogleAuthProvider();
+  providerGoogle.addScope("profile");
+  providerGoogle.addScope("email");
+  const auth = getAuth();
+
+  const handleFedLogin = async () => {
+    console.log("func clicked");
+
+    const user = await signInWithRedirect(auth, providerGoogle);
+    console.log("user: " + user);
+
+    const result = await getRedirectResult(user);
+    setUserId("someone");
+    console.log(result);
+
+    navigate("/home");
+  };
+
   return (
     <div className="fed-sign-in">
       <div className="fed-sign-in__top">
@@ -46,6 +55,7 @@ const FedSignIn = () => {
             src={googleIcon}
             alt="google sign in"
             className="fed-sign-in__image"
+            onClick={handleFedLogin}
           />
         </div>
         <div className="fed-sign-in__box">
