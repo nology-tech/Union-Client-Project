@@ -8,7 +8,7 @@ import Layout from "../../components/Layout/Layout";
 import { getEventList } from "../../utils/testingFirebase";
 
 type EventsProps = {
-  eventData: MockEvent[];
+  eventData: Event[];
 };
 
 const Events = ({ eventData }: EventsProps) => {

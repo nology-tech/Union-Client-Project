@@ -176,6 +176,14 @@ const [buttonVariants, setButtonVariants] = useState<boolean[]>(
 - Added dummy layout for Calendar to show proof of concept.
 - Added padding bottom to Header subtitle.
 
+### SnapshotFirebase
+
+-Database has been created inside Firebase
+-Firebase.ts has been updated to import Firestore
+-Data from Firestore is stored as a variable called filteredData as an array
+-Exported util file "FirebaseSnapshots" that handles collecting data from Firebase in an async function
+-Data in the database contains fields: category, date, description, id, images and a name
+
 ## Register-Page
 
 - Register Page takes nine props, these props are almost entirely to do with authentication in the creation of a user account.
