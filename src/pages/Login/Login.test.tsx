@@ -1,6 +1,6 @@
-import { screen, render } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import { customRender } from "../../utils/testUtils";
 import Login from "./Login";
-import { MemoryRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event"
 
   const email = "daniela.gutperl@gmail.com"
@@ -10,13 +10,13 @@ import userEvent from "@testing-library/user-event"
   const setUserId = () => {return}
 
 it("should render elements to allow login", () => {
-  render(<MemoryRouter><Login 
+  customRender(<Login 
       email={email}
       setEmail = {setEmail}
       password = {password}
       setPassword = {setPassword}
       setUserId = {setUserId}
-      /></MemoryRouter>);
+      />);
       
     const emailInput = screen.getByText("Email Address");
     const passwordInput = screen.getByText("Password");
@@ -26,13 +26,13 @@ it("should render elements to allow login", () => {
 });
 
 it("should not authenticate the user, given incorrect credentials", async () => {
-  render(<MemoryRouter><Login 
+  customRender(<Login 
       email={email}
       setEmail = {setEmail}
       password = {password}
       setPassword = {setPassword}
       setUserId = {setUserId}
-      /></MemoryRouter>);
+      />);
       
     const emailInput = screen.getByPlaceholderText("you@example.com");
     await userEvent.type(emailInput, "notsomethignvalid")
