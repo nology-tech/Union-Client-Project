@@ -13,35 +13,40 @@ import {
 import db from "../../firebase";
 
 const SnapshotFirebase = () => {
-  //   const collectionRef = collection(db, "events");
-
   const [eventsList, setEventsList] = useState([]);
 
+  const eventsCollectionRef = collection(db, "events");
+
   useEffect(() => {
-    const getEventList = async () => {};
-    // read the data
-    // set the Event List
-
-    // const q = query(collectionRef, where("title", "==", "Event1"));
-
-    // const unsub = onSnapshot(
-    //   collectionRef,
-    //   (querySnapshot) => {
-    //     const events = [];
-    //     querySnapshot.forEach((doc) => {
-    //       events.push(doc.data());
-    //     });
-    //     return () => {
-    //       unsub();
-    //     };
-    //   },
-    //   []
-    // );
-
-    // useEffect(()=>{
-    //     const getEvents = async() =>{
-    //         const querySnapshot = await getDocs(dbRef)
-    //     }
-    // })
+    const getEventList = async () => {
+      try {
+        const data = await getDocs(eventsCollectionRef);
+        console.log(data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
   }, []);
 };
+
+// const q = query(collectionRef, where("title", "==", "Event1"));
+
+// const unsub = onSnapshot(
+//   collectionRef,
+//   (querySnapshot) => {
+//     const events = [];
+//     querySnapshot.forEach((doc) => {
+//       events.push(doc.data());
+//     });
+//     return () => {
+//       unsub();
+//     };
+//   },
+//   []
+// );
+
+// useEffect(()=>{
+//     const getEvents = async() =>{
+//         const querySnapshot = await getDocs(dbRef)
+//     }
+// })
