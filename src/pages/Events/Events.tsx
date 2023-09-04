@@ -23,13 +23,15 @@ const Events = ({ eventData }: EventsProps) => {
     setSearchEvents(searchTerm);
   };
 
-  const filteredSearch = dbData.filter((event: { name: string; category: string; description: string; }) => {
-    return (
-      event.name.toLowerCase().includes(searchEvents) ||
-      event.category.toLowerCase().includes(searchEvents) ||
-      event.description.toLowerCase().includes(searchEvents)
-    );
-  });
+  const filteredSearch = dbData.filter(
+    (event: { name: string; category: string; description: string }) => {
+      return (
+        event.name.toLowerCase().includes(searchEvents) ||
+        event.category.toLowerCase().includes(searchEvents) ||
+        event.description.toLowerCase().includes(searchEvents)
+      );
+    }
+  );
 
   const handleClick = (eventIndex: number) => {
     const newButtonVariants = [...buttonVariants];
@@ -41,11 +43,11 @@ const Events = ({ eventData }: EventsProps) => {
     getDbData();
   }, []);
 
+  console.log(eventData);
+
   const getDbData = async () => {
     const data = await getEventList();
     setDbData(data);
-    console.log(data);
-    
   };
 
   return (
