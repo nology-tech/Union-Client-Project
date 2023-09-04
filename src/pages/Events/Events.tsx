@@ -19,6 +19,7 @@ const Events = ({ eventData }: EventsProps) => {
     new Array(eventData.length).fill(false)
   );
   const [showPopup, setShowPopup] = useState<boolean>(false);
+  const [index, setIndex] = useState<number>(-1);
   const navigate = useNavigate();
 
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
@@ -39,6 +40,7 @@ const Events = ({ eventData }: EventsProps) => {
     newButtonVariants[eventIndex] = !newButtonVariants[eventIndex];
     setButtonVariants(newButtonVariants);
 
+    setIndex(eventIndex);
     if (newButtonVariants[eventIndex]) setShowPopup(true);
   };
 
@@ -48,6 +50,9 @@ const Events = ({ eventData }: EventsProps) => {
   };
 
   const handleCancelBooking = () => {
+    const newButtonVariants = [...buttonVariants];
+    newButtonVariants[index] = !newButtonVariants[index];
+    setButtonVariants(newButtonVariants);
     setShowPopup(false);
   };
 
