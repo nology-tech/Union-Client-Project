@@ -4,6 +4,8 @@ import {
   getRedirectResult,
   signInWithRedirect,
   GoogleAuthProvider,
+  FacebookAuthProvider,
+  OAuthProvider,
 } from "firebase/auth";
 import appleIcon from "../../assets/icons/apple.svg";
 import facebookIcon from "../../assets/icons/facebook.svg";
@@ -16,14 +18,25 @@ type FedSignInProps = {
 };
 
 const providerGoogle = new GoogleAuthProvider();
+const providerFacebook = new FacebookAuthProvider();
+const providerApple = new OAuthProvider(`apple.com`);
 const auth = getAuth();
 
 const FedSignIn = ({ setUserId }: FedSignInProps) => {
   const navigate = useNavigate();
 
-  const handleFedLogin = async () => {
+  const handleGoogleLogin = async () => {
     await signInWithRedirect(auth, providerGoogle);
   };
+
+  const handleFacebookLogin = async () => {
+    await signInWithRedirect(auth, providerFacebook);
+  };
+
+  const handleAppleLogin = async () => {
+    await signInWithRedirect(auth, providerApple);
+  };
+
   const handleResult = async () => {
     const result = await getRedirectResult(auth);
     if (result?.user) {
@@ -52,6 +65,7 @@ const FedSignIn = ({ setUserId }: FedSignInProps) => {
             src={facebookIcon}
             alt="facebook sign in"
             className="fed-sign-in__image"
+            onClick={handleFacebookLogin}
           />
         </div>
         <div className="fed-sign-in__box">
@@ -59,7 +73,7 @@ const FedSignIn = ({ setUserId }: FedSignInProps) => {
             src={googleIcon}
             alt="google sign in"
             className="fed-sign-in__image"
-            onClick={handleFedLogin}
+            onClick={handleGoogleLogin}
           />
         </div>
         <div className="fed-sign-in__box">
@@ -67,6 +81,7 @@ const FedSignIn = ({ setUserId }: FedSignInProps) => {
             src={appleIcon}
             alt="apple sign in"
             className="fed-sign-in__image"
+            onClick={handleAppleLogin}
           />
         </div>
       </div>
