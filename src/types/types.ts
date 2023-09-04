@@ -1,8 +1,8 @@
-export type MockEvent = {
-  id: number;
+export type Event = {
+  id: string;
   name: string;
   category: string;
   date: string;
-  description: string; 
+  description: string;
   images: string[];
 };
