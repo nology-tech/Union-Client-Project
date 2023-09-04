@@ -4,7 +4,7 @@ import EventCard from "./EventCard";
 
 const title = "Some Event";
 const maker = "Some Maker";
-const date = "2 Feb 2022";
+const date = new Date("02-02-2022");
 const textPara = "This is a sweet event, we hope you can come and enjoy it.";
 const imageArr = [
   "https://plus.unsplash.com/premium_photo-1691837115446-51a333c1941b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
