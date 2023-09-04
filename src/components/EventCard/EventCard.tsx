@@ -37,7 +37,7 @@ const EventCard = ({
   };
 
   return (
-    <div className="event-card">
+    <div data-testid={`event-card-${title}`} className="event-card">
       <div className="event-card__main">
         <div className="event-card__header">
           <h4 className="event-card__title">{title}</h4>

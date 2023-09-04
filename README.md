@@ -145,6 +145,29 @@ export type MockEvent = {
   data-testid="video"
 ></iframe>
 ```
+
+### Events Page
+
+- Created events page to render the search bar and events passed in.
+- The search bar filters the events by event name, category and description
+- State for each events' "booking" button is kept in Events as an array
+
+```tsx
+const [buttonVariants, setButtonVariants] = useState<boolean[]>(
+  new Array(eventData.length).fill(false)
+);
+```
+
+- Use index when mapping over events to target the buttons individually
+
+```tsx
+{filteredSearch.map((event: MockEvent, index: number))}
+```
+
+### Calendar
+
+- Added dummy layout for Calendar to show proof of concept.
+- Added padding bottom to Header subtitle.
 ### Login Page
 Added functionality for logging in users who are previously registered. When a user navigates to the login page, the login pages is displayed with the required input fields to authenticate.
 
