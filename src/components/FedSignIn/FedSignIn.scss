@@ -7,14 +7,44 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  width: 21rem;
+  margin-top: 3rem;
   &__top {
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
   }
   &__line {
     height: 0;
+    width: 7rem;
     border: 1px solid $color-light-grey;
+  }
+  &__text {
+    font-family: $modern-content;
+    color: $color-grey;
+    font-weight: 400;
+    font-size: 0.8rem;
+    padding: 0.7rem 1.2rem;
+  }
+  &__bottom {
+    display: flex;
+    padding: 1.6rem;
+  }
+  &__box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.8rem;
+    margin: 0.5rem;
+    height: 3.2rem;
+    width: 3.2rem;
+    border: 0.5px solid $color-light-grey;
+    border-radius: 0.2rem;
+    background-color: $color-off-white;
+  }
+  &__image {
+    height: 1.8rem;
+    width: 1.8rem;
+    border-radius: 1rem;
   }
 }

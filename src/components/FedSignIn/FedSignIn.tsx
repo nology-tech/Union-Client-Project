@@ -1,5 +1,8 @@
 import "./FedSignIn.scss";
 import { getAuth, getRedirectResult, GoogleAuthProvider } from "firebase/auth";
+import appleIcon from "../../assets/icons/apple.svg";
+import facebookIcon from "../../assets/icons/facebook.svg";
+import googleIcon from "../../assets/icons/google.svg";
 
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
@@ -31,9 +34,27 @@ const FedSignIn = () => {
         <div className="fed-sign-in__line"></div>
       </div>
       <div className="fed-sign-in__bottom">
-        <div className="fed-sign-in__facebook">Facebook</div>
-        <div className="fed-sign-in__google">Gmail</div>
-        <div className="fed-sign-in__apple">Apple</div>
+        <div className="fed-sign-in__box">
+          <img
+            src={facebookIcon}
+            alt="facebook sign in"
+            className="fed-sign-in__image"
+          />
+        </div>
+        <div className="fed-sign-in__box">
+          <img
+            src={googleIcon}
+            alt="google sign in"
+            className="fed-sign-in__image"
+          />
+        </div>
+        <div className="fed-sign-in__box">
+          <img
+            src={appleIcon}
+            alt="apple sign in"
+            className="fed-sign-in__image"
+          />
+        </div>
       </div>
     </div>
   );
