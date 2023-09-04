@@ -224,3 +224,21 @@ const [buttonVariants, setButtonVariants] = useState<boolean[]>(
 - Added dummy layout for Calendar to show proof of concept.
 - # Added padding bottom to Header subtitle.
   > > > > > > > 82814682546d1df698221ab9286d896c30e1512a
+
+## Login Page
+
+Added functionality for logging in users who are previously registered. When a user navigates to the login page, the login pages is displayed with the required input fields to authenticate.
+
+Added functionality for failed login to display error message. When a user attempts to login with invalid credentials, they will receive an error message to advise that the details they used cannot be found.
+
+Provided testing for render of the login page and for login errors for unauthenticated users.
+
+#### Login Props
+
+type LoginProps = {
+email: string;
+setEmail: (email: string) => void;
+password: string;
+setPassword: (password: string) => void;
+setUserId: (userId: string) => void;
+}
