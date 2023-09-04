@@ -1,5 +1,17 @@
 @use "../../styles/variables" as *;
 
+.password-false {
+  .input-box__input--box {
+    background-color: rgb(223, 183, 183);
+  }
+}
+
+.email--false {
+  .input-box__input--box {
+    background-color: rgb(223, 183, 183);
+  }
+}
+
 .image-container {
   height: 12.5rem;
   width: 100vw;
@@ -44,5 +56,27 @@
 
   &__next-button {
     padding-top: 8rem;
+  }
+
+  &__email {
+    width: 23rem;
+    height: 5rem;
+    margin-left: 2rem;
+  }
+
+  &__password {
+    width: 23rem;
+    height: 5rem;
+    margin-left: 2rem;
+  }
+
+  &__confirm-password {
+    width: 23rem;
+    height: 5rem;
+    margin-left: 2rem;
+  }
+
+  &__create-account {
+    padding-top: 3rem;
   }
 }

@@ -21,8 +21,6 @@ type RegisterProps = {
 };
 
 const Register = ({
-  firstName,
-  lastName,
   setFirstName,
   setLastName,
   email,
@@ -33,6 +31,9 @@ const Register = ({
 }: RegisterProps) => {
   const [userinput, setUserInput] = useState<boolean>(false);
   const [checkPassword, setCheckPassword] = useState<string>("");
+  const [colorChange, setColorChange] = useState<boolean>(true);
+  const [checkConfirmPassword, setCheckConfirmPassword] = useState<string>("");
+  const [emailColorChange, setEmailColorChange] = useState<boolean>(true);
 
   const handleRegister = async () => {
     try {
@@ -42,6 +43,7 @@ const Register = ({
         password
       );
       setUserId(userData.user.uid);
+      navigate("/home");
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {
         console.error(error.code);
@@ -63,20 +65,38 @@ const Register = ({
     setLastName(event.currentTarget.value);
   };
 
+  const isEmailValid = (email: string) => {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+    return emailRegex.test(email);
+  };
+
   const handleEmailInput = (event: FormEvent<HTMLInputElement>) => {
     setEmail(event.currentTarget.value);
   };
 
+  const beforeRegister = () => {
+    if (isEmailValid(email) == true && colorChange == false) {
+      setEmailColorChange(true);
+      return;
+    } else if (isEmailValid(email) == false) {
+      setEmailColorChange(false);
+    } else {
+      handleRegister();
+    }
+  };
+
   const handlePasswordInput = (event: FormEvent<HTMLInputElement>) => {
+    setCheckConfirmPassword(event.currentTarget.value);
     if (checkPassword === event.currentTarget.value) {
       setPassword(event.currentTarget.value);
+      setColorChange(true);
+    } else {
+      setColorChange(false);
     }
   };
 
   const handleClickNext = () => {
-    if (firstName && lastName) {
-      handleRegister();
-    }
     toggle();
   };
 
@@ -90,64 +110,99 @@ const Register = ({
 
   const handleCheckPasswordInput = (event: FormEvent<HTMLInputElement>) => {
     setCheckPassword(event.currentTarget.value);
+    if (event.currentTarget.value != checkConfirmPassword) {
+      setColorChange(false);
+    } else setColorChange(true);
   };
 
   return (
     <div className="register-page">
-      <div className="image-container">
-        <img
-          className="image-container__image"
-          src={arrow}
-          alt=""
-          onClick={navigateBack}
-        />
-      </div>
-      <div className="register-page__heading">
-        <h1 className="register-page__heading__header">Create An Account</h1>
-      </div>
-      <div className="register-page__input">
-        {userinput && (
-          <>
-            <InputBox
-              label="Email Address"
-              inputPlaceholder="you@example.com"
-              inputType="text"
-              handleInput={handleEmailInput}
+      {!userinput && (
+        <>
+          <div className="image-container">
+            <img
+              className="image-container__image"
+              src={arrow}
+              alt="back-arrow"
+              onClick={navigateBack}
             />
-            <InputBox
-              label="Password"
-              inputPlaceholder="Your Password"
-              inputType="password"
-              handleInput={handleCheckPasswordInput}
-            />
-            <InputBox
-              label="Confirm Password"
-              inputType="password"
-              handleInput={handlePasswordInput}
-            />
-          </>
-        )}
+          </div>
+          <div className="register-page__heading">
+            <h1 className="register-page__heading__header">
+              Create An Account
+            </h1>
+          </div>
+          <div className="register-page__input">
+            <div className="register-page__first-name">
+              <InputBox
+                label="First Name"
+                inputType="text"
+                inputPlaceholder="  John"
+                handleInput={handleFirstName}
+              />
+            </div>
+            <div className="register-page__last-name">
+              <InputBox
+                label="Last Name"
+                inputType="text"
+                inputPlaceholder="  Doe"
+                handleInput={handleLastName}
+              />
+            </div>
+            <div className="register-page__next-button">
+              <Button label="Next" onClick={handleClickNext} />
+            </div>
+          </div>
+        </>
+      )}
 
-        <div className="register-page__first-name">
-          <InputBox
-            label="First Name"
-            inputType="text"
-            inputPlaceholder="  John"
-            handleInput={handleFirstName}
-          />
-        </div>
-        <div className="register-page__last-name">
-          <InputBox
-            label="Last Name"
-            inputType="text"
-            inputPlaceholder="  Doe"
-            handleInput={handleLastName}
-          />
-        </div>
-        <div className="register-page__next-button">
-          <Button label="Next" onClick={handleClickNext} />
-        </div>
-      </div>
+      {userinput && (
+        <>
+          <div className="image-container">
+            <img
+              className="image-container__image"
+              src={arrow}
+              alt="back-arrow"
+              onClick={toggle}
+            />
+          </div>
+          <div className="register-page__heading">
+            <h1 className="register-page__heading__header">
+              Create An Account
+            </h1>
+          </div>
+          <div className="register-page__input">
+            <div className={`register-page__email email--${emailColorChange}`}>
+              <InputBox
+                label="Email Address"
+                inputPlaceholder="you@example.com"
+                inputType="text"
+                handleInput={handleEmailInput}
+              />
+            </div>
+            <div className="register-page__password">
+              <InputBox
+                label="Password"
+                inputPlaceholder="Your Password"
+                inputType="password"
+                handleInput={handleCheckPasswordInput}
+              />
+            </div>
+            <div
+              className={`register-page__confirm-password password-${colorChange}`}
+            >
+              <InputBox
+                label="Confirm Password"
+                inputType="password"
+                handleInput={handlePasswordInput}
+              />
+            </div>
+            <div className="register-page__create-account">
+              <Button label="Create Account" onClick={beforeRegister} />
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
