@@ -60,6 +60,13 @@ const fakeStyle = {
     ```
 ````
 
+## SplashPage
+
+- SplashPage is an entry point to the app in order to get the user to sign in or create an account
+- It uses the button component in both default and secondary styles
+- Links to the paths: "/sign-up" and "/login" applied to their respective buttons
+- Uses global variables in line with clients brand
+
 ## Mock Data
 
 - We have added mockEvents.ts that holds the mock data for our events.
@@ -170,24 +177,19 @@ const [buttonVariants, setButtonVariants] = useState<boolean[]>(
 - Added padding bottom to Header subtitle.
 
 ## Login Page
+
 Added functionality for logging in users who are previously registered. When a user navigates to the login page, the login pages is displayed with the required input fields to authenticate.
 
-Added functionality for failed login to display error message. When a user attempts to login with invalid credentials, they will receive an error message to advise that the details they used cannot be found. 
+Added functionality for failed login to display error message. When a user attempts to login with invalid credentials, they will receive an error message to advise that the details they used cannot be found.
 
-Provided testing for render of the login page and for login errors for unauthenticated users. 
+Provided testing for render of the login page and for login errors for unauthenticated users.
 
 #### Login Props
 
 type LoginProps = {
-  email: string;
-  setEmail: (email: string) => void;
-  password: string;
-  setPassword: (password: string) => void;
-  setUserId: (userId: string) => void;
+email: string;
+setEmail: (email: string) => void;
+password: string;
+setPassword: (password: string) => void;
+setUserId: (userId: string) => void;
 }
-
-## SplashPage
-- SplashPage is an entry point to the app in order to get the user to sign in or create an account
-- It uses the button component in both default and secondary styles
-- Links to the paths: "/sign-up" and "/login" applied to their respective buttons
-- Uses global variables in line with clients brand
