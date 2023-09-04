@@ -23,7 +23,7 @@ const Events = ({ eventData }: EventsProps) => {
     setSearchEvents(searchTerm);
   };
 
-  const filteredSearch = dbData.filter((event: { name: string; category: string; description: string; }) => {
+  const filteredSearch = dbData.filter((event: any) => {
     return (
       event.name.toLowerCase().includes(searchEvents) ||
       event.category.toLowerCase().includes(searchEvents) ||
@@ -44,9 +44,9 @@ const Events = ({ eventData }: EventsProps) => {
   const getDbData = async () => {
     const data = await getEventList();
     setDbData(data);
-    console.log(data);
-    
   };
+
+  console.log(dbData);
 
   return (
     <Layout>
