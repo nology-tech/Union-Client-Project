@@ -1,8 +1,8 @@
-import { MockEvent } from "../types/types";
+import { Event } from "../types/types";
 
-export const mockEvents: MockEvent[] = [
+export const mockEvents: Event[] = [
   {
-    id: 1,
+    id: "1",
     name: "The Furniture Workshop",
     category: "Furniture",
     date: "28 January 2023",
@@ -15,7 +15,7 @@ export const mockEvents: MockEvent[] = [
     ],
   },
   {
-    id: 2,
+    id: "2",
     name: "Lazy Bowl Ceramics",
     category: "Ceramics",
     date: "01 February 2023",
@@ -27,7 +27,7 @@ export const mockEvents: MockEvent[] = [
     ],
   },
   {
-    id: 3,
+    id: "3",
     name: "Block and Anvil",
     category: "Forge",
     date: "10 February 2024",
@@ -39,7 +39,7 @@ export const mockEvents: MockEvent[] = [
     ],
   },
   {
-    id: 4,
+    id: "4",
     name: "Coronado Ceramics",
     category: "Ceramics",
     date: "16 February 2024",
@@ -51,7 +51,7 @@ export const mockEvents: MockEvent[] = [
     ],
   },
   {
-    id: 5,
+    id: "5",
     name: "Sweet Sewer Brewer",
     category: "Beer",
     date: "22 March 2024",

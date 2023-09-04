@@ -2,7 +2,7 @@ import "./Events.scss";
 import Header from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { ChangeEvent, useState } from "react";
-import { MockEvent } from "../../types/types";
+import { Event } from "../../types/types";
 import EventCard from "../../components/EventCard/EventCard";
 import Layout from "../../components/Layout/Layout";
 import Button from "../../components/Button/Button";
@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import blackCross from "../../assets/images/black-cross.png";
 
 type EventsProps = {
-  eventData: MockEvent[];
+  eventData: Event[];
 };
 
 const Events = ({ eventData }: EventsProps) => {
@@ -27,7 +27,7 @@ const Events = ({ eventData }: EventsProps) => {
     setSearchEvents(searchTerm);
   };
 
-  const filteredSearch = eventData.filter((event) => {
+  const filteredSearch = eventData.filter((event: Event) => {
     return (
       event.name.toLowerCase().includes(searchEvents) ||
       event.category.toLowerCase().includes(searchEvents) ||
@@ -65,7 +65,7 @@ const Events = ({ eventData }: EventsProps) => {
       <Header title="Events" subTitle="MADE MY MAKERS STUDIO TOUR" />
       <SearchBar searchEvents={searchEvents} handleInput={handleSearch} />
       <div className="displayed-events">
-        {filteredSearch.map((event: MockEvent, index: number) => {
+        {filteredSearch.map((event: Event, index: number) => {
           return (
             <EventCard
               key={event.id}
