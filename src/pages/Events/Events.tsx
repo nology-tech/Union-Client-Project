@@ -43,8 +43,6 @@ const Events = ({ eventData }: EventsProps) => {
     getDbData();
   }, []);
 
-  console.log(dbData);
-
   const getDbData = async () => {
     const data = await getEvents();
     setDbData(data);
@@ -62,7 +60,7 @@ const Events = ({ eventData }: EventsProps) => {
               key={event.id}
               title={event.name}
               maker={event.category}
-              date={ new Date (event.date.seconds * 1000).toLocaleDateString()}
+              date={new Date(event.date.seconds * 1000).toLocaleDateString()}
               textContent={event.description}
               galleryArray={event.images}
               buttonLabel={

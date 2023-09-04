@@ -4,12 +4,11 @@ import arrowUp from "../../assets/images/arrow-up.svg";
 import arrowDown from "../../assets/images/arrow-down.svg";
 import Gallery from "../Gallery/Gallery";
 import Button from "../Button/Button";
-import { Timestamp } from "firebase/firestore";
 
 type EventCardProps = {
   title: string;
   maker: string;
-  date: Timestamp;
+  date: any;
   textContent: string;
   galleryArray: string[];
   buttonLabel: string;
