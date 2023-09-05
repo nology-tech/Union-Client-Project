@@ -251,6 +251,20 @@ setPassword: (password: string) => void;
 setUserId: (userId: string) => void;
 }
 
+## Federated Sign In Component
+
+- Federated sign is a reusable component to used on register and login pages.
+
+- Allows the user to create a userId by logging in to Google. Facebook and Apple sign in icons currently show pop up "in development".
+
+- redirects the user to home if the login is successful, if not redirects to error page.
+
+-
+
+### FirebaseSnapshots
+
+-Created a function called getEvents that retrieves data from Firebase FireStore database and returns the data as "filteredData"
+-Converted Timestamp to JS Date object
 Certainly! Here's a README.md section that explains how the events booking popup window works, including how to close it, go to the calendar, or cancel a booking:
 
 ---

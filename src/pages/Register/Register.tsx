@@ -8,6 +8,7 @@ import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
 import { FormEvent, useState } from "react";
 import { doc, setDoc } from "firebase/firestore";
+import FedSignIn from "../../components/FedSignIn/FedSignIn";
 
 type RegisterProps = {
   email: string;
@@ -160,6 +161,7 @@ const Register = ({
             <div className="register-page__next-button">
               <Button label="Next" onClick={handleClickNext} />
             </div>
+            <FedSignIn setUserId={setUserId} />
           </div>
         </>
       )}
@@ -211,6 +213,7 @@ const Register = ({
             <div className="register-page__create-account">
               <Button label="Create Account" onClick={beforeRegister} />
             </div>
+            <FedSignIn setUserId={setUserId} />
           </div>
         </>
       )}

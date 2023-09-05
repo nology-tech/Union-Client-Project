@@ -1,18 +1,18 @@
 import { screen } from "@testing-library/react";
 import Events from "./Events";
 import userEvents from "@testing-library/user-event";
-import { mockEvents } from "../../data/mockEvents";
 import { customRender } from "../../utils/testUtils";
+import { getEvents } from "../../utils/firebaseSnapshots";
 
 it("should render all the events once page loads", () => {
-  customRender(<Events eventData={mockEvents} />);
+  customRender(<Events />);
 
   const eventCardButtons = screen.getAllByTestId(/event-card/i);
-  expect(eventCardButtons.length).toBe(mockEvents.length);
+  expect(eventCardButtons.length).toBe(getEvents.length);
 });
 
 it("should render only 1 related event once beer has been searched", async () => {
-  customRender(<Events eventData={mockEvents} />);
+  customRender(<Events />);
 
   const searchBar = screen.getByRole("textbox");
   await userEvents.type(searchBar, "beer");
@@ -22,7 +22,7 @@ it("should render only 1 related event once beer has been searched", async () =>
 });
 
 it("should not render any events if search not matched", async () => {
-  customRender(<Events eventData={mockEvents} />);
+  customRender(<Events />);
 
   const searchBar = screen.getByRole("textbox");
   await userEvents.type(searchBar, "cooking");
