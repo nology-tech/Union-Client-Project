@@ -176,6 +176,14 @@ const [buttonVariants, setButtonVariants] = useState<boolean[]>(
 - Added dummy layout for Calendar to show proof of concept.
 - Added padding bottom to Header subtitle.
 
+### SnapshotFirebase
+
+-Database has been created inside Firebase
+-Firebase.ts has been updated to import Firestore
+-Data from Firestore is stored as a variable called filteredData as an array
+-Exported util file "FirebaseSnapshots" that handles collecting data from Firebase in an async function
+-Data in the database contains fields: category, date, description, id, images and a name
+
 ## Register-Page
 
 - Register Page takes nine props, these props are almost entirely to do with authentication in the creation of a user account.
@@ -242,3 +250,15 @@ password: string;
 setPassword: (password: string) => void;
 setUserId: (userId: string) => void;
 }
+
+Certainly! Here's a README.md section that explains how the events booking popup window works, including how to close it, go to the calendar, or cancel a booking:
+
+---
+
+### Events Booking Popup Window
+
+This popup window provides three main actions: closing the popup, navigating to the calendar, and canceling a booking.
+
+- **Closing the Popup** : To close the popup window, simply click on the black cross icon located at the top right corner of the popup.
+- **Viewing the Calendar** : If you wish to view the calendar or manage your bookings, you can do so by clicking the "VIEW CALENDAR" button.
+- **Canceling a Booking** : To cancel a booking that you've previously made, you can click on the "CANCEL BOOKING" button.
