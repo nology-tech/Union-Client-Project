@@ -47,7 +47,9 @@ const CalendarPage = ({ eventData }: CalendarPageProps) => {
   console.log(formattedDate);
   console.log(currentDate);
 
-  const filteredSearch = eventData;
+  const filteredSearch = eventData.filter((event: Event) => {
+    return event.date == formattedDate;
+  });
 
   return (
     <Layout>
