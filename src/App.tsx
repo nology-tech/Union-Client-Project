@@ -23,7 +23,10 @@ const App = () => {
           <>
             <Route path="/home" element={<Home />} />
             <Route path="/events" element={<Events eventData={mockEvents} />} />
-            <Route path="/calendar" element={<CalendarPage />} />
+            <Route
+              path="/calendar"
+              element={<CalendarPage eventData={mockEvents} />}
+            />
             <Route path="/about" element={<About />} />
           </>
         ) : (
