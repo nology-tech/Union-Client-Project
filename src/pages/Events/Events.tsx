@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import blackCross from "../../assets/images/black-cross.png";
 
 const Events = () => {
-  const [dbData, setDbData] = useState<any>([]);
+  const [dbData, setDbData] = useState<Event[]>([]);
   const [searchEvents, setSearchEvents] = useState<string>("");
   const [buttonVariants, setButtonVariants] = useState<boolean[]>([]);
   const [showPopup, setShowPopup] = useState<boolean>(false);
@@ -64,7 +64,7 @@ const Events = () => {
 
   const getDbData = async () => {
     const data = await getEvents();
-    setDbData(data);
+    setDbData(data as Event[]);
   };
 
   return (
