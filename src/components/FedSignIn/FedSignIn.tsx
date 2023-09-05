@@ -43,10 +43,15 @@ const FedSignIn = ({ setUserId }: FedSignInProps) => {
   };
 
   const handleResult = async () => {
-    const result = await getRedirectResult(auth);
-    if (result?.user) {
-      setUserId(result.user.uid);
-      navigate("/home");
+    try {
+      const result = await getRedirectResult(auth);
+      if (result?.user) {
+        setUserId(result.user.uid);
+        navigate("/home");
+      }
+    } catch (error) {
+      console.log(error);
+      navigate("/");
     }
   };
 
