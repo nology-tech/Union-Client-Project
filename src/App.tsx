@@ -10,11 +10,22 @@ import Events from "./pages/Events/Events";
 import { mockEvents } from "./data/mockEvents";
 import About from "./pages/About/About";
 import Calendar from "./pages/Calendar/Calendar";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const App = () => {
+  // const [signedIn, setSignedIn] = useState<boolean>(false);
   const [userId, setUserId] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const uid = user.uid;
+      setUserId(uid);
+    } else {
+    }
+  });
 
   return (
     <>
