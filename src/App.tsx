@@ -15,21 +15,25 @@ const App = () => {
   const setUserId = useState<string>("")[1];
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<string>("");
 
   const auth = getAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user);
-      } else {
-        navigate("/splash");
-        return;
-      }
-    });
-  }, []);
+  useEffect(
+    () => {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          setUser(user.uid);
+          console.log(user);
+        } else {
+          navigate("/splash");
+          return;
+        }
+      });
+    }, // eslint-disable-next-line
+    []
+  );
 
   return (
     <>
