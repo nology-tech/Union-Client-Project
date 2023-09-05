@@ -57,13 +57,14 @@ const Events = ({ eventData }: EventsProps) => {
       <Header title="Events" subTitle="MADE MY MAKERS STUDIO TOUR" />
       <SearchBar searchEvents={searchEvents} handleInput={handleSearch} />
       <div className="displayed-events">
-        {filteredSearch.map((event: MockEvent, index: number) => {
+        {filteredSearch.map((event: Event, index: number) => {
+          console.log(event.date);
           return (
             <EventCard
               key={event.id}
               title={event.name}
               maker={event.category}
-              date={event.date}
+              date={event.date.toLocaleDateString()}
               textContent={event.description}
               galleryArray={event.images}
               buttonLabel={
