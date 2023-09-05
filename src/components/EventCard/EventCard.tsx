@@ -4,11 +4,12 @@ import arrowUp from "../../assets/images/arrow-up.svg";
 import arrowDown from "../../assets/images/arrow-down.svg";
 import Gallery from "../Gallery/Gallery";
 import Button from "../Button/Button";
+import format from "date-fns/format";
 
 type EventCardProps = {
   title: string;
   maker: string;
-  date: string;
+  date: Date;
   textContent: string;
   galleryArray: string[];
   buttonLabel: string;
@@ -36,6 +37,8 @@ const EventCard = ({
     }
   };
 
+  const eventDate = format(date, "dd/MM/yyyy");
+
   return (
     <div data-testid={`event-card-${title}`} className="event-card">
       <div className="event-card__main">
@@ -60,7 +63,7 @@ const EventCard = ({
         </div>
         <div className="event-card__ul">
           <li className="event-card__li">{maker}</li>
-          <li className="event-card__li">{date}</li>
+          <li className="event-card__li">{eventDate.toString()}</li>
         </div>
       </div>
       {showInfo && (

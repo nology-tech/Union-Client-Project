@@ -7,7 +7,6 @@ import SplashPage from "./pages/SplashPage/SplashPage";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Events from "./pages/Events/Events";
-import { mockEvents } from "./data/mockEvents";
 import About from "./pages/About/About";
 import Calendar from "./pages/Calendar/Calendar";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -38,7 +37,7 @@ const App = () => {
         {user ? (
           <>
             <Route path="/" element={<Home />} />
-            <Route path="/events" element={<Events eventData={mockEvents} />} />
+            <Route path="/events" element={<Events />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/about" element={<About />} />
           </>
