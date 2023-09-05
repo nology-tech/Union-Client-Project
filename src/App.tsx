@@ -7,7 +7,6 @@ import SplashPage from "./pages/SplashPage/SplashPage";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Events from "./pages/Events/Events";
-import { mockEvents } from "./data/mockEvents";
 import About from "./pages/About/About";
 import CalendarPage from "./pages/Calendar/Calendar";
 
@@ -22,11 +21,16 @@ const App = () => {
         {userId ? (
           <>
             <Route path="/home" element={<Home />} />
+<<<<<<< HEAD
             <Route path="/events" element={<Events eventData={mockEvents} />} />
             <Route
               path="/calendar"
               element={<CalendarPage eventData={mockEvents} />}
             />
+=======
+            <Route path="/events" element={<Events />} />
+            <Route path="/calendar" element={<Calendar />} />
+>>>>>>> 255f2aa7d362a418fc307420e975160e032e8fe6
             <Route path="/about" element={<About />} />
           </>
         ) : (

@@ -251,6 +251,10 @@ setPassword: (password: string) => void;
 setUserId: (userId: string) => void;
 }
 
+### FirebaseSnapshots
+
+-Created a function called getEvents that retrieves data from Firebase FireStore database and returns the data as "filteredData"
+-Converted Timestamp to JS Date object
 Certainly! Here's a README.md section that explains how the events booking popup window works, including how to close it, go to the calendar, or cancel a booking:
 
 ---
