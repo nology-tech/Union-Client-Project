@@ -250,3 +250,8 @@ password: string;
 setPassword: (password: string) => void;
 setUserId: (userId: string) => void;
 }
+
+### FirebaseSnapshots
+
+-Created a function called getEvents that retrieves data from Firebase FireStore database and returns the data as "filteredData"
+-Converted Timestamp to JS Date object

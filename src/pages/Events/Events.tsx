@@ -7,16 +7,10 @@ import EventCard from "../../components/EventCard/EventCard";
 import Layout from "../../components/Layout/Layout";
 import { getEvents } from "../../utils/firebaseSnapshots";
 
-type EventsProps = {
-  eventData: Event[];
-};
-
-const Events = ({ eventData }: EventsProps) => {
+const Events = () => {
   const [dbData, setDbData] = useState<any>([]);
   const [searchEvents, setSearchEvents] = useState<string>("");
-  const [buttonVariants, setButtonVariants] = useState<boolean[]>(
-    new Array(eventData.length).fill(false)
-  );
+  const [buttonVariants, setButtonVariants] = useState<boolean[]>([]);
 
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
     const searchTerm = event.target.value.toLowerCase();
@@ -43,14 +37,10 @@ const Events = ({ eventData }: EventsProps) => {
     getDbData();
   }, []);
 
-  console.log(dbData);
-
   const getDbData = async () => {
     const data = await getEvents();
     setDbData(data);
   };
-
-  console.log(dbData);
 
   return (
     <Layout>
@@ -58,7 +48,6 @@ const Events = ({ eventData }: EventsProps) => {
       <SearchBar searchEvents={searchEvents} handleInput={handleSearch} />
       <div className="displayed-events">
         {filteredSearch.map((event: Event, index: number) => {
-          console.log(event.date);
           return (
             <EventCard
               key={event.id}
