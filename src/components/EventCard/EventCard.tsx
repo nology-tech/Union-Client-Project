@@ -4,7 +4,7 @@ import arrowUp from "../../assets/images/arrow-up.svg";
 import arrowDown from "../../assets/images/arrow-down.svg";
 import Gallery from "../Gallery/Gallery";
 import Button from "../Button/Button";
-import { format } from "date-fns";
+import format from "date-fns/format";
 
 type EventCardProps = {
   title: string;
