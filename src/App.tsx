@@ -9,9 +9,10 @@ import Register from "./pages/Register/Register";
 import Events from "./pages/Events/Events";
 import About from "./pages/About/About";
 import Calendar from "./pages/Calendar/Calendar";
+import Account from "./pages/Account/Account";
 
 const App = () => {
-  const [userId, setUserId] = useState<string>("");
+  const [userId, setUserId] = useState<string>("true");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -24,6 +25,7 @@ const App = () => {
             <Route path="/events" element={<Events />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/about" element={<About />} />
+            <Route path="/account" element={<Account />} />
           </>
         ) : (
           <>
