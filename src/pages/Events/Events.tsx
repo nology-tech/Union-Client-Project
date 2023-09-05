@@ -6,11 +6,17 @@ import { Event } from "../../types/types";
 import EventCard from "../../components/EventCard/EventCard";
 import Layout from "../../components/Layout/Layout";
 import { getEvents } from "../../utils/firebaseSnapshots";
+import Button from "../../components/Button/Button";
+import { useNavigate } from "react-router-dom";
+import blackCross from "../../assets/images/black-cross.png";
 
 const Events = () => {
   const [dbData, setDbData] = useState<any>([]);
   const [searchEvents, setSearchEvents] = useState<string>("");
   const [buttonVariants, setButtonVariants] = useState<boolean[]>([]);
+  const [showPopup, setShowPopup] = useState<boolean>(false);
+  const [index, setIndex] = useState<number>(-1);
+  const navigate = useNavigate();
 
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
     const searchTerm = event.target.value.toLowerCase();
@@ -31,6 +37,25 @@ const Events = () => {
     const newButtonVariants = [...buttonVariants];
     newButtonVariants[eventIndex] = !newButtonVariants[eventIndex];
     setButtonVariants(newButtonVariants);
+
+    setIndex(eventIndex);
+    if (newButtonVariants[eventIndex]) setShowPopup(true);
+  };
+
+  const handleViewCalendar = () => {
+    setShowPopup(false);
+    navigate("/calendar");
+  };
+
+  const handleCancelBooking = () => {
+    const newButtonVariants = [...buttonVariants];
+    newButtonVariants[index] = !newButtonVariants[index];
+    setButtonVariants(newButtonVariants);
+    setShowPopup(false);
+  };
+
+  const handleClose = () => {
+    setShowPopup(false);
   };
 
   useEffect(() => {
@@ -65,6 +90,26 @@ const Events = () => {
           );
         })}
       </div>
+
+      {showPopup && (
+        <div className="popup-overlay">
+          <div className="popup">
+            <img
+              className="popup__black-cross"
+              src={blackCross}
+              alt="Black cross"
+              onClick={handleClose}
+            />
+            <h3 className="popup__title">Successfully Booked!</h3>
+            <Button label="VIEW CALENDAR" onClick={handleViewCalendar} />
+            <Button
+              label="CANCEL BOOKING"
+              onClick={handleCancelBooking}
+              variant="secondary"
+            />
+          </div>
+        </div>
+      )}
     </Layout>
   );
 };
