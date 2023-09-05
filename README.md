@@ -98,7 +98,7 @@ export type MockEvent = {
 ### Nav
 
 - Simple navbar created with links to the respective pages.
-- Clients main priority was ease of use, this has been implemented by having a self explained navbar with only 4 navigation buttons.
+- Clients main priority was ease of use, this has been implemented by having a self explained navbar with only 5 navigation buttons.
 - We've added an active class to the scss file to darken the icon of the page which the user is viewing.
 - Added white background color and box shadow to match to brief.
 
@@ -250,3 +250,29 @@ password: string;
 setPassword: (password: string) => void;
 setUserId: (userId: string) => void;
 }
+
+## Federated Sign In Component
+
+- Federated sign is a reusable component to used on register and login pages.
+
+- Allows the user to create a userId by logging in to Google. Facebook and Apple sign in icons currently show pop up "in development".
+
+- redirects the user to home if the login is successful, if not redirects to error page.
+
+-
+
+### FirebaseSnapshots
+
+-Created a function called getEvents that retrieves data from Firebase FireStore database and returns the data as "filteredData"
+-Converted Timestamp to JS Date object
+Certainly! Here's a README.md section that explains how the events booking popup window works, including how to close it, go to the calendar, or cancel a booking:
+
+---
+
+### Events Booking Popup Window
+
+This popup window provides three main actions: closing the popup, navigating to the calendar, and canceling a booking.
+
+- **Closing the Popup** : To close the popup window, simply click on the black cross icon located at the top right corner of the popup.
+- **Viewing the Calendar** : If you wish to view the calendar or manage your bookings, you can do so by clicking the "VIEW CALENDAR" button.
+- **Canceling a Booking** : To cancel a booking that you've previously made, you can click on the "CANCEL BOOKING" button.

@@ -8,6 +8,7 @@ import { ChangeEvent } from "react";
 import arrow from "../../assets/images/arrow.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import FedSignIn from "../../components/FedSignIn/FedSignIn";
 
 type LoginProps = {
   email: string;
@@ -24,7 +25,6 @@ const Login = ({
   password,
   setPassword,
   setUserId,
-  setAdmin,
 }: LoginProps) => {
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState<boolean>(false);
@@ -32,9 +32,6 @@ const Login = ({
   const handleLogin = async () => {
     try {
       const userData = await signInWithEmailAndPassword(auth, email, password);
-      if (userData.user.uid === "dJErIiMyE5RWlYSKEo6WJJ51gwv1") {
-        setAdmin(true);
-      }
       setUserId(userData.user.uid);
       navigate("/home");
     } catch (error: unknown) {
@@ -85,6 +82,7 @@ const Login = ({
       <div className="login-page__button-container">
         <Button label="SIGN IN" onClick={handleLogin} />
       </div>
+      <FedSignIn setUserId={setUserId} />
     </div>
   );
 };

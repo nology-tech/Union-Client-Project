@@ -4,7 +4,7 @@ import home from "../../assets/icons/home.svg";
 import events from "../../assets/icons/events.svg";
 import calendar from "../../assets/icons/calendar.svg";
 import about from "../../assets/icons/about.svg";
-import admin from "../../assets/icons/admin.svg";
+import account from "../../assets/icons/account.svg";
 
 type NavProps = {
   isAdmin: boolean;
@@ -50,7 +50,15 @@ const Nav = ({ isAdmin }: NavProps) => {
           >
             <img src={about} alt="About link" className="nav__image" />
           </NavLink>
-          {isAdmin && <img src={admin} alt="admin" className="nav__image" />}
+
+          <NavLink
+            to="/account"
+            className={({ isActive }) =>
+              isActive ? "nav__link--active" : "nav__link"
+            }
+          >
+            <img src={account} alt="Home link" className="nav__image" />
+          </NavLink>
         </ul>
       </nav>
     </>
