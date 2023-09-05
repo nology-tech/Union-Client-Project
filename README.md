@@ -232,6 +232,9 @@ const [buttonVariants, setButtonVariants] = useState<boolean[]>(
 - Added dummy layout for Calendar to show proof of concept.
 - # Added padding bottom to Header subtitle.
   > > > > > > > 82814682546d1df698221ab9286d896c30e1512a
+- Added functional calendar to the Calendar Page.
+- Calendar page has Active and Historic toggle, which changes the user's view of events.
+- Users are able to interact with calendar package to access specific events depending on date.
 
 ## Login Page
 

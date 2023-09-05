@@ -35,7 +35,7 @@ const CalendarPage = ({ eventData }: CalendarPageProps) => {
     day: currentDate.getDate(),
   };
 
-  const [selectedDay, setSelectedDay] = useState(defaultValue);
+  const [selectedDay, setSelectedDay] = useState<any>(defaultValue);
 
   const timeStampDay = new Date(
     `${selectedDay.year}, ${selectedDay.month}, ${selectedDay.day}`
@@ -53,9 +53,6 @@ const CalendarPage = ({ eventData }: CalendarPageProps) => {
     let formattedCurrentDate = format(currentDate, "dd/MM/yyyy");
     return incomingCalendarDate < formattedCurrentDate;
   });
-
-  console.log(eventData[4].date);
-  console.log(formattedDate);
 
   return (
     <Layout>
