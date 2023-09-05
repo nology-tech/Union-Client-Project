@@ -30,13 +30,6 @@ const Events = () => {
     return isAfter(event.date, currentDate);
   });
 
-  // const filteredSearch = filterByDate.filter((event) => {
-  //   return (
-  //     event.name.toLowerCase().includes(searchEvents) ||
-  //     event.category.toLowerCase().includes(searchEvents) ||
-  //     event.description.toLowerCase().includes(searchEvents)
-  //   );
-  // });
   const filteredSearch = filterByDate.filter(
     (event: { name: string; category: string; description: string }) => {
       return (
