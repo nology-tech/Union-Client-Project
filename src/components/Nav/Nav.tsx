@@ -4,8 +4,13 @@ import home from "../../assets/icons/home.svg";
 import events from "../../assets/icons/events.svg";
 import calendar from "../../assets/icons/calendar.svg";
 import about from "../../assets/icons/about.svg";
+import admin from "../../assets/icons/admin.svg";
 
-const Nav = () => {
+type NavProps = {
+  isAdmin: boolean;
+};
+
+const Nav = ({ isAdmin }: NavProps) => {
   return (
     <>
       <nav className="nav">
@@ -45,6 +50,7 @@ const Nav = () => {
           >
             <img src={about} alt="About link" className="nav__image" />
           </NavLink>
+          {isAdmin && <img src={admin} alt="admin" className="nav__image" />}
         </ul>
       </nav>
     </>

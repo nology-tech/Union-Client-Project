@@ -13,6 +13,7 @@ import Calendar from "./pages/Calendar/Calendar";
 
 const App = () => {
   const [userId, setUserId] = useState<string>("");
+  const [admin, setAdmin] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -21,7 +22,7 @@ const App = () => {
       <Routes>
         {userId ? (
           <>
-            <Route path="/home" element={<Home />} />
+            <Route path="/home" element={<Home isAdmin={admin} />} />
             <Route path="/events" element={<Events eventData={mockEvents} />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/about" element={<About />} />
@@ -38,6 +39,7 @@ const App = () => {
                   password={password}
                   setPassword={setPassword}
                   setUserId={setUserId}
+                  setAdmin={setAdmin}
                 />
               }
             />
