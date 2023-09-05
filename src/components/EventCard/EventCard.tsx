@@ -37,8 +37,7 @@ const EventCard = ({
     }
   };
 
-  
-  const eventDate = format(date, "dd, MM, yyyy");
+  const eventDate = format(date, "dd/MM/yyyy");
 
   return (
     <div data-testid={`event-card-${title}`} className="event-card">

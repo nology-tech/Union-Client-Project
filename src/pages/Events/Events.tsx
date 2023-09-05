@@ -5,6 +5,7 @@ import { ChangeEvent, useState, useEffect } from "react";
 import { MockEvent } from "../../types/types";
 import EventCard from "../../components/EventCard/EventCard";
 import Layout from "../../components/Layout/Layout";
+import { isAfter, format } from "date-fns";
 
 type EventsProps = {
   eventData: MockEvent[];
@@ -24,9 +25,7 @@ const Events = ({ eventData }: EventsProps) => {
 
   const filterByDate = eventData.filter((event) => {
     const currentDate = new Date();
-    if (event.date > currentDate) {
-      return event;
-    }
+    return isAfter(event.date, currentDate);
   });
 
   const filteredSearch = filterByDate.filter((event) => {
@@ -45,15 +44,7 @@ const Events = ({ eventData }: EventsProps) => {
 
   useEffect(() => {
     const today = new Date();
-
-    const options: Intl.DateTimeFormatOptions = {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    };
-
-    const formattedDate = today.toLocaleDateString("en-GB", options);
+    const formattedDate = format(today, "EEEE, do MMMM yyyy");
     setDate(formattedDate);
   }, []);
 
