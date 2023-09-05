@@ -41,7 +41,7 @@ const Register = ({
         password
       );
       setUserId(userData.user.uid);
-      navigate("/home");
+      navigate("/");
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {
         console.error(error.code);
@@ -50,7 +50,7 @@ const Register = ({
   };
 
   const navigateBack = () => {
-    navigate("/");
+    navigate("/splash");
   };
 
   const navigate = useNavigate();

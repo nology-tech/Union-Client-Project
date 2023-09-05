@@ -31,7 +31,7 @@ const Login = ({
     try {
       const userData = await signInWithEmailAndPassword(auth, email, password);
       setUserId(userData.user.uid);
-      navigate("/home");
+      navigate("/");
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {
         console.error(error.code);
@@ -48,12 +48,19 @@ const Login = ({
     setPassword(event.currentTarget.value);
   };
 
+  const navigateToSplash = () => {
+    navigate("/splash");
+  };
+
   return (
     <div className="login-page">
-      <div className="image-container">
-        <Link to={"/"}>
-          <img className="image-container__image" src={arrow} alt="" />
-        </Link>
+      <div className="image__container">
+        <img
+          className="image-container__image"
+          onClick={navigateToSplash}
+          src={arrow}
+          alt="Back Arrow"
+        />
       </div>
       <div className="login-page__heading">
         <h1 className="login-page__heading--header">Welcome Back</h1>

@@ -1,8 +1,8 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Error from "./pages/Error/Error";
 import "./styles/main.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SplashPage from "./pages/SplashPage/SplashPage";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
@@ -13,33 +13,38 @@ import Calendar from "./pages/Calendar/Calendar";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const App = () => {
-  // const [signedIn, setSignedIn] = useState<boolean>(false);
-  const [userId, setUserId] = useState<string>("");
+  const setUserId = useState<string>("")[1];
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [user, setUser] = useState<any>(null);
 
   const auth = getAuth();
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      const uid = user.uid;
-      setUserId(uid);
-    } else {
-    }
-  });
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        navigate("/splash");
+        return;
+      }
+    });
+  }, []);
 
   return (
     <>
       <Routes>
-        {userId ? (
+        {user ? (
           <>
-            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="/events" element={<Events eventData={mockEvents} />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/about" element={<About />} />
           </>
         ) : (
           <>
-            <Route path="/" element={<SplashPage />} />
+            <Route path="/splash" element={<SplashPage />} />
             <Route
               path="/login"
               element={
