@@ -4,7 +4,7 @@ import Header from "../../components/Header/Header";
 import { useState } from "react";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import { Calendar } from "@hassanmojab/react-modern-calendar-datepicker";
-// import { compareAsc, format } from "date-fns";
+import { format } from "date-fns";
 import EventCard from "../../components/EventCard/EventCard";
 import { Event } from "../../types/types";
 
@@ -18,9 +18,6 @@ const CalendarPage = ({ eventData }: CalendarPageProps) => {
     new Array(eventData.length).fill(false)
   );
 
-  console.log(eventData);
-  console.log(eventData.length);
-
   const handleClick = () => {
     setIsActive(!isActive);
   };
@@ -32,21 +29,23 @@ const CalendarPage = ({ eventData }: CalendarPageProps) => {
   };
 
   let currentDate = new Date();
-
   const defaultValue = {
     year: currentDate.getFullYear(),
     month: currentDate.getMonth() + 1,
     day: currentDate.getDate(),
   };
 
-  // console.log(currentDate);
-
   const [selectedDay, setSelectedDay] = useState(defaultValue);
 
   const timeStampDay = new Date(
     `${selectedDay.year}, ${selectedDay.month}, ${selectedDay.day}`
   );
-  console.log(timeStampDay);
+
+  let formattedDate = format(timeStampDay, "dd/MM/yyyy");
+
+  console.log(selectedDay);
+  console.log(formattedDate);
+  console.log(currentDate);
 
   const filteredSearch = eventData;
 
