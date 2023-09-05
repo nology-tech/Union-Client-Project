@@ -1,3 +1,38 @@
+@use "../../styles//variables" as *;
+
 .displayed-events {
-    padding-bottom: 6.25rem;
+  padding-bottom: 6.25rem;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($color-charcoal, 0.6);
+  z-index: 1;
+}
+
+.popup {
+  text-align: center;
+  margin: calc((100vh - 80vw) / 2) 10vw;
+  width: 80vw;
+  height: 80vw;
+  background-color: $color-white;
+  padding: 0 5vw 5vh;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__title {
+    font-family: $modern-header;
+  }
+
+  &__black-cross {
+    margin-top: 1rem;
+    width: 1rem;
+    align-self: flex-end;
+  }
 }
