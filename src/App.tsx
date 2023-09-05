@@ -10,6 +10,7 @@ import Events from "./pages/Events/Events";
 import About from "./pages/About/About";
 import Calendar from "./pages/Calendar/Calendar";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import Account from "./pages/Account/Account";
 
 const App = () => {
   const setUserId = useState<string>("")[1];
@@ -43,6 +44,7 @@ const App = () => {
             <Route path="/events" element={<Events />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/about" element={<About />} />
+            <Route path="/account" element={<Account />} />
           </>
         ) : (
           <>
