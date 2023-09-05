@@ -8,6 +8,7 @@ import { ChangeEvent } from "react";
 import arrow from "../../assets/images/arrow.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import FedSignIn from "../../components/FedSignIn/FedSignIn";
 
 type LoginProps = {
   email: string;
@@ -25,7 +26,7 @@ const Login = ({
   setUserId,
 }: LoginProps) => {
   const navigate = useNavigate();
-  const [loginError, setLoginError] = useState<boolean>(true);
+  const [loginError, setLoginError] = useState<boolean>(false);
 
   const handleLogin = async () => {
     try {
@@ -80,6 +81,7 @@ const Login = ({
       <div className="login-page__button-container">
         <Button label="SIGN IN" onClick={handleLogin} />
       </div>
+      <FedSignIn setUserId={setUserId} />
     </div>
   );
 };

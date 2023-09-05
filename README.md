@@ -98,7 +98,7 @@ export type MockEvent = {
 ### Nav
 
 - Simple navbar created with links to the respective pages.
-- Clients main priority was ease of use, this has been implemented by having a self explained navbar with only 4 navigation buttons.
+- Clients main priority was ease of use, this has been implemented by having a self explained navbar with only 5 navigation buttons.
 - We've added an active class to the scss file to darken the icon of the page which the user is viewing.
 - Added white background color and box shadow to match to brief.
 
@@ -250,6 +250,16 @@ password: string;
 setPassword: (password: string) => void;
 setUserId: (userId: string) => void;
 }
+
+## Federated Sign In Component
+
+- Federated sign is a reusable component to used on register and login pages.
+
+- Allows the user to create a userId by logging in to Google. Facebook and Apple sign in icons currently show pop up "in development".
+
+- redirects the user to home if the login is successful, if not redirects to error page.
+
+-
 
 ### FirebaseSnapshots
 
