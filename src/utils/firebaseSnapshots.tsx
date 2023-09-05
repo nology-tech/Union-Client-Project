@@ -1,6 +1,5 @@
 import { getDocs, collection } from "firebase/firestore";
 import db from "../firebase";
-import { Event } from "../types/types";
 
 const eventsCollectionRef = collection(db, "events");
 
