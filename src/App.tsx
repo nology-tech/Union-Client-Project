@@ -12,7 +12,7 @@ import Calendar from "./pages/Calendar/Calendar";
 import Account from "./pages/Account/Account";
 
 const App = () => {
-  const [userId, setUserId] = useState<string>("true");
+  const [userId, setUserId] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
