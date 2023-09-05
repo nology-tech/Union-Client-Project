@@ -1,8 +1,10 @@
-export type MockEvent = {
-  id: number;
+import { Timestamp } from "firebase/firestore";
+
+export type Event = {
+  id: string;
   name: string;
   category: string;
-  date: string;
-  description: string; 
+  date: Timestamp;
+  description: string;
   images: string[];
 };

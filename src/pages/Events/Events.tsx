@@ -2,13 +2,13 @@ import "./Events.scss";
 import Header from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { ChangeEvent, useState, useEffect } from "react";
-import { MockEvent } from "../../types/types";
+import { Event } from "../../types/types";
 import EventCard from "../../components/EventCard/EventCard";
 import Layout from "../../components/Layout/Layout";
-import { getEventList } from "../../utils/testingFirebase";
+import { getEvents } from "../../utils/firebaseSnapshots";
 
 type EventsProps = {
-  eventData: MockEvent[];
+  eventData: Event[];
 };
 
 const Events = ({ eventData }: EventsProps) => {
@@ -23,13 +23,15 @@ const Events = ({ eventData }: EventsProps) => {
     setSearchEvents(searchTerm);
   };
 
-  const filteredSearch = dbData.filter((event: any) => {
-    return (
-      event.name.toLowerCase().includes(searchEvents) ||
-      event.category.toLowerCase().includes(searchEvents) ||
-      event.description.toLowerCase().includes(searchEvents)
-    );
-  });
+  const filteredSearch = dbData.filter(
+    (event: { name: string; category: string; description: string }) => {
+      return (
+        event.name.toLowerCase().includes(searchEvents) ||
+        event.category.toLowerCase().includes(searchEvents) ||
+        event.description.toLowerCase().includes(searchEvents)
+      );
+    }
+  );
 
   const handleClick = (eventIndex: number) => {
     const newButtonVariants = [...buttonVariants];
@@ -41,8 +43,10 @@ const Events = ({ eventData }: EventsProps) => {
     getDbData();
   }, []);
 
+  console.log(dbData);
+
   const getDbData = async () => {
-    const data = await getEventList();
+    const data = await getEvents();
     setDbData(data);
   };
 

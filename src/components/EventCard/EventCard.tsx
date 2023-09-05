@@ -8,7 +8,7 @@ import Button from "../Button/Button";
 type EventCardProps = {
   title: string;
   maker: string;
-  date: string;
+  date: Date;
   textContent: string;
   galleryArray: string[];
   buttonLabel: string;
