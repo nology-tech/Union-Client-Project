@@ -47,11 +47,11 @@ const FedSignIn = ({ setUserId }: FedSignInProps) => {
       const result = await getRedirectResult(auth);
       if (result?.user) {
         setUserId(result.user.uid);
-        navigate("/home");
+        navigate("/");
       }
     } catch (error) {
       console.log(error);
-      navigate("/");
+      navigate("/splash");
     }
   };
 
