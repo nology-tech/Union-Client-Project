@@ -6,7 +6,7 @@ import { FirebaseError } from "firebase/app";
 import { auth } from "../../firebase";
 import { ChangeEvent } from "react";
 import arrow from "../../assets/images/arrow.png";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 type LoginProps = {
