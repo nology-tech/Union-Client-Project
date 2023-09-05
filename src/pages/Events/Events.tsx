@@ -5,6 +5,9 @@ import { ChangeEvent, useState } from "react";
 import { Event } from "../../types/types";
 import EventCard from "../../components/EventCard/EventCard";
 import Layout from "../../components/Layout/Layout";
+import Button from "../../components/Button/Button";
+import { useNavigate } from "react-router-dom";
+import blackCross from "../../assets/images/black-cross.png";
 
 type EventsProps = {
   eventData: Event[];
@@ -15,6 +18,9 @@ const Events = ({ eventData }: EventsProps) => {
   const [buttonVariants, setButtonVariants] = useState<boolean[]>(
     new Array(eventData.length).fill(false)
   );
+  const [showPopup, setShowPopup] = useState<boolean>(false);
+  const [index, setIndex] = useState<number>(-1);
+  const navigate = useNavigate();
 
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
     const searchTerm = event.target.value.toLowerCase();
@@ -33,6 +39,25 @@ const Events = ({ eventData }: EventsProps) => {
     const newButtonVariants = [...buttonVariants];
     newButtonVariants[eventIndex] = !newButtonVariants[eventIndex];
     setButtonVariants(newButtonVariants);
+
+    setIndex(eventIndex);
+    if (newButtonVariants[eventIndex]) setShowPopup(true);
+  };
+
+  const handleViewCalendar = () => {
+    setShowPopup(false);
+    navigate("/calendar");
+  };
+
+  const handleCancelBooking = () => {
+    const newButtonVariants = [...buttonVariants];
+    newButtonVariants[index] = !newButtonVariants[index];
+    setButtonVariants(newButtonVariants);
+    setShowPopup(false);
+  };
+
+  const handleClose = () => {
+    setShowPopup(false);
   };
 
   return (
@@ -58,6 +83,26 @@ const Events = ({ eventData }: EventsProps) => {
           );
         })}
       </div>
+
+      {showPopup && (
+        <div className="popup-overlay">
+          <div className="popup">
+            <img
+              className="popup__black-cross"
+              src={blackCross}
+              alt="Black cross"
+              onClick={handleClose}
+            />
+            <h3 className="popup__title">Successfully Booked!</h3>
+            <Button label="VIEW CALENDAR" onClick={handleViewCalendar} />
+            <Button
+              label="CANCEL BOOKING"
+              onClick={handleCancelBooking}
+              variant="secondary"
+            />
+          </div>
+        </div>
+      )}
     </Layout>
   );
 };
