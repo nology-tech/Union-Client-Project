@@ -13,7 +13,6 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Account from "./pages/Account/Account";
 
 const App = () => {
-  const setUserId = useState<string>("")[1];
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [user, setUser] = useState<string>("");
@@ -57,7 +56,7 @@ const App = () => {
                   setEmail={setEmail}
                   password={password}
                   setPassword={setPassword}
-                  setUserId={setUserId}
+                  setUserId={setUser}
                 />
               }
             />
@@ -69,7 +68,7 @@ const App = () => {
                   setEmail={setEmail}
                   password={password}
                   setPassword={setPassword}
-                  setUserId={setUserId}
+                  setUserId={setUser}
                 />
               }
             />
