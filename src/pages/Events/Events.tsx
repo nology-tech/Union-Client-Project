@@ -54,13 +54,14 @@ const Events = ({ eventData }: EventsProps) => {
       <SearchBar searchEvents={searchEvents} handleInput={handleSearch} />
       <div className="displayed-events">
         {filteredSearch.map((event: Event, index: number) => {
+          const eventDate = new Date(event.date.toMillis());
           console.log(event.date);
           return (
             <EventCard
               key={event.id}
               title={event.name}
               maker={event.category}
-              date={new Date(event.date.seconds * 1000).toLocaleDateString()}
+              date={eventDate}
               textContent={event.description}
               galleryArray={event.images}
               buttonLabel={
