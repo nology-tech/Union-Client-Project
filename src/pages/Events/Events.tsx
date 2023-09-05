@@ -64,7 +64,7 @@ const Events = ({ eventData }: EventsProps) => {
               key={event.id}
               title={event.name}
               maker={event.category}
-              date={event.date.toLocaleDateString()}
+              date={event.date}
               textContent={event.description}
               galleryArray={event.images}
               buttonLabel={
