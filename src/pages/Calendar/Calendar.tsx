@@ -43,13 +43,19 @@ const CalendarPage = ({ eventData }: CalendarPageProps) => {
 
   let formattedDate = format(timeStampDay, "dd/MM/yyyy");
 
-  console.log(selectedDay);
-  console.log(formattedDate);
-  console.log(currentDate);
-
   const filteredSearch = eventData.filter((event: Event) => {
-    return event.date == formattedDate;
+    let incomingCalendarDate = format(event.date, "dd/MM/yyyy");
+    return incomingCalendarDate == formattedDate;
   });
+
+  const historicSearch = eventData.filter((event: Event) => {
+    let incomingCalendarDate = format(event.date, "dd/MM/yyyy");
+    let formattedCurrentDate = format(currentDate, "dd/MM/yyyy");
+    return incomingCalendarDate < formattedCurrentDate;
+  });
+
+  console.log(eventData[4].date);
+  console.log(formattedDate);
 
   return (
     <Layout>
@@ -86,25 +92,49 @@ const CalendarPage = ({ eventData }: CalendarPageProps) => {
             />
           )}
         </div>
-        <div className="displayed-events">
-          {filteredSearch.map((event: Event, index: number) => {
-            return (
-              <EventCard
-                key={event.id}
-                title={event.name}
-                maker={event.category}
-                date={event.date}
-                textContent={event.description}
-                galleryArray={event.images}
-                buttonLabel={
-                  buttonVariants[index] ? "CANCEL BOOKING" : "BOOK A PLACE"
-                }
-                buttonVariant={buttonVariants[index]}
-                handleClick={() => handleClickButton(index)}
-              />
-            );
-          })}
-        </div>
+        {isActive && (
+          <div className="displayed-events">
+            {filteredSearch.map((event: Event, index: number) => {
+              return (
+                <EventCard
+                  key={event.id}
+                  title={event.name}
+                  maker={event.category}
+                  date={event.date}
+                  textContent={event.description}
+                  galleryArray={event.images}
+                  buttonLabel={
+                    buttonVariants[index] ? "CANCEL BOOKING" : "BOOK A PLACE"
+                  }
+                  buttonVariant={buttonVariants[index]}
+                  handleClick={() => handleClickButton(index)}
+                />
+              );
+            })}
+          </div>
+        )}
+
+        {!isActive && (
+          <div className="displayed-events">
+            {historicSearch.map((event: Event, index: number) => {
+              return (
+                <EventCard
+                  key={event.id}
+                  title={event.name}
+                  maker={event.category}
+                  date={event.date}
+                  textContent={event.description}
+                  galleryArray={event.images}
+                  buttonLabel={
+                    buttonVariants[index] ? "CANCEL BOOKING" : "BOOK A PLACE"
+                  }
+                  buttonVariant={buttonVariants[index]}
+                  handleClick={() => handleClickButton(index)}
+                />
+              );
+            })}
+          </div>
+        )}
       </div>
     </Layout>
   );

@@ -2,18 +2,30 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Error from "./pages/Error/Error";
 import "./styles/main.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SplashPage from "./pages/SplashPage/SplashPage";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Events from "./pages/Events/Events";
 import About from "./pages/About/About";
 import CalendarPage from "./pages/Calendar/Calendar";
+import { getEvents } from "./utils/firebaseSnapshots";
+import { Event } from "./types/types";
 
 const App = () => {
   const [userId, setUserId] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [dbData, setDbData] = useState<Event[]>([]);
+
+  useEffect(() => {
+    getDbData();
+  }, []);
+
+  const getDbData = async () => {
+    const data = await getEvents();
+    setDbData(data as Event[]);
+  };
 
   return (
     <>
@@ -21,16 +33,11 @@ const App = () => {
         {userId ? (
           <>
             <Route path="/home" element={<Home />} />
-<<<<<<< HEAD
-            <Route path="/events" element={<Events eventData={mockEvents} />} />
+            <Route path="/events" element={<Events eventData={dbData} />} />
             <Route
               path="/calendar"
-              element={<CalendarPage eventData={mockEvents} />}
+              element={<CalendarPage eventData={dbData} />}
             />
-=======
-            <Route path="/events" element={<Events />} />
-            <Route path="/calendar" element={<Calendar />} />
->>>>>>> 255f2aa7d362a418fc307420e975160e032e8fe6
             <Route path="/about" element={<About />} />
           </>
         ) : (

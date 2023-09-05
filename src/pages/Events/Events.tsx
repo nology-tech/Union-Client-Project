@@ -1,17 +1,19 @@
 import "./Events.scss";
 import Header from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import { ChangeEvent, useState, useEffect } from "react";
+import { ChangeEvent, useState } from "react";
 import { Event } from "../../types/types";
 import EventCard from "../../components/EventCard/EventCard";
 import Layout from "../../components/Layout/Layout";
-import { getEvents } from "../../utils/firebaseSnapshots";
 import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
 import blackCross from "../../assets/images/black-cross.png";
 
-const Events = () => {
-  const [dbData, setDbData] = useState<Event[]>([]);
+type EventsProps = {
+  eventData: Event[];
+};
+
+const Events = ({ eventData }: EventsProps) => {
   const [searchEvents, setSearchEvents] = useState<string>("");
   const [buttonVariants, setButtonVariants] = useState<boolean[]>([]);
   const [showPopup, setShowPopup] = useState<boolean>(false);
@@ -23,7 +25,7 @@ const Events = () => {
     setSearchEvents(searchTerm);
   };
 
-  const filteredSearch = dbData.filter(
+  const filteredSearch = eventData.filter(
     (event: { name: string; category: string; description: string }) => {
       return (
         event.name.toLowerCase().includes(searchEvents) ||
@@ -56,15 +58,6 @@ const Events = () => {
 
   const handleClose = () => {
     setShowPopup(false);
-  };
-
-  useEffect(() => {
-    getDbData();
-  }, []);
-
-  const getDbData = async () => {
-    const data = await getEvents();
-    setDbData(data as Event[]);
   };
 
   return (
