@@ -10,6 +10,8 @@ import Events from "./pages/Events/Events";
 import About from "./pages/About/About";
 import CalendarPage from "./pages/Calendar/Calendar";
 import Account from "./pages/Account/Account";
+import { getEvents } from "./utils/firebaseSnapshots";
+import { Event } from "./types/types";
 
 const App = () => {
   const [userId, setUserId] = useState<string>("");
