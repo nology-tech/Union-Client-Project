@@ -1,11 +1,20 @@
 import { ChangeEvent } from "react";
 import Button from "../Button/Button";
 import InputBox from "../InputBox/InputBox";
-import "./EventForm.scss";
 import { setDoc, doc, Timestamp } from "firebase/firestore";
+import firebase from "firebase/compat/app";
 import { db } from "../../firebase";
 import { useState } from "react";
-import firebase from "firebase/compat/app";
+import "./EventForm.scss";
+
+type DefaultForm = {
+  eventName: string;
+  eventCategory: string;
+  eventCapacity: number;
+  eventDescription: string;
+  eventImages: string[];
+  eventDate: Timestamp;
+};
 
 const EventForm = () => {
   const [databaseInput, setDatabaseInput] = useState({
