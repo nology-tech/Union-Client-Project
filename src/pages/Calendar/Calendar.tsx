@@ -28,7 +28,7 @@ const CalendarPage = ({ eventData }: CalendarPageProps) => {
     setButtonVariants(newButtonVariants);
   };
 
-  let currentDate = new Date();
+  const currentDate = new Date();
   const defaultValue = {
     year: currentDate.getFullYear(),
     month: currentDate.getMonth() + 1,
@@ -41,16 +41,16 @@ const CalendarPage = ({ eventData }: CalendarPageProps) => {
     `${selectedDay.year}, ${selectedDay.month}, ${selectedDay.day}`
   );
 
-  let formattedDate = format(timeStampDay, "dd/MM/yyyy");
+  const formattedDate = format(timeStampDay, "dd/MM/yyyy");
 
   const filteredSearch = eventData.filter((event: Event) => {
-    let incomingCalendarDate = format(event.date, "dd/MM/yyyy");
+    const incomingCalendarDate = format(event.date, "dd/MM/yyyy");
     return incomingCalendarDate == formattedDate;
   });
 
   const historicSearch = eventData.filter((event: Event) => {
-    let incomingCalendarDate = format(event.date, "dd/MM/yyyy");
-    let formattedCurrentDate = format(currentDate, "dd/MM/yyyy");
+    const incomingCalendarDate = format(event.date, "dd/MM/yyyy");
+    const formattedCurrentDate = format(currentDate, "dd/MM/yyyy");
     return incomingCalendarDate < formattedCurrentDate;
   });
 
