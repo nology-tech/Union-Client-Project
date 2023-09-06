@@ -11,6 +11,10 @@ const Account = () => {
     return;
   };
 
+  const handleInput = () => {
+    return;
+  }
+
   return (
     <Layout>
       <Header title={"Welcome Back"} />
@@ -25,20 +29,14 @@ const Account = () => {
           </div>
           <div className="account-page__text-content">
             <div className="testing">
-            <InputBox label={"First Name"} inputPlaceholder="Jugraj" inputType={"text"} handleInput={function (event: ChangeEvent<HTMLInputElement>): void {
-              throw new Error("Function not implemented.");
-            } } />
+            <InputBox label={"First Name"} inputPlaceholder="Jugraj" inputType={"text"} handleInput={handleInput} />
             </div>
             <div className="account-page__text-content--box"></div>
             
-            <InputBox label={"Last Name"} inputPlaceholder="Singh" inputType={"text"} handleInput={function (event: ChangeEvent<HTMLInputElement>): void {
-              throw new Error("Function not implemented.");
-            } } />
+            <InputBox label={"Last Name"} inputPlaceholder="Singh" inputType={"text"} handleInput={handleInput} />
             <div className="account-page__text-content--box"></div>
             
-            <InputBox label={"Email"} inputPlaceholder="example@gmail.com" inputType={"email"} handleInput={function (event: ChangeEvent<HTMLInputElement>): void {
-              throw new Error("Function not implemented.");
-            } } />
+            <InputBox label={"Email"} inputPlaceholder="example@gmail.com" inputType={"email"} handleInput={handleInput} />
             <div className="account-page__text-content--box"></div>
           </div>
         </div>
