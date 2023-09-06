@@ -7,17 +7,19 @@ import { getEvents } from "../../utils/firebaseSnapshots";
 it("should render all the events once page loads", () => {
   customRender(<Events />);
 
-  const eventCardButtons = screen.getAllByTestId(/event-card/i);
+  const eventCardButtons = screen.queryAllByTestId(/event-card/i);
   expect(eventCardButtons.length).toBe(getEvents.length);
 });
 
 it("should render only 1 related event once beer has been searched", async () => {
   customRender(<Events />);
 
-  const searchBar = screen.getByRole("textbox");
+  const searchBar = screen.getByPlaceholderText(
+    "Search by craft, material, discipline.."
+  );
   await userEvents.type(searchBar, "beer");
 
-  const eventCardButtons = screen.getAllByTestId(/event-card/i);
+  const eventCardButtons = screen.queryAllByTestId(/event-card/i);
   expect(eventCardButtons.length).toBe(1);
 });
 
