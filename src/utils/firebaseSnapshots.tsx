@@ -27,9 +27,9 @@ export const getEvents = async () => {
 export const getUser = async (userId: string) => {
   try {
     const userCollectionRef = doc(db, "users", userId);
-    const user = await getDoc(userCollectionRef);
-    const uuid = user.data();
-    console.log(uuid);
+    const data = await getDoc(userCollectionRef);
+    const currentUser = data.data();
+    return currentUser;
   } catch (error: unknown) {
     console.error(error);
   }
