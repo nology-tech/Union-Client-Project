@@ -4,7 +4,6 @@ import Header from "../../components/Header/Header";
 import Button from "../../components/Button/Button";
 import placeHolderPFP from "/src/assets/images/placeHolderPFP.svg";
 import InputBox from "../../components/InputBox/InputBox";
-import { ChangeEvent } from "react";
 
 const Account = () => {
   const handleSignOut = () => {
