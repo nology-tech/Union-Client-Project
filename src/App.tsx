@@ -10,6 +10,7 @@ import Events from "./pages/Events/Events";
 import About from "./pages/About/About";
 import Calendar from "./pages/Calendar/Calendar";
 import Account from "./pages/Account/Account";
+import EventCreator from "./pages/EventCreator/EventCreator";
 
 const App = () => {
   const [userId, setUserId] = useState<string>("");
@@ -57,6 +58,7 @@ const App = () => {
           </>
         )}
         <Route path="*" element={<Error />} />
+        <Route path="/create-event" element={<EventCreator />} />
       </Routes>
     </>
   );
