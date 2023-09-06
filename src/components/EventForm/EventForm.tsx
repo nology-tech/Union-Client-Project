@@ -1,8 +1,7 @@
 import { ChangeEvent } from "react";
 import Button from "../Button/Button";
 import InputBox from "../InputBox/InputBox";
-import { setDoc, doc, Timestamp } from "firebase/firestore";
-import firebase from "firebase/compat/app";
+import { addDoc, collection, Timestamp } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useState } from "react";
 import "./EventForm.scss";
@@ -13,16 +12,16 @@ type DefaultForm = {
   eventCapacity: number;
   eventDescription: string;
   eventImages: string[];
-  eventDate: Timestamp;
+  eventDate: Timestamp | null;
 };
 
 const EventForm = () => {
-  const [databaseInput, setDatabaseInput] = useState({
+  const [databaseInput, setDatabaseInput] = useState<DefaultForm>({
     eventName: "",
     eventCategory: "",
     eventCapacity: 0,
     eventDescription: "",
-    eventDate: Timestamp,
+    eventDate: null,
     eventImages: [""],
   });
 
@@ -36,10 +35,7 @@ const EventForm = () => {
   };
   const handleEventDate = (event: ChangeEvent<HTMLInputElement>) => {
     const date = new Date(event.currentTarget.value);
-    console.log(date);
-
-    const timestampDate = firebase.firestore.Timestamp.fromDate(date);
-    console.log(timestampDate);
+    const timestampDate = Timestamp.fromDate(date);
 
     setDatabaseInput({
       ...databaseInput,
@@ -64,19 +60,16 @@ const EventForm = () => {
 
   const handleSubmit = async () => {
     try {
-      const docRef = await setDoc(
-        doc(db, "events-test", databaseInput.eventName),
-        {
-          name: databaseInput.eventName,
-          capacityMax: databaseInput.eventCapacity,
-          category: databaseInput.eventCategory,
-          description: databaseInput.eventDescription,
-          date: databaseInput.eventDate,
-          capacityCurrent: 0,
-          images: databaseInput.eventImages,
-        }
-      );
-      console.log(docRef);
+      const docRef = await addDoc(collection(db, "events-test"), {
+        name: databaseInput.eventName,
+        capacityMax: databaseInput.eventCapacity,
+        category: databaseInput.eventCategory,
+        description: databaseInput.eventDescription,
+        date: databaseInput.eventDate,
+        capacityCurrent: 0,
+        images: databaseInput.eventImages,
+      });
+      console.log(docRef.id);
     } catch (error) {
       console.error(error);
     }
