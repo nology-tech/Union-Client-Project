@@ -48,19 +48,20 @@ const FedSignIn = ({ setUserId }: FedSignInProps) => {
     try {
       const result = await getRedirectResult(auth);
       if (result?.user) {
-        setUserId(result.user.uid);
-        navigate("/home");
-      }
-
-      const userDocRef = doc(db, "users", result.user.uid);
+        const userDocRef = doc(db, "users", result.user.uid);
 
       await setDoc(userDocRef, {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
+        firstName: result?.user.displayName?.split(" ")[0],
+        lastName: result?.user.displayName?.split(" ")[1],
+        email: result?.user.email,
         UUID: auth?.currentUser?.uid,
         events: [],
       });
+        setUserId(result.user.uid);
+        console.log("from fed sign in", result.user.uid)
+        navigate("/home");
+      }
+
     } catch (error) {
       console.log(error);
       navigate("/");

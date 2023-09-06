@@ -276,3 +276,32 @@ This popup window provides three main actions: closing the popup, navigating to 
 - **Closing the Popup** : To close the popup window, simply click on the black cross icon located at the top right corner of the popup.
 - **Viewing the Calendar** : If you wish to view the calendar or manage your bookings, you can do so by clicking the "VIEW CALENDAR" button.
 - **Canceling a Booking** : To cancel a booking that you've previously made, you can click on the "CANCEL BOOKING" button.
+
+## Create User in User Database
+
+New users can be created in the user database from the register page. 
+
+### How to Create New Users
+
+Currently, there are two options for creating a new user:
+1. The new user provides their first and last name details, along with an email and password combination.
+2. The new user selects the google logo to use federated sign in.
+
+Both options will create a new user in accordance with the user schema. 
+
+### Data Structure
+The project uses a Firestore Database (and previously included Firebase Authentication).
+
+> The collection name is *users*.
+
+> Each user document has a unique identifier user id *UUID*
+
+> User schema:
+UUID: string;
+email: string;
+events: []
+firstName: String;
+lastName: string;
+
+### Errors
+We check if the user already exists (the email address used to register must be unique) in the database. If the user attempts to register via option 1 (above) with an email that already exists in the database, they are served an error message to advise the email already exists. If the user attempts to register using federated sign in, they are logged in and taken to home.

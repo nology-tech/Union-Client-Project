@@ -207,6 +207,7 @@ const Register = ({
               <InputBox
                 label="Confirm Password"
                 inputType="password"
+                inputPlaceholder=""
                 handleInput={handlePasswordInput}
               />
             </div>
