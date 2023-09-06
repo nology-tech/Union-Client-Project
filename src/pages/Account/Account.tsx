@@ -4,11 +4,9 @@ import Header from "../../components/Header/Header";
 import Button from "../../components/Button/Button";
 import placeHolderPFP from "/src/assets/images/placeHolderPFP.svg";
 
-
 const Account = () => {
-
-  const handleSignOut = async () => {
-    
+  const handleSignOut = () => {
+    return;
   };
 
   return (
