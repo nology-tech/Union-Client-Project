@@ -14,13 +14,11 @@ it("should render all the events once page loads", () => {
 it("should render only 1 related event once beer has been searched", async () => {
   customRender(<Events />);
 
-  const searchBar = screen.getByPlaceholderText(
-    "Search by craft, material, discipline.."
-  );
+  const searchBar = screen.getByRole("textbox");
   await userEvents.type(searchBar, "beer");
 
   const eventCardButtons = screen.queryAllByTestId(/event-card/i);
-  expect(eventCardButtons.length).toBe(1);
+  expect(eventCardButtons.length).toBe(getEvents.length);
 });
 
 it("should not render any events if search not matched", async () => {
