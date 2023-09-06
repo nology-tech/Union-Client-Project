@@ -31,7 +31,7 @@ const Header = ({
             {locationCity}
           </p>
         )}
-        <p className="header__date">{date}</p>
+        {date && <p className="header__date">{date}</p>}
         <div className="header__border"></div>
       </div>
       {imageUrl && (

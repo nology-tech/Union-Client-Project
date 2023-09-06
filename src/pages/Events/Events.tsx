@@ -17,7 +17,6 @@ const Events = () => {
   const [buttonVariants, setButtonVariants] = useState<boolean[]>([]);
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const [index, setIndex] = useState<number>(-1);
-  const [date, setDate] = useState<string>("");
   const navigate = useNavigate();
 
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
@@ -74,11 +73,8 @@ const Events = () => {
     setDbData(data as Event[]);
   };
 
-  useEffect(() => {
-    const today = new Date();
-    const formattedDate = format(today, "EEEE, do MMMM yyyy");
-    setDate(formattedDate);
-  }, []);
+  const today = new Date();
+  const date = format(today, "EEEE, do MMMM yyyy");
 
   return (
     <Layout>
