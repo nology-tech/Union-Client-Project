@@ -1,14 +1,14 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import "./Register.scss";
 import { FirebaseError } from "firebase/app";
-import { auth, db } from "../../firebase";
+import { auth } from "../../firebase";
 import arrow from "../../images/arrow.png";
 import InputBox from "../../components/InputBox/InputBox";
 import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
 import { FormEvent, useState } from "react";
-import { doc, setDoc } from "firebase/firestore";
 import FedSignIn from "../../components/FedSignIn/FedSignIn";
+import { addUser } from "../../utils/firebaseSnapshots";
 
 type RegisterProps = {
   email: string;
@@ -43,16 +43,8 @@ const Register = ({
         email,
         password
       );
-
-      const userDocRef = doc(db, "users", userData.user.uid);
-
-      await setDoc(userDocRef, {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        UUID: auth?.currentUser?.uid,
-        events: [],
-      });
+  const userId = auth?.currentUser?.uid   
+  addUser(userData, firstName, lastName, email, userId );      
 
       setUserId(userData.user.uid);
       navigate("/home");

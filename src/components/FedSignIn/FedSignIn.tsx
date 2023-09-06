@@ -11,8 +11,7 @@ import googleIcon from "../../assets/icons/google.svg";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Button from "../Button/Button";
-import { doc, setDoc } from "firebase/firestore";
-import { db } from "../../firebase";
+import { addUser } from "../../utils/firebaseSnapshots";
 
 type FedSignInProps = {
   setUserId: (userId: string) => void;
@@ -48,22 +47,20 @@ const FedSignIn = ({ setUserId }: FedSignInProps) => {
     try {
       const result = await getRedirectResult(auth);
       if (result?.user) {
-        const userDocRef = doc(db, "users", result.user.uid);
+      //   const userDocRef = doc(db, "users", result.user.uid);
 
-      await setDoc(userDocRef, {
-        firstName: result?.user.displayName?.split(" ")[0],
-        lastName: result?.user.displayName?.split(" ")[1],
-        email: result?.user.email,
-        UUID: auth?.currentUser?.uid,
-        events: [],
-      });
+        const firstName = result?.user.displayName?.split(" ")[0];
+        const lastName = result?.user.displayName?.split(" ")[1];
+        const email = result?.user.email;
+        const userId = auth?.currentUser?.uid;
+
+        addUser(result, firstName, lastName, email, userId );
         setUserId(result.user.uid);
-        console.log("from fed sign in", result.user.uid)
         navigate("/home");
       }
 
     } catch (error) {
-      console.log(error);
+      console.error(error);
       navigate("/");
     }
   };
