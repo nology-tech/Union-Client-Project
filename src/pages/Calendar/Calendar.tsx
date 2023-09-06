@@ -34,7 +34,7 @@ const CalendarPage = ({ eventData }: CalendarPageProps) => {
     month: currentDate.getMonth() + 1,
     day: currentDate.getDate(),
   };
-
+  // eslint-disable-next-line
   const [selectedDay, setSelectedDay] = useState<any>(defaultValue);
 
   const timeStampDay = new Date(
