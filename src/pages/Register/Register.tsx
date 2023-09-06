@@ -8,31 +8,25 @@ import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
 import { FormEvent, useState } from "react";
 import FedSignIn from "../../components/FedSignIn/FedSignIn";
+import { addUser } from "../../utils/firebaseSnapshots";
 
 type RegisterProps = {
-  email: string;
-  setEmail: (email: string) => void;
-  password: string;
-  setPassword: (password: string) => void;
-  setUserId: (userId: string) => void;
+  setUser: (userId: object) => void;
 };
 
-const Register = ({
-  email,
-  setEmail,
-  password,
-  setPassword,
-  setUserId,
-}: RegisterProps) => {
-  const [userinput, setUserInput] = useState<boolean>(false);
+const Register = ({ setUser }: RegisterProps) => {
+  const [userInput, setUserInput] = useState<boolean>(false);
   const [checkPassword, setCheckPassword] = useState<string>("");
   const [colorChange, setColorChange] = useState<boolean>(true);
   const [checkConfirmPassword, setCheckConfirmPassword] = useState<string>("");
   const [emailColorChange, setEmailColorChange] = useState<boolean>(true);
 
-  // because we only need the set function, we can get access to that without destructuring, just by accessing the second part of the array.
-  const setFirstName = useState<string>("")[1];
-  const setLastName = useState<string>("")[1];
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+
+  const [isEmailExists, setIsEmailExist] = useState<boolean>(false);
 
   const handleRegister = async () => {
     try {
@@ -41,17 +35,22 @@ const Register = ({
         email,
         password
       );
-      setUserId(userData.user.uid);
-      navigate("/home");
+      const userId = auth?.currentUser?.uid;
+      addUser(userData, firstName, lastName, email, userId);
+
+      setUser(userData.user);
+      navigate("/");
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {
+        if (error.code === "auth/email-already-in-use") setIsEmailExist(true);
+
         console.error(error.code);
       }
     }
   };
 
   const navigateBack = () => {
-    navigate("/");
+    navigate("/splash");
   };
 
   const navigate = useNavigate();
@@ -72,6 +71,7 @@ const Register = ({
 
   const handleEmailInput = (event: FormEvent<HTMLInputElement>) => {
     setEmail(event.currentTarget.value);
+    setIsEmailExist(false);
   };
 
   const beforeRegister = () => {
@@ -96,7 +96,7 @@ const Register = ({
   };
 
   const handleClickNext = () => {
-    if (userinput) {
+    if (userInput) {
       setUserInput(false);
     } else {
       setUserInput(true);
@@ -112,7 +112,7 @@ const Register = ({
 
   return (
     <div className="register-page">
-      {!userinput && (
+      {!userInput && (
         <>
           <div className="image-container">
             <img
@@ -145,12 +145,12 @@ const Register = ({
             <div className="register-page__next-button">
               <Button label="Next" onClick={handleClickNext} />
             </div>
-            <FedSignIn setUserId={setUserId} />
+            <FedSignIn setUser={setUser} />
           </div>
         </>
       )}
 
-      {userinput && (
+      {userInput && (
         <>
           <div className="image-container">
             <img
@@ -171,6 +171,11 @@ const Register = ({
                 inputType="text"
                 handleInput={handleEmailInput}
               />
+              {isEmailExists && (
+                <p className="register-page__email-exists">
+                  Email Already Exists
+                </p>
+              )}
             </div>
             <div className="register-page__password">
               <InputBox
@@ -186,13 +191,14 @@ const Register = ({
               <InputBox
                 label="Confirm Password"
                 inputType="password"
+                inputPlaceholder=""
                 handleInput={handlePasswordInput}
               />
             </div>
             <div className="register-page__create-account">
               <Button label="Create Account" onClick={beforeRegister} />
             </div>
-            <FedSignIn setUserId={setUserId} />
+            <FedSignIn setUser={setUser} />
           </div>
         </>
       )}

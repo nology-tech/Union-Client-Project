@@ -2,6 +2,7 @@ import "./Events.scss";
 import Header from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { ChangeEvent, useState } from "react";
+import { isAfter, format } from "date-fns";
 import { Event } from "../../types/types";
 import EventCard from "../../components/EventCard/EventCard";
 import Layout from "../../components/Layout/Layout";
@@ -25,7 +26,12 @@ const Events = ({ eventData }: EventsProps) => {
     setSearchEvents(searchTerm);
   };
 
-  const filteredSearch = eventData.filter(
+  const filterByDate = eventData.filter((event) => {
+    const currentDate = new Date();
+    return isAfter(event.date, currentDate);
+  });
+
+  const filteredSearch = filterByDate.filter(
     (event: { name: string; category: string; description: string }) => {
       return (
         event.name.toLowerCase().includes(searchEvents) ||
@@ -60,9 +66,16 @@ const Events = ({ eventData }: EventsProps) => {
     setShowPopup(false);
   };
 
+  const today = new Date();
+  const date = format(today, "EEEE, do MMMM yyyy");
+
   return (
     <Layout>
-      <Header title="Events" subTitle="MADE MY MAKERS STUDIO TOUR" />
+      <Header
+        title="Events"
+        subTitle={`MADE MY MAKERS STUDIO TOUR`}
+        date={date}
+      />
       <SearchBar searchEvents={searchEvents} handleInput={handleSearch} />
       <div className="displayed-events">
         {filteredSearch.map((event: Event, index: number) => {

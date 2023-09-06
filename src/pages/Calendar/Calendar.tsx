@@ -54,6 +54,8 @@ const CalendarPage = ({ eventData }: CalendarPageProps) => {
     return incomingCalendarDate < formattedCurrentDate;
   });
 
+  console.log(eventData);
+
   return (
     <Layout>
       <div className="calendar">
