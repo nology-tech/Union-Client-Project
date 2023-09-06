@@ -1,5 +1,7 @@
-import { getDocs, collection } from "firebase/firestore";
-import db from "../firebase";
+import { getDocs, collection, doc, setDoc } from "firebase/firestore";
+import { db } from "../firebase";
+import { FirebaseError } from "firebase/app";
+import { UserCredential } from "firebase/auth";
 
 const eventsCollectionRef = collection(db, "events");
 
@@ -21,3 +23,21 @@ export const getEvents = async () => {
     console.error(err);
   }
 };
+
+export const addUser = async (userData: UserCredential, firstName: string | undefined, lastName: string | undefined, email: string | null, userId: string | undefined) => {
+    try {
+        const userDocRef = doc(db, "users", userData.user.uid);
+        
+        await setDoc(userDocRef, {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        UUID: userId,
+        events: [],
+      });
+      } catch (error: unknown) {
+        if (error instanceof FirebaseError) {
+          console.error(error.code)
+        }
+      }
+  }
