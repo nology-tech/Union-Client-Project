@@ -3,7 +3,10 @@ import Layout from "../../components/Layout/Layout";
 import Header from "../../components/Header/Header";
 import { useState } from "react";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
-import { Calendar } from "@hassanmojab/react-modern-calendar-datepicker";
+import {
+  Calendar,
+  DayValue,
+} from "@hassanmojab/react-modern-calendar-datepicker";
 import { format } from "date-fns";
 import EventCard from "../../components/EventCard/EventCard";
 import { Event } from "../../types/types";
@@ -18,6 +21,8 @@ const CalendarPage = ({ eventData }: CalendarPageProps) => {
     new Array(eventData.length).fill(false)
   );
 
+  // const noEventsMessage = "Sorry, no events for the selected day.";
+
   const handleClick = () => {
     setIsActive(!isActive);
   };
@@ -29,16 +34,17 @@ const CalendarPage = ({ eventData }: CalendarPageProps) => {
   };
 
   const currentDate = new Date();
-  const defaultValue = {
+  const defaultValue: DayValue = {
     year: currentDate.getFullYear(),
     month: currentDate.getMonth() + 1,
     day: currentDate.getDate(),
   };
-  // eslint-disable-next-line
-  const [selectedDay, setSelectedDay] = useState<any>(defaultValue);
+  const [selectedDay, setSelectedDay] = useState<DayValue>(defaultValue);
 
   const timeStampDay = new Date(
-    `${selectedDay.year}, ${selectedDay.month}, ${selectedDay.day}`
+    `${selectedDay?.year || defaultValue.year}, ${
+      selectedDay?.month || defaultValue.month
+    }, ${selectedDay?.day || defaultValue.day}`
   );
 
   const formattedDate = format(timeStampDay, "dd/MM/yyyy");
@@ -53,8 +59,6 @@ const CalendarPage = ({ eventData }: CalendarPageProps) => {
     const formattedCurrentDate = format(currentDate, "dd/MM/yyyy");
     return incomingCalendarDate < formattedCurrentDate;
   });
-
-  console.log(eventData);
 
   return (
     <Layout>
@@ -91,9 +95,13 @@ const CalendarPage = ({ eventData }: CalendarPageProps) => {
             />
           )}
         </div>
-        {isActive && (
+        {isActive && filteredSearch.length === 0 ? (
+          <p className="calendar__no-events">
+            Sorry, no events on the selected day.
+          </p>
+        ) : !isActive ? (
           <div className="displayed-events">
-            {filteredSearch.map((event: Event, index: number) => {
+            {historicSearch.map((event: Event, index: number) => {
               return (
                 <EventCard
                   key={event.id}
@@ -111,11 +119,9 @@ const CalendarPage = ({ eventData }: CalendarPageProps) => {
               );
             })}
           </div>
-        )}
-
-        {!isActive && (
+        ) : (
           <div className="displayed-events">
-            {historicSearch.map((event: Event, index: number) => {
+            {filteredSearch.map((event: Event, index: number) => {
               return (
                 <EventCard
                   key={event.id}
