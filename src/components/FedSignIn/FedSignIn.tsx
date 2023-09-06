@@ -14,14 +14,14 @@ import Button from "../Button/Button";
 import { addUser } from "../../utils/firebaseSnapshots";
 
 type FedSignInProps = {
-  setUserId: (userId: string) => void;
+  setUser: (userId: object) => void;
 };
 
 const providerGoogle = new GoogleAuthProvider();
 
 const auth = getAuth();
 
-const FedSignIn = ({ setUserId }: FedSignInProps) => {
+const FedSignIn = ({ setUser }: FedSignInProps) => {
   const [popUp, setPopUp] = useState<boolean>(false);
 
   const buttonObject = {
@@ -47,21 +47,21 @@ const FedSignIn = ({ setUserId }: FedSignInProps) => {
     try {
       const result = await getRedirectResult(auth);
       if (result?.user) {
-      //   const userDocRef = doc(db, "users", result.user.uid);
+        setUser(result.user);
+        navigate("/");
+        //   const userDocRef = doc(db, "users", result.user.uid);
 
         const firstName = result?.user.displayName?.split(" ")[0];
         const lastName = result?.user.displayName?.split(" ")[1];
         const email = result?.user.email;
         const userId = auth?.currentUser?.uid;
 
-        addUser(result, firstName, lastName, email, userId );
-        setUserId(result.user.uid);
+        addUser(result, firstName, lastName, email, userId);
         navigate("/home");
       }
-
     } catch (error) {
-      console.error(error);
-      navigate("/");
+      console.error;
+      navigate("/splash");
     }
   };
 
