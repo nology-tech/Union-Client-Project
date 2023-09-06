@@ -16,7 +16,7 @@ const Account = () => {
 
   return (
     <Layout>
-      <Header title={"Welcome Back"} />
+      <Header title={"Manage your account"} />
       <div className="account-page">
         <div className="account-page__content">
           <div className="account-page__content--photo">
