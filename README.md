@@ -77,7 +77,7 @@ export type MockEvent = {
   id: number;
   name: string;
   category: string;
-  date: string;
+  date: Date;
   description: string;
   images: string[];
 };
@@ -117,6 +117,7 @@ export type MockEvent = {
   imageUrl="url"
   locationVenue="Venue"
   locationCity="City"
+  date="Current Day on Events Page"
 />
 ```
 
@@ -211,6 +212,7 @@ type RegisterProps = {
 
 ### Events Page
 
+- Created a filter that ensures the only events visible are events in the future from today's date.
 - Created events page to render the search bar and events passed in.
 - The search bar filters the events by event name, category and description
 - State for each events' "booking" button is kept in Events as an array
@@ -230,8 +232,6 @@ const [buttonVariants, setButtonVariants] = useState<boolean[]>(
 ### Calendar
 
 - Added dummy layout for Calendar to show proof of concept.
-- # Added padding bottom to Header subtitle.
-  > > > > > > > 82814682546d1df698221ab9286d896c30e1512a
 
 ## Login Page
 
@@ -243,6 +243,7 @@ Provided testing for render of the login page and for login errors for unauthent
 
 #### Login Props
 
+```typescript
 type LoginProps = {
 email: string;
 setEmail: (email: string) => void;
