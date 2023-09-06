@@ -37,26 +37,20 @@ it("should render both input boxes", () => {
 });
 
 it("should not register the user, given an email that already exists in the database", async () => {
-  customRender(<Register 
-      email={fakeString}
-      password={fakeString}
-      setEmail={fakeFunction}
-      setPassword={fakeFunction}
-      setUserId={fakeFunction}
-      />);
-    
-    const buttonNext = screen.getByText("Next")
-    await userEvent.click(buttonNext);
-    const emailInput = screen.getByPlaceholderText("you@example.com");
-    await userEvent.type(emailInput, "daniela.gutperl@nology.io")
-    const passwordInput = screen.getByPlaceholderText("Your Password");
-    await userEvent.type(passwordInput, "password")
-    const passwordConfirmation = screen.getByPlaceholderText("");
-    await userEvent.type(passwordConfirmation, "password");
+  customRender(<Register setUser={fakeFunction} />);
 
-    const button = screen.getByRole("button")
-    await userEvent.click(button);
+  const buttonNext = screen.getByText("Next");
+  await userEvent.click(buttonNext);
+  const emailInput = screen.getByPlaceholderText("you@example.com");
+  await userEvent.type(emailInput, "daniela.gutperl@nology.io");
+  const passwordInput = screen.getByPlaceholderText("Your Password");
+  await userEvent.type(passwordInput, "password");
+  const passwordConfirmation = screen.getByPlaceholderText("");
+  await userEvent.type(passwordConfirmation, "password");
 
-    const alert = screen.findByText("Email Already Exists")
-    expect(alert).toBeTruthy();
+  const button = screen.getByRole("button");
+  await userEvent.click(button);
+
+  const alert = screen.findByText("Email Already Exists");
+  expect(alert).toBeTruthy();
 });
