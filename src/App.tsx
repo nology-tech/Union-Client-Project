@@ -22,8 +22,6 @@ const App = () => {
     () => {
       onAuthStateChanged(auth, (user) => {
         if (user) {
-          console.log(user);
-
           setUser(user);
         } else {
           navigate("/splash");
