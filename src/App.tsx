@@ -9,8 +9,7 @@ import Register from "./pages/Register/Register";
 import Events from "./pages/Events/Events";
 import About from "./pages/About/About";
 import CalendarPage from "./pages/Calendar/Calendar";
-import { getEvents } from "./utils/firebaseSnapshots";
-import { Event } from "./types/types";
+import Account from "./pages/Account/Account";
 
 const App = () => {
   const [userId, setUserId] = useState<string>("");
@@ -39,6 +38,7 @@ const App = () => {
               element={<CalendarPage eventData={dbData} />}
             />
             <Route path="/about" element={<About />} />
+            <Route path="/account" element={<Account />} />
           </>
         ) : (
           <>
