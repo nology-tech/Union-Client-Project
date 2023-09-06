@@ -8,6 +8,7 @@ import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
 import { FormEvent, useState } from "react";
 import FedSignIn from "../../components/FedSignIn/FedSignIn";
+import { addUser } from "../../utils/firebaseSnapshots";
 
 type RegisterProps = {
   email: string;
@@ -24,15 +25,16 @@ const Register = ({
   setPassword,
   setUserId,
 }: RegisterProps) => {
-  const [userinput, setUserInput] = useState<boolean>(false);
+  const [userInput, setUserInput] = useState<boolean>(false);
   const [checkPassword, setCheckPassword] = useState<string>("");
   const [colorChange, setColorChange] = useState<boolean>(true);
   const [checkConfirmPassword, setCheckConfirmPassword] = useState<string>("");
   const [emailColorChange, setEmailColorChange] = useState<boolean>(true);
 
-  // because we only need the set function, we can get access to that without destructuring, just by accessing the second part of the array.
-  const setFirstName = useState<string>("")[1];
-  const setLastName = useState<string>("")[1];
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+
+  const [isEmailExists, setIsEmailExist] = useState<boolean>(false);
 
   const handleRegister = async () => {
     try {
@@ -41,10 +43,15 @@ const Register = ({
         email,
         password
       );
+  const userId = auth?.currentUser?.uid   
+  addUser(userData, firstName, lastName, email, userId );      
+
       setUserId(userData.user.uid);
       navigate("/home");
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {
+        if (error.code === "auth/email-already-in-use") setIsEmailExist(true);
+
         console.error(error.code);
       }
     }
@@ -72,6 +79,7 @@ const Register = ({
 
   const handleEmailInput = (event: FormEvent<HTMLInputElement>) => {
     setEmail(event.currentTarget.value);
+    setIsEmailExist(false);
   };
 
   const beforeRegister = () => {
@@ -96,7 +104,7 @@ const Register = ({
   };
 
   const handleClickNext = () => {
-    if (userinput) {
+    if (userInput) {
       setUserInput(false);
     } else {
       setUserInput(true);
@@ -112,7 +120,7 @@ const Register = ({
 
   return (
     <div className="register-page">
-      {!userinput && (
+      {!userInput && (
         <>
           <div className="image-container">
             <img
@@ -150,7 +158,7 @@ const Register = ({
         </>
       )}
 
-      {userinput && (
+      {userInput && (
         <>
           <div className="image-container">
             <img
@@ -171,6 +179,11 @@ const Register = ({
                 inputType="text"
                 handleInput={handleEmailInput}
               />
+              {isEmailExists && (
+                <p className="register-page__email-exists">
+                  Email Already Exists
+                </p>
+              )}
             </div>
             <div className="register-page__password">
               <InputBox
@@ -186,6 +199,7 @@ const Register = ({
               <InputBox
                 label="Confirm Password"
                 inputType="password"
+                inputPlaceholder=""
                 handleInput={handlePasswordInput}
               />
             </div>
