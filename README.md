@@ -281,3 +281,35 @@ This popup window provides three main actions: closing the popup, navigating to 
 
 - Added functionality so that when a signed in user refreshes the page, they stay signed in.
 - Currently, when anyone signs in they are permanently signed in.
+
+## Create User in User Database
+
+New users can be created in the user database from the register page.
+
+### How to Create New Users
+
+Currently, there are two options for creating a new user:
+
+1. The new user provides their first and last name details, along with an email and password combination.
+2. The new user selects the google logo to use federated sign in.
+
+Both options will create a new user in accordance with the user schema.
+
+### Data Structure
+
+The project uses a Firestore Database (and previously included Firebase Authentication).
+
+> The collection name is _users_.
+
+> Each user document has a unique identifier user id _UUID_
+
+> User schema:
+> UUID: string;
+> email: string;
+> events: []
+> firstName: String;
+> lastName: string;
+
+### Errors
+
+We check if the user already exists (the email address used to register must be unique) in the database. If the user attempts to register via option 1 (above) with an email that already exists in the database, they are served an error message to advise the email already exists. If the user attempts to register using federated sign in, they are logged in and taken to home.

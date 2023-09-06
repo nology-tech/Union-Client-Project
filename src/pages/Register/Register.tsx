@@ -8,6 +8,7 @@ import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
 import { FormEvent, useState } from "react";
 import FedSignIn from "../../components/FedSignIn/FedSignIn";
+import { addUser } from "../../utils/firebaseSnapshots";
 
 type RegisterProps = {
   setUser: (userId: object) => void;
@@ -21,10 +22,13 @@ const Register = ({ setUser }: RegisterProps) => {
   const [emailColorChange, setEmailColorChange] = useState<boolean>(true);
 
   // because we only need the set function, we can get access to that without destructuring, just by accessing the second part of the array.
-  const setFirstName = useState<string>("")[1];
-  const setLastName = useState<string>("")[1];
+
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+
+  const [isEmailExists, setIsEmailExist] = useState<boolean>(false);
 
   const handleRegister = async () => {
     try {
@@ -33,10 +37,15 @@ const Register = ({ setUser }: RegisterProps) => {
         email,
         password
       );
+      const userId = auth?.currentUser?.uid;
+      addUser(userData, firstName, lastName, email, userId);
+
       setUser(userData.user);
       navigate("/");
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {
+        if (error.code === "auth/email-already-in-use") setIsEmailExist(true);
+
         console.error(error.code);
       }
     }
@@ -64,6 +73,7 @@ const Register = ({ setUser }: RegisterProps) => {
 
   const handleEmailInput = (event: FormEvent<HTMLInputElement>) => {
     setEmail(event.currentTarget.value);
+    setIsEmailExist(false);
   };
 
   const beforeRegister = () => {
@@ -163,6 +173,11 @@ const Register = ({ setUser }: RegisterProps) => {
                 inputType="text"
                 handleInput={handleEmailInput}
               />
+              {isEmailExists && (
+                <p className="register-page__email-exists">
+                  Email Already Exists
+                </p>
+              )}
             </div>
             <div className="register-page__password">
               <InputBox
@@ -178,6 +193,7 @@ const Register = ({ setUser }: RegisterProps) => {
               <InputBox
                 label="Confirm Password"
                 inputType="password"
+                inputPlaceholder=""
                 handleInput={handlePasswordInput}
               />
             </div>

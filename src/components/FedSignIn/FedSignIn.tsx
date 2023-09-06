@@ -11,6 +11,7 @@ import googleIcon from "../../assets/icons/google.svg";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Button from "../Button/Button";
+import { addUser } from "../../utils/firebaseSnapshots";
 
 type FedSignInProps = {
   setUser: (userId: object) => void;
@@ -48,9 +49,18 @@ const FedSignIn = ({ setUser }: FedSignInProps) => {
       if (result?.user) {
         setUser(result.user);
         navigate("/");
+        //   const userDocRef = doc(db, "users", result.user.uid);
+
+        const firstName = result?.user.displayName?.split(" ")[0];
+        const lastName = result?.user.displayName?.split(" ")[1];
+        const email = result?.user.email;
+        const userId = auth?.currentUser?.uid;
+
+        addUser(result, firstName, lastName, email, userId);
+        navigate("/home");
       }
     } catch (error) {
-      console.log(error);
+      console.error;
       navigate("/splash");
     }
   };

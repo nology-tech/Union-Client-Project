@@ -24,4 +24,4 @@ const app = initializeApp(firebaseConfig);
 // init services
 export const auth = getAuth(app);
 
-export default getFirestore(app);
+export const db = getFirestore(app);
