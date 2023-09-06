@@ -5,4 +5,6 @@ export type Event = {
   date: Date;
   description: string;
   images: string[];
+  capacityMax: number;
+  capacityCurrent: number;
 };
