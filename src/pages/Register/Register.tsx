@@ -21,8 +21,6 @@ const Register = ({ setUser }: RegisterProps) => {
   const [checkConfirmPassword, setCheckConfirmPassword] = useState<string>("");
   const [emailColorChange, setEmailColorChange] = useState<boolean>(true);
 
-  // because we only need the set function, we can get access to that without destructuring, just by accessing the second part of the array.
-
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [firstName, setFirstName] = useState<string>("");
