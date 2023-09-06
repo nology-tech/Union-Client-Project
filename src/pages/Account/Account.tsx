@@ -12,11 +12,11 @@ const Account = () => {
 
   const handleInput = () => {
     return;
-  }
+  };
 
   return (
     <Layout>
-      <Header title={"Manage your account"} />
+      <Header title={"Manage Your Account"} />
       <div className="account-page">
         <div className="account-page__content">
           <div className="account-page__content--photo">
@@ -28,14 +28,29 @@ const Account = () => {
           </div>
           <div className="account-page__text-content">
             <div className="testing">
-            <InputBox label={"First Name"} inputPlaceholder="Jugraj" inputType={"text"} handleInput={handleInput} />
+              <InputBox
+                label={"First Name"}
+                inputPlaceholder="Jugraj"
+                inputType={"text"}
+                handleInput={handleInput}
+              />
             </div>
             <div className="account-page__text-content--box"></div>
-            
-            <InputBox label={"Last Name"} inputPlaceholder="Singh" inputType={"text"} handleInput={handleInput} />
+
+            <InputBox
+              label={"Last Name"}
+              inputPlaceholder="Singh"
+              inputType={"text"}
+              handleInput={handleInput}
+            />
             <div className="account-page__text-content--box"></div>
-            
-            <InputBox label={"Email"} inputPlaceholder="example@gmail.com" inputType={"email"} handleInput={handleInput} />
+
+            <InputBox
+              label={"Email"}
+              inputPlaceholder="example@gmail.com"
+              inputType={"email"}
+              handleInput={handleInput}
+            />
             <div className="account-page__text-content--box"></div>
           </div>
         </div>
