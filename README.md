@@ -286,6 +286,10 @@ This popup window provides three main actions: closing the popup, navigating to 
 - **Viewing the Calendar** : If you wish to view the calendar or manage your bookings, you can do so by clicking the "VIEW CALENDAR" button.
 - **Canceling a Booking** : To cancel a booking that you've previously made, you can click on the "CANCEL BOOKING" button.
 
+### Account Page
+
+- Created an account page with a sign out button.
+- Account page displays the user's profile picture, first name, last name and email address.
 ## Firebase Auth persistence
 
 - Added functionality so that when a signed in user refreshes the page, they stay signed in.
