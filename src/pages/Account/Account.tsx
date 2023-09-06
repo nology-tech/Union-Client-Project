@@ -3,6 +3,8 @@ import "./Account.scss";
 import Header from "../../components/Header/Header";
 import Button from "../../components/Button/Button";
 import placeHolderPFP from "/src/assets/images/placeHolderPFP.svg";
+import InputBox from "../../components/InputBox/InputBox";
+import { ChangeEvent } from "react";
 
 const Account = () => {
   const handleSignOut = () => {
@@ -22,18 +24,21 @@ const Account = () => {
             />
           </div>
           <div className="account-page__text-content">
-            <h1 className="account-page__text-content--first-name">
-              First Name
-            </h1>
-            <p className="account-page__text-content--name">Jugraj</p>
+            <div className="testing">
+            <InputBox label={"First Name"} inputPlaceholder="Jugraj" inputType={"text"} handleInput={function (event: ChangeEvent<HTMLInputElement>): void {
+              throw new Error("Function not implemented.");
+            } } />
+            </div>
             <div className="account-page__text-content--box"></div>
-            <h1 className="account-page__text-content--last-name">Last Name</h1>
-            <p className="account-page__text-content--name">Singh</p>
+            
+            <InputBox label={"Last Name"} inputPlaceholder="Singh" inputType={"text"} handleInput={function (event: ChangeEvent<HTMLInputElement>): void {
+              throw new Error("Function not implemented.");
+            } } />
             <div className="account-page__text-content--box"></div>
-            <h1 className="account-page__text-content--email">Email</h1>
-            <p className="account-page__text-content--email-address">
-              testing@yahoo.co.uk
-            </p>
+            
+            <InputBox label={"Email"} inputPlaceholder="example@gmail.com" inputType={"email"} handleInput={function (event: ChangeEvent<HTMLInputElement>): void {
+              throw new Error("Function not implemented.");
+            } } />
             <div className="account-page__text-content--box"></div>
           </div>
         </div>
