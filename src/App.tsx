@@ -11,6 +11,7 @@ import About from "./pages/About/About";
 import Calendar from "./pages/Calendar/Calendar";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Account from "./pages/Account/Account";
+import { getUserEvents } from "./utils/firebaseSnapshots";
 
 const App = () => {
   const [user, setUser] = useState<object>();
@@ -31,6 +32,8 @@ const App = () => {
     }, // eslint-disable-next-line
     []
   );
+
+  getUserEvents(user)
 
   return (
     <>

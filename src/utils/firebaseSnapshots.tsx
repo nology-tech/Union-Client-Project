@@ -1,4 +1,4 @@
-import { getDocs, collection, doc, setDoc } from "firebase/firestore";
+import { getDocs, getDoc, collection, doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { FirebaseError } from "firebase/app";
 import { UserCredential } from "firebase/auth";
@@ -35,6 +35,20 @@ export const addUser = async (userData: UserCredential, firstName: string | unde
         UUID: userId,
         events: [],
       });
+      } catch (error: unknown) {
+        if (error instanceof FirebaseError) {
+          console.error(error.code)
+        }
+      }
+  }
+
+let events = [];
+  export const getUserEvents = async (user : any) => {
+    try {
+        const userDocRef = doc(db, "users", user.uid);
+        
+        const data = await getDoc(userDocRef) as any;
+        events = data._document.data.value.mapValue.fields.events.arrayValue.values
       } catch (error: unknown) {
         if (error instanceof FirebaseError) {
           console.error(error.code)
