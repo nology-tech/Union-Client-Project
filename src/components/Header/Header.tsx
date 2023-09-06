@@ -7,6 +7,7 @@ type HeaderProps = {
   videoUrl?: string;
   locationVenue?: string;
   locationCity?: string;
+  date?: string;
 };
 
 const Header = ({
@@ -16,6 +17,7 @@ const Header = ({
   videoUrl,
   locationVenue,
   locationCity,
+  date,
 }: HeaderProps) => {
   return (
     <div className="header">
@@ -29,6 +31,7 @@ const Header = ({
             {locationCity}
           </p>
         )}
+        {date && <p className="header__date">{date}</p>}
         <div className="header__border"></div>
       </div>
       {imageUrl && (
