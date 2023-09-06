@@ -22,14 +22,14 @@ const mockData: Event = {
 };
 
 it("should render all the events once page loads", () => {
-  customRender(<Events eventData={mockData} />);
+  customRender(<Events eventData={[mockData]} />);
 
   const eventCardButtons = screen.getAllByTestId(/event-card/i);
   expect(eventCardButtons.length).toBe(getEvents.length);
 });
 
 it("should render only 1 related event once beer has been searched", async () => {
-  customRender(<Events eventData={mockData} />);
+  customRender(<Events eventData={[mockData]} />);
 
   const searchBar = screen.getByRole("textbox");
   await userEvents.type(searchBar, "beer");
@@ -39,7 +39,7 @@ it("should render only 1 related event once beer has been searched", async () =>
 });
 
 it("should not render any events if search not matched", async () => {
-  customRender(<Events eventData={mockData} />);
+  customRender(<Events eventData={[mockData]} />);
 
   const searchBar = screen.getByRole("textbox");
   await userEvents.type(searchBar, "cooking");
