@@ -10,21 +10,11 @@ import { FormEvent, useState } from "react";
 import FedSignIn from "../../components/FedSignIn/FedSignIn";
 
 type RegisterProps = {
-  email: string;
-  setEmail: (email: string) => void;
-  password: string;
-  setPassword: (password: string) => void;
-  setUserId: (userId: string) => void;
+  setUser: (userId: object) => void;
 };
 
-const Register = ({
-  email,
-  setEmail,
-  password,
-  setPassword,
-  setUserId,
-}: RegisterProps) => {
-  const [userinput, setUserInput] = useState<boolean>(false);
+const Register = ({ setUser }: RegisterProps) => {
+  const [userInput, setUserInput] = useState<boolean>(false);
   const [checkPassword, setCheckPassword] = useState<string>("");
   const [colorChange, setColorChange] = useState<boolean>(true);
   const [checkConfirmPassword, setCheckConfirmPassword] = useState<string>("");
@@ -33,6 +23,8 @@ const Register = ({
   // because we only need the set function, we can get access to that without destructuring, just by accessing the second part of the array.
   const setFirstName = useState<string>("")[1];
   const setLastName = useState<string>("")[1];
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   const handleRegister = async () => {
     try {
@@ -41,7 +33,7 @@ const Register = ({
         email,
         password
       );
-      setUserId(userData.user.uid);
+      setUser(userData.user);
       navigate("/");
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {
@@ -96,7 +88,7 @@ const Register = ({
   };
 
   const handleClickNext = () => {
-    if (userinput) {
+    if (userInput) {
       setUserInput(false);
     } else {
       setUserInput(true);
@@ -112,7 +104,7 @@ const Register = ({
 
   return (
     <div className="register-page">
-      {!userinput && (
+      {!userInput && (
         <>
           <div className="image-container">
             <img
@@ -145,12 +137,12 @@ const Register = ({
             <div className="register-page__next-button">
               <Button label="Next" onClick={handleClickNext} />
             </div>
-            <FedSignIn setUserId={setUserId} />
+            <FedSignIn setUser={setUser} />
           </div>
         </>
       )}
 
-      {userinput && (
+      {userInput && (
         <>
           <div className="image-container">
             <img
@@ -192,7 +184,7 @@ const Register = ({
             <div className="register-page__create-account">
               <Button label="Create Account" onClick={beforeRegister} />
             </div>
-            <FedSignIn setUserId={setUserId} />
+            <FedSignIn setUser={setUser} />
           </div>
         </>
       )}

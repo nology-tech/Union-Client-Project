@@ -13,9 +13,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Account from "./pages/Account/Account";
 
 const App = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [user, setUser] = useState<string>("");
+  const [user, setUser] = useState<object>();
 
   const auth = getAuth();
   const navigate = useNavigate();
@@ -24,7 +22,9 @@ const App = () => {
     () => {
       onAuthStateChanged(auth, (user) => {
         if (user) {
-          setUser(user.uid);
+          console.log(user);
+
+          setUser(user);
         } else {
           navigate("/splash");
           return;
@@ -48,30 +48,8 @@ const App = () => {
         ) : (
           <>
             <Route path="/splash" element={<SplashPage />} />
-            <Route
-              path="/login"
-              element={
-                <Login
-                  email={email}
-                  setEmail={setEmail}
-                  password={password}
-                  setPassword={setPassword}
-                  setUserId={setUser}
-                />
-              }
-            />
-            <Route
-              path="/register"
-              element={
-                <Register
-                  email={email}
-                  setEmail={setEmail}
-                  password={password}
-                  setPassword={setPassword}
-                  setUserId={setUser}
-                />
-              }
-            />
+            <Route path="/login" element={<Login setUser={setUser} />} />
+            <Route path="/register" element={<Register setUser={setUser} />} />
           </>
         )}
         <Route path="*" element={<Error />} />

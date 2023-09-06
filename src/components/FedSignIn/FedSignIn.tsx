@@ -13,14 +13,14 @@ import { useEffect, useState } from "react";
 import Button from "../Button/Button";
 
 type FedSignInProps = {
-  setUserId: (userId: string) => void;
+  setUser: (userId: object) => void;
 };
 
 const providerGoogle = new GoogleAuthProvider();
 
 const auth = getAuth();
 
-const FedSignIn = ({ setUserId }: FedSignInProps) => {
+const FedSignIn = ({ setUser }: FedSignInProps) => {
   const [popUp, setPopUp] = useState<boolean>(false);
 
   const buttonObject = {
@@ -46,7 +46,7 @@ const FedSignIn = ({ setUserId }: FedSignInProps) => {
     try {
       const result = await getRedirectResult(auth);
       if (result?.user) {
-        setUserId(result.user.uid);
+        setUser(result.user);
         navigate("/");
       }
     } catch (error) {

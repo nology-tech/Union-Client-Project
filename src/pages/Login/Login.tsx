@@ -11,27 +11,19 @@ import { useState } from "react";
 import FedSignIn from "../../components/FedSignIn/FedSignIn";
 
 type LoginProps = {
-  email: string;
-  setEmail: (email: string) => void;
-  password: string;
-  setPassword: (password: string) => void;
-  setUserId: (userId: string) => void;
+  setUser: (userId: object) => void;
 };
 
-const Login = ({
-  email,
-  setEmail,
-  password,
-  setPassword,
-  setUserId,
-}: LoginProps) => {
+const Login = ({ setUser }: LoginProps) => {
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   const handleLogin = async () => {
     try {
       const userData = await signInWithEmailAndPassword(auth, email, password);
-      setUserId(userData.user.uid);
+      setUser(userData.user);
       navigate("/");
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {
@@ -88,7 +80,7 @@ const Login = ({
       <div className="login-page__button-container">
         <Button label="SIGN IN" onClick={handleLogin} />
       </div>
-      <FedSignIn setUserId={setUserId} />
+      <FedSignIn setUser={setUser} />
     </div>
   );
 };
