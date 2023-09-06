@@ -276,3 +276,8 @@ This popup window provides three main actions: closing the popup, navigating to 
 - **Closing the Popup** : To close the popup window, simply click on the black cross icon located at the top right corner of the popup.
 - **Viewing the Calendar** : If you wish to view the calendar or manage your bookings, you can do so by clicking the "VIEW CALENDAR" button.
 - **Canceling a Booking** : To cancel a booking that you've previously made, you can click on the "CANCEL BOOKING" button.
+
+### Account Page
+
+- Created an account page with a sign out button.
+- Account page displays the user's profile picture, first name, last name and email address.
