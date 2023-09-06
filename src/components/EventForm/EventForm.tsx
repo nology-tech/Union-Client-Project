@@ -5,6 +5,7 @@ import "./EventForm.scss";
 import { setDoc, doc, Timestamp } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useState } from "react";
+import firebase from "firebase/compat/app";
 
 const EventForm = () => {
   const [databaseInput, setDatabaseInput] = useState({
@@ -25,8 +26,16 @@ const EventForm = () => {
     setDatabaseInput({ ...databaseInput, eventCategory: eventCategory });
   };
   const handleEventDate = (event: ChangeEvent<HTMLInputElement>) => {
-    const date = event.currentTarget.value;
-    setDatabaseInput({ ...databaseInput, eventDate: Number(date) });
+    const date = new Date(event.currentTarget.value);
+    console.log(date);
+
+    const timestampDate = firebase.firestore.Timestamp.fromDate(date);
+    console.log(timestampDate);
+
+    setDatabaseInput({
+      ...databaseInput,
+      eventDate: timestampDate,
+    });
   };
   const handleEventCapacity = (event: ChangeEvent<HTMLInputElement>) => {
     const eventCapacity = event.currentTarget.value;
@@ -46,15 +55,18 @@ const EventForm = () => {
 
   const handleSubmit = async () => {
     try {
-      const docRef = await setDoc(doc(db, "events", databaseInput.eventName), {
-        name: databaseInput.eventName,
-        capacityMax: databaseInput.eventCapacity,
-        category: databaseInput.eventCategory,
-        description: databaseInput.eventDescription,
-        date: databaseInput.eventDate,
-        capacityCurrent: 0,
-        images: databaseInput.eventImages,
-      });
+      const docRef = await setDoc(
+        doc(db, "events-test", databaseInput.eventName),
+        {
+          name: databaseInput.eventName,
+          capacityMax: databaseInput.eventCapacity,
+          category: databaseInput.eventCategory,
+          description: databaseInput.eventDescription,
+          date: databaseInput.eventDate,
+          capacityCurrent: 0,
+          images: databaseInput.eventImages,
+        }
+      );
       console.log(docRef);
     } catch (error) {
       console.error(error);
@@ -89,8 +101,8 @@ const EventForm = () => {
       <textarea
         name="Event Description"
         id="event-description"
-        cols="30"
-        rows="10"
+        cols={30}
+        rows={10}
         placeholder="Describe your event"
         onChange={handleEventDescription}
         className="event-form__event-description"

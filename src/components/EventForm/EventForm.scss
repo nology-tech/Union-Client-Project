@@ -16,10 +16,10 @@
     font-size: 0.7rem;
     outline: none;
     resize: none;
-    &--label {
-      padding: 0.1rem;
-      font-size: 0.7rem;
-      font-weight: 500;
-    }
+  }
+  &__event-description--label {
+    padding: 0.1rem;
+    font-size: 0.7rem;
+    font-weight: 500;
   }
 }
