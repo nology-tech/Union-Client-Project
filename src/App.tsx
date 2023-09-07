@@ -11,7 +11,6 @@ import About from "./pages/About/About";
 import Calendar from "./pages/Calendar/Calendar";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Account from "./pages/Account/Account";
-import { getUserEvents } from "./utils/firebaseSnapshots";
 
 const App = () => {
   const [user, setUser] = useState<object>();
@@ -23,6 +22,7 @@ const App = () => {
     () => {
       onAuthStateChanged(auth, (user) => {
         if (user) {
+          console.log("user data ==> ", user);
           setUser(user);
         } else {
           navigate("/splash");
@@ -33,16 +33,14 @@ const App = () => {
     []
   );
 
-  getUserEvents(user)
-
   return (
     <>
       <Routes>
         {user ? (
           <>
             <Route path="/" element={<Home />} />
-            <Route path="/events" element={<Events />} />
-            <Route path="/calendar" element={<Calendar />} />
+            <Route path="/events" element={<Events />} /> //
+            <Route path="/calendar" element={<Calendar userId={user.uid} />} />
             <Route path="/about" element={<About />} />
             <Route path="/account" element={<Account />} />
           </>

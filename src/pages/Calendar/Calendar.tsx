@@ -2,14 +2,39 @@ import "./Calendar.scss";
 import Layout from "../../components/Layout/Layout";
 import calendarImg from "../../assets/images/calendar.svg";
 import Header from "../../components/Header/Header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getEventsById, getUserEventsIds } from "../../utils/firebaseSnapshots";
+import EventCard from "../../components/EventCard/EventCard";
 
-const Calendar = () => {
+type CalendarProps = {
+  userId: string;
+};
+
+const Calendar = ({ userId }: CalendarProps) => {
   const [isActive, setIsActive] = useState(true);
+  const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
+  const [eventsIds, setEventsIds] = useState<string[]>([]);
 
   const handleClick = () => {
     setIsActive(!isActive);
   };
+
+  const getEventsIds = async () => {
+    const userEventsIds = await getUserEventsIds(userId);
+    setEventsIds(userEventsIds);
+  };
+
+  const getFilteredEventsByUser = async (ids: string[]) => {
+    const filteredEvents = await getEventsById(ids);
+    setFilteredEvents(filteredEvents);
+  };
+
+  useEffect(() => {
+    getEventsIds();
+    getFilteredEventsByUser(eventsIds);
+  }, []);
+
+  console.log("filtered events", filteredEvents);
 
   return (
     <Layout>
@@ -41,6 +66,11 @@ const Calendar = () => {
           alt="Calendar image"
         />
       </div>
+      {filteredEvents.map((event) => {
+        return (
+          <EventCard title={event._document.data.value.mapValue.fields.name} />
+        );
+      })}
     </Layout>
   );
 };
