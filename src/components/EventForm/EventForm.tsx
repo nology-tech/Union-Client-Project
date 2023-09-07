@@ -25,6 +25,8 @@ const EventForm = () => {
     eventImages: [""],
   });
 
+  const [images, setImages] = useState<string>("");
+
   const handleEventName = (event: ChangeEvent<HTMLInputElement>) => {
     const eventName = event.currentTarget.value;
     setDatabaseInput({ ...databaseInput, eventName: eventName });
@@ -53,9 +55,16 @@ const EventForm = () => {
     const eventDescription = event.currentTarget.value;
     setDatabaseInput({ ...databaseInput, eventDescription: eventDescription });
   };
+
   const handleEventImages = (event: ChangeEvent<HTMLInputElement>) => {
-    const images = event.currentTarget.value;
-    setDatabaseInput({ ...databaseInput, eventImages: [images] });
+    setImages(event.currentTarget.value);
+  };
+
+  const handleAddImage = () => {
+    const imageArray = [];
+    imageArray.push(images);
+    setDatabaseInput({ ...databaseInput, eventImages: imageArray });
+    setImages("");
   };
 
   const handleSubmit = async () => {
@@ -109,11 +118,16 @@ const EventForm = () => {
         onChange={handleEventDescription}
         className="event-form__event-description"
       />
-      <InputBox
-        label="Image URL"
-        handleInput={handleEventImages}
-        inputType="text"
-      />
+      <div>
+        {" "}
+        <InputBox
+          label="Image URL"
+          handleInput={handleEventImages}
+          inputType="text"
+        />
+        <Button label="Add Image" onClick={handleAddImage} />
+      </div>
+
       <div className="event-form__button">
         <Button label="Submit" onClick={handleSubmit} />
       </div>
