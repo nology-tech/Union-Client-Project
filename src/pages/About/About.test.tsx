@@ -1,8 +1,9 @@
-import { screen, render, waitFor } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import About from "./About";
+import { customRender } from "../../utils/testUtils";
 
 it("should render the subheadings", () => {
-  render(<About />);
+  customRender(<About />);
 
   const subheading1 = screen.getByText(
     "Ripping Up the Rulebook & Starting From Scratch"
@@ -16,7 +17,7 @@ it("should render the subheadings", () => {
 });
 
 it("should render images", () => {
-  render(<About />);
+  customRender(<About />);
 
   const balletImage = screen.getByAltText("Ballet Image");
   const readingImage = screen.getByAltText("Reading Image");
@@ -26,7 +27,7 @@ it("should render images", () => {
 });
 
 it("should render the video", async () => {
-  render(<About />);
+  customRender(<About />);
 
   const video = screen.getByTestId("video");
   await waitFor(() => {
