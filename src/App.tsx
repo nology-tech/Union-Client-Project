@@ -52,7 +52,10 @@ const App = () => {
           <>
             <Route path="/" element={<Home />} />
             <Route path="/events" element={<Events eventData={dbData} />} />
-            <Route path="/calendar" element={<CalendarPage eventData={dbData} />}/>
+            <Route
+              path="/calendar"
+              element={<CalendarPage eventData={dbData} />}
+            />
             <Route path="/about" element={<About />} />
             <Route path="/account" element={<Account />} />
             <Route path="/admin" element={<Admin />} />
