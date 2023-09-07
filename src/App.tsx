@@ -11,6 +11,7 @@ import About from "./pages/About/About";
 import CalendarPage from "./pages/Calendar/Calendar";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Account from "./pages/Account/Account";
+import Admin from "./pages/Admin/Admin";
 import { getEvents } from "./utils/firebaseSnapshots";
 import { Event } from "./types/types";
 
@@ -59,8 +60,7 @@ const App = () => {
 
 
             <Route path="/account" element={<Account />} />
-
-            
+            <Route path="/admin" element={<Admin />} />
           </>
         ) : (
           <>
