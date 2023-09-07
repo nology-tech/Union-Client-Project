@@ -1,18 +1,60 @@
 import Layout from "../../components/Layout/Layout";
 import "./Account.scss";
 import Header from "../../components/Header/Header";
+import Button from "../../components/Button/Button";
+import placeHolderPFP from "/src/assets/images/placeHolderPFP.svg";
+import InputBox from "../../components/InputBox/InputBox";
 
 const Account = () => {
+  const handleSignOut = () => {
+    return;
+  };
+
+  const handleInput = () => {
+    return;
+  };
 
   return (
     <Layout>
-      <Header
-        title={"Welcome Back"}
-        subTitle="Name goes here..."
-        
-        />
+      <Header title={"Manage Your Account"} />
       <div className="account-page">
-        <h1>Page under development.</h1>
+        <div className="account-page__content">
+          <div className="account-page__content--photo">
+            <img
+              className="account-page__content--image"
+              src={placeHolderPFP}
+              alt="your photo"
+            />
+          </div>
+          <div className="account-page__text-content">
+            <InputBox
+              label={"First Name"}
+              inputPlaceholder="Jugraj"
+              inputType={"text"}
+              handleInput={handleInput}
+            />
+            <div className="account-page__text-content--box"></div>
+
+            <InputBox
+              label={"Last Name"}
+              inputPlaceholder="Singh"
+              inputType={"text"}
+              handleInput={handleInput}
+            />
+            <div className="account-page__text-content--box"></div>
+
+            <InputBox
+              label={"Email"}
+              inputPlaceholder="example@gmail.com"
+              inputType={"email"}
+              handleInput={handleInput}
+            />
+            <div className="account-page__text-content--box"></div>
+          </div>
+        </div>
+        <div className="sign-out-button">
+          <Button label={"Sign Out"} onClick={handleSignOut} />
+        </div>
       </div>
     </Layout>
   );

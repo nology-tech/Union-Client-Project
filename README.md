@@ -232,6 +232,10 @@ const [buttonVariants, setButtonVariants] = useState<boolean[]>(
 ### Calendar
 
 - Added dummy layout for Calendar to show proof of concept.
+- Added padding bottom to Header subtitle.
+- Added functional calendar to the Calendar Page.
+- Calendar page has Active and Historic toggle, which changes the user's view of events.
+- Users are able to interact with calendar package to access specific events depending on date.
 
 ## Login Page
 
@@ -278,6 +282,10 @@ This popup window provides three main actions: closing the popup, navigating to 
 - **Viewing the Calendar** : If you wish to view the calendar or manage your bookings, you can do so by clicking the "VIEW CALENDAR" button.
 - **Canceling a Booking** : To cancel a booking that you've previously made, you can click on the "CANCEL BOOKING" button.
 
+### Account Page
+
+- Created an account page with a sign out button.
+- Account page displays the user's profile picture, first name, last name and email address.
 ## Firebase Auth persistence
 
 - Added functionality so that when a signed in user refreshes the page, they stay signed in.
@@ -314,3 +322,4 @@ The project uses a Firestore Database (and previously included Firebase Authenti
 ### Errors
 
 We check if the user already exists (the email address used to register must be unique) in the database. If the user attempts to register via option 1 (above) with an email that already exists in the database, they are served an error message to advise the email already exists. If the user attempts to register using federated sign in, they are logged in and taken to home.
+```
