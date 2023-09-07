@@ -10,7 +10,11 @@ import { useEffect, useState } from "react";
 import placeHolderPFP from "/src/assets/images/placeHolderPFP.svg";
 import InputBox from "../../components/InputBox/InputBox";
 
-const Account = () => {
+type AccountProps = {
+  setUser: (userId: object) => void;
+};
+
+const Account = ({ setUser }: AccountProps) => {
   const [displayName, setDisplayName] = useState("");
 
   const userId = auth.currentUser?.uid as string;
@@ -27,8 +31,9 @@ const Account = () => {
 
   const handleSignOut = async () => {
     try {
-      // navigate("/");
       await signOut(auth);
+      setUser({});
+      navigate("/splash");
       console.log("clicked sign out");
       console.log(auth.currentUser);
     } catch (error) {
