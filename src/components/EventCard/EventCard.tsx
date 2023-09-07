@@ -42,6 +42,7 @@ const EventCard = ({
   };
 
   const eventDate = format(date, "dd/MM/yyyy");
+  const currentDate = format(new Date(), "dd/MM/yyyy");
 
   return (
     <div data-testid={`event-card-${title}`} className="event-card">
@@ -81,12 +82,20 @@ const EventCard = ({
                 imageAltTag={`image for ${maker}`}
               />
             )}
-            <div className="event-card__capacity">
-              <p className="event-card__capacity-text">
-                There are {capacityMax - capacityCurrent} spaces left out of{" "}
-                {capacityMax}
-              </p>
-            </div>
+            {eventDate >= currentDate ? (
+              <div className="event-card__capacity">
+                <p className="event-card__capacity-text">
+                  There are {capacityMax - capacityCurrent} spaces left out of{" "}
+                  {capacityMax}
+                </p>
+              </div>
+            ) : (
+              <div className="event-card__capacity">
+                <p className="event-card__capacity-text">
+                  This event is in the past
+                </p>
+              </div>
+            )}
           </div>
           {buttonVariant ? (
             <Button
