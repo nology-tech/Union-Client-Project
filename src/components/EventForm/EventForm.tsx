@@ -38,11 +38,17 @@ const EventForm = () => {
   const handleEventName = (event: ChangeEvent<HTMLInputElement>) => {
     const eventName = event.currentTarget.value;
     setDatabaseInput({ ...databaseInput, eventName: eventName });
+    setRequired({ ...required, errorOne: databaseInput.eventName.length < 1 });
   };
   const handleEventCategory = (event: ChangeEvent<HTMLInputElement>) => {
     const eventCategory = event.currentTarget.value;
     setDatabaseInput({ ...databaseInput, eventCategory: eventCategory });
+    setRequired({
+      ...required,
+      errorTwo: databaseInput.eventCategory.length < 1,
+    });
   };
+
   const handleEventDate = (event: ChangeEvent<HTMLInputElement>) => {
     const date = new Date(event.currentTarget.value);
     const timestampDate = Timestamp.fromDate(date);
@@ -51,6 +57,8 @@ const EventForm = () => {
       ...databaseInput,
       eventDate: timestampDate,
     });
+
+    setRequired({ ...required, errorThree: !databaseInput.eventDate });
   };
   const handleEventCapacity = (event: ChangeEvent<HTMLInputElement>) => {
     const eventCapacity = event.currentTarget.value;
@@ -67,12 +75,22 @@ const EventForm = () => {
       ...databaseInput,
       eventCapacity: parseInt(eventCapacity),
     });
+
+    setRequired({
+      ...required,
+      errorFour: databaseInput.eventCapacity === null,
+    });
   };
   const handleEventDescription = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const eventDescription = event.currentTarget.value;
     setDatabaseInput({
       ...databaseInput,
       eventDescription: eventDescription,
+    });
+
+    setRequired({
+      ...required,
+      errorFive: databaseInput.eventDescription.length < 1,
     });
   };
   const handleAddImage = () => {
@@ -83,6 +101,11 @@ const EventForm = () => {
     setImages((images) => [...images, image]);
     setDatabaseInput({ ...databaseInput, eventImages: [...images, image] });
     setInputValue("");
+
+    setRequired({
+      ...required,
+      errorSix: databaseInput.eventImages.length === 0,
+    });
   };
   const handleRemoveImage = () => {
     if (images.length > 0) {
@@ -94,28 +117,21 @@ const EventForm = () => {
     setInputValue(event.currentTarget.value);
   };
   const handleRequirements = () => {
-    const currentErrors = {
-      errorOne: databaseInput.eventName.length < 1,
-      errorTwo: databaseInput.eventCategory.length < 1,
-      errorThree: !databaseInput.eventDate,
-      errorFour: databaseInput.eventCapacity === null,
-      errorFive: databaseInput.eventDescription.length < 1,
-      errorSix: databaseInput.eventImages.length === 0,
-    };
-    if (!Object.values(required)) {
-      console.log("clicked");
+    const errorArray = Object.values(required).filter((value) => {
+      return value === true;
+    });
 
-      handleSubmit();
+    if (errorArray.length > 0) {
+      console.log("there are errors");
+      return;
     } else {
-      console.log("clicked else");
-      console.log(required);
-
-      setRequired(currentErrors);
+      handleSubmit();
+      console.log("submitted");
     }
   };
   const handleSubmit = async () => {
     try {
-      await addDoc(collection(db, "events-test"), {
+      await addDoc(collection(db, "events"), {
         name: databaseInput.eventName,
         capacityMax: databaseInput.eventCapacity,
         category: databaseInput.eventCategory,
