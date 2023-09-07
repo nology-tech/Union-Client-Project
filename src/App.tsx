@@ -13,9 +13,12 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Account from "./pages/Account/Account";
 import { getEvents } from "./utils/firebaseSnapshots";
 import { Event } from "./types/types";
+import { UserCredential } from "firebase/auth";
+import firebase from "firebase/compat/app";
 
 const App = () => {
   const [dbData, setDbData] = useState<Event[]>([]);
+  const [user, setUser] = useState<firebase.User>();
 
   useEffect(() => {
     getDbData();
@@ -25,7 +28,6 @@ const App = () => {
     const data = await getEvents();
     setDbData(data as Event[]);
   };
-  const [user, setUser] = useState<object>();
 
   const auth = getAuth();
   const navigate = useNavigate();
@@ -37,12 +39,12 @@ const App = () => {
           setUser(user);
         } else {
           navigate("/splash");
-          return;
         }
       });
     }, // eslint-disable-next-line
     []
   );
+  console.log(user);
 
   return (
     <>

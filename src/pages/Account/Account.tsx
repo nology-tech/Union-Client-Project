@@ -11,7 +11,7 @@ import placeHolderPFP from "/src/assets/images/placeHolderPFP.svg";
 import InputBox from "../../components/InputBox/InputBox";
 
 type AccountProps = {
-  setUser: (userId: object) => void;
+  setUser: (userId) => void;
 };
 
 const Account = ({ setUser }: AccountProps) => {
@@ -32,10 +32,15 @@ const Account = ({ setUser }: AccountProps) => {
   const handleSignOut = async () => {
     try {
       await signOut(auth);
-      setUser({});
-      navigate("/splash");
-      console.log("clicked sign out");
-      console.log(auth.currentUser);
+      setUser(null);
+
+      const navigateToSplash = () => {
+        navigate("/splash");
+        console.log("clicked sign out");
+        console.log(auth.currentUser);
+      };
+
+      navigateToSplash();
     } catch (error) {
       // An error happened.
       console.error("Sign-out error", error);
