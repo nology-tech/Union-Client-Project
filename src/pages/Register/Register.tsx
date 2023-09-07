@@ -27,6 +27,7 @@ const Register = ({ setUser }: RegisterProps) => {
   const [lastName, setLastName] = useState<string>("");
 
   const [isEmailExists, setIsEmailExist] = useState<boolean>(false);
+  const [isPasswordStrong, setIsPasswordStrong] = useState<boolean>(false);
 
   const handleRegister = async () => {
     try {
@@ -43,6 +44,10 @@ const Register = ({ setUser }: RegisterProps) => {
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {
         if (error.code === "auth/email-already-in-use") setIsEmailExist(true);
+
+        console.error(error.code);
+
+        if (error.code === "auth/weak-password") setIsPasswordStrong(true);
 
         console.error(error.code);
       }
@@ -174,6 +179,12 @@ const Register = ({ setUser }: RegisterProps) => {
               {isEmailExists && (
                 <p className="register-page__email-exists">
                   Email Already Exists
+                </p>
+              )}
+
+              {isPasswordStrong && (
+                <p className="register-page__email-exists">
+                  Sorry, password must be longer than 5 characters.
                 </p>
               )}
             </div>
