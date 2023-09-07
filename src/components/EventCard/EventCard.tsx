@@ -7,6 +7,8 @@ import Button from "../Button/Button";
 import format from "date-fns/format";
 
 type EventCardProps = {
+  capacityCurrent: number;
+  capacityMax: number;
   title: string;
   maker: string;
   date: Date;
@@ -77,6 +79,7 @@ const EventCard = ({
                 imageAltTag={`image for ${maker}`}
               />
             )}
+            <div></div>
           </div>
           {buttonVariant ? (
             <Button
