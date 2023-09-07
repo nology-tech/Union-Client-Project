@@ -1,3 +1,5 @@
+@use "../../styles/variables" as *;
+
 .calendar {
   &__buttons {
     text-align: center;
@@ -14,4 +16,41 @@
   &__image {
     width: 100vw;
   }
+
+  &__container {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__day {
+    color: white;
+    border-radius: 10% !important;
+  }
+
+  &__no-events {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.Calendar {
+  &__header {
+    font-family: $modern-header;
+    font-size: 0.8rem;
+  }
+
+  &__monthText,
+  &__yearText {
+    font-weight: 900 !important;
+  }
+
+  &__monthArrow {
+    transform: rotate(270deg);
+    background-image: url(../../assets/images/rightCalendarArrow.png) !important;
+  }
+}
+
+.Calendar > :not(.Calendar__footer) button {
+  font-family: $modern-header;
+  font-weight: 700;
 }
