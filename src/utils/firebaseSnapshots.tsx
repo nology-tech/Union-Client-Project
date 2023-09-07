@@ -48,39 +48,46 @@ export const addUser = async (
   }
 };
 
-export const getUserEventsIds = async (userId: string) => {
+export const getEventsForUser = async (userId: string) => {
   try {
-    const userDocRef = doc(db, "users", userId);
-
-    const data = (await getDoc(userDocRef)) as any;
-    const eventsIds =
-      data._document.data.value.mapValue.fields.events.arrayValue.values.map(
-        (id: { stringValue: string }) => {
-          return id.stringValue;
-        }
-      );
-    return eventsIds;
-  } catch (error: unknown) {
-    if (error instanceof FirebaseError) {
-      console.error(error.code);
+    // Fetch the user's document to get the event IDs
+    const userDoc = await getDoc(
+      doc(db, "users", userId)
+    );
+    if (!userDoc.exists()) {
+      console.error("User not found");
+      return [];
     }
-  }
-};
 
-export const getEventsById = async (eventIds: string[]) => {
-  try {
-    const data = await getDocs(eventsCollectionRef);
-    const eventsData = data.docs;
-    const filteredEvents = eventIds.map((eventId) => {
-      // console.log("eventId =>", eventId);
-      return eventsData.find((doc) => doc.id === eventId);
+    const userData = userDoc.data();
+    const eventIds = userData.events;
+
+    // Fetch the event documents based on event IDs
+    const eventPromises = eventIds.map(async (eventId: string) => {
+      const eventDoc = await getDoc(doc(db, "events", eventId));
+      if (eventDoc.exists()) {
+        const eventData = eventDoc.data();
+        const date = eventData.date.toDate();
+        return {
+          ...eventData,
+          id: eventDoc.id,
+          date,
+        };
+      } else {
+        console.error(`Event with ID ${eventId} not found`);
+        return null;
+      }
     });
-    // console.log("eventsData =>", eventsData);
-    // console.log("filteredEvents =>", filteredEvents);
-    return filteredEvents;
-  } catch (error: unknown) {
-    if (error instanceof FirebaseError) {
-      console.error(error.code);
-    }
+
+    const eventsData = await Promise.all(eventPromises);
+    // Filter out any null values (events not found)
+    const filteredEventsData = eventsData.filter(
+      (eventData) => eventData !== null
+    );
+    console.log(filteredEventsData);
+    return filteredEventsData;
+  } catch (err) {
+    console.error("Error fetching events:", err);
+    return [];
   }
 };
