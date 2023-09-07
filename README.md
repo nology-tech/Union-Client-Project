@@ -232,14 +232,10 @@ const [buttonVariants, setButtonVariants] = useState<boolean[]>(
 ### Calendar
 
 - Added dummy layout for Calendar to show proof of concept.
-<<<<<<< HEAD
-- # Added padding bottom to Header subtitle.
-  > > > > > > > 82814682546d1df698221ab9286d896c30e1512a
+- Added padding bottom to Header subtitle.
 - Added functional calendar to the Calendar Page.
 - Calendar page has Active and Historic toggle, which changes the user's view of events.
 - Users are able to interact with calendar package to access specific events depending on date.
-=======
->>>>>>> eb6b2a14573446f9eab4754309683dc5787b36eb
 
 ## Login Page
 
@@ -326,3 +322,4 @@ The project uses a Firestore Database (and previously included Firebase Authenti
 ### Errors
 
 We check if the user already exists (the email address used to register must be unique) in the database. If the user attempts to register via option 1 (above) with an email that already exists in the database, they are served an error message to advise the email already exists. If the user attempts to register using federated sign in, they are logged in and taken to home.
+```

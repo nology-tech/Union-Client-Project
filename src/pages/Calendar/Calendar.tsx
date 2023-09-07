@@ -21,8 +21,6 @@ const CalendarPage = ({ eventData }: CalendarPageProps) => {
     new Array(eventData.length).fill(false)
   );
 
-  // const noEventsMessage = "Sorry, no events for the selected day.";
-
   const handleClick = () => {
     setIsActive(!isActive);
   };
