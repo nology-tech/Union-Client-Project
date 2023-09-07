@@ -8,3 +8,12 @@ export type Event = {
   capacityMax: number;
   capacityCurrent: number;
 };
+
+export type User = {
+UUID: string;
+email: string;
+firstName: string;
+lastName: string;
+isAdmin: boolean;
+events: string[];
+};
