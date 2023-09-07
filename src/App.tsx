@@ -34,6 +34,7 @@ const App = () => {
     () => {
       onAuthStateChanged(auth, (user) => {
         if (user) {
+          console.log("user data ==> ", user);
           setUser(user);
         } else {
           navigate("/splash");

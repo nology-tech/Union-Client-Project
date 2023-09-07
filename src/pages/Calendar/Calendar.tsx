@@ -1,7 +1,7 @@
 import "./Calendar.scss";
 import Layout from "../../components/Layout/Layout";
 import Header from "../../components/Header/Header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import {
   Calendar,
@@ -14,12 +14,20 @@ import { Event } from "../../types/types";
 type CalendarPageProps = {
   eventData: Event[];
 };
+import { getEventsById, getUserEventsIds } from "../../utils/firebaseSnapshots";
+import EventCard from "../../components/EventCard/EventCard";
 
-const CalendarPage = ({ eventData }: CalendarPageProps) => {
+type CalendarProps = {
+  userId: string;
+};
+
+const CalendarPage = ({ eventData }: CalendarPageProps{ userId }: CalendarProps) => {
   const [isActive, setIsActive] = useState(true);
   const [buttonVariants, setButtonVariants] = useState<boolean[]>(
     new Array(eventData.length).fill(false)
   );
+  const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
+  const [eventsIds, setEventsIds] = useState<string[]>([]);
 
   const handleClick = () => {
     setIsActive(!isActive);
@@ -57,6 +65,23 @@ const CalendarPage = ({ eventData }: CalendarPageProps) => {
     const formattedCurrentDate = format(currentDate, "dd/MM/yyyy");
     return incomingCalendarDate < formattedCurrentDate;
   });
+
+  const getEventsIds = async () => {
+    const userEventsIds = await getUserEventsIds(userId);
+    setEventsIds(userEventsIds);
+  };
+
+  const getFilteredEventsByUser = async (ids: string[]) => {
+    const filteredEvents = await getEventsById(ids);
+    setFilteredEvents(filteredEvents);
+  };
+
+  useEffect(() => {
+    getEventsIds();
+    getFilteredEventsByUser(eventsIds);
+  }, []);
+
+  console.log("filtered events", filteredEvents);
 
   return (
     <Layout>
@@ -139,6 +164,11 @@ const CalendarPage = ({ eventData }: CalendarPageProps) => {
           </div>
         )}
       </div>
+      {filteredEvents.map((event) => {
+        return (
+          <EventCard title={event._document.data.value.mapValue.fields.name} maker={event._document.data.value.mapValue.fields.category date={event._document.data.value.mapValue.fields.date} textContent='' galleryArray={[]}/>
+        );
+      })}
     </Layout>
   );
 };
