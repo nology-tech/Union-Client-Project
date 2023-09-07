@@ -21,7 +21,6 @@ const Admin = () => {
               alt="your photo"
             />
           </div>
-          <div className="admin-page__text-content"></div>
         </div>
         <div className="add-events-button">
           <Button label={"Add Events"} onClick={handleSignOut} />
