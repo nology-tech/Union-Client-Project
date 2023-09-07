@@ -229,6 +229,8 @@ const [buttonVariants, setButtonVariants] = useState<boolean[]>(
 {filteredSearch.map((event: MockEvent, index: number))}
 ```
 
+- Added feature whereby users are able to see how many spaces are available dynamically through the database.
+
 ### Calendar
 
 - Added dummy layout for Calendar to show proof of concept.

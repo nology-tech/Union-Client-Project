@@ -15,6 +15,8 @@ const imageArr = [
 const clickFunc = () => {
   // do something here...
 };
+const capacityCurrent = 0;
+const capacityMax = 50;
 
 it("should render event card", () => {
   render(
@@ -26,6 +28,8 @@ it("should render event card", () => {
       galleryArray={imageArr}
       buttonLabel="Click MEEE"
       handleClick={clickFunc}
+      capacityCurrent={capacityCurrent}
+      capacityMax={capacityMax}
     />
   );
 
@@ -46,6 +50,8 @@ it("should render Gallery after arrow has been clicked", async () => {
       galleryArray={imageArr}
       buttonLabel="Click MEEE"
       handleClick={clickFunc}
+      capacityCurrent={capacityCurrent}
+      capacityMax={capacityMax}
     />
   );
 
