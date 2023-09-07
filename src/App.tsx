@@ -21,6 +21,7 @@ const App = () => {
 
   useEffect(() => {
     getDatafromBackend();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getDbData = async () => {
