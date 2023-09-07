@@ -7,20 +7,31 @@ import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { getUser } from "../../utils/firebaseSnapshots";
 import { User } from "../../types/types";
+import { useEffect, useState } from "react";
 
 const Account = () => {
-  const userId = auth.currentUser?.uid as string;
-  const user = getUser(userId);
-  console.log(user);
+  const [displayName, setDisplayName] = useState("");
 
+  const userId = auth.currentUser?.uid as string;
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchDisplayName = async () => {
+      let user = await getUser(userId);
+      let displayName = `${user?.firstName} ${user?.lastName}`;
+      setDisplayName(displayName);
+    };
+    fetchDisplayName();
+  }, [userId]);
+
   const handleSignOut = async () => {
     try {
-      console.log(auth.currentUser);
-      await signOut(auth);
-      navigate("/");
-      console.log("clicked sign out");
-      console.log(auth.currentUser);
+      let user = await getUser(displayName);
+      console.log(user?.firstName);
+      // await signOut(auth);
+      // navigate("/");
+      // console.log("clicked sign out");
+      // console.log(auth.currentUser);
     } catch (error) {
       // An error happened.
       console.error("Sign-out error", error);
@@ -29,7 +40,7 @@ const Account = () => {
 
   return (
     <Layout>
-      <Header title={"Welcome Back"} subTitle={`hbbz`} />
+      <Header title={"Welcome Back"} subTitle={displayName} />
       <Button label="Sign out" onClick={handleSignOut} />
       <div className="account-page">
         <h1>Page under development.</h1>
