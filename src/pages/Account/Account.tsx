@@ -4,10 +4,11 @@ import Header from "../../components/Header/Header";
 import Button from "../../components/Button/Button";
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getUser } from "../../utils/firebaseSnapshots";
-import { User } from "../../types/types";
 import { useEffect, useState } from "react";
+import placeHolderPFP from "/src/assets/images/placeHolderPFP.svg";
+import InputBox from "../../components/InputBox/InputBox";
 
 const Account = () => {
   const [displayName, setDisplayName] = useState("");
@@ -26,7 +27,7 @@ const Account = () => {
 
   const handleSignOut = async () => {
     try {
-      navigate("/");
+      // navigate("/");
       await signOut(auth);
       console.log("clicked sign out");
       console.log(auth.currentUser);
@@ -36,15 +37,56 @@ const Account = () => {
     }
   };
 
+  const handleInput = () => {
+    return;
+  };
+
   return (
     <Layout>
-      <Header title={"Welcome Back"} name={displayName} />
-      <Button label="Sign out" onClick={handleSignOut} />
+      <Header
+        title={`Welcome Back ${displayName}`}
+        subTitle="Manage Your Account"
+      />
       <div className="account-page">
-        <h1>Page under development.</h1>
+        <div className="account-page__content">
+          <div className="account-page__content--photo">
+            <img
+              className="account-page__content--image"
+              src={placeHolderPFP}
+              alt="your photo"
+            />
+          </div>
+          <div className="account-page__text-content">
+            <InputBox
+              label={"First Name"}
+              inputPlaceholder="Jugraj"
+              inputType={"text"}
+              handleInput={handleInput}
+            />
+            <div className="account-page__text-content--box"></div>
+
+            <InputBox
+              label={"Last Name"}
+              inputPlaceholder="Singh"
+              inputType={"text"}
+              handleInput={handleInput}
+            />
+            <div className="account-page__text-content--box"></div>
+
+            <InputBox
+              label={"Email"}
+              inputPlaceholder="example@gmail.com"
+              inputType={"email"}
+              handleInput={handleInput}
+            />
+            <div className="account-page__text-content--box"></div>
+          </div>
+        </div>
+        <div className="sign-out-button">
+          <Button label={"Sign Out"} onClick={handleSignOut} />
+        </div>
       </div>
     </Layout>
   );
 };
-
 export default Account;

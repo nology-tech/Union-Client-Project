@@ -11,26 +11,18 @@ import FedSignIn from "../../components/FedSignIn/FedSignIn";
 import { addUser } from "../../utils/firebaseSnapshots";
 
 type RegisterProps = {
-  email: string;
-  setEmail: (email: string) => void;
-  password: string;
-  setPassword: (password: string) => void;
-  setUserId: (userId: string) => void;
+  setUser: (userId: object) => void;
 };
 
-const Register = ({
-  email,
-  setEmail,
-  password,
-  setPassword,
-  setUserId,
-}: RegisterProps) => {
+const Register = ({ setUser }: RegisterProps) => {
   const [userInput, setUserInput] = useState<boolean>(false);
   const [checkPassword, setCheckPassword] = useState<string>("");
   const [colorChange, setColorChange] = useState<boolean>(true);
   const [checkConfirmPassword, setCheckConfirmPassword] = useState<string>("");
   const [emailColorChange, setEmailColorChange] = useState<boolean>(true);
 
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
 
@@ -43,11 +35,11 @@ const Register = ({
         email,
         password
       );
-  const userId = auth?.currentUser?.uid   
-  addUser(userData, firstName, lastName, email, userId );      
+      const userId = auth?.currentUser?.uid;
+      addUser(userData, firstName, lastName, email, userId);
 
-      setUserId(userData.user.uid);
-      navigate("/home");
+      setUser(userData.user);
+      navigate("/");
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {
         if (error.code === "auth/email-already-in-use") setIsEmailExist(true);
@@ -58,7 +50,7 @@ const Register = ({
   };
 
   const navigateBack = () => {
-    navigate("/");
+    navigate("/splash");
   };
 
   const navigate = useNavigate();
@@ -153,7 +145,7 @@ const Register = ({
             <div className="register-page__next-button">
               <Button label="Next" onClick={handleClickNext} />
             </div>
-            <FedSignIn setUserId={setUserId} />
+            <FedSignIn setUser={setUser} />
           </div>
         </>
       )}
@@ -206,7 +198,7 @@ const Register = ({
             <div className="register-page__create-account">
               <Button label="Create Account" onClick={beforeRegister} />
             </div>
-            <FedSignIn setUserId={setUserId} />
+            <FedSignIn setUser={setUser} />
           </div>
         </>
       )}
