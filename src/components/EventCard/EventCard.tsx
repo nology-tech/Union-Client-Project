@@ -92,7 +92,7 @@ const EventCard = ({
             ) : (
               <div className="event-card__capacity">
                 <p className="event-card__capacity-text">
-                  This event is in the past
+                  There were {capacityCurrent} attendees at this event
                 </p>
               </div>
             )}
