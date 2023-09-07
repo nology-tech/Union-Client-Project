@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { MouseEvent, ChangeEvent } from "react";
 import Button from "../Button/Button";
 import InputBox from "../InputBox/InputBox";
 import { addDoc, collection, Timestamp } from "firebase/firestore";
@@ -24,8 +24,8 @@ const EventForm = () => {
     eventDate: null,
     eventImages: [""],
   });
-
-  const [images, setImages] = useState<string>("");
+  const [images, setImages] = useState<string[]>([]);
+  const [inputValue, setInputValue] = useState<string>("");
 
   const handleEventName = (event: ChangeEvent<HTMLInputElement>) => {
     const eventName = event.currentTarget.value;
@@ -55,21 +55,22 @@ const EventForm = () => {
     const eventDescription = event.currentTarget.value;
     setDatabaseInput({ ...databaseInput, eventDescription: eventDescription });
   };
-
-  const handleEventImages = (event: ChangeEvent<HTMLInputElement>) => {
-    setImages(event.currentTarget.value);
+  const handleAddImage = (event: MouseEvent<HTMLButtonElement>) => {
+    setInputValue("");
+    const image = event.currentTarget.value;
+    if (image.length === 0) {
+      return;
+    }
+    setImages((images) => [...images, image]);
+    setDatabaseInput({ ...databaseInput, eventImages: images });
   };
-
-  const handleAddImage = () => {
-    const imageArray = [];
-    imageArray.push(images);
-    setDatabaseInput({ ...databaseInput, eventImages: imageArray });
-    setImages("");
+  const handleInputValue = (event: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.currentTarget.value);
   };
 
   const handleSubmit = async () => {
     try {
-      const docRef = await addDoc(collection(db, "events-test"), {
+      await addDoc(collection(db, "events-test"), {
         name: databaseInput.eventName,
         capacityMax: databaseInput.eventCapacity,
         category: databaseInput.eventCategory,
@@ -78,7 +79,6 @@ const EventForm = () => {
         capacityCurrent: 0,
         images: databaseInput.eventImages,
       });
-      console.log(docRef.id);
     } catch (error) {
       console.error(error);
     }
@@ -118,18 +118,34 @@ const EventForm = () => {
         onChange={handleEventDescription}
         className="event-form__event-description"
       />
-      <div>
-        {" "}
-        <InputBox
-          label="Image URL"
-          handleInput={handleEventImages}
-          inputType="text"
+      <label
+        htmlFor="image__input"
+        className="event-form__event-description--label"
+      >
+        Image URL
+      </label>
+      <input
+        type="text"
+        id="image__input"
+        className="event-form__image-input"
+        value={inputValue}
+        onChange={handleInputValue}
+      />
+      <div className="event-form__images">
+        <Button
+          label="Add Image"
+          onClick={handleAddImage}
+          variant="secondary"
         />
-        <Button label="Add Image" onClick={handleAddImage} />
       </div>
+      {images.length > 0 && (
+        <p className="event-form__image-response">
+          {images.length} images added
+        </p>
+      )}
 
       <div className="event-form__button">
-        <Button label="Submit" onClick={handleSubmit} />
+        <Button label="Submit Form" onClick={handleSubmit} />
       </div>
     </div>
   );
