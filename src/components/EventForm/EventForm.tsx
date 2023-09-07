@@ -27,11 +27,11 @@ const EventForm = () => {
   const [images, setImages] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
   const [required, setRequired] = useState({
-    errorOne: false,
-    errorTwo: false,
-    errorThree: false,
-    errorFour: false,
-    errorFive: false,
+    errorOne: true,
+    errorTwo: true,
+    errorThree: true,
+    errorFour: true,
+    errorFive: true,
     errorSix: false,
   });
 
@@ -48,16 +48,13 @@ const EventForm = () => {
       errorTwo: databaseInput.eventCategory.length < 1,
     });
   };
-
   const handleEventDate = (event: ChangeEvent<HTMLInputElement>) => {
     const date = new Date(event.currentTarget.value);
     const timestampDate = Timestamp.fromDate(date);
-
     setDatabaseInput({
       ...databaseInput,
       eventDate: timestampDate,
     });
-
     setRequired({ ...required, errorThree: !databaseInput.eventDate });
   };
   const handleEventCapacity = (event: ChangeEvent<HTMLInputElement>) => {
@@ -122,11 +119,9 @@ const EventForm = () => {
     });
 
     if (errorArray.length > 0) {
-      console.log("there are errors");
       return;
     } else {
       handleSubmit();
-      console.log("submitted");
     }
   };
   const handleSubmit = async () => {
