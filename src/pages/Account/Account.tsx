@@ -27,14 +27,12 @@ const Account = () => {
             />
           </div>
           <div className="account-page__text-content">
-            <div className="testing">
-              <InputBox
-                label={"First Name"}
-                inputPlaceholder="Jugraj"
-                inputType={"text"}
-                handleInput={handleInput}
-              />
-            </div>
+            <InputBox
+              label={"First Name"}
+              inputPlaceholder="Jugraj"
+              inputType={"text"}
+              handleInput={handleInput}
+            />
             <div className="account-page__text-content--box"></div>
 
             <InputBox
