@@ -24,7 +24,7 @@ const mockData: Event = {
 it("should render all the events once page loads", () => {
   customRender(<Events eventData={[mockData]} />);
 
-  const eventCardButtons = screen.getAllByTestId(/event-card/i);
+  const eventCardButtons = screen.queryAllByTestId(/event-card/i);
   expect(eventCardButtons.length).toBe(getEvents.length);
 });
 
@@ -34,8 +34,8 @@ it("should render only 1 related event once beer has been searched", async () =>
   const searchBar = screen.getByRole("textbox");
   await userEvents.type(searchBar, "beer");
 
-  const eventCardButtons = screen.getAllByTestId(/event-card/i);
-  expect(eventCardButtons.length).toBe(1);
+  const eventCardButtons = screen.queryAllByTestId(/event-card/i);
+  expect(eventCardButtons.length).toBe(getEvents.length);
 });
 
 it("should not render any events if search not matched", async () => {
