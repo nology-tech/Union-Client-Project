@@ -8,6 +8,7 @@ type HeaderProps = {
   locationVenue?: string;
   locationCity?: string;
   date?: string;
+  name?: string;
 };
 
 const Header = ({
@@ -18,6 +19,7 @@ const Header = ({
   locationVenue,
   locationCity,
   date,
+  name,
 }: HeaderProps) => {
   return (
     <div className="header">
@@ -32,6 +34,7 @@ const Header = ({
           </p>
         )}
         {date && <p className="header__date">{date}</p>}
+        {name && <h1 className="header__name">{name}</h1>}
         <div className="header__border"></div>
       </div>
       {imageUrl && (
