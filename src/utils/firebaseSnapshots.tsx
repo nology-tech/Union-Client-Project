@@ -29,7 +29,6 @@ export const getUser = async (userId: string) => {
     const userCollectionRef = doc(db, "users", userId);
     const data = await getDoc(userCollectionRef);
     const currentUser = data.data();
-    console.log(currentUser);
     return currentUser;
   } catch (error: unknown) {
     console.error(error);
