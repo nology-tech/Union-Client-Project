@@ -2,7 +2,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Error from "./pages/Error/Error";
 import "./styles/main.scss";
-import { useState, useEffect } from "react";
+import { useState, useEffect, CSSProperties } from "react";
 import SplashPage from "./pages/SplashPage/SplashPage";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
@@ -13,18 +13,34 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Account from "./pages/Account/Account";
 import { getEvents } from "./utils/firebaseSnapshots";
 import { Event } from "./types/types";
+import CircleLoader from "react-spinners/ClipLoader";
 
 const App = () => {
   const [dbData, setDbData] = useState<Event[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    getDbData();
+    getDatafromBackend();
   }, []);
 
   const getDbData = async () => {
     const data = await getEvents();
     setDbData(data as Event[]);
   };
+
+  const getDatafromBackend = async () => {
+    setIsLoading(true);
+    await getDbData();
+    setIsLoading(false);
+  };
+
+  const circleLoaderStyles: CSSProperties = {
+    display: "flex",
+    justifyContent: "center",
+    margin: "auto",
+    marginTop: "40vh",
+  };
+
   const [user, setUser] = useState<object>();
 
   const auth = getAuth();
@@ -46,27 +62,39 @@ const App = () => {
 
   return (
     <>
-      <Routes>
-        {user ? (
-          <>
-            <Route path="/" element={<Home />} />
-            <Route path="/events" element={<Events eventData={dbData} />} />
-            <Route
-              path="/calendar"
-              element={<CalendarPage eventData={dbData} />}
-            />
-            <Route path="/about" element={<About />} />
-            <Route path="/account" element={<Account />} />
-          </>
-        ) : (
-          <>
-            <Route path="splash" element={<SplashPage />} />
-            <Route path="/login" element={<Login setUser={setUser} />} />
-            <Route path="/register" element={<Register setUser={setUser} />} />
-          </>
-        )}
-        <Route path="*" element={<Error />} />
-      </Routes>
+      {isLoading === true ? (
+        <CircleLoader
+          color="#B42004"
+          loading
+          size={150}
+          cssOverride={circleLoaderStyles}
+        />
+      ) : (
+        <Routes>
+          {user ? (
+            <>
+              <Route path="/" element={<Home />} />
+              <Route path="/events" element={<Events eventData={dbData} />} />
+              <Route
+                path="/calendar"
+                element={<CalendarPage eventData={dbData} />}
+              />
+              <Route path="/about" element={<About />} />
+              <Route path="/account" element={<Account />} />
+            </>
+          ) : (
+            <>
+              <Route path="splash" element={<SplashPage />} />
+              <Route path="/login" element={<Login setUser={setUser} />} />
+              <Route
+                path="/register"
+                element={<Register setUser={setUser} />}
+              />
+            </>
+          )}
+          <Route path="*" element={<Error />} />
+        </Routes>
+      )}
     </>
   );
 };
