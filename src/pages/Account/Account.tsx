@@ -24,7 +24,7 @@ const Account = ({ setUser }: AccountProps) => {
 
   useEffect(() => {
     const fetchDisplayName = async () => {
-      let user = await getUser(userId);
+      const user = await getUser(userId);
       const firstName = user?.firstName;
       const lastName = user?.lastName;
       const email = user?.email;
