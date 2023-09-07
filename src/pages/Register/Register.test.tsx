@@ -57,6 +57,6 @@ it("should not register the user, given an email that already exists in the data
   const button = screen.getByRole("button");
   await userEvent.click(button);
 
-  const alert = screen.findByText("Email Already Exists");
+  const alert = await screen.findByText("Email Already Exists");
   expect(alert).toBeTruthy();
 });
