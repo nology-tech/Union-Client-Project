@@ -3,7 +3,7 @@ import "./Account.scss";
 import Header from "../../components/Header/Header";
 import Button from "../../components/Button/Button";
 import { auth } from "../../firebase";
-import { signOut } from "firebase/auth";
+import { User, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { getUser } from "../../utils/firebaseSnapshots";
 import { useEffect, useState } from "react";
@@ -11,20 +11,26 @@ import placeHolderPFP from "/src/assets/images/placeHolderPFP.svg";
 import InputBox from "../../components/InputBox/InputBox";
 
 type AccountProps = {
-  setUser: (userId) => void;
+  setUser: (user: User | null) => void;
 };
 
 const Account = ({ setUser }: AccountProps) => {
-  const [displayName, setDisplayName] = useState("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
 
-  const userId = auth.currentUser?.uid as string;
   const navigate = useNavigate();
+  const userId = auth.currentUser?.uid as string;
 
   useEffect(() => {
     const fetchDisplayName = async () => {
       let user = await getUser(userId);
-      let displayName = `${user?.firstName} ${user?.lastName}`;
-      setDisplayName(displayName);
+      const firstName = user?.firstName;
+      const lastName = user?.lastName;
+      const email = user?.email;
+      setFirstName(firstName);
+      setLastName(lastName);
+      setEmail(email);
     };
     fetchDisplayName();
   }, [userId]);
@@ -36,15 +42,19 @@ const Account = ({ setUser }: AccountProps) => {
 
       const navigateToSplash = () => {
         navigate("/splash");
-        console.log("clicked sign out");
-        console.log(auth.currentUser);
       };
 
       navigateToSplash();
     } catch (error) {
-      // An error happened.
       console.error("Sign-out error", error);
     }
+  };
+
+  const capitalizeFirstCharacter = (name: string) => {
+    const firstCharacter = name.slice(0, 1).toUpperCase();
+    const restOfName = name.substring(1, name.length);
+    const combinedName = `${firstCharacter}${restOfName}`;
+    return combinedName;
   };
 
   const handleInput = () => {
@@ -54,7 +64,9 @@ const Account = ({ setUser }: AccountProps) => {
   return (
     <Layout>
       <Header
-        title={`Welcome Back ${displayName}`}
+        title={`Welcome Back ${capitalizeFirstCharacter(
+          firstName
+        )} ${capitalizeFirstCharacter(lastName)}`}
         subTitle="Manage Your Account"
       />
       <div className="account-page">
@@ -69,7 +81,7 @@ const Account = ({ setUser }: AccountProps) => {
           <div className="account-page__text-content">
             <InputBox
               label={"First Name"}
-              inputPlaceholder="Jugraj"
+              inputPlaceholder={capitalizeFirstCharacter(firstName)}
               inputType={"text"}
               handleInput={handleInput}
             />
@@ -77,7 +89,7 @@ const Account = ({ setUser }: AccountProps) => {
 
             <InputBox
               label={"Last Name"}
-              inputPlaceholder="Singh"
+              inputPlaceholder={capitalizeFirstCharacter(lastName)}
               inputType={"text"}
               handleInput={handleInput}
             />
@@ -85,7 +97,7 @@ const Account = ({ setUser }: AccountProps) => {
 
             <InputBox
               label={"Email"}
-              inputPlaceholder="example@gmail.com"
+              inputPlaceholder={email}
               inputType={"email"}
               handleInput={handleInput}
             />

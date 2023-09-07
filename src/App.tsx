@@ -9,15 +9,14 @@ import Register from "./pages/Register/Register";
 import Events from "./pages/Events/Events";
 import About from "./pages/About/About";
 import CalendarPage from "./pages/Calendar/Calendar";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { User, getAuth, onAuthStateChanged } from "firebase/auth";
 import Account from "./pages/Account/Account";
 import { getEvents } from "./utils/firebaseSnapshots";
 import { Event } from "./types/types";
 
-
 const App = () => {
   const [dbData, setDbData] = useState<Event[]>([]);
-  const [user, setUser] = useState<>();
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     getDbData();
@@ -43,8 +42,7 @@ const App = () => {
     }, // eslint-disable-next-line
     []
   );
-  console.log(user);
-
+  
   return (
     <>
       <Routes>
