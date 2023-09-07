@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react";
+import { screen, act } from "@testing-library/react";
 import { customRender } from "../../utils/testUtils";
 import Login from "./Login";
 import userEvent from "@testing-library/user-event";
@@ -7,8 +7,10 @@ const setUserId = () => {
   return;
 };
 
-it("should render elements to allow login", () => {
-  customRender(<Login setUser={setUserId} />);
+it("should render elements to allow login", async () => {
+  await act(async () => {
+    customRender(<Login setUser={setUserId} />);
+  });
 
   const emailInput = screen.getByText("Email Address");
   const passwordInput = screen.getByText("Password");
