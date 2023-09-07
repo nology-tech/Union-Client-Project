@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react";
+import { screen, act } from "@testing-library/react";
 import "./Register";
 import userEvent from "@testing-library/user-event";
 import { customRender } from "../../utils/testUtils";
@@ -9,23 +9,29 @@ const fakeFunction = () => {
   return anotherFake;
 };
 
-it("should render the Header", () => {
-  customRender(<Register setUser={fakeFunction} />);
+it("should render the Header", async () => {
+  await act(async () => {
+    customRender(<Register setUser={fakeFunction} />);
+  });
   const header = screen.getByText("Create An Account");
 
   expect(header).toBeInTheDocument();
 });
 
-it("should render the back arrow image", () => {
-  customRender(<Register setUser={fakeFunction} />);
+it("should render the back arrow image", async () => {
+  await act(async () => {
+    customRender(<Register setUser={fakeFunction} />);
+  });
 
   const image = screen.getByAltText("back-arrow");
 
   expect(image).toBeInTheDocument();
 });
 
-it("should render both input boxes", () => {
-  customRender(<Register setUser={fakeFunction} />);
+it("should render both input boxes", async () => {
+  await act(async () => {
+    customRender(<Register setUser={fakeFunction} />);
+  });
 
   const firstName = screen.getByPlaceholderText("John");
 
@@ -51,6 +57,6 @@ it("should not register the user, given an email that already exists in the data
   const button = screen.getByRole("button");
   await userEvent.click(button);
 
-  const alert = screen.findByText("Email Already Exists");
+  const alert = await screen.findByText("Email Already Exists");
   expect(alert).toBeTruthy();
 });
