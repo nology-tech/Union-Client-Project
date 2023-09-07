@@ -5,6 +5,7 @@ import events from "../../assets/icons/events.svg";
 import calendar from "../../assets/icons/calendar.svg";
 import about from "../../assets/icons/about.svg";
 import account from "../../assets/icons/account.svg";
+import admin from "../../assets/icons/admin.svg";
 
 const Nav = () => {
   return (
@@ -55,6 +56,16 @@ const Nav = () => {
           >
             <img src={account} alt="Home link" className="nav__image" />
           </NavLink>
+
+          <NavLink
+            to="/admin"
+            className={({ isActive }) =>
+              isActive ? "nav__link--active" : "nav__link"
+            }
+          >
+            <img src={admin} alt="Home link" className="nav__image" />
+          </NavLink>
+
         </ul>
       </nav>
     </>

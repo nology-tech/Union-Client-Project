@@ -25,10 +25,13 @@ const Register = ({ setUser }: RegisterProps) => {
   const [password, setPassword] = useState<string>("");
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
-
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  
   const [isEmailExists, setIsEmailExist] = useState<boolean>(false);
+  
 
   const handleRegister = async () => {
+    setIsAdmin(isAdmin);
     try {
       const userData = await createUserWithEmailAndPassword(
         auth,
@@ -36,7 +39,7 @@ const Register = ({ setUser }: RegisterProps) => {
         password
       );
       const userId = auth?.currentUser?.uid;
-      addUser(userData, firstName, lastName, email, userId);
+      addUser(userData, firstName, lastName, email, userId, isAdmin);
 
       setUser(userData.user);
       navigate("/");

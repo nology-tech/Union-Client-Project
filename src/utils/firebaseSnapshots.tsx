@@ -24,7 +24,7 @@ export const getEvents = async () => {
   }
 };
 
-export const addUser = async (userData: UserCredential, firstName: string | undefined, lastName: string | undefined, email: string | null, userId: string | undefined) => {
+export const addUser = async (userData: UserCredential, firstName: string | undefined, lastName: string | undefined, email: string | null, userId: string  | undefined | undefined, isAdmin: boolean) => {
     try {
         const userDocRef = doc(db, "users", userData.user.uid);
         
@@ -33,6 +33,7 @@ export const addUser = async (userData: UserCredential, firstName: string | unde
         lastName: lastName,
         email: email,
         UUID: userId,
+        isAdmin: isAdmin,
         events: [],
       });
       } catch (error: unknown) {
