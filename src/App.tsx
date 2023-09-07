@@ -13,7 +13,6 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Account from "./pages/Account/Account";
 import { getEvents } from "./utils/firebaseSnapshots";
 import { Event } from "./types/types";
-import { getUserEvents } from "./utils/firebaseSnapshots";
 
 const App = () => {
   const [dbData, setDbData] = useState<Event[]>([]);
@@ -35,6 +34,7 @@ const App = () => {
     () => {
       onAuthStateChanged(auth, (user) => {
         if (user) {
+          console.log("user data ==> ", user);
           setUser(user);
         } else {
           navigate("/splash");
@@ -44,8 +44,6 @@ const App = () => {
     }, // eslint-disable-next-line
     []
   );
-
-  getUserEvents(user)
 
   return (
     <>
