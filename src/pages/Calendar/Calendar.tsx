@@ -68,7 +68,7 @@ const Calendar = ({ userId }: CalendarProps) => {
       </div>
       {filteredEvents.map((event) => {
         return (
-          <EventCard title={event._document.data.value.mapValue.fields.name} />
+          <EventCard title={event._document.data.value.mapValue.fields.name} maker={event._document.data.value.mapValue.fields.category date={event._document.data.value.mapValue.fields.date} textContent='' galleryArray={[]}/>
         );
       })}
     </Layout>
