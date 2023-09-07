@@ -14,9 +14,12 @@ import Account from "./pages/Account/Account";
 import Admin from "./pages/Admin/Admin";
 import { getEvents } from "./utils/firebaseSnapshots";
 import { Event } from "./types/types";
+import { getUsers } from "./utils/firebaseSnapshots";
+import { User } from "../src/types/types";
 
 const App = () => {
   const [dbData, setDbData] = useState<Event[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
     getDbData();
@@ -45,6 +48,20 @@ const App = () => {
     []
   );
 
+  
+  const getCurrentUid = auth.currentUser?.uid;
+  const filteredUsers = users.filter((user) => user.UUID === getCurrentUid);
+  const isAdmin = filteredUsers.length > 0 && filteredUsers[0].isAdmin;
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const usersData = await getUsers();
+      setUsers(usersData as User[]);
+    };
+
+    fetchUsers();
+  }, []);
+
   return (
     <>
       <Routes>
@@ -58,9 +75,11 @@ const App = () => {
             />
             <Route path="/about" element={<About />} />
 
-
-            <Route path="/account" element={<Account />} />
+            {isAdmin ? (
             <Route path="/admin" element={<Admin />} />
+            ) : (
+            <Route path="/account" element={<Account />} />
+            )}
           </>
         ) : (
           <>

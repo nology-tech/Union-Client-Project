@@ -17,12 +17,8 @@ const Nav = () => {
 
   // filter user by matching UIDs
   const filteredUsers = users.filter((user) => user.UUID === getCurrentUid);
-  console.log(users.filter((user) => user.UUID));
-
-  console.log(filteredUsers);
 
   const isAdmin = filteredUsers.length > 0 && filteredUsers[0].isAdmin;
-  console.log(isAdmin);
 
   useEffect(() => {
     const fetchUsers = async () => {
