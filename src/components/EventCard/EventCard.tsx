@@ -20,6 +20,8 @@ type EventCardProps = {
 };
 
 const EventCard = ({
+  capacityCurrent,
+  capacityMax,
   title,
   maker,
   date,
@@ -79,7 +81,12 @@ const EventCard = ({
                 imageAltTag={`image for ${maker}`}
               />
             )}
-            <div></div>
+            <div className="event-card__capacity">
+              <p className="event-card__capacity-text">
+                There are {capacityMax - capacityCurrent} spaces left out of{" "}
+                {capacityMax}
+              </p>
+            </div>
           </div>
           {buttonVariant ? (
             <Button

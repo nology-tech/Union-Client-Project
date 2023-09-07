@@ -108,6 +108,8 @@ const CalendarPage = ({ eventData }: CalendarPageProps) => {
                   date={event.date}
                   textContent={event.description}
                   galleryArray={event.images}
+                  capacityCurrent={0}
+                  capacityMax={0}
                   buttonLabel={
                     buttonVariants[index] ? "CANCEL BOOKING" : "BOOK A PLACE"
                   }
@@ -128,6 +130,8 @@ const CalendarPage = ({ eventData }: CalendarPageProps) => {
                   date={event.date}
                   textContent={event.description}
                   galleryArray={event.images}
+                  capacityCurrent={event.capacityCurrent}
+                  capacityMax={event.capacityMax}
                   buttonLabel={
                     buttonVariants[index] ? "CANCEL BOOKING" : "BOOK A PLACE"
                   }
