@@ -1,15 +1,62 @@
 import "./Calendar.scss";
 import Layout from "../../components/Layout/Layout";
-import calendarImg from "../../assets/images/calendar.svg";
 import Header from "../../components/Header/Header";
 import { useState } from "react";
+import "react-modern-calendar-datepicker/lib/DatePicker.css";
+import {
+  Calendar,
+  DayValue,
+} from "@hassanmojab/react-modern-calendar-datepicker";
+import { format } from "date-fns";
+import EventCard from "../../components/EventCard/EventCard";
+import { Event } from "../../types/types";
 
-const Calendar = () => {
+type CalendarPageProps = {
+  eventData: Event[];
+};
+
+const CalendarPage = ({ eventData }: CalendarPageProps) => {
   const [isActive, setIsActive] = useState(true);
+  const [buttonVariants, setButtonVariants] = useState<boolean[]>(
+    new Array(eventData.length).fill(false)
+  );
 
   const handleClick = () => {
     setIsActive(!isActive);
   };
+
+  const handleClickButton = (eventIndex: number) => {
+    const newButtonVariants = [...buttonVariants];
+    newButtonVariants[eventIndex] = !newButtonVariants[eventIndex];
+    setButtonVariants(newButtonVariants);
+  };
+
+  const currentDate = new Date();
+  const defaultValue: DayValue = {
+    year: currentDate.getFullYear(),
+    month: currentDate.getMonth() + 1,
+    day: currentDate.getDate(),
+  };
+  const [selectedDay, setSelectedDay] = useState<DayValue>(defaultValue);
+
+  const timeStampDay = new Date(
+    `${selectedDay?.year || defaultValue.year}, ${
+      selectedDay?.month || defaultValue.month
+    }, ${selectedDay?.day || defaultValue.day}`
+  );
+
+  const formattedDate = format(timeStampDay, "dd/MM/yyyy");
+
+  const filteredSearch = eventData.filter((event: Event) => {
+    const incomingCalendarDate = format(event.date, "dd/MM/yyyy");
+    return incomingCalendarDate == formattedDate;
+  });
+
+  const historicSearch = eventData.filter((event: Event) => {
+    const incomingCalendarDate = format(event.date, "dd/MM/yyyy");
+    const formattedCurrentDate = format(currentDate, "dd/MM/yyyy");
+    return incomingCalendarDate < formattedCurrentDate;
+  });
 
   return (
     <Layout>
@@ -35,14 +82,65 @@ const Calendar = () => {
             Historic
           </p>
         </div>
-        <img
-          className="calendar__image"
-          src={calendarImg}
-          alt="Calendar image"
-        />
+
+        <div className="calendar__container">
+          {isActive && (
+            <Calendar
+              value={selectedDay}
+              onChange={setSelectedDay}
+              colorPrimary="#b42004"
+              calendarSelectedDayClassName="calendar__day"
+            />
+          )}
+        </div>
+        {isActive && filteredSearch.length === 0 ? (
+          <p className="calendar__no-events">
+            Sorry, no events on the selected day.
+          </p>
+        ) : !isActive ? (
+          <div className="displayed-events">
+            {historicSearch.map((event: Event, index: number) => {
+              return (
+                <EventCard
+                  key={event.id}
+                  title={event.name}
+                  maker={event.category}
+                  date={event.date}
+                  textContent={event.description}
+                  galleryArray={event.images}
+                  buttonLabel={
+                    buttonVariants[index] ? "CANCEL BOOKING" : "BOOK A PLACE"
+                  }
+                  buttonVariant={buttonVariants[index]}
+                  handleClick={() => handleClickButton(index)}
+                />
+              );
+            })}
+          </div>
+        ) : (
+          <div className="displayed-events">
+            {filteredSearch.map((event: Event, index: number) => {
+              return (
+                <EventCard
+                  key={event.id}
+                  title={event.name}
+                  maker={event.category}
+                  date={event.date}
+                  textContent={event.description}
+                  galleryArray={event.images}
+                  buttonLabel={
+                    buttonVariants[index] ? "CANCEL BOOKING" : "BOOK A PLACE"
+                  }
+                  buttonVariant={buttonVariants[index]}
+                  handleClick={() => handleClickButton(index)}
+                />
+              );
+            })}
+          </div>
+        )}
       </div>
     </Layout>
   );
 };
 
-export default Calendar;
+export default CalendarPage;
