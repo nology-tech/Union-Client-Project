@@ -1,4 +1,4 @@
-import { MouseEvent, ChangeEvent } from "react";
+import { ChangeEvent } from "react";
 import Button from "../Button/Button";
 import InputBox from "../InputBox/InputBox";
 import { addDoc, collection, Timestamp } from "firebase/firestore";
@@ -53,17 +53,21 @@ const EventForm = () => {
   };
   const handleEventDescription = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const eventDescription = event.currentTarget.value;
-    setDatabaseInput({ ...databaseInput, eventDescription: eventDescription });
+    setDatabaseInput({
+      ...databaseInput,
+      eventDescription: eventDescription,
+    });
   };
-  const handleAddImage = (event: MouseEvent<HTMLButtonElement>) => {
-    setInputValue("");
-    const image = event.currentTarget.value;
-    if (image.length === 0) {
+  const handleAddImage = () => {
+    const image = inputValue;
+    if (!inputValue) {
       return;
     }
     setImages((images) => [...images, image]);
-    setDatabaseInput({ ...databaseInput, eventImages: images });
+    setDatabaseInput({ ...databaseInput, eventImages: [...images, image] });
+    setInputValue("");
   };
+
   const handleInputValue = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.currentTarget.value);
   };
