@@ -2,7 +2,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import "./Register.scss";
 import { FirebaseError } from "firebase/app";
 import { auth } from "../../firebase";
-import arrow from "../../images/arrow.png";
+import arrow from "../../assets/images/arrow.png";
 import InputBox from "../../components/InputBox/InputBox";
 import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
