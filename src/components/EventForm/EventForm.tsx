@@ -47,7 +47,7 @@ const EventForm = ({ handleNewEvent }: EventFormProps) => {
     setDatabaseInput({ ...databaseInput, eventName: eventName });
     setValidationError({
       ...validationError,
-      eventName: databaseInput.eventName.length < 1,
+      eventName: eventName.length < 1,
     });
   };
   const handleEventCategory = (event: ChangeEvent<HTMLInputElement>) => {
@@ -55,7 +55,7 @@ const EventForm = ({ handleNewEvent }: EventFormProps) => {
     setDatabaseInput({ ...databaseInput, eventCategory: eventCategory });
     setValidationError({
       ...validationError,
-      eventCategory: databaseInput.eventCategory.length < 1,
+      eventCategory: eventCategory.length < 1,
     });
   };
   const handleEventDate = (event: ChangeEvent<HTMLInputElement>) => {
@@ -90,7 +90,7 @@ const EventForm = ({ handleNewEvent }: EventFormProps) => {
 
     setValidationError({
       ...validationError,
-      eventCapacity: databaseInput.eventCapacity === null,
+      eventCapacity: eventCapacity === null || eventCapacity.length < 1,
     });
   };
   const handleEventDescription = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -102,7 +102,7 @@ const EventForm = ({ handleNewEvent }: EventFormProps) => {
 
     setValidationError({
       ...validationError,
-      eventDescription: databaseInput.eventDescription.length < 1,
+      eventDescription: eventDescription.length < 1,
     });
   };
   const handleAddImage = () => {
@@ -131,13 +131,13 @@ const EventForm = ({ handleNewEvent }: EventFormProps) => {
   };
   const handleRequirements = () => {
     const errorArray = Object.values(validationError).every((value) => {
-      return value === true;
+      return value === false;
     });
 
     if (errorArray) {
-      return;
-    } else {
       handleSubmit();
+    } else {
+      return;
     }
   };
   const handleSubmit = async () => {

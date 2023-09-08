@@ -1,6 +1,7 @@
 import { screen } from "@testing-library/react";
 import { customRender } from "../../utils/testUtils";
 import EventForm from "../../pages/CreateEvent/CreateEvent";
+import userEvent from "@testing-library/user-event";
 
 const dummyFunc = () => {
   return;
@@ -22,4 +23,18 @@ it("should render the form inputs", () => {
   expect(eventCap).toBeInTheDocument();
   expect(eventDesc).toBeInTheDocument();
   expect(eventImg).toBeInTheDocument();
+});
+
+it("should show required message on load", () => {
+  customRender(<EventForm handleNewEvent={dummyFunc} />);
+
+  const reqMessage = screen.getAllByText("this field is required");
+
+  expect(reqMessage).toBeTruthy();
+});
+
+it("should remove required message when requirements are met", async () => {
+  customRender(<EventForm handleNewEvent={dummyFunc} />);
+  const nameInput = screen.getByText("Event Name (case sensitive)");
+  await userEvent.type(nameInput, "Furniture Sale");
 });
