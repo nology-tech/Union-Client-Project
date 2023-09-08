@@ -32,38 +32,45 @@ const EventForm = ({ handleNewEvent }: EventFormProps) => {
   });
   const [images, setImages] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
-  const [required, setRequired] = useState({
-    errorOne: true,
-    errorTwo: true,
-    errorThree: true,
-    errorFour: true,
-    errorFive: true,
-    errorSix: false,
+  const [validationError, setValidationError] = useState({
+    eventName: true,
+    eventCategory: true,
+    eventDate: true,
+    eventCapacity: true,
+    eventDescription: true,
+    eventImages: false,
   });
   const [submitted, setSubmitted] = useState<boolean>(false);
 
   const handleEventName = (event: ChangeEvent<HTMLInputElement>) => {
     const eventName = event.currentTarget.value;
     setDatabaseInput({ ...databaseInput, eventName: eventName });
-    setRequired({ ...required, errorOne: databaseInput.eventName.length < 1 });
+    setValidationError({
+      ...validationError,
+      eventName: databaseInput.eventName.length < 1,
+    });
   };
   const handleEventCategory = (event: ChangeEvent<HTMLInputElement>) => {
     const eventCategory = event.currentTarget.value;
     setDatabaseInput({ ...databaseInput, eventCategory: eventCategory });
-    setRequired({
-      ...required,
-      errorTwo: databaseInput.eventCategory.length < 1,
+    setValidationError({
+      ...validationError,
+      eventCategory: databaseInput.eventCategory.length < 1,
     });
   };
   const handleEventDate = (event: ChangeEvent<HTMLInputElement>) => {
     const inputDate = new Date(event.currentTarget.value);
     const currentDate = new Date();
+    const isValidDate = isBefore(inputDate, currentDate);
     const timestampDate = Timestamp.fromDate(inputDate);
     setDatabaseInput({
       ...databaseInput,
       eventDate: timestampDate,
     });
-    setRequired({ ...required, errorThree: isBefore(inputDate, currentDate) });
+    setValidationError({
+      ...validationError,
+      eventDate: isValidDate,
+    });
   };
   const handleEventCapacity = (event: ChangeEvent<HTMLInputElement>) => {
     const eventCapacity = event.currentTarget.value;
@@ -81,9 +88,9 @@ const EventForm = ({ handleNewEvent }: EventFormProps) => {
       eventCapacity: parseInt(eventCapacity),
     });
 
-    setRequired({
-      ...required,
-      errorFour: databaseInput.eventCapacity === null,
+    setValidationError({
+      ...validationError,
+      eventCapacity: databaseInput.eventCapacity === null,
     });
   };
   const handleEventDescription = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -93,9 +100,9 @@ const EventForm = ({ handleNewEvent }: EventFormProps) => {
       eventDescription: eventDescription,
     });
 
-    setRequired({
-      ...required,
-      errorFive: databaseInput.eventDescription.length < 1,
+    setValidationError({
+      ...validationError,
+      eventDescription: databaseInput.eventDescription.length < 1,
     });
   };
   const handleAddImage = () => {
@@ -107,26 +114,27 @@ const EventForm = ({ handleNewEvent }: EventFormProps) => {
     setDatabaseInput({ ...databaseInput, eventImages: [...images, image] });
     setInputValue("");
 
-    setRequired({
-      ...required,
-      errorSix: databaseInput.eventImages.length === 0,
+    setValidationError({
+      ...validationError,
+      eventImages: databaseInput.eventImages.length === 0,
     });
   };
   const handleRemoveImage = () => {
-    if (images.length > 0) {
-      images.pop();
+    const updatedImages = [...images];
+    if (updatedImages.length > 0) {
+      updatedImages.pop();
     }
-    setImages((images) => [...images]);
+    setImages(updatedImages);
   };
   const handleInputValue = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.currentTarget.value);
   };
   const handleRequirements = () => {
-    const errorArray = Object.values(required).filter((value) => {
+    const errorArray = Object.values(validationError).every((value) => {
       return value === true;
     });
 
-    if (errorArray.length > 0) {
+    if (errorArray) {
       return;
     } else {
       handleSubmit();
@@ -154,7 +162,7 @@ const EventForm = ({ handleNewEvent }: EventFormProps) => {
     height: "3rem",
     margin: "1rem",
   };
-  const errorRequired = (
+  const validationText = (
     <p className="event-form__required">this field is required</p>
   );
   const navigate = useNavigate();
@@ -185,21 +193,21 @@ const EventForm = ({ handleNewEvent }: EventFormProps) => {
         handleInput={handleEventName}
         inputType="text"
       />
-      {required.errorOne && errorRequired}
+      {validationError.eventName && validationText}
       <InputBox
         label="Event Category (case sensitive)"
         handleInput={handleEventCategory}
         inputType="text"
       />
-      {required.errorTwo && errorRequired}
+      {validationError.eventCategory && validationText}
       <InputBox label="Date" handleInput={handleEventDate} inputType="date" />
-      {required.errorThree && errorRequired}
+      {validationError.eventDate && validationText}
       <InputBox
         label="Event Capacity"
         handleInput={handleEventCapacity}
         inputType="text"
       />
-      {required.errorFour && errorRequired}
+      {validationError.eventCapacity && validationText}
       <label
         htmlFor="event-description"
         className="event-form__event-description--label"
@@ -215,7 +223,7 @@ const EventForm = ({ handleNewEvent }: EventFormProps) => {
         onChange={handleEventDescription}
         className="event-form__event-description"
       />
-      {required.errorFive && errorRequired}
+      {validationError.eventDescription && validationText}
       <label
         htmlFor="image__input"
         className="event-form__event-description--label"
@@ -229,7 +237,7 @@ const EventForm = ({ handleNewEvent }: EventFormProps) => {
         value={inputValue}
         onChange={handleInputValue}
       />
-      {required.errorSix && errorRequired}
+      {validationError.eventImages && validationText}
       <div className="event-form__images--button">
         <Button
           label="Add Image"
