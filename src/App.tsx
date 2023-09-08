@@ -15,48 +15,39 @@ import { getEvents } from "./utils/firebaseSnapshots";
 import { Event } from "./types/types";
 import CircleLoader from "react-spinners/ClipLoader";
 
+const circleLoaderStyles: CSSProperties = {
+  display: "flex",
+  justifyContent: "center",
+  margin: "auto",
+  marginTop: "40vh",
+};
+
 const App = () => {
   const [dbData, setDbData] = useState<Event[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [user, setUser] = useState<object>();
+  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    getDatafromBackend();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const auth = getAuth();
+  const navigate = useNavigate();
 
   const getDbData = async () => {
     const data = await getEvents();
     setDbData(data as Event[]);
-  };
-
-  const getDatafromBackend = async () => {
-    setIsLoading(true);
-    await getDbData();
     setIsLoading(false);
   };
-
-  const circleLoaderStyles: CSSProperties = {
-    display: "flex",
-    justifyContent: "center",
-    margin: "auto",
-    marginTop: "40vh",
-  };
-
-  const [user, setUser] = useState<object>();
-
-  const auth = getAuth();
-  const navigate = useNavigate();
 
   useEffect(
     () => {
       onAuthStateChanged(auth, (user) => {
         if (user) {
           setUser(user);
+          setIsLoading(false);
         } else {
           navigate("/splash");
           return;
         }
       });
+      getDbData();
     }, // eslint-disable-next-line
     []
   );
