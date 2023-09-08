@@ -64,7 +64,8 @@ const CalendarPage = ({ eventData, userId }: CalendarPageProps) => {
     
   useEffect(() => {
     fetchUserEvents()
-  }, [])
+  },// eslint-disable-next-line
+   [])
 
   const fetchUserEvents = async () => {
     const userEvents: Event[] = await getEventsForUser(userId)
