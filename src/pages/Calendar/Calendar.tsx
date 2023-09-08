@@ -1,25 +1,29 @@
 import "./Calendar.scss";
 import Layout from "../../components/Layout/Layout";
 import Header from "../../components/Header/Header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import {
   Calendar,
   DayValue,
 } from "@hassanmojab/react-modern-calendar-datepicker";
-import { format } from "date-fns";
+import { format, isAfter, isBefore } from "date-fns";
 import EventCard from "../../components/EventCard/EventCard";
 import { Event } from "../../types/types";
+import { getEventsForUser } from "../../utils/firebaseSnapshots";
 
 type CalendarPageProps = {
   eventData: Event[];
+  userId: string;
 };
 
-const CalendarPage = ({ eventData }: CalendarPageProps) => {
+const CalendarPage = ({ eventData, userId }: CalendarPageProps) => {
   const [isActive, setIsActive] = useState(true);
   const [buttonVariants, setButtonVariants] = useState<boolean[]>(
     new Array(eventData.length).fill(false)
   );
+
+  const [userEvents, setUserEvents]= useState<Event[]>([])
 
   const handleClick = () => {
     setIsActive(!isActive);
@@ -57,6 +61,26 @@ const CalendarPage = ({ eventData }: CalendarPageProps) => {
     const formattedCurrentDate = format(currentDate, "dd/MM/yyyy");
     return incomingCalendarDate < formattedCurrentDate;
   });
+    
+  useEffect(() => {
+    fetchUserEvents()
+  },// eslint-disable-next-line
+   [])
+
+  const fetchUserEvents = async () => {
+    const userEvents: Event[] = await getEventsForUser(userId)
+    setUserEvents(userEvents) }
+
+const filterActiveUserEvents = userEvents.filter((event) => {
+    const currentDate = new Date();
+    return isAfter(event.date, currentDate)
+})
+
+const filterHistoricUserEvents = userEvents.filter((event) => {
+    const currentDate = new Date();
+    return isBefore(event.date, currentDate)
+})
+
 
   return (
     <Layout>
@@ -141,7 +165,48 @@ const CalendarPage = ({ eventData }: CalendarPageProps) => {
               );
             })}
           </div>
-        )}
+          )}
+          <div className="user-events">
+            {!isActive ? (
+             filterHistoricUserEvents.map((event: Event, index: number) => {
+              return (
+                <EventCard 
+                key={event.id}
+                  title={event.name}
+                  maker={event.category}
+                  date={event.date}
+                  textContent={event.description}
+                  galleryArray={event.images}
+                  buttonLabel={
+                    buttonVariants[index] ? "CANCEL BOOKING" : "BOOK A PLACE"
+                  }
+                  buttonVariant={buttonVariants[index]}
+                  handleClick={() => handleClickButton(index)}
+                  capacityCurrent={event.capacityCurrent}
+                  capacityMax={event.capacityMax}
+             />
+             )
+            }))
+            : (
+            filterActiveUserEvents.map((event: Event, index: number) => {
+              return (
+                <EventCard 
+                key={event.id}
+                  title={event.name}
+                  maker={event.category}
+                  date={event.date}
+                  textContent={event.description}
+                  galleryArray={event.images}
+                  buttonLabel={
+                    buttonVariants[index] ? "CANCEL BOOKING" : "BOOK A PLACE"
+                  }
+                  buttonVariant={buttonVariants[index]}
+                  handleClick={() => handleClickButton(index)}
+                  capacityCurrent={event.capacityCurrent}
+                  capacityMax={event.capacityMax}
+             />)}))
+                }
+          </div>
       </div>
     </Layout>
   );
