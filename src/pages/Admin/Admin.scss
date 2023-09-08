@@ -1,0 +1,22 @@
+@use "../../styles/variables" as *;
+
+.admin-page {
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+  }
+}
+
+.sign-out-button,
+.add-events-button {
+  margin: auto;
+  margin-top: 2rem;
+  padding-bottom: 0;
+}
+
+.sign-out-button {
+  padding-bottom: 6rem;
+}
