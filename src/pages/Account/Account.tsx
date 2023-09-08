@@ -18,21 +18,24 @@ const Account = ({ setUser, user }: AccountProps) => {
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-  const currentUser = user;
+  // const currentUser = user;
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchDisplayName = async () => {
-      const user = await getUser(currentUser.uid);
-      const firstName = user?.firstName;
-      const lastName = user?.lastName;
-      const email = user?.email;
-      setFirstName(firstName);
-      setLastName(lastName);
-      setEmail(email);
+      const currentUser = await getUser(user.uid);
+
+      if (currentUser) {
+        const firstName = currentUser.firstName;
+        const lastName = currentUser.lastName;
+        const email = currentUser.email;
+        setFirstName(firstName);
+        setLastName(lastName);
+        setEmail(email);
+      }
     };
     fetchDisplayName();
-  }, [currentUser]);
+  }, [user]);
 
   const handleSignOut = async () => {
     try {
@@ -83,7 +86,7 @@ const Account = ({ setUser, user }: AccountProps) => {
             </div>
 
             <div className="account-page__text-content--box">
-              <p>{capitalizeFirstCharacter(email)}</p>
+              <p>{email}</p>
             </div>
           </div>
         </div>

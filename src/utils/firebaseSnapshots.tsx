@@ -51,7 +51,9 @@ export const getUser = async (userId: string) => {
   try {
     const userCollectionRef = doc(db, "users", userId);
     const data = await getDoc(userCollectionRef);
+    console.log(data);
     const currentUser = data.data();
+    console.log(currentUser);
     return currentUser;
   } catch (error: unknown) {
     console.error(error);
