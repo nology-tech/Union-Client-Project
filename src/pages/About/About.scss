@@ -74,3 +74,20 @@
     clip-path: ellipse(100% 100% at 50% 0%);
   }
 }
+
+@media screen and (min-width: 1024px) {
+  .about {
+    &__image {
+      width: 338px;
+      margin: 0 calc((100vw - 338px) / 2);
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .about {
+    &__image {
+      width: 27vw;
+    }
+  }
+}
