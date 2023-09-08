@@ -18,7 +18,6 @@ const Account = ({ setUser, user }: AccountProps) => {
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-  // const currentUser = user;
   const navigate = useNavigate();
 
   useEffect(() => {
