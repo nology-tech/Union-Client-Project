@@ -63,11 +63,12 @@ const CalendarPage = ({ eventData, userId }: CalendarPageProps) => {
   });
     
   useEffect(() => {
-    const fetchUserEvents = async () => {
-    const userEvents: Event[] = await getEventsForUser(userId)
-    setUserEvents(userEvents) }
     fetchUserEvents()
   }, [])
+
+  const fetchUserEvents = async () => {
+    const userEvents: Event[] = await getEventsForUser(userId)
+    setUserEvents(userEvents) }
 
 const filterActiveUserEvents = userEvents.filter((event) => {
     const currentDate = new Date();
