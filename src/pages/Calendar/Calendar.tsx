@@ -7,11 +7,10 @@ import {
   Calendar,
   DayValue,
 } from "@hassanmojab/react-modern-calendar-datepicker";
-import { format } from "date-fns";
+import { format, isAfter, isBefore } from "date-fns";
 import EventCard from "../../components/EventCard/EventCard";
 import { Event } from "../../types/types";
 import { getEventsForUser } from "../../utils/firebaseSnapshots";
-
 
 type CalendarPageProps = {
   eventData: Event[];
@@ -66,12 +65,20 @@ const CalendarPage = ({ eventData, userId }: CalendarPageProps) => {
   useEffect(() => {
     const fetchUserEvents = async () => {
     const userEvents: Event[] = await getEventsForUser(userId)
-    console.log(userEvents) 
     setUserEvents(userEvents) }
     fetchUserEvents()
   }, [])
 
-console.log(userEvents[0])
+const filterActiveUserEvents = userEvents.filter((event) => {
+    const currentDate = new Date();
+    return isAfter(event.date, currentDate)
+})
+
+const filterHistoricUserEvents = userEvents.filter((event) => {
+    const currentDate = new Date();
+    return isBefore(event.date, currentDate)
+})
+
 
   return (
     <Layout>
@@ -152,7 +159,44 @@ console.log(userEvents[0])
               );
             })}
           </div>
-        )}
+          )}
+          <div className="user-events">
+            {!isActive ? (
+             filterHistoricUserEvents.map((event: Event, index: number) => {
+              return (
+                <EventCard 
+                key={event.id}
+                  title={event.name}
+                  maker={event.category}
+                  date={event.date}
+                  textContent={event.description}
+                  galleryArray={event.images}
+                  buttonLabel={
+                    buttonVariants[index] ? "CANCEL BOOKING" : "BOOK A PLACE"
+                  }
+                  buttonVariant={buttonVariants[index]}
+                  handleClick={() => handleClickButton(index)}
+             />
+             )
+            }))
+            : (
+            filterActiveUserEvents.map((event: Event, index: number) => {
+              return (
+                <EventCard 
+                key={event.id}
+                  title={event.name}
+                  maker={event.category}
+                  date={event.date}
+                  textContent={event.description}
+                  galleryArray={event.images}
+                  buttonLabel={
+                    buttonVariants[index] ? "CANCEL BOOKING" : "BOOK A PLACE"
+                  }
+                  buttonVariant={buttonVariants[index]}
+                  handleClick={() => handleClickButton(index)}
+             />)}))
+                }
+          </div>
       </div>
     </Layout>
   );

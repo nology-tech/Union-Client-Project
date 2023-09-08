@@ -84,7 +84,6 @@ export const getEventsForUser = async (userId: string) => {
     const filteredEventsData = eventsData.filter(
       (eventData) => eventData !== null
     );
-    console.log(filteredEventsData);
     return filteredEventsData;
   } catch (err) {
     console.error("Error fetching events:", err);

@@ -323,3 +323,26 @@ The project uses a Firestore Database (and previously included Firebase Authenti
 
 We check if the user already exists (the email address used to register must be unique) in the database. If the user attempts to register via option 1 (above) with an email that already exists in the database, they are served an error message to advise the email already exists. If the user attempts to register using federated sign in, they are logged in and taken to home.
 ```
+
+## User Events
+
+Users are able to see future and past events that they have signed up for, so that they can have insight into which events they have attended in the past, and their personal future event calendar.
+
+### How To See Future and Past Events
+
+Users can switch between future/active events and past/historic events by clicking on the relevant links at the top left and top right of the page, respectively.
+
+### How to see Event Details
+
+Event Cards become visible when the user clicks on the specific event, as the component is reused across the app.
+
+### Data Structure
+
+The users collection contains a list of user documents, with a field for event ids. This is an array of strings.
+
+The events collection contains a list of event documents, with fields for event details. 
+
+### Queries
+
+Queries to the Firestore database are made via Firebase Snapshots.
+```
