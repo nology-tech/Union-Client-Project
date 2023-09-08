@@ -14,11 +14,17 @@ import Account from "./pages/Account/Account";
 import Admin from "./pages/Admin/Admin";
 import { getEvents } from "./utils/firebaseSnapshots";
 import { Event } from "./types/types";
+import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 import CreateEvent from "./pages/CreateEvent/CreateEvent";
 
 const App = () => {
   const [dbData, setDbData] = useState<Event[]>([]);
+  const [user, setUser] = useState<object>();
+  const [isLoading, setIsLoading] = useState(true);
   const [updateData, setUpdateData] = useState<boolean>(true);
+
+  const auth = getAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (updateData) {
@@ -30,58 +36,63 @@ const App = () => {
   const handleNewEvent = () => {
     setUpdateData(true);
   };
-
   const getDbData = async () => {
     const data = await getEvents();
     setDbData(data as Event[]);
+    setIsLoading(false);
   };
-  const [user, setUser] = useState<object>();
-
-  const auth = getAuth();
-  const navigate = useNavigate();
 
   useEffect(
     () => {
       onAuthStateChanged(auth, (user) => {
         if (user) {
           setUser(user);
+          setIsLoading(false);
         } else {
           navigate("/splash");
           return;
         }
       });
+      getDbData();
     }, // eslint-disable-next-line
     []
   );
 
   return (
     <>
-      <Routes>
-        {user ? (
-          <>
-            <Route path="/" element={<Home />} />
-            <Route path="/events" element={<Events eventData={dbData} />} />
-            <Route
-              path="/calendar"
-              element={<CalendarPage eventData={dbData} />}
-            />
-            <Route path="/about" element={<About />} />
-            <Route path="/account" element={<Account />} />
-            <Route path="/admin" element={<Admin />} />
-            <Route
-              path="/create-event"
-              element={<CreateEvent handleNewEvent={handleNewEvent} />}
-            />
-          </>
-        ) : (
-          <>
-            <Route path="splash" element={<SplashPage />} />
-            <Route path="/login" element={<Login setUser={setUser} />} />
-            <Route path="/register" element={<Register setUser={setUser} />} />
-          </>
-        )}
-        <Route path="*" element={<Error />} />
-      </Routes>
+      {isLoading === true ? (
+        <LoadingSpinner />
+      ) : (
+        <Routes>
+          {user ? (
+            <>
+              <Route path="/" element={<Home />} />
+              <Route path="/events" element={<Events eventData={dbData} />} />
+              <Route
+                path="/calendar"
+                element={<CalendarPage eventData={dbData} />}
+              />
+              <Route path="/about" element={<About />} />
+              <Route path="/account" element={<Account />} />
+              <Route path="/admin" element={<Admin />} />
+              <Route
+                path="/create-event"
+                element={<CreateEvent handleNewEvent={handleNewEvent} />}
+              />
+            </>
+          ) : (
+            <>
+              <Route path="splash" element={<SplashPage />} />
+              <Route path="/login" element={<Login setUser={setUser} />} />
+              <Route
+                path="/register"
+                element={<Register setUser={setUser} />}
+              />
+            </>
+          )}
+          <Route path="*" element={<Error />} />
+        </Routes>
+      )}
     </>
   );
 };
