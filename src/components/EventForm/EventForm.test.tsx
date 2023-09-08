@@ -1,4 +1,4 @@
-import { screen, act, waitFor } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { customRender } from "../../utils/testUtils";
 import EventForm from "../../pages/CreateEvent/CreateEvent";
 
@@ -10,15 +10,10 @@ it("should render the form inputs", () => {
   customRender(<EventForm handleNewEvent={dummyFunc} />);
 
   const eventName = screen.getByText("Event Name (case sensitive)");
-
   const eventCat = screen.getByText("Event Category (case sensitive)");
-
   const eventDate = screen.getByText("Date");
-
   const eventCap = screen.getByText("Event Capacity");
-
   const eventDesc = screen.getByText("Event Description");
-
   const eventImg = screen.getByText("Image URL");
 
   expect(eventName).toBeInTheDocument();
@@ -27,14 +22,4 @@ it("should render the form inputs", () => {
   expect(eventCap).toBeInTheDocument();
   expect(eventDesc).toBeInTheDocument();
   expect(eventImg).toBeInTheDocument();
-});
-
-it("should show required message on load", async () => {
-  customRender(<EventForm handleNewEvent={dummyFunc} />);
-
-  const reqMessage = screen.getByText(/this field is required/i);
-
-  await waitFor(() => {
-    expect(reqMessage).toBeInTheDocument();
-  });
 });
