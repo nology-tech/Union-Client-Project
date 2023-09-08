@@ -3,10 +3,16 @@ import "./Admin.scss";
 import Header from "../../components/Header/Header";
 import Button from "../../components/Button/Button";
 import placeHolderPFP from "/src/assets/images/placeHolderPFP.svg";
+import { useNavigate } from "react-router-dom";
 
 const Admin = () => {
+  const navigate = useNavigate();
   const handleSignOut = () => {
     return;
+  };
+
+  const createEvent = () => {
+    navigate("/create-event");
   };
 
   return (
@@ -23,7 +29,7 @@ const Admin = () => {
           </div>
         </div>
         <div className="add-events-button">
-          <Button label={"Add Events"} onClick={handleSignOut} />
+          <Button label={"Add Events"} onClick={createEvent} />
         </div>
         <div className="sign-out-button">
           <Button label={"Sign Out"} onClick={handleSignOut} />
