@@ -43,10 +43,10 @@ const Register = ({ setUser }: RegisterProps) => {
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {
         if (error.code === "auth/email-already-in-use")
-          setFirebaseError("emailError");
+          setFirebaseError("Email Already Exists");
 
         if (error.code === "auth/weak-password")
-          setFirebaseError("passwordError");
+          setFirebaseError("Sorry, password must be longer than 5 characters.");
 
         console.error(error.code);
       }
@@ -194,19 +194,11 @@ const Register = ({ setUser }: RegisterProps) => {
               />
             </div>
             <div>
-              {firebaseError === "emailError" && (
-                <>
-                  <p className="register-page__email-exists">
-                    Email Already Exists
-                  </p>
-                </>
+              {firebaseError && (
+                <p className="register-page__email-exists">{firebaseError}</p>
               )}
               {firebaseError === "passwordError" && (
-                <>
-                  <p className="register-page__weak-password">
-                    Sorry, password must be longer than 5 characters.
-                  </p>
-                </>
+                <p className="register-page__weak-password">{firebaseError}</p>
               )}
             </div>
 
