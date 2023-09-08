@@ -1,3 +1,5 @@
+@use "../../styles/variables" as *;
+
 .search {
   margin: 0.938rem;
   height: 3.125rem;
@@ -15,5 +17,6 @@
     border: none;
     width: 80%;
     outline: none;
+    background-color: $color-off-white;
   }
 }
