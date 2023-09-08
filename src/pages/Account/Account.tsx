@@ -8,23 +8,22 @@ import { useNavigate } from "react-router-dom";
 import { getUser } from "../../utils/firebaseSnapshots";
 import { useEffect, useState } from "react";
 import placeHolderPFP from "/src/assets/images/placeHolderPFP.svg";
-import InputBox from "../../components/InputBox/InputBox";
 
 type AccountProps = {
   setUser: (user: User | null) => void;
+  user: User;
 };
 
-const Account = ({ setUser }: AccountProps) => {
+const Account = ({ setUser, user }: AccountProps) => {
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-
+  const currentUser = user;
   const navigate = useNavigate();
-  const userId = auth.currentUser?.uid as string;
 
   useEffect(() => {
     const fetchDisplayName = async () => {
-      const user = await getUser(userId);
+      const user = await getUser(currentUser.uid);
       const firstName = user?.firstName;
       const lastName = user?.lastName;
       const email = user?.email;
@@ -33,7 +32,7 @@ const Account = ({ setUser }: AccountProps) => {
       setEmail(email);
     };
     fetchDisplayName();
-  }, [userId]);
+  }, [currentUser]);
 
   const handleSignOut = async () => {
     try {
@@ -57,10 +56,6 @@ const Account = ({ setUser }: AccountProps) => {
     return combinedName;
   };
 
-  const handleInput = () => {
-    return;
-  };
-
   return (
     <Layout>
       <Header
@@ -79,29 +74,17 @@ const Account = ({ setUser }: AccountProps) => {
             />
           </div>
           <div className="account-page__text-content">
-            <InputBox
-              label={"First Name"}
-              inputPlaceholder={capitalizeFirstCharacter(firstName)}
-              inputType={"text"}
-              handleInput={handleInput}
-            />
-            <div className="account-page__text-content--box"></div>
+            <div className="account-page__text-content--box">
+              <p>{capitalizeFirstCharacter(firstName)}</p>
+            </div>
 
-            <InputBox
-              label={"Last Name"}
-              inputPlaceholder={capitalizeFirstCharacter(lastName)}
-              inputType={"text"}
-              handleInput={handleInput}
-            />
-            <div className="account-page__text-content--box"></div>
+            <div className="account-page__text-content--box">
+              <p>{capitalizeFirstCharacter(lastName)}</p>
+            </div>
 
-            <InputBox
-              label={"Email"}
-              inputPlaceholder={email}
-              inputType={"email"}
-              handleInput={handleInput}
-            />
-            <div className="account-page__text-content--box"></div>
+            <div className="account-page__text-content--box">
+              <p>{capitalizeFirstCharacter(email)}</p>
+            </div>
           </div>
         </div>
         <div className="sign-out-button">

@@ -17,21 +17,9 @@ export const getEvents = async () => {
         date,
       };
     });
-
     return filteredData;
   } catch (err) {
     console.error(err);
-  }
-};
-
-export const getUser = async (userId: string) => {
-  try {
-    const userCollectionRef = doc(db, "users", userId);
-    const data = await getDoc(userCollectionRef);
-    const currentUser = data.data();
-    return currentUser;
-  } catch (error: unknown) {
-    console.error(error);
   }
 };
 
@@ -56,5 +44,16 @@ export const addUser = async (
     if (error instanceof FirebaseError) {
       console.error(error.code);
     }
+  }
+};
+
+export const getUser = async (userId: string) => {
+  try {
+    const userCollectionRef = doc(db, "users", userId);
+    const data = await getDoc(userCollectionRef);
+    const currentUser = data.data();
+    return currentUser;
+  } catch (error: unknown) {
+    console.error(error);
   }
 };
