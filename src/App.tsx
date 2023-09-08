@@ -11,9 +11,9 @@ import About from "./pages/About/About";
 import CalendarPage from "./pages/Calendar/Calendar";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Account from "./pages/Account/Account";
-import EventCreator from "./pages/EventCreator/EventCreator";
 import { getEvents } from "./utils/firebaseSnapshots";
 import { Event } from "./types/types";
+import CreateEvent from "./pages/CreateEvent/CreateEvent";
 
 const App = () => {
   const [dbData, setDbData] = useState<Event[]>([]);
@@ -67,7 +67,7 @@ const App = () => {
           </>
         )}
         <Route path="*" element={<Error />} />
-        <Route path="/create-event" element={<EventCreator />} />
+        <Route path="/create-event" element={<CreateEvent />} />
       </Routes>
     </>
   );
