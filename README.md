@@ -208,7 +208,8 @@ type RegisterProps = {
 - The initial Register page has two input text boxes "First Name" and "last Name". The next button uses the toggle function to conditionally render an alternative register page for the second half of the account creation process. On the initial page the back arrow navigates back to the splash page.
 
 - The secondary register page has three input boxes. Email, Password and Confirm Password. The create account button checks the password and email eligibility and then if correct submits that information to the fireBase. The Back button on this page sends the user back to the first Register page.
-  <<<<<<< HEAD
+
+- Added a feature to inform the user of their password being too weak or their chosen email being in use.
 
 ## Events Page
 
