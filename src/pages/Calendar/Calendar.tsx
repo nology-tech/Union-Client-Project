@@ -180,6 +180,8 @@ const filterHistoricUserEvents = userEvents.filter((event) => {
                   }
                   buttonVariant={buttonVariants[index]}
                   handleClick={() => handleClickButton(index)}
+                  capacityCurrent={event.capacityCurrent}
+                  capacityMax={event.capacityMax}
              />
              )
             }))
@@ -198,6 +200,8 @@ const filterHistoricUserEvents = userEvents.filter((event) => {
                   }
                   buttonVariant={buttonVariants[index]}
                   handleClick={() => handleClickButton(index)}
+                  capacityCurrent={event.capacityCurrent}
+                  capacityMax={event.capacityMax}
              />)}))
                 }
           </div>
