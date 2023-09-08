@@ -2,21 +2,65 @@ import Layout from "../../components/Layout/Layout";
 import "./Account.scss";
 import Header from "../../components/Header/Header";
 import Button from "../../components/Button/Button";
+import { auth } from "../../firebase";
+import { User, signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { getUser } from "../../utils/firebaseSnapshots";
+import { useEffect, useState } from "react";
 import placeHolderPFP from "/src/assets/images/placeHolderPFP.svg";
-import InputBox from "../../components/InputBox/InputBox";
 
-const Account = () => {
-  const handleSignOut = () => {
-    return;
+type AccountProps = {
+  setUser: (user: User | null) => void;
+  user: User;
+};
+
+const Account = ({ setUser, user }: AccountProps) => {
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchDisplayName = async () => {
+      const currentUser = await getUser(user.uid);
+
+      if (currentUser) {
+        const firstName = currentUser.firstName;
+        const lastName = currentUser.lastName;
+        const email = currentUser.email;
+        setFirstName(firstName);
+        setLastName(lastName);
+        setEmail(email);
+      }
+    };
+    fetchDisplayName();
+  }, [user]);
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+      setUser(null);
+      navigate("/splash");
+    } catch (error) {
+      console.error("Sign-out error", error);
+    }
   };
 
-  const handleInput = () => {
-    return;
+  const capitalizeFirstCharacter = (name: string) => {
+    const firstCharacter = name.slice(0, 1).toUpperCase();
+    const restOfName = name.substring(1, name.length);
+    const combinedName = `${firstCharacter}${restOfName}`;
+    return combinedName;
   };
 
   return (
     <Layout>
-      <Header title={"Manage Your Account"} />
+      <Header
+        title={`Welcome Back, ${capitalizeFirstCharacter(
+          firstName
+        )} ${capitalizeFirstCharacter(lastName)}`}
+        subTitle="Manage Your Account"
+      />
       <div className="account-page">
         <div className="account-page__content">
           <div className="account-page__content--photo">
@@ -27,29 +71,17 @@ const Account = () => {
             />
           </div>
           <div className="account-page__text-content">
-            <InputBox
-              label={"First Name"}
-              inputPlaceholder="Jugraj"
-              inputType={"text"}
-              handleInput={handleInput}
-            />
-            <div className="account-page__text-content--box"></div>
+            <div className="account-page__text-content--box">
+              <p>{capitalizeFirstCharacter(firstName)}</p>
+            </div>
 
-            <InputBox
-              label={"Last Name"}
-              inputPlaceholder="Singh"
-              inputType={"text"}
-              handleInput={handleInput}
-            />
-            <div className="account-page__text-content--box"></div>
+            <div className="account-page__text-content--box">
+              <p>{capitalizeFirstCharacter(lastName)}</p>
+            </div>
 
-            <InputBox
-              label={"Email"}
-              inputPlaceholder="example@gmail.com"
-              inputType={"email"}
-              handleInput={handleInput}
-            />
-            <div className="account-page__text-content--box"></div>
+            <div className="account-page__text-content--box">
+              <p>{email}</p>
+            </div>
           </div>
         </div>
         <div className="sign-out-button">
@@ -59,5 +91,4 @@ const Account = () => {
     </Layout>
   );
 };
-
 export default Account;
