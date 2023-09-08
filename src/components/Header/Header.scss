@@ -65,7 +65,8 @@
     display: inline;
   }
 
-  &__title {
+  &__title,
+  &__name {
     color: $color-white;
     font-family: $modern-header;
     padding-left: 2rem;
@@ -78,7 +79,6 @@
     font-family: $modern-content;
     padding-left: 2rem;
   }
-
   &__video {
     height: 240px;
     top: 30vh;

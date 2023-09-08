@@ -7,6 +7,8 @@ import Button from "../Button/Button";
 import format from "date-fns/format";
 
 type EventCardProps = {
+  capacityCurrent: number;
+  capacityMax: number;
   title: string;
   maker: string;
   date: Date;
@@ -18,6 +20,8 @@ type EventCardProps = {
 };
 
 const EventCard = ({
+  capacityCurrent,
+  capacityMax,
   title,
   maker,
   date,
@@ -38,6 +42,7 @@ const EventCard = ({
   };
 
   const eventDate = format(date, "dd/MM/yyyy");
+  const currentDate = format(new Date(), "dd/MM/yyyy");
 
   return (
     <div data-testid={`event-card-${title}`} className="event-card">
@@ -76,6 +81,20 @@ const EventCard = ({
                 galleryArray={galleryArray}
                 imageAltTag={`image for ${maker}`}
               />
+            )}
+            {eventDate >= currentDate ? (
+              <div className="event-card__capacity">
+                <p className="event-card__capacity-text">
+                  There are {capacityMax - capacityCurrent} spaces left out of{" "}
+                  {capacityMax}
+                </p>
+              </div>
+            ) : (
+              <div className="event-card__capacity">
+                <p className="event-card__capacity-text">
+                  There were {capacityCurrent} attendees at this event
+                </p>
+              </div>
             )}
           </div>
           {buttonVariant ? (
