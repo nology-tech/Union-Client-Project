@@ -92,8 +92,10 @@ const App = () => {
                        - WHEN A USER IS SIGNED IN & ISN'T SIGNED IN
               */}
               <Route path="/login" element={<Login setUser={setUser} />} />
-              <Route path="/register" />
-              element={<Register setUser={setUser} />}
+              <Route
+                path="/register"
+                element={<Register setUser={setUser} />}
+              />
             </>
           ) : (
             <>
