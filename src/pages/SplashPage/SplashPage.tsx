@@ -1,6 +1,6 @@
 import "./SplashPage.scss";
 import Button from "../../components/Button/Button";
-import painting from "../../images/painting-woman.png";
+import painting from "../../assets/images/painting-woman.png";
 import { useNavigate } from "react-router-dom";
 
 const SplashPage = () => {
