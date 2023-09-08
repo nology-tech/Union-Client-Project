@@ -195,10 +195,7 @@ const Register = ({ setUser }: RegisterProps) => {
             </div>
             <div>
               {firebaseError && (
-                <p className="register-page__email-exists">{firebaseError}</p>
-              )}
-              {firebaseError === "passwordError" && (
-                <p className="register-page__weak-password">{firebaseError}</p>
+                <p className="register-page__firebase-error">{firebaseError}</p>
               )}
             </div>
 
