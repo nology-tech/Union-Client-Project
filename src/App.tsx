@@ -65,10 +65,25 @@ const App = () => {
                 element={<Account user={user} setUser={setUser} />}
               />
               <Route path="/admin" element={<Admin />} />
+              {/* 
+                THIS IS A TEMPORARY FIX TO HANDLE A REDIRECTING ISSUE WITH FEDERATED SIGN IN.
+
+                ISSUE: ONCE REDIRECTED TO SIGN IN WITH GOOGLE THE APP RELOADS
+                       WE NOW HAVE A USER MEANING THAT THE /login & /register ROUTES DID NOT EXIST 
+                       SO WOULD NOT BE DISPLAYED. 
+
+                FIX:   ADD BOTH ROUTES TO BOTH TERNARY STATEMENTS
+                       - WHEN A USER IS SIGNED IN & ISN'T SIGNED IN
+              */}
+              <Route path="/login" element={<Login setUser={setUser} />} />
+              <Route
+                path="/register"
+                element={<Register setUser={setUser} />}
+              />
             </>
           ) : (
             <>
-              <Route path="splash" element={<SplashPage />} />
+              <Route path="/splash" element={<SplashPage />} />
               <Route path="/login" element={<Login setUser={setUser} />} />
               <Route
                 path="/register"
