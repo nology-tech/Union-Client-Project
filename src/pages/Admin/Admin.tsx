@@ -25,10 +25,6 @@ const Admin = () => {
         <div className="add-events-button">
           <Button label={"Add Events"} onClick={handleSignOut} />
         </div>
-        <div className="manage-events-button">
-          <Button label={"Manage Events"} onClick={handleSignOut} />
-        </div>
-
         <div className="sign-out-button">
           <Button label={"Sign Out"} onClick={handleSignOut} />
         </div>
