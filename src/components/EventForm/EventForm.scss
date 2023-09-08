@@ -69,4 +69,25 @@
     border-top: 1px solid $color-red;
     opacity: 0.8;
   }
+  &__submitted {
+    z-index: 1;
+    height: 110vh;
+    width: 100%;
+    text-align: center;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: center;
+    background-color: $color-off-white;
+    border-radius: 2rem;
+    position: absolute;
+    right: 0rem;
+    top: 2rem;
+    &--text {
+      padding: 2rem;
+    }
+    &--button {
+      padding: 2rem;
+    }
+  }
 }

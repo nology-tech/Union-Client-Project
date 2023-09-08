@@ -5,6 +5,8 @@ import { addDoc, collection, Timestamp } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useState } from "react";
 import "./EventForm.scss";
+import { useNavigate } from "react-router-dom";
+import { isBefore } from "date-fns";
 
 type DefaultForm = {
   eventName: string;
@@ -15,7 +17,11 @@ type DefaultForm = {
   eventDate: Timestamp | null;
 };
 
-const EventForm = () => {
+type EventFormProps = {
+  handleNewEvent: () => void;
+};
+
+const EventForm = ({ handleNewEvent }: EventFormProps) => {
   const [databaseInput, setDatabaseInput] = useState<DefaultForm>({
     eventName: "",
     eventCategory: "",
@@ -34,6 +40,7 @@ const EventForm = () => {
     errorFive: true,
     errorSix: false,
   });
+  const [submitted, setSubmitted] = useState<boolean>(false);
 
   const handleEventName = (event: ChangeEvent<HTMLInputElement>) => {
     const eventName = event.currentTarget.value;
@@ -49,13 +56,14 @@ const EventForm = () => {
     });
   };
   const handleEventDate = (event: ChangeEvent<HTMLInputElement>) => {
-    const date = new Date(event.currentTarget.value);
-    const timestampDate = Timestamp.fromDate(date);
+    const inputDate = new Date(event.currentTarget.value);
+    const currentDate = new Date();
+    const timestampDate = Timestamp.fromDate(inputDate);
     setDatabaseInput({
       ...databaseInput,
       eventDate: timestampDate,
     });
-    setRequired({ ...required, errorThree: !databaseInput.eventDate });
+    setRequired({ ...required, errorThree: isBefore(inputDate, currentDate) });
   };
   const handleEventCapacity = (event: ChangeEvent<HTMLInputElement>) => {
     const eventCapacity = event.currentTarget.value;
@@ -135,6 +143,8 @@ const EventForm = () => {
         capacityCurrent: 0,
         images: databaseInput.eventImages,
       });
+      setSubmitted(true);
+      handleNewEvent();
     } catch (error) {
       console.error(error);
     }
@@ -147,9 +157,29 @@ const EventForm = () => {
   const errorRequired = (
     <p className="event-form__required">this field is required</p>
   );
+  const navigate = useNavigate();
+  const navigateEvents = () => {
+    navigate("/events");
+  };
+  const navigateAdmin = () => {
+    navigate("/admin");
+  };
 
   return (
     <div className="event-form">
+      {submitted && (
+        <div className="event-form__submitted">
+          <p className="event-form__submitted--text">
+            Your event was successfully submitted!
+          </p>
+          <div className="event-form__submitted--button">
+            <Button label="Events" onClick={navigateEvents} />
+          </div>
+          <div className="event-form__submitted--button">
+            <Button label="Back to Account" onClick={navigateAdmin} />
+          </div>
+        </div>
+      )}
       <InputBox
         label="Event Name (case sensitive)"
         handleInput={handleEventName}

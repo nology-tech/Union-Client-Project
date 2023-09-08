@@ -18,10 +18,18 @@ import CreateEvent from "./pages/CreateEvent/CreateEvent";
 
 const App = () => {
   const [dbData, setDbData] = useState<Event[]>([]);
+  const [updateData, setUpdateData] = useState<boolean>(true);
 
   useEffect(() => {
-    getDbData();
-  }, []);
+    if (updateData) {
+      getDbData();
+      setUpdateData(false);
+    }
+  }, [updateData]);
+
+  const handleNewEvent = () => {
+    setUpdateData(true);
+  };
 
   const getDbData = async () => {
     const data = await getEvents();
@@ -60,6 +68,10 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/account" element={<Account />} />
             <Route path="/admin" element={<Admin />} />
+            <Route
+              path="/create-event"
+              element={<CreateEvent handleNewEvent={handleNewEvent} />}
+            />
           </>
         ) : (
           <>
@@ -69,7 +81,6 @@ const App = () => {
           </>
         )}
         <Route path="*" element={<Error />} />
-        <Route path="/create-event" element={<CreateEvent />} />
       </Routes>
     </>
   );
