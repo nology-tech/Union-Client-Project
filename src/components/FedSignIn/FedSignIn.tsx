@@ -49,7 +49,6 @@ const FedSignIn = ({ setUser }: FedSignInProps) => {
       if (result?.user) {
         setUser(result.user);
         navigate("/");
-        //   const userDocRef = doc(db, "users", result.user.uid);
 
         const firstName = result?.user.displayName?.split(" ")[0];
         const lastName = result?.user.displayName?.split(" ")[1];

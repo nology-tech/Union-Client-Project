@@ -2,7 +2,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Error from "./pages/Error/Error";
 import "./styles/main.scss";
-import { useState, useEffect, CSSProperties } from "react";
+import { useState, useEffect } from "react";
 import SplashPage from "./pages/SplashPage/SplashPage";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
@@ -13,14 +13,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Account from "./pages/Account/Account";
 import { getEvents } from "./utils/firebaseSnapshots";
 import { Event } from "./types/types";
-import CircleLoader from "react-spinners/ClipLoader";
-
-const circleLoaderStyles: CSSProperties = {
-  display: "flex",
-  justifyContent: "center",
-  margin: "auto",
-  marginTop: "40vh",
-};
+import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 
 const App = () => {
   const [dbData, setDbData] = useState<Event[]>([]);
@@ -55,12 +48,7 @@ const App = () => {
   return (
     <>
       {isLoading === true ? (
-        <CircleLoader
-          color="#B42004"
-          loading
-          size={150}
-          cssOverride={circleLoaderStyles}
-        />
+        <LoadingSpinner />
       ) : (
         <Routes>
           {user ? (
