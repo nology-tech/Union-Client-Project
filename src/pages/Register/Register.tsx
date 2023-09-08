@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { User, createUserWithEmailAndPassword } from "firebase/auth";
 import "./Register.scss";
 import { FirebaseError } from "firebase/app";
 import { auth } from "../../firebase";
@@ -11,7 +11,7 @@ import FedSignIn from "../../components/FedSignIn/FedSignIn";
 import { addUser } from "../../utils/firebaseSnapshots";
 
 type RegisterProps = {
-  setUser: (userId: object) => void;
+  setUser: (user: User) => void;
 };
 
 const Register = ({ setUser }: RegisterProps) => {
