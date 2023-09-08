@@ -1,11 +1,10 @@
-import { getDocs, collection, doc, setDoc } from "firebase/firestore";
+import { getDocs, collection, doc, setDoc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { FirebaseError } from "firebase/app";
 import { UserCredential } from "firebase/auth";
 
 const eventsCollectionRef = collection(db, "events");
 const usersCollectionRef = collection(db, "users");
-
 
 export const getEvents = async () => {
   try {
@@ -19,7 +18,6 @@ export const getEvents = async () => {
         date,
       };
     });
-
     return filteredData;
   } catch (err) {
     console.error(err);
@@ -35,12 +33,20 @@ export const getUsers = async () => {
         ...userData,
       };
     });
-    console.log(filteredUserData);
-
-    
     return filteredUserData;
   } catch (err) {
     console.error(err);
+  }
+};
+
+export const getUser = async (userId: string) => {
+  try {
+    const userCollectionRef = doc(db, "users", userId);
+    const data = await getDoc(userCollectionRef);
+    const currentUser = data.data();
+    return currentUser;
+  } catch (error: unknown) {
+    console.error(error);
   }
 };
 
@@ -49,7 +55,7 @@ export const addUser = async (
   firstName: string | undefined,
   lastName: string | undefined,
   email: string | null,
-  userId: string | undefined | undefined,
+  userId: string | undefined,
   isAdmin: boolean
 ) => {
   try {
@@ -60,8 +66,8 @@ export const addUser = async (
       lastName: lastName,
       email: email,
       UUID: userId,
-      isAdmin: isAdmin,
       events: [],
+      isAdmin: isAdmin,
     });
   } catch (error: unknown) {
     if (error instanceof FirebaseError) {

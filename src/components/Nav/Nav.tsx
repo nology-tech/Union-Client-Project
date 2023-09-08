@@ -6,28 +6,50 @@ import calendar from "../../assets/icons/calendar.svg";
 import about from "../../assets/icons/about.svg";
 import account from "../../assets/icons/account.svg";
 import admin from "../../assets/icons/admin.svg";
-import { getUsers } from "../../utils/firebaseSnapshots";
-import { auth } from "../../firebase";
+import { getUser } from "../../utils/firebaseSnapshots";
 import { useState, useEffect } from "react";
-import { User } from "../../types/types";
+import { User } from "firebase/auth";
 
-const Nav = () => {
-  const [users, setUsers] = useState<User[]>([]);
-  const getCurrentUid = auth.currentUser?.uid;
+type NavProps = {
+  user: User;
+};
 
-  // filter user by matching UIDs
-  const filteredUsers = users.filter((user) => user.UUID === getCurrentUid);
-
-  const isAdmin = filteredUsers.length > 0 && filteredUsers[0].isAdmin;
+const Nav = ({ user }: NavProps) => {
+  const [isAdmin, setIsAdmin] = useState<boolean>();
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      const usersData = await getUsers();
-      setUsers(usersData as User[]);
-    };
+    const fetchDisplayName = async () => {
+      console.log(user);
 
-    fetchUsers();
-  }, []);
+      const currentUser = await getUser(user.uid);
+      console.log(currentUser);
+
+      return currentUser;
+    };
+    fetchDisplayName();
+  }, [user]);
+
+  // useEffect(() => {
+  //   const fetchIsAdmin = async () => {
+  //     const currentUser = await getUser(user.uid);
+
+  //     if (currentUser) {
+  //       if (currentUser.isAdmin === true) {
+  //         setIsAdmin(true);
+  //       }
+  //     }
+  //   };
+  //   fetchIsAdmin();
+  // }, [user]);
+
+  // // const fetchIsAdmin = async () => {
+  // //   const currentUser = await getUser(user.uid);
+
+  // //   console.log(currentUser);
+  // // };
+  // // fetchIsAdmin();
+
+  // console.log(isAdmin);
 
   return (
     <>
@@ -72,7 +94,7 @@ const Nav = () => {
                 isActive ? "nav__link--active" : "nav__link"
               }
             >
-              <img src={admin} alt="Home link" className="nav__image" />
+              <img src={admin} alt="Admin link" className="nav__image" />
             </NavLink>
           ) : (
             <NavLink
@@ -81,7 +103,7 @@ const Nav = () => {
                 isActive ? "nav__link--active" : "nav__link"
               }
             >
-              <img src={account} alt="Home link" className="nav__image" />
+              <img src={account} alt="Account link" className="nav__image" />
             </NavLink>
           )}
         </ul>

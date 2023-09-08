@@ -3,10 +3,25 @@ import "./Admin.scss";
 import Header from "../../components/Header/Header";
 import Button from "../../components/Button/Button";
 import placeHolderPFP from "/src/assets/images/placeHolderPFP.svg";
+import { User, signOut } from "firebase/auth";
+import { auth } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 
-const Admin = () => {
-  const handleSignOut = () => {
-    return;
+type AdminProps = {
+  setUser: (user: User | null) => void;
+};
+
+const Admin = ({ setUser }: AdminProps) => {
+  const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+      setUser(null);
+      navigate("/splash");
+    } catch (error) {
+      console.error("Sign-out error", error);
+    }
   };
 
   return (
@@ -25,10 +40,6 @@ const Admin = () => {
         <div className="add-events-button">
           <Button label={"Add Events"} onClick={handleSignOut} />
         </div>
-        <div className="manage-events-button">
-          <Button label={"Manage Events"} onClick={handleSignOut} />
-        </div>
-
         <div className="sign-out-button">
           <Button label={"Sign Out"} onClick={handleSignOut} />
         </div>

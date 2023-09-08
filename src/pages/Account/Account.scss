@@ -14,9 +14,10 @@
 
     &--box {
       width: 18rem;
-      height: 2px;
-      background-color: $color-grey;
+      height: 2.8rem;
+      background-color: $color-off-white;
       margin-right: 1rem;
+      border-bottom: black 2px solid;
     }
 
     &--first-name {

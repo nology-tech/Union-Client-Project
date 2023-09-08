@@ -9,46 +9,45 @@ import Register from "./pages/Register/Register";
 import Events from "./pages/Events/Events";
 import About from "./pages/About/About";
 import CalendarPage from "./pages/Calendar/Calendar";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { User, getAuth, onAuthStateChanged } from "firebase/auth";
 import Account from "./pages/Account/Account";
 import Admin from "./pages/Admin/Admin";
 import { getEvents } from "./utils/firebaseSnapshots";
 import { Event } from "./types/types";
+import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 import { getUsers } from "./utils/firebaseSnapshots";
-import { User } from "../src/types/types";
+import { UserType } from "../src/types/types";
 
 const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [dbData, setDbData] = useState<Event[]>([]);
-  const [users, setUsers] = useState<User[]>([]);
+  const [user, setUser] = useState<User | null>(null);
+  const [users, setUsers] = useState<UserType[]>([]);
 
-  useEffect(() => {
-    getDbData();
-  }, []);
+  const auth = getAuth();
+  const navigate = useNavigate();
 
   const getDbData = async () => {
     const data = await getEvents();
     setDbData(data as Event[]);
+    setIsLoading(false);
   };
-  const [user, setUser] = useState<object>();
-
-  const auth = getAuth();
-  const navigate = useNavigate();
 
   useEffect(
     () => {
       onAuthStateChanged(auth, (user) => {
         if (user) {
           setUser(user);
+          setIsLoading(false);
         } else {
           navigate("/splash");
-          return;
         }
       });
+      getDbData();
     }, // eslint-disable-next-line
     []
   );
 
-  
   const getCurrentUid = auth.currentUser?.uid;
   const filteredUsers = users.filter((user) => user.UUID === getCurrentUid);
   const isAdmin = filteredUsers.length > 0 && filteredUsers[0].isAdmin;
@@ -56,7 +55,7 @@ const App = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       const usersData = await getUsers();
-      setUsers(usersData as User[]);
+      setUsers(usersData as UserType[]);
     };
 
     fetchUsers();
@@ -64,32 +63,41 @@ const App = () => {
 
   return (
     <>
-      <Routes>
-        {user ? (
-          <>
-            <Route path="/" element={<Home />} />
-            <Route path="/events" element={<Events eventData={dbData} />} />
-            <Route
-              path="/calendar"
-              element={<CalendarPage eventData={dbData} />}
-            />
-            <Route path="/about" element={<About />} />
-
-            {isAdmin ? (
-            <Route path="/admin" element={<Admin />} />
-            ) : (
-            <Route path="/account" element={<Account />} />
-            )}
-          </>
-        ) : (
-          <>
-            <Route path="splash" element={<SplashPage />} />
-            <Route path="/login" element={<Login setUser={setUser} />} />
-            <Route path="/register" element={<Register setUser={setUser} />} />
-          </>
-        )}
-        <Route path="*" element={<Error />} />
-      </Routes>
+      {isLoading === true ? (
+        <LoadingSpinner />
+      ) : (
+        <Routes>
+          {user ? (
+            <>
+              <Route path="/" element={<Home />} />
+              <Route path="/events" element={<Events eventData={dbData} />} />
+              <Route
+                path="/calendar"
+                element={<CalendarPage eventData={dbData} />}
+              />
+              <Route path="/about" element={<About />} />
+              {isAdmin ? (
+                <Route path="/admin" element={<Admin setUser={setUser} />} />
+              ) : (
+                <Route
+                  path="/account"
+                  element={<Account setUser={setUser} user={user} />}
+                />
+              )}
+            </>
+          ) : (
+            <>
+              <Route path="splash" element={<SplashPage />} />
+              <Route path="/login" element={<Login setUser={setUser} />} />
+              <Route
+                path="/register"
+                element={<Register setUser={setUser} />}
+              />
+            </>
+          )}
+          <Route path="*" element={<Error />} />
+        </Routes>
+      )}
     </>
   );
 };
