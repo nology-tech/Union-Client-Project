@@ -26,8 +26,7 @@ const Register = ({ setUser }: RegisterProps) => {
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
 
-  const [isEmailExists, setIsEmailExist] = useState<boolean>(false);
-  const [isPasswordStrong, setIsPasswordStrong] = useState<boolean>(false);
+  const [firebaseError, setFirebaseError] = useState<string>("");
 
   const handleRegister = async () => {
     try {
@@ -43,11 +42,11 @@ const Register = ({ setUser }: RegisterProps) => {
       navigate("/");
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {
-        if (error.code === "auth/email-already-in-use") setIsEmailExist(true);
+        if (error.code === "auth/email-already-in-use")
+          setFirebaseError("emailError");
 
-        console.error(error.code);
-
-        if (error.code === "auth/weak-password") setIsPasswordStrong(true);
+        if (error.code === "auth/weak-password")
+          setFirebaseError("passwordError");
 
         console.error(error.code);
       }
@@ -76,7 +75,6 @@ const Register = ({ setUser }: RegisterProps) => {
 
   const handleEmailInput = (event: FormEvent<HTMLInputElement>) => {
     setEmail(event.currentTarget.value);
-    setIsEmailExist(false);
   };
 
   const beforeRegister = () => {
@@ -176,17 +174,6 @@ const Register = ({ setUser }: RegisterProps) => {
                 inputType="text"
                 handleInput={handleEmailInput}
               />
-              {isEmailExists && (
-                <p className="register-page__email-exists">
-                  Email Already Exists
-                </p>
-              )}
-
-              {isPasswordStrong && (
-                <p className="register-page__email-exists">
-                  Sorry, password must be longer than 5 characters.
-                </p>
-              )}
             </div>
             <div className="register-page__password">
               <InputBox
@@ -206,6 +193,23 @@ const Register = ({ setUser }: RegisterProps) => {
                 handleInput={handlePasswordInput}
               />
             </div>
+            <div>
+              {firebaseError === "emailError" && (
+                <>
+                  <p className="register-page__email-exists">
+                    Email Already Exists
+                  </p>
+                </>
+              )}
+              {firebaseError === "passwordError" && (
+                <>
+                  <p className="register-page__weak-password">
+                    Sorry, password must be longer than 5 characters.
+                  </p>
+                </>
+              )}
+            </div>
+
             <div className="register-page__create-account">
               <Button label="Create Account" onClick={beforeRegister} />
             </div>

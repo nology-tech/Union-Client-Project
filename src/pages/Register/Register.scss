@@ -83,9 +83,12 @@
   &__email-exists {
     color: $color-red;
     text-align: center;
-    position: fixed;
-    left: 0;
     width: 100%;
-    z-index: 1;
+  }
+
+  &__weak-password {
+    color: $color-red;
+    text-align: center;
+    width: 100%;
   }
 }
