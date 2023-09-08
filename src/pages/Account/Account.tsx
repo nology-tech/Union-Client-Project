@@ -40,12 +40,7 @@ const Account = ({ setUser, user }: AccountProps) => {
     try {
       await signOut(auth);
       setUser(null);
-
-      const navigateToSplash = () => {
-        navigate("/splash");
-      };
-
-      navigateToSplash();
+      navigate("/splash");
     } catch (error) {
       console.error("Sign-out error", error);
     }
