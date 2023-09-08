@@ -1,6 +1,6 @@
 import "./CreateEvent.scss";
 import EventForm from "../../components/EventForm/EventForm";
-import backArrow from "../../images/arrow.png";
+import backArrow from "../../assets/images/arrow.png";
 import { useNavigate } from "react-router-dom";
 
 type CreateEventProps = {
