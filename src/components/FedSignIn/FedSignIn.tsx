@@ -4,6 +4,7 @@ import {
   getRedirectResult,
   signInWithRedirect,
   GoogleAuthProvider,
+  User,
 } from "firebase/auth";
 import appleIcon from "../../assets/icons/apple.svg";
 import facebookIcon from "../../assets/icons/facebook.svg";
@@ -14,7 +15,7 @@ import Button from "../Button/Button";
 import { addUser } from "../../utils/firebaseSnapshots";
 
 type FedSignInProps = {
-  setUser: (userId: object) => void;
+  setUser: (user: User) => void;
 };
 
 const providerGoogle = new GoogleAuthProvider();
@@ -49,7 +50,6 @@ const FedSignIn = ({ setUser }: FedSignInProps) => {
       if (result?.user) {
         setUser(result.user);
         navigate("/");
-        //   const userDocRef = doc(db, "users", result.user.uid);
 
         const firstName = result?.user.displayName?.split(" ")[0];
         const lastName = result?.user.displayName?.split(" ")[1];

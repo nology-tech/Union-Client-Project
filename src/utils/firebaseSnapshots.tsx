@@ -17,7 +17,6 @@ export const getEvents = async () => {
         date,
       };
     });
-
     return filteredData;
   } catch (err) {
     console.error(err);
@@ -87,6 +86,15 @@ export const getEventsForUser = async (userId: string) => {
     return filteredEventsData;
   } catch (err) {
     console.error("Error fetching events:", err);
-    return [];
+    return [];}
+  }
+export const getUser = async (userId: string) => {
+  try {
+    const userCollectionRef = doc(db, "users", userId);
+    const data = await getDoc(userCollectionRef);
+    const currentUser = data.data();
+    return currentUser;
+  } catch (error: unknown) {
+    console.error(error);
   }
 };

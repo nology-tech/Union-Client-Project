@@ -130,6 +130,8 @@ const filterHistoricUserEvents = userEvents.filter((event) => {
                   date={event.date}
                   textContent={event.description}
                   galleryArray={event.images}
+                  capacityCurrent={event.capacityCurrent}
+                  capacityMax={event.capacityMax}
                   buttonLabel={
                     buttonVariants[index] ? "CANCEL BOOKING" : "BOOK A PLACE"
                   }
@@ -150,6 +152,8 @@ const filterHistoricUserEvents = userEvents.filter((event) => {
                   date={event.date}
                   textContent={event.description}
                   galleryArray={event.images}
+                  capacityCurrent={event.capacityCurrent}
+                  capacityMax={event.capacityMax}
                   buttonLabel={
                     buttonVariants[index] ? "CANCEL BOOKING" : "BOOK A PLACE"
                   }
