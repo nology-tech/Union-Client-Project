@@ -208,9 +208,10 @@ type RegisterProps = {
 - The initial Register page has two input text boxes "First Name" and "last Name". The next button uses the toggle function to conditionally render an alternative register page for the second half of the account creation process. On the initial page the back arrow navigates back to the splash page.
 
 - The secondary register page has three input boxes. Email, Password and Confirm Password. The create account button checks the password and email eligibility and then if correct submits that information to the fireBase. The Back button on this page sends the user back to the first Register page.
-  <<<<<<< HEAD
 
-### Events Page
+- Added a feature to inform the user of their password being too weak or their chosen email being in use.
+
+## Events Page
 
 - Created a filter that ensures the only events visible are events in the future from today's date.
 - Created events page to render the search bar and events passed in.
@@ -251,12 +252,13 @@ Provided testing for render of the login page and for login errors for unauthent
 
 ```typescript
 type LoginProps = {
-email: string;
-setEmail: (email: string) => void;
-password: string;
-setPassword: (password: string) => void;
-setUserId: (userId: string) => void;
-}
+  email: string;
+  setEmail: (email: string) => void;
+  password: string;
+  setPassword: (password: string) => void;
+  setUserId: (userId: string) => void;
+};
+```
 
 ## Federated Sign In Component
 
@@ -284,10 +286,11 @@ This popup window provides three main actions: closing the popup, navigating to 
 - **Viewing the Calendar** : If you wish to view the calendar or manage your bookings, you can do so by clicking the "VIEW CALENDAR" button.
 - **Canceling a Booking** : To cancel a booking that you've previously made, you can click on the "CANCEL BOOKING" button.
 
-### Account Page
+## Account Page
 
 - Created an account page with a sign out button.
 - Account page displays the user's profile picture, first name, last name and email address.
+
 ## Firebase Auth persistence
 
 - Added functionality so that when a signed in user refreshes the page, they stay signed in.
@@ -324,4 +327,36 @@ The project uses a Firestore Database (and previously included Firebase Authenti
 ### Errors
 
 We check if the user already exists (the email address used to register must be unique) in the database. If the user attempts to register via option 1 (above) with an email that already exists in the database, they are served an error message to advise the email already exists. If the user attempts to register using federated sign in, they are logged in and taken to home.
+
 ```
+
+## User Events
+
+Users are able to see future and past events that they have signed up for, so that they can have insight into which events they have attended in the past, and their personal future event calendar.
+
+### How To See Future and Past Events
+
+Users can switch between future/active events and past/historic events by clicking on the relevant links at the top left and top right of the page, respectively.
+
+### How to see Event Details
+
+Event Cards become visible when the user clicks on the specific event, as the component is reused across the app.
+
+### Data Structure
+
+The users collection contains a list of user documents, with a field for event ids. This is an array of strings.
+
+The events collection contains a list of event documents, with fields for event details.
+
+### Queries
+
+Queries to the Firestore database are made via Firebase Snapshots.
+```
+
+## Event Creation
+
+Users granted admin privileges are now able to create an event, via a simple to use, interactive form.
+
+The form requires all input fields be filled out, and then is sent to the database and uploaded to the Events page.
+
+Users can stipulate the event name, category, date, capacity and description, as well as having the option to upload/add images.

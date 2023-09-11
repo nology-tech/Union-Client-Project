@@ -15,42 +15,25 @@ type NavProps = {
 };
 
 const Nav = ({ user }: NavProps) => {
-  const [isAdmin, setIsAdmin] = useState<boolean>(true);
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
-  // useEffect(() => {
-  //   const fetchDisplayName = async () => {
-  //     const currentUser = await getUser(user);
-  //     console.log(currentUser);
-  //     if (currentUser) {
-  //       if (currentUser.isAdmin === true) {
-  //         setIsAdmin(true);
-  //       }
-  //     }
-  //   };
-  //   fetchDisplayName();
-  // }, []);
+  useEffect(() => {
+    console.log("is running");
 
-  // useEffect(() => {
-  //   const fetchIsAdmin = async () => {
-  //     const currentUser = await getUser(user.uid);
+    const fetchUserDetails = async () => {
+      if (user) {
+        const currentUser = await getUser(user.uid);
+        console.log(currentUser);
 
-  //     if (currentUser) {
-  //       if (currentUser.isAdmin === true) {
-  //         setIsAdmin(true);
-  //       }
-  //     }
-  //   };
-  //   fetchIsAdmin();
-  // }, [user]);
-
-  // // const fetchIsAdmin = async () => {
-  // //   const currentUser = await getUser(user.uid);
-
-  // //   console.log(currentUser);
-  // // };
-  // // fetchIsAdmin();
-
-  // console.log(isAdmin);
+        if (currentUser && currentUser.isAdmin) {
+          setIsAdmin(currentUser.isAdmin);
+        } else {
+          setIsAdmin(false);
+        }
+      }
+    };
+    fetchUserDetails();
+  }, []);
 
   return (
     <>

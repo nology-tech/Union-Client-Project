@@ -9,12 +9,14 @@ import Layout from "../../components/Layout/Layout";
 import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
 import blackCross from "../../assets/images/black-cross.png";
+import { User } from "firebase/auth";
 
 type EventsProps = {
   eventData: Event[];
+  user: User;
 };
 
-const Events = ({ eventData }: EventsProps) => {
+const Events = ({ eventData, user }: EventsProps) => {
   const [searchEvents, setSearchEvents] = useState<string>("");
   const [buttonVariants, setButtonVariants] = useState<boolean[]>([]);
   const [showPopup, setShowPopup] = useState<boolean>(false);
@@ -70,7 +72,7 @@ const Events = ({ eventData }: EventsProps) => {
   const date = format(today, "EEEE, do MMMM yyyy");
 
   return (
-    <Layout>
+    <Layout user={user}>
       <Header
         title="Events"
         subTitle={`MADE MY MAKERS STUDIO TOUR`}

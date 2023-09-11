@@ -3,8 +3,13 @@ import Button from "../../components/Button/Button";
 import Layout from "../../components/Layout/Layout";
 import "./Home.scss";
 import Header from "../../components/Header/Header";
+import { User } from "firebase/auth";
 
-const Home = () => {
+type HomeProps = {
+  user: User;
+};
+
+const Home = ({ user }: HomeProps) => {
   const navigate = useNavigate();
 
   const handleViewEvents = () => {
@@ -24,7 +29,7 @@ const Home = () => {
   };
 
   return (
-    <Layout>
+    <Layout user={user}>
       <Header
         title={"Made by Makers Studio Tour"}
         subTitle="Sat 20 | Sun 21 Nov 2021"

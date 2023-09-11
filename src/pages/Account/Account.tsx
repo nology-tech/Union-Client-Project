@@ -55,7 +55,7 @@ const Account = ({ setUser, user }: AccountProps) => {
   };
 
   return (
-    <Layout>
+    <Layout user={user}>
       <Header
         title={`Welcome Back, ${capitalizeFirstCharacter(
           firstName

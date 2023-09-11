@@ -25,8 +25,12 @@ const Admin = ({ setUser, user }: AdminProps) => {
     }
   };
 
+  const createEvent = () => {
+    navigate("/create-event");
+  };
+
   return (
-    <Layout>
+    <Layout user={user}>
       <Header title={"Admin"} />
       <div className="admin-page">
         <div className="admin-page__content">
@@ -39,7 +43,7 @@ const Admin = ({ setUser, user }: AdminProps) => {
           </div>
         </div>
         <div className="add-events-button">
-          <Button label={"Add Events"} onClick={handleSignOut} />
+          <Button label={"Add Events"} onClick={createEvent} />
         </div>
         <div className="sign-out-button">
           <Button label={"Sign Out"} onClick={handleSignOut} />
