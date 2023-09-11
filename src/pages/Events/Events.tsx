@@ -31,8 +31,6 @@ const Events = ({ eventData }: EventsProps) => {
     return isAfter(event.date, currentDate);
   });
 
-  filterByDate.sort((a, b) => compareAsc(a.date, b.date));
-
   const filteredSearch = filterByDate.filter(
     (event: { name: string; category: string; description: string }) => {
       return (
@@ -42,6 +40,7 @@ const Events = ({ eventData }: EventsProps) => {
       );
     }
   );
+  filteredSearch.sort((a, b) => compareAsc(a.date, b.date));
 
   const handleClick = (eventIndex: number) => {
     const newButtonVariants = [...buttonVariants];
