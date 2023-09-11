@@ -2,66 +2,77 @@
 
 ## Table of Contents
 
-1. [Contributors](#contributors)
-2. [Quickstart](#quickstart)
-3. [File Structure](#file-structure)
-4. [Testing](#testing)
-5. [Code Quality](#code-quality)
-6. [Pages](#pages)
-   - [Home](#home)
-   - [Events](#events)
-   - [Calendar](#calendar)
-   - [About](#about)
-   - [Account](#account)
-   - [Splash](#splash)
-   - [Login](#login)
-   - [Register](#register)
-   - [Error](#error)
-   - [Admin](#admin)
-7. [Components](#components)
-   - [Button](#button)
-   - [EventCard](#eventcard)
-   - [FederatedSignIn](#fedsignin)
-   - [Form](#form)
-   - [Gallery](#gallery)
-   - [Header](#header)
-   - [InputBox](#inputbox)
-   - [Layout](#layout)
-   - [LoadingSpinner](#loadingspinner)
-   - [Nav](#nav)
-   - [SearchBar](#searchbar)
-   - [Events Booking Popup Window](#events-booking-popup-window)
-8. [Dev Tools](#dev-tools)
-   - [Mock Data](#mock-data)
-   - [SnapShot FireBase](#snapshot-firebase)
-   - [FirebaseSnapshots](#firebasesnapshots)
-   - [Firebase Auth persistence](#firebase-auth-persistence)
-   - [How to Create New Users](#how-to-create-new-users)
-   - [Data Structure](#data-structure)
-   - [User Events](#user-events)
-   - [How To See Future and Past Events](#how-to-see-future-and-past-events)
-   - [How to see Event Details](#how-to-see-event-details)
-   - [Queries](#queries)
-   - [Event Creation](#event-creation)
-9. [About Us](#about-us)
+- [Union Client Project](#union-client-project)
+  - [Table of Contents](#table-of-contents)
+  - [Project Intro](#project-intro)
+    - [Useful Links](#useful-links)
+  - [Quick-start](#quick-start)
+  - [File Structure 🗂️](#file-structure-️)
+  - [Testing ⚗️](#testing-️)
+  - [Code Quality 🌟](#code-quality-)
+  - [Pages](#pages)
+    - [Home](#home)
+    - [Events](#events)
+    - [Calendar](#calendar)
+    - [About](#about)
+    - [Account](#account)
+    - [Splash](#splash)
+    - [Login](#login)
+    - [Register](#register)
+    - [Error](#error)
+    - [Admin Page](#admin-page)
+  - [Components](#components)
+    - [Button](#button)
+    - [Federated Sign In](#federated-sign-in)
+    - [Nav](#nav)
+    - [Header](#header)
+    - [Events Booking Popup Window](#events-booking-popup-window)
+  - [Dev Tools](#dev-tools)
+    - [Mock Data](#mock-data)
+    - [SnapShot FireBase](#snapshot-firebase)
+    - [FirebaseSnapshots](#firebasesnapshots)
+    - [Firebase Auth persistence](#firebase-auth-persistence)
+    - [How to Create New Users](#how-to-create-new-users)
+    - [Data Structure](#data-structure)
+    - [User Events](#user-events)
+    - [How To See Future and Past Events](#how-to-see-future-and-past-events)
+    - [How to see Event Details](#how-to-see-event-details)
+    - [Queries](#queries)
+    - [Event Creation](#event-creation)
+  - [Current Issues](#current-issues)
+    - [Calendar Mobile](#calendar-mobile)
+    - [Federated Sign in redirect](#federated-sign-in-redirect)
+    - [Admin Access](#admin-access)
+    - [Booking Places on Events](#booking-places-on-events)
+  - [About Us](#about-us)
+    - [Contributors](#contributors)
 
-## Contributors
+10. [Current Issues](#current-issues)
+    - [Calendar Mobile](#calendar-mobile)
+    - [Federated Sign in redirect](#federated-sign-in-redirect)
+    - [Admin Access](#admin-access)
+    - [Booking Places on Events](#booking-places-on-events)
+11. [About Us](#about-us)
 
-[Chu Lam](https://github.com/Koji47)</br> 
-[Daniela Gutperl](https://github.com/ElaM8)</br>
-[Jugraj Sing](https://github.com/akajugz)</br>
-[Luca Gilardenghi](https://github.com/churlish404)</br>
-[Luke Welbourn](https://github.com/luke-welbourn)</br>
-[Max Swaine](https://github.com/maxswaine)</br>
-[Nick Phelan](https://github.com/nmWolfe)</br>
-[Nicole Denheim](https://github.com/NDenheim)</br>
-[Szabolcs Sziklai](https://github.com/sabifromtherock)</br>
-[Tufiale Chowdhury](https://github.com/Tufiale)</br>
+## Project Intro
 
-## Quickstart
+> Dot to Dot is a community-focused organization dedicated to reconnecting communities with local makers and artisans. The Dot to Dot booking system aims to create inspiring events that showcases talents in the local community.
 
-1. Install the dependencies with `npm install`.
-2. Run the application with `npm run dev`.
+Through a specialised log-in system, this allows users to have a personalised experience, to track bookings whilst also allowing artist to create their own unique events with the help of an additional admin page.
+
+This project was completed over two weeks following the principles of Agile Methodology by incorporating small iterative sprints, daily-standups and demos. Using pair-programming, the application was curated and improved dynamically over the duration of the project.
+
+### Useful Links
+
+- [Live site - Hosted by Firebase](https://union-client-project.web.app/splash)
+- [KanBan Board - Trello](https://trello.com/b/sbk9bjjC/union-dot-to-dot)
+- [UI Wire-frame - Figma](https://www.figma.com/file/qQW5RX4O4crZ2uBmt7japR/Client-Project---Event?node-id=330%3A665&mode=dev)
+
+## Quick-start
+
+1. Clone the repository `git clone project-url`.
+2. Install the dependencies with `npm install`.
+3. Run the application with `npm run dev`.
 
 ## File Structure 🗂️
 
@@ -403,6 +414,37 @@ The form requires all input fields be filled out, and then is sent to the databa
 
 Users can stipulate the event name, category, date, capacity and description, as well as having the option to upload/add images.
 
+## Current Issues
+
+### Calendar Mobile
+
+- We are aware of issues surrounding the use of the calendar page on mobile devices. Currently there is no fix for this this issue and it is confined to specific mobile devices rather than all.
+
+### Federated Sign in redirect
+
+- Once redirected to sign in with Google, the app reloads. We then have a user meaning the /login and /register page the user was just on do not exist, thus giving them an error screen. We have implemented a temporary fix to this by allowing /login and /register to be accessible regardless of user status however this is not permanent.
+
+### Admin Access
+
+- Admin Access is currently in development, certain features merged into main are currently accessed directly via routes rather than in app.
+
+### Booking Places on Events
+
+- Currently no Link exists in the code between the booking process seen on screen and the current capacity of the event in the database. Meaning that whilst there is user feedback to say they have booked this functionality does not exist on the current version.
+
 ## About Us
 
 - This project has been crafted by a dedicated group of junior developers currently undergoing one of \_nology's comprehensive training courses to become full-stack developers. We embarked on this journey to expand our skills and gain hands-on experience in building real-world applications. We understand that learning is an ongoing process, and we wholeheartedly welcome any feedback, suggestions, or constructive criticism on this project. Your insights are invaluable to us as they not only enhance the quality of this project but also contribute to our growth as developers. Feel free to share your thoughts and ideas with us, and together, we can continue our journey of improvement and learning
+
+### Contributors
+
+- [Chu Lam](https://github.com/Koji47)</br>
+- [Daniela Gutperl](https://github.com/ElaM8)</br>
+- [Jugraj Sing](https://github.com/akajugz)</br>
+- [Luca Gilardenghi](https://github.com/churlish404)</br>
+- [Luke Welbourn](https://github.com/luke-welbourn)</br>
+- [Max Swaine](https://github.com/maxswaine)</br>
+- [Nick Phelan](https://github.com/nmWolfe)</br>
+- [Nicole Denheim](https://github.com/NDenheim)</br>
+- [Szabolcs Sziklai](https://github.com/sabifromtherock)</br>
+- [Tufiale Chowdhury](https://github.com/Tufiale)</br>
