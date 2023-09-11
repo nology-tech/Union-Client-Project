@@ -31,12 +31,19 @@
    - [SearchBar](#searchbar)
    - [Events Booking Popup Window](#events-booking-popup-window)
 7. [Dev Tools](#dev-tools)
+
    - [Mock Data](#mock-data)
    - [SnapShot FireBase](#snapshot-firebase)
    - [FirebaseSnapshots](#firebasesnapshots)
    - [Firebase Auth persistence](#firebase-auth-persistence)
    - [How to Create New Users](#how-to-create-new-users)
    - [Data Structure](#data-structure)
+   - [User Events](#user-events)
+   - [How To See Future and Past Events](#how-to-see-future-and-past-events)
+   - [How to see Event Details](#how-to-see-event-details)
+   - [Queries](#queries)
+   - [Event Creation](#event-creation)
+
 8. [About Us](#about-us)
 
 ## Quickstart
@@ -263,6 +270,18 @@ const fakeStyle = {
 - The component is built to only handle 1 image or 1 video, having both video and image url props will not display correctly on screen.
 - The component will always display "DOT TO DOT - LOCAL MAKERS" at the top in "$color-yellow"
 
+- **Header Formatting**: Changed formatting in the header to account for spacing and playback issues with the video. This includes using the iframe HTML element as opposed to the video element.
+
+```js
+<iframe
+  className="header__video"
+  src={videoUrl}
+  width={350}
+  height={240}
+  data-testid="video"
+></iframe>
+```
+
 ### Events Booking Popup Window
 
 This popup window provides three main actions: closing the popup, navigating to the calendar, and canceling a booking.
@@ -339,6 +358,34 @@ lastName: string;
 - Errors:
 
 We check if the user already exists (the email address used to register must be unique) in the database. If the user attempts to register via option 1 (above) with an email that already exists in the database, they are served an error message to advise the email already exists. If the user attempts to register using federated sign in, they are logged in and taken to home.
+
+- The users collection contains a list of user documents, with a field for event ids. This is an array of strings.
+
+- The events collection contains a list of event documents, with fields for event details.
+
+### User Events
+
+Users are able to see future and past events that they have signed up for, so that they can have insight into which events they have attended in the past, and their personal future event calendar.
+
+### How To See Future and Past Events
+
+Users can switch between future/active events and past/historic events by clicking on the relevant links at the top left and top right of the page, respectively.
+
+### How to see Event Details
+
+Event Cards become visible when the user clicks on the specific event, as the component is reused across the app.
+
+### Queries
+
+Queries to the Firestore database are made via Firebase Snapshots.
+
+### Event Creation
+
+Users granted admin privileges are now able to create an event, via a simple to use, interactive form.
+
+The form requires all input fields be filled out, and then is sent to the database and uploaded to the Events page.
+
+Users can stipulate the event name, category, date, capacity and description, as well as having the option to upload/add images.
 
 ## About Us
 
