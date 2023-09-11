@@ -15,15 +15,16 @@ import { getEventsForUser } from "../../utils/firebaseSnapshots";
 type CalendarPageProps = {
   eventData: Event[];
   userId: string;
+  isAdmin: boolean;
 };
 
-const CalendarPage = ({ eventData, userId }: CalendarPageProps) => {
+const CalendarPage = ({ eventData, userId, isAdmin }: CalendarPageProps) => {
   const [isActive, setIsActive] = useState(true);
   const [buttonVariants, setButtonVariants] = useState<boolean[]>(
     new Array(eventData.length).fill(false)
   );
 
-  const [userEvents, setUserEvents]= useState<Event[]>([])
+  const [userEvents, setUserEvents] = useState<Event[]>([]);
 
   const handleClick = () => {
     setIsActive(!isActive);
@@ -61,29 +62,31 @@ const CalendarPage = ({ eventData, userId }: CalendarPageProps) => {
     const formattedCurrentDate = format(currentDate, "dd/MM/yyyy");
     return incomingCalendarDate < formattedCurrentDate;
   });
-    
-  useEffect(() => {
-    fetchUserEvents()
-  },// eslint-disable-next-line
-   [])
+
+  useEffect(
+    () => {
+      fetchUserEvents();
+    }, // eslint-disable-next-line
+    []
+  );
 
   const fetchUserEvents = async () => {
-    const userEvents: Event[] = await getEventsForUser(userId)
-    setUserEvents(userEvents) }
+    const userEvents: Event[] = await getEventsForUser(userId);
+    setUserEvents(userEvents);
+  };
 
-const filterActiveUserEvents = userEvents.filter((event) => {
+  const filterActiveUserEvents = userEvents.filter((event) => {
     const currentDate = new Date();
-    return isAfter(event.date, currentDate)
-})
+    return isAfter(event.date, currentDate);
+  });
 
-const filterHistoricUserEvents = userEvents.filter((event) => {
+  const filterHistoricUserEvents = userEvents.filter((event) => {
     const currentDate = new Date();
-    return isBefore(event.date, currentDate)
-})
-
+    return isBefore(event.date, currentDate);
+  });
 
   return (
-    <Layout>
+    <Layout isAdmin={isAdmin}>
       <div className="calendar">
         <Header title="Calendar" subTitle="MADE BY MAKERS STUDIO TOUR" />
         <div className="calendar__buttons">
@@ -165,48 +168,48 @@ const filterHistoricUserEvents = userEvents.filter((event) => {
               );
             })}
           </div>
-          )}
-          <div className="user-events">
-            {!isActive ? (
-             filterHistoricUserEvents.map((event: Event, index: number) => {
-              return (
-                <EventCard 
-                key={event.id}
-                  title={event.name}
-                  maker={event.category}
-                  date={event.date}
-                  textContent={event.description}
-                  galleryArray={event.images}
-                  buttonLabel={
-                    buttonVariants[index] ? "CANCEL BOOKING" : "BOOK A PLACE"
-                  }
-                  buttonVariant={buttonVariants[index]}
-                  handleClick={() => handleClickButton(index)}
-                  capacityCurrent={event.capacityCurrent}
-                  capacityMax={event.capacityMax}
-             />
-             )
-            }))
-            : (
-            filterActiveUserEvents.map((event: Event, index: number) => {
-              return (
-                <EventCard 
-                key={event.id}
-                  title={event.name}
-                  maker={event.category}
-                  date={event.date}
-                  textContent={event.description}
-                  galleryArray={event.images}
-                  buttonLabel={
-                    buttonVariants[index] ? "CANCEL BOOKING" : "BOOK A PLACE"
-                  }
-                  buttonVariant={buttonVariants[index]}
-                  handleClick={() => handleClickButton(index)}
-                  capacityCurrent={event.capacityCurrent}
-                  capacityMax={event.capacityMax}
-             />)}))
-                }
-          </div>
+        )}
+        <div className="user-events">
+          {!isActive
+            ? filterHistoricUserEvents.map((event: Event, index: number) => {
+                return (
+                  <EventCard
+                    key={event.id}
+                    title={event.name}
+                    maker={event.category}
+                    date={event.date}
+                    textContent={event.description}
+                    galleryArray={event.images}
+                    buttonLabel={
+                      buttonVariants[index] ? "CANCEL BOOKING" : "BOOK A PLACE"
+                    }
+                    buttonVariant={buttonVariants[index]}
+                    handleClick={() => handleClickButton(index)}
+                    capacityCurrent={event.capacityCurrent}
+                    capacityMax={event.capacityMax}
+                  />
+                );
+              })
+            : filterActiveUserEvents.map((event: Event, index: number) => {
+                return (
+                  <EventCard
+                    key={event.id}
+                    title={event.name}
+                    maker={event.category}
+                    date={event.date}
+                    textContent={event.description}
+                    galleryArray={event.images}
+                    buttonLabel={
+                      buttonVariants[index] ? "CANCEL BOOKING" : "BOOK A PLACE"
+                    }
+                    buttonVariant={buttonVariants[index]}
+                    handleClick={() => handleClickButton(index)}
+                    capacityCurrent={event.capacityCurrent}
+                    capacityMax={event.capacityMax}
+                  />
+                );
+              })}
+        </div>
       </div>
     </Layout>
   );

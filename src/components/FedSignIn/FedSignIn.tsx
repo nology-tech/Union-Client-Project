@@ -55,8 +55,9 @@ const FedSignIn = ({ setUser }: FedSignInProps) => {
         const lastName = result?.user.displayName?.split(" ")[1];
         const email = result?.user.email;
         const userId = auth?.currentUser?.uid;
+        const isAdmin = false;
 
-        addUser(result, firstName, lastName, email, userId);
+        addUser(result, firstName, lastName, email, userId, isAdmin);
         navigate("/");
       }
     } catch (error) {

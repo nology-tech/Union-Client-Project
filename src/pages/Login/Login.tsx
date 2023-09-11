@@ -20,6 +20,7 @@ const Login = ({ setUser }: LoginProps) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
+
   const handleLogin = async () => {
     try {
       const userData = await signInWithEmailAndPassword(auth, email, password);

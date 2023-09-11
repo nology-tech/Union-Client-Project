@@ -16,12 +16,28 @@ import { getEvents } from "./utils/firebaseSnapshots";
 import { Event } from "./types/types";
 import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 import CreateEvent from "./pages/CreateEvent/CreateEvent";
+import { getUser } from "./utils/firebaseSnapshots";
 
 const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [dbData, setDbData] = useState<Event[]>([]);
   const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [updateData, setUpdateData] = useState<boolean>(true);
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      if (user) {
+        const currentUser = await getUser(user.uid);
+        if (currentUser && currentUser.isAdmin) {
+          setIsAdmin(currentUser.isAdmin);
+        } else {
+          setIsAdmin(false);
+        }
+      }
+    };
+    fetchUserDetails();
+  }, [user, isAdmin]);
 
   const auth = getAuth();
   const navigate = useNavigate();
@@ -65,18 +81,35 @@ const App = () => {
         <Routes>
           {user ? (
             <>
-              <Route path="/" element={<Home />} />
-              <Route path="/events" element={<Events eventData={dbData} />} />
+              <Route path="/" element={<Home isAdmin={isAdmin} />} />
+              <Route
+                path="/events"
+                element={<Events eventData={dbData} isAdmin={isAdmin} />}
+              />
               <Route
                 path="/calendar"
-                element={<CalendarPage userId={user.uid} eventData={dbData} />}
+                element={
+                  <CalendarPage
+                    userId={user.uid}
+                    eventData={dbData}
+                    isAdmin={isAdmin}
+                  />
+                }
               />
-              <Route path="/about" element={<About />} />
-              <Route
-                path="/account"
-                element={<Account user={user} setUser={setUser} />}
-              />
-              <Route path="/admin" element={<Admin />} />
+              <Route path="/about" element={<About isAdmin={isAdmin} />} />
+              {isAdmin ? (
+                <Route
+                  path="/admin"
+                  element={<Admin setUser={setUser} isAdmin={isAdmin} />}
+                />
+              ) : (
+                <Route
+                  path="/account"
+                  element={
+                    <Account setUser={setUser} user={user} isAdmin={isAdmin} />
+                  }
+                />
+              )}
               <Route
                 path="/create-event"
                 element={<CreateEvent handleNewEvent={handleNewEvent} />}

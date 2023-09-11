@@ -4,13 +4,14 @@ import "./Layout.scss";
 
 type LayoutProps = {
   children: ReactNode;
+  isAdmin: boolean;
 };
 
-const Layout = ({ children }: LayoutProps) => {
+const Layout = ({ children, isAdmin }: LayoutProps) => {
   return (
     <div className="layout">
       {children}
-      <Nav />
+      <Nav isAdmin={isAdmin} />
     </div>
   );
 };

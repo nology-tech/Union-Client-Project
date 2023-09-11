@@ -4,9 +4,13 @@ import reading from "../../assets/images/reading.png";
 import Header from "../../components/Header/Header";
 import Layout from "../../components/Layout/Layout";
 
-const About = () => {
+type AboutProps = {
+  isAdmin: boolean;
+};
+
+const About = ({ isAdmin }: AboutProps) => {
   return (
-    <Layout>
+    <Layout isAdmin={isAdmin}>
       <div className="about">
         <Header
           title="Our Story, 30 Years of Breaking The Rules"

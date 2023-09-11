@@ -3,7 +3,7 @@ import About from "./About";
 import { customRender } from "../../utils/testUtils";
 
 it("should render the subheadings", () => {
-  customRender(<About />);
+  customRender(<About isAdmin={false} />);
 
   const subheading1 = screen.getByText(
     "Ripping Up the Rulebook & Starting From Scratch"
@@ -17,7 +17,7 @@ it("should render the subheadings", () => {
 });
 
 it("should render images", () => {
-  customRender(<About />);
+  customRender(<About isAdmin={false} />);
 
   const balletImage = screen.getByAltText("Ballet Image");
   const readingImage = screen.getByAltText("Reading Image");
@@ -27,7 +27,7 @@ it("should render images", () => {
 });
 
 it("should render the video", async () => {
-  customRender(<About />);
+  customRender(<About isAdmin={false} />);
 
   const video = screen.getByTestId("video");
   await waitFor(() => {

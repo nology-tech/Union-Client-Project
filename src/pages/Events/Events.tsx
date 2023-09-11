@@ -12,9 +12,10 @@ import blackCross from "../../assets/images/black-cross.png";
 
 type EventsProps = {
   eventData: Event[];
+  isAdmin: boolean;
 };
 
-const Events = ({ eventData }: EventsProps) => {
+const Events = ({ eventData, isAdmin }: EventsProps) => {
   const [searchEvents, setSearchEvents] = useState<string>("");
   const [buttonVariants, setButtonVariants] = useState<boolean[]>([]);
   const [showPopup, setShowPopup] = useState<boolean>(false);
@@ -71,7 +72,7 @@ const Events = ({ eventData }: EventsProps) => {
   const date = format(today, "EEEE, do MMMM yyyy");
 
   return (
-    <Layout>
+    <Layout isAdmin={isAdmin}>
       <Header
         title="Events"
         subTitle={`MADE MY MAKERS STUDIO TOUR`}

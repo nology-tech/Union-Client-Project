@@ -9,10 +9,11 @@ export type Event = {
   capacityCurrent: number;
 };
 
-export type User = {
+export type UserType = {
+  UUID: string;
+  email: string;
   firstName: string;
   lastName: string;
-  email: string;
-  UUID: string;
+  isAdmin: boolean;
   events: string[];
 };
