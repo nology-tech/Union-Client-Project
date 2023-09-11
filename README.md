@@ -1,4 +1,4 @@
-# Union Client Project - Dot to DOt
+# Union Client Project - Dot to Dot
 
 > Dot to Dot is a community-focused organization dedicated to reconnecting communities with local makers and artisans. The Dot to Dot booking system aims to create inspiring events that showcases talents in the local community.
 
