@@ -9,10 +9,10 @@ import { useNavigate } from "react-router-dom";
 
 type AdminProps = {
   setUser: (user: User | null) => void;
-  user: User;
+  isAdmin: boolean;
 };
 
-const Admin = ({ setUser, user }: AdminProps) => {
+const Admin = ({ setUser, isAdmin }: AdminProps) => {
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
@@ -30,7 +30,7 @@ const Admin = ({ setUser, user }: AdminProps) => {
   };
 
   return (
-    <Layout user={user}>
+    <Layout isAdmin={isAdmin}>
       <Header title={"Admin"} />
       <div className="admin-page">
         <div className="admin-page__content">

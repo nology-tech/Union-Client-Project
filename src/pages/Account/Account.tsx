@@ -12,9 +12,10 @@ import placeHolderPFP from "/src/assets/images/placeHolderPFP.svg";
 type AccountProps = {
   setUser: (user: User | null) => void;
   user: User;
+  isAdmin: boolean;
 };
 
-const Account = ({ setUser, user }: AccountProps) => {
+const Account = ({ setUser, user, isAdmin }: AccountProps) => {
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -55,7 +56,7 @@ const Account = ({ setUser, user }: AccountProps) => {
   };
 
   return (
-    <Layout user={user}>
+    <Layout isAdmin={isAdmin}>
       <Header
         title={`Welcome Back, ${capitalizeFirstCharacter(
           firstName

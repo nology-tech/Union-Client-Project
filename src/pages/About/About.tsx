@@ -3,15 +3,14 @@ import ballet from "../../assets/images/ballet.png";
 import reading from "../../assets/images/reading.png";
 import Header from "../../components/Header/Header";
 import Layout from "../../components/Layout/Layout";
-import { User } from "firebase/auth";
 
 type AboutProps = {
-  user: User;
+  isAdmin: boolean;
 };
 
-const About = ({ user }: AboutProps) => {
+const About = ({ isAdmin }: AboutProps) => {
   return (
-    <Layout user={user}>
+    <Layout isAdmin={isAdmin}>
       <div className="about">
         <Header
           title="Our Story, 30 Years of Breaking The Rules"

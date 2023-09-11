@@ -1,18 +1,17 @@
 import { ReactNode } from "react";
 import Nav from "../Nav/Nav";
 import "./Layout.scss";
-import { User } from "firebase/auth";
 
 type LayoutProps = {
   children: ReactNode;
-  user: User;
+  isAdmin: boolean;
 };
 
-const Layout = ({ children, user }: LayoutProps) => {
+const Layout = ({ children, isAdmin }: LayoutProps) => {
   return (
     <div className="layout">
       {children}
-      <Nav user={user} />
+      <Nav isAdmin={isAdmin} />
     </div>
   );
 };

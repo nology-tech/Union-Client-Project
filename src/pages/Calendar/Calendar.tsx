@@ -11,15 +11,14 @@ import { format, isAfter, isBefore } from "date-fns";
 import EventCard from "../../components/EventCard/EventCard";
 import { Event } from "../../types/types";
 import { getEventsForUser } from "../../utils/firebaseSnapshots";
-import { User } from "firebase/auth";
 
 type CalendarPageProps = {
   eventData: Event[];
   userId: string;
-  user: User;
+  isAdmin: boolean;
 };
 
-const CalendarPage = ({ eventData, userId, user }: CalendarPageProps) => {
+const CalendarPage = ({ eventData, userId, isAdmin }: CalendarPageProps) => {
   const [isActive, setIsActive] = useState(true);
   const [buttonVariants, setButtonVariants] = useState<boolean[]>(
     new Array(eventData.length).fill(false)
@@ -87,7 +86,7 @@ const CalendarPage = ({ eventData, userId, user }: CalendarPageProps) => {
   });
 
   return (
-    <Layout user={user}>
+    <Layout isAdmin={isAdmin}>
       <div className="calendar">
         <Header title="Calendar" subTitle="MADE BY MAKERS STUDIO TOUR" />
         <div className="calendar__buttons">

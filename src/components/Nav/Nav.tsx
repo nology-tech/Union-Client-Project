@@ -6,35 +6,12 @@ import calendar from "../../assets/icons/calendar.svg";
 import about from "../../assets/icons/about.svg";
 import account from "../../assets/icons/account.svg";
 import admin from "../../assets/icons/admin.svg";
-import { getUser } from "../../utils/firebaseSnapshots";
-import { useState, useEffect } from "react";
-import { User } from "firebase/auth";
 
 type NavProps = {
-  user: User;
+  isAdmin: boolean;
 };
 
-const Nav = ({ user }: NavProps) => {
-  const [isAdmin, setIsAdmin] = useState<boolean>(false);
-
-  useEffect(() => {
-    console.log("is running");
-
-    const fetchUserDetails = async () => {
-      if (user) {
-        const currentUser = await getUser(user.uid);
-        console.log(currentUser);
-
-        if (currentUser && currentUser.isAdmin) {
-          setIsAdmin(currentUser.isAdmin);
-        } else {
-          setIsAdmin(false);
-        }
-      }
-    };
-    fetchUserDetails();
-  }, []);
-
+const Nav = ({ isAdmin }: NavProps) => {
   return (
     <>
       <nav className="nav">

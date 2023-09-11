@@ -4,7 +4,7 @@ import Home from "./Home";
 import { customRender } from "../../utils/testUtils";
 
 it("should render the heading", () => {
-  customRender(<Home />);
+  customRender(<Home isAdmin={false} />);
 
   const heading = screen.getByRole("heading", {
     name: /If this is your first Made by makers for the people, welcome!/i,
@@ -14,7 +14,7 @@ it("should render the heading", () => {
 });
 
 it("should render the welcome message", () => {
-  customRender(<Home />);
+  customRender(<Home isAdmin={false} />);
 
   const welcome = screen.getByText(
     "If this is your first Made by makers for the people, welcome!"
@@ -24,7 +24,7 @@ it("should render the welcome message", () => {
 });
 
 it("should render the content", () => {
-  customRender(<Home />);
+  customRender(<Home isAdmin={false} />);
 
   const content = screen.getByText(
     "Learn more about the history of pottery and how ceramics can be used as a building material for small clay bricks. Using the tools you learned from the workshop you will make a few pieces."

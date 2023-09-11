@@ -16,15 +16,31 @@ import { getEvents } from "./utils/firebaseSnapshots";
 import { Event } from "./types/types";
 import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 import CreateEvent from "./pages/CreateEvent/CreateEvent";
-import { getUsers } from "./utils/firebaseSnapshots";
-import { UserType } from "../src/types/types";
+import { getUser } from "./utils/firebaseSnapshots";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [dbData, setDbData] = useState<Event[]>([]);
   const [user, setUser] = useState<User | null>(null);
-  const [users, setUsers] = useState<UserType[]>([]);
   const [updateData, setUpdateData] = useState<boolean>(true);
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      if (user) {
+        const currentUser = await getUser(user.uid);
+        console.log(currentUser);
+
+        if (currentUser && currentUser.isAdmin) {
+          setIsAdmin(currentUser.isAdmin);
+          console.log(isAdmin);
+        } else {
+          setIsAdmin(false);
+        }
+      }
+    };
+    fetchUserDetails();
+  }, [user]);
 
   const auth = getAuth();
   const navigate = useNavigate();
@@ -60,20 +76,6 @@ const App = () => {
     []
   );
 
-  const getCurrentUid = auth.currentUser?.uid;
-  const filteredUsers = users.filter((user) => user.UUID === getCurrentUid);
-  const isAdmin = filteredUsers.length > 0 && filteredUsers[0].isAdmin;
-  // console.log(user);
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const usersData = await getUsers();
-      setUsers(usersData as UserType[]);
-    };
-
-    fetchUsers();
-  }, []);
-
   return (
     <>
       {isLoading === true ? (
@@ -82,10 +84,10 @@ const App = () => {
         <Routes>
           {user ? (
             <>
-              <Route path="/" element={<Home user={user} />} />
+              <Route path="/" element={<Home isAdmin={isAdmin} />} />
               <Route
                 path="/events"
-                element={<Events eventData={dbData} user={user} />}
+                element={<Events eventData={dbData} isAdmin={isAdmin} />}
               />
               <Route
                 path="/calendar"
@@ -93,20 +95,22 @@ const App = () => {
                   <CalendarPage
                     userId={user.uid}
                     eventData={dbData}
-                    user={user}
+                    isAdmin={isAdmin}
                   />
                 }
               />
-              <Route path="/about" element={<About user={user} />} />
+              <Route path="/about" element={<About isAdmin={isAdmin} />} />
               {isAdmin ? (
                 <Route
                   path="/admin"
-                  element={<Admin setUser={setUser} user={user} />}
+                  element={<Admin setUser={setUser} isAdmin={isAdmin} />}
                 />
               ) : (
                 <Route
                   path="/account"
-                  element={<Account setUser={setUser} user={user} />}
+                  element={
+                    <Account setUser={setUser} user={user} isAdmin={isAdmin} />
+                  }
                 />
               )}
               <Route
