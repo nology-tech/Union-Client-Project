@@ -194,9 +194,13 @@ type RegisterProps = {
 - **Error Message**: When a user lands on a non-existent route or page, they are presented with an error message indicating that the requested content could not be found.
 - **Return to Home Button**: To enhance user navigation and convenience, a button is provided on the 404 Not Found Page. When clicked, this button redirects the user back to the home page.
 
-### Admin
+### Admin Page
 
-- Describe the Admin page if applicable.
+- We have created an admin page that allows the admin assigned user to perform certain actions.
+- The page itself features 2 buttons, "Add Event" and "Sign Out"; the add event button allows the admin user to go to a specific page where they can input relevant event information which is then pushed to the main database.
+- The sign out button would simply allows the user to securely sign out.
+- The user must be an administrator to view this page. There is functionality added to the nav bar component and the app.tsx routes that allow conditional rendering according to the current user being an admin or not.
+- The current user has to be set as an admin on the firebase database manually, as default all users are set to not being an administrator.
 
 ## Components
 
