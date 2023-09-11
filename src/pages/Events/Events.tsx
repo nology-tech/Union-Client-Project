@@ -2,7 +2,7 @@ import "./Events.scss";
 import Header from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { ChangeEvent, useState } from "react";
-import { isAfter, format } from "date-fns";
+import { isAfter, format, compareAsc } from "date-fns";
 import { Event } from "../../types/types";
 import EventCard from "../../components/EventCard/EventCard";
 import Layout from "../../components/Layout/Layout";
@@ -30,6 +30,8 @@ const Events = ({ eventData }: EventsProps) => {
     const currentDate = new Date();
     return isAfter(event.date, currentDate);
   });
+
+  filterByDate.sort((a, b) => compareAsc(a.date, b.date));
 
   const filteredSearch = filterByDate.filter(
     (event: { name: string; category: string; description: string }) => {
