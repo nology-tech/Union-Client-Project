@@ -32,13 +32,13 @@
 
   &__image {
     top: 34vh;
-    left: 30px;
     z-index: 2;
     position: absolute;
     height: 25vh;
-    width: 80vw;
+    width: 350px;
     object-fit: cover;
     border-radius: 20px;
+    margin: 0 calc((100vw - 350px) / 2);
   }
 
   &__image-positioning {
@@ -133,11 +133,9 @@
   .header {
     &__video {
       top: 44vh;
-      left: 3vw;
     }
     &__image {
       top: 43vh;
-      left: 30px;
     }
 
     &__video-container {
@@ -155,11 +153,9 @@
   .header {
     &__video {
       top: 38vh;
-      left: 1vw;
     }
     &__image {
       top: 40vh;
-      left: 30px;
     }
     &__video-container {
       &--upper-half {
@@ -167,6 +163,40 @@
       }
       &--lower-half {
         height: 20vh;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .header {
+    &__image {
+      height: 35vh;
+      width: 700px;
+      margin: 0 calc((100vw - 700px) / 2);
+    }
+    &__image-container {
+      &--upper-half {
+        height: 15vh;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .header {
+    &__video {
+      top: 30vh;
+    }
+    &__image {
+      height: 35vh;
+      width: 900px;
+      margin: 0 calc((100vw - 900px) / 2);
+    }
+
+    &__image-container {
+      &--upper-half {
+        height: 18vh;
       }
     }
   }
