@@ -2,22 +2,24 @@
 
 ## Table of Contents
 
-1. [Quickstart](#quickstart)
-2. [File Structure](#file-structure)
-3. [Testing](#testing)
-4. [Code Quality](#code-quality)
-5. [Pages](#pages)
+1. [Project Into](#project-intro)
+2. [Useful Link](#useful-links)
+3. [Quickstart](#quickstart)
+4. [File Structure](#file-structure)
+5. [Testing](#testing)
+6. [Code Quality](#code-quality)
+7. [Pages](#pages)
    - [Home](#home)
    - [Events](#events)
    - [Calendar](#calendar)
    - [About](#about)
-   - [Account](#account)
+   - [Account][def]
    - [Splash](#splash)
    - [Login](#login)
    - [Register](#register)
    - [Error](#error)
    - [Admin](#admin)
-6. [Components](#components)
+8. [Components](#components)
    - [Button](#button)
    - [EventCard](#eventcard)
    - [FederatedSignIn](#fedsignin)
@@ -30,7 +32,7 @@
    - [Nav](#nav)
    - [SearchBar](#searchbar)
    - [Events Booking Popup Window](#events-booking-popup-window)
-7. [Dev Tools](#dev-tools)
+9. [Dev Tools](#dev-tools)
 
    - [Mock Data](#mock-data)
    - [SnapShot FireBase](#snapshot-firebase)
@@ -44,7 +46,17 @@
    - [Queries](#queries)
    - [Event Creation](#event-creation)
 
-8. [About Us](#about-us)
+10. [About Us](#about-us)
+
+## Project Intro
+
+- Dot to Dot is a community-focused organization dedicated to reconnecting communities with local makers and artisans. The Dot to Dot booking system aims to create inspiring events that showcases talents in the local community. Through a specialised log-in system, this allows users to have a personalised experience, to track bookings whilst also allowing artist to create their own unique events with the help of an additional admin page.
+
+## Useful Links
+
+- Live site - https://union-client-project.web.app/splash
+- Trello - https://trello.com/b/sbk9bjjC/union-dot-to-dot
+- Figma - https://www.figma.com/file/qQW5RX4O4crZ2uBmt7japR/Client-Project---Event?node-id=330%3A665&mode=dev
 
 ## Quickstart
 
@@ -394,3 +406,5 @@ Users can stipulate the event name, category, date, capacity and description, as
 ## About Us
 
 - This project has been crafted by a dedicated group of junior developers currently undergoing one of \_nology's comprehensive training courses to become full-stack developers. We embarked on this journey to expand our skills and gain hands-on experience in building real-world applications. We understand that learning is an ongoing process, and we wholeheartedly welcome any feedback, suggestions, or constructive criticism on this project. Your insights are invaluable to us as they not only enhance the quality of this project but also contribute to our growth as developers. Feel free to share your thoughts and ideas with us, and together, we can continue our journey of improvement and learning
+
+[def]: #account
