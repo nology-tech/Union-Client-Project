@@ -23,6 +23,7 @@ const Account = ({ setUser, user }: AccountProps) => {
   useEffect(() => {
     const fetchDisplayName = async () => {
       const currentUser = await getUser(user.uid);
+      // console.log(currentUser);
 
       if (currentUser) {
         const firstName = currentUser.firstName;

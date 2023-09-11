@@ -15,19 +15,20 @@ type NavProps = {
 };
 
 const Nav = ({ user }: NavProps) => {
-  const [isAdmin, setIsAdmin] = useState<boolean>();
+  const [isAdmin, setIsAdmin] = useState<boolean>(true);
 
-  useEffect(() => {
-    const fetchDisplayName = async () => {
-      console.log(user);
-
-      const currentUser = await getUser(user.uid);
-      console.log(currentUser);
-
-      return currentUser;
-    };
-    fetchDisplayName();
-  }, [user]);
+  // useEffect(() => {
+  //   const fetchDisplayName = async () => {
+  //     const currentUser = await getUser(user);
+  //     console.log(currentUser);
+  //     if (currentUser) {
+  //       if (currentUser.isAdmin === true) {
+  //         setIsAdmin(true);
+  //       }
+  //     }
+  //   };
+  //   fetchDisplayName();
+  // }, []);
 
   // useEffect(() => {
   //   const fetchIsAdmin = async () => {

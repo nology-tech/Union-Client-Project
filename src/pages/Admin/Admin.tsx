@@ -9,9 +9,10 @@ import { useNavigate } from "react-router-dom";
 
 type AdminProps = {
   setUser: (user: User | null) => void;
+  user: User;
 };
 
-const Admin = ({ setUser }: AdminProps) => {
+const Admin = ({ setUser, user }: AdminProps) => {
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
