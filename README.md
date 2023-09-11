@@ -2,7 +2,7 @@
 
 ## Table of Contents
 
-1. [Project Into](#project-intro)
+1. [Project Intro](#project-intro)
 2. [Useful Link](#useful-links)
 3. [Quickstart](#quickstart)
 4. [File Structure](#file-structure)
