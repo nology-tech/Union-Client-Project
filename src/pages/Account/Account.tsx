@@ -24,8 +24,6 @@ const Account = ({ setUser, user, isAdmin }: AccountProps) => {
   useEffect(() => {
     const fetchDisplayName = async () => {
       const currentUser = await getUser(user.uid);
-      // console.log(currentUser);
-
       if (currentUser) {
         const firstName = currentUser.firstName;
         const lastName = currentUser.lastName;
