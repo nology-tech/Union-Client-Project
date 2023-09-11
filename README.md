@@ -44,7 +44,14 @@
    - [Queries](#queries)
    - [Event Creation](#event-creation)
 
-8. [About Us](#about-us)
+8. [Current Issues](#current-issues)
+
+   - [Calendar Mobile](#calendar-mobile)
+   - [Federated Sign in redirect](#federated-sign-in-redirect)
+   - [Admin Access](#admin-access)
+   - [Booking Places on Events](#booking-places-on-events)
+
+9. [About Us](#about-us)
 
 ## Quickstart
 
@@ -390,6 +397,24 @@ Users granted admin privileges are now able to create an event, via a simple to 
 The form requires all input fields be filled out, and then is sent to the database and uploaded to the Events page.
 
 Users can stipulate the event name, category, date, capacity and description, as well as having the option to upload/add images.
+
+## Current Issues
+
+### Calendar Mobile
+
+- We are aware of issues surrounding the use of the calendar page on mobile devices. Currently there is no fix for this this issue and it is confined to specific mobile devices rather than all.
+
+### Federated Sign in redirect
+
+- Once redirected to sign in with Google, the app reloads. We then have a user meaning the /login and /register page the user was just on do not exist, thus giving them an error screen. We have implemented a temporary fix to this by allowing /login and /register to be accessible regardless of user status however this is not permanent.
+
+### Admin Access
+
+- Admin Access is currently in development, certain features merged into main are currently accessed directly via routes rather than in app.
+
+### Booking Places on Events
+
+- Currently no Link exists in the code between the booking process seen on screen and the current capacity of the event in the database. Meaning that whilst there is user feedback to say they have booked this functionality does not exist on the current version.
 
 ## About Us
 
