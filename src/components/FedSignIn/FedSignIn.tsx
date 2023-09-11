@@ -57,7 +57,7 @@ const FedSignIn = ({ setUser }: FedSignInProps) => {
         const userId = auth?.currentUser?.uid;
 
         addUser(result, firstName, lastName, email, userId);
-        navigate("/home");
+        navigate("/");
       }
     } catch (error) {
       console.error;

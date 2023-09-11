@@ -2,15 +2,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
 
 .splash-page {
+  max-height: 90vh;
+
   &__image-container {
     width: 100%;
     display: flex;
     justify-content: center;
-    padding-top: 2.5rem;
+    padding-top: 3vh;
   }
 
   &__image {
-    width: 23rem;
+    max-height: 34vh;
   }
 
   .bold {

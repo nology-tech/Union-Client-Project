@@ -80,12 +80,9 @@
     padding-top: 3rem;
   }
 
-  &__email-exists {
+  &__firebase-error {
     color: $color-red;
     text-align: center;
-    position: fixed;
-    left: 0;
     width: 100%;
-    z-index: 1;
   }
 }
