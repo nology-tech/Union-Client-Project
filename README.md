@@ -1,3 +1,17 @@
+# Dot to Dot - Proof of Concept
+
+## Contributors
+Chu Lam - https://github.com/Koji47</br> 
+Daniela Gutperl - https://github.com/ElaM8</br>
+Jugraj Singh - https://github.com/akajugz</br>
+Luca Gilardenghi - https://github.com/churlish404</br>
+Luke Welbourn - https://github.com/luke-welbourn</br>
+Max Swaine - https://github.com/maxswaine</br>
+Nick Phelan - https://github.com/nmWolfe</br>
+Nicole Denheim - https://github.com/NDenheim</br>
+Szabolcs Sziklai - https://github.com/sabifromtherock</br>
+Tufiale Chowdhury - https://github.com/Tufiale</br>
+
 ## Quickstart
 
 1. Install the dependencies with `npm install`
