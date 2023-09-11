@@ -2,11 +2,13 @@
 
 ## Table of Contents
 
-1. [Quickstart](#quickstart)
-2. [File Structure](#file-structure)
-3. [Testing](#testing)
-4. [Code Quality](#code-quality)
-5. [Pages](#pages)
+1. [Project Intro](#project-intro)
+2. [Useful Link](#useful-links)
+3. [Quickstart](#quickstart)
+4. [File Structure](#file-structure)
+5. [Testing](#testing)
+6. [Code Quality](#code-quality)
+7. [Pages](#pages)
    - [Home](#home)
    - [Events](#events)
    - [Calendar](#calendar)
@@ -17,7 +19,7 @@
    - [Register](#register)
    - [Error](#error)
    - [Admin](#admin)
-6. [Components](#components)
+8. [Components](#components)
    - [Button](#button)
    - [EventCard](#eventcard)
    - [FederatedSignIn](#fedsignin)
@@ -30,8 +32,7 @@
    - [Nav](#nav)
    - [SearchBar](#searchbar)
    - [Events Booking Popup Window](#events-booking-popup-window)
-7. [Dev Tools](#dev-tools)
-
+9. [Dev Tools](#dev-tools)
    - [Mock Data](#mock-data)
    - [SnapShot FireBase](#snapshot-firebase)
    - [FirebaseSnapshots](#firebasesnapshots)
@@ -43,15 +44,22 @@
    - [How to see Event Details](#how-to-see-event-details)
    - [Queries](#queries)
    - [Event Creation](#event-creation)
+10. [Current Issues](#current-issues)
+    - [Calendar Mobile](#calendar-mobile)
+    - [Federated Sign in redirect](#federated-sign-in-redirect)
+    - [Admin Access](#admin-access)
+    - [Booking Places on Events](#booking-places-on-events)
+11. [About Us](#about-us)
 
-8. [Current Issues](#current-issues)
+## Project Intro
 
-   - [Calendar Mobile](#calendar-mobile)
-   - [Federated Sign in redirect](#federated-sign-in-redirect)
-   - [Admin Access](#admin-access)
-   - [Booking Places on Events](#booking-places-on-events)
+- Dot to Dot is a community-focused organization dedicated to reconnecting communities with local makers and artisans. The Dot to Dot booking system aims to create inspiring events that showcases talents in the local community. Through a specialised log-in system, this allows users to have a personalised experience, to track bookings whilst also allowing artist to create their own unique events with the help of an additional admin page. This project was completed over two weeks following the principles of Agile Methodology by incorporating small iterative sprints, daily-standups and demos. Using pair-programming, the application was curated and improved dynamically over the duration of the project.
 
-9. [About Us](#about-us)
+## Useful Links
+
+- [Live site](https://union-client-project.web.app/splash)
+- [Trello](https://trello.com/b/sbk9bjjC/union-dot-to-dot)
+- [Figma](https://www.figma.com/file/qQW5RX4O4crZ2uBmt7japR/Client-Project---Event?node-id=330%3A665&mode=dev)
 
 ## Quickstart
 
