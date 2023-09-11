@@ -40,7 +40,7 @@ const App = () => {
       }
     };
     fetchUserDetails();
-  }, [user]);
+  }, [user, isAdmin]);
 
   const auth = getAuth();
   const navigate = useNavigate();
