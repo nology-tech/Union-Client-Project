@@ -29,11 +29,8 @@ const App = () => {
     const fetchUserDetails = async () => {
       if (user) {
         const currentUser = await getUser(user.uid);
-        console.log(currentUser);
-
         if (currentUser && currentUser.isAdmin) {
           setIsAdmin(currentUser.isAdmin);
-          console.log(isAdmin);
         } else {
           setIsAdmin(false);
         }
