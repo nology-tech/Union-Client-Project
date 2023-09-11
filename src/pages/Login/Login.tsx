@@ -1,7 +1,7 @@
 import "./Login.scss";
 import InputBox from "../../components/InputBox/InputBox";
 import Button from "../../components/Button/Button";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { User, signInWithEmailAndPassword } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
 import { auth } from "../../firebase";
 import { ChangeEvent } from "react";
@@ -11,7 +11,7 @@ import { useState } from "react";
 import FedSignIn from "../../components/FedSignIn/FedSignIn";
 
 type LoginProps = {
-  setUser: (userId: object) => void;
+  setUser: (user: User) => void;
 };
 
 const Login = ({ setUser }: LoginProps) => {

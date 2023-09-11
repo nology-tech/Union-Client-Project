@@ -20,7 +20,7 @@ const mockData: Event = {
 };
 
 it("should render the 'active' and 'historic' buttons ", () => {
-  customRender(<CalendarPage eventData={[mockData]} />);
+  customRender(<CalendarPage userId={"KmgYsz4Lw3fCXFzYsVgTWnVaBnl1"}eventData={[mockData]} />);
 
   const activeButton = screen.getByText("Active");
   const historicButton = screen.getByText("Historic");

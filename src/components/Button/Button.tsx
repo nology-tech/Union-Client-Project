@@ -12,7 +12,7 @@ const Button = ({ label, style, onClick, variant }: ButtonProps) => {
   return (
     <div className="button--container">
       <button
-        className={`button button--${variant}`}
+        className={variant ? `button button--${variant}` : "button"}
         style={style}
         onClick={onClick}
       >
