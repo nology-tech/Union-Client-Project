@@ -1,88 +1,67 @@
-# Union Client Project
+# Union Client Project - Dot to Dot
+
+> Dot to Dot is a community-focused organization dedicated to reconnecting communities with local makers and artisans. The Dot to Dot booking system aims to create inspiring events that showcases talents in the local community.
+
+Through a specialised log-in system, this allows users to have a personalised experience, to track bookings whilst also allowing artist to create their own unique events with the help of an additional admin page.
+
+This project was completed over two weeks following the principles of Agile Methodology by incorporating small iterative sprints, daily-standups and demos. Using pair-programming, the application was curated and improved dynamically over the duration of the project.
 
 ## Table of Contents
 
-1. [Project Intro](#project-intro)
-2. [Useful Link](#useful-links)
-3. [Quickstart](#quickstart)
-4. [File Structure](#file-structure)
-5. [Testing](#testing)
-6. [Code Quality](#code-quality)
-7. [Pages](#pages)
-   - [Home](#home)
-   - [Events](#events)
-   - [Calendar](#calendar)
-   - [About](#about)
-   - [Account](#account)
-   - [Splash](#splash)
-   - [Login](#login)
-   - [Register](#register)
-   - [Error](#error)
-   - [Admin](#admin)
-8. [Components](#components)
-   - [Button](#button)
-   - [EventCard](#eventcard)
-   - [FederatedSignIn](#fedsignin)
-   - [Form](#form)
-   - [Gallery](#gallery)
-   - [Header](#header)
-   - [InputBox](#inputbox)
-   - [Layout](#layout)
-   - [LoadingSpinner](#loadingspinner)
-   - [Nav](#nav)
-   - [SearchBar](#searchbar)
-   - [Events Booking Popup Window](#events-booking-popup-window)
-9. [Dev Tools](#dev-tools)
-   - [Mock Data](#mock-data)
-   - [SnapShot FireBase](#snapshot-firebase)
-   - [FirebaseSnapshots](#firebasesnapshots)
-   - [Firebase Auth persistence](#firebase-auth-persistence)
-   - [How to Create New Users](#how-to-create-new-users)
-   - [Data Structure](#data-structure)
-   - [User Events](#user-events)
-   - [How To See Future and Past Events](#how-to-see-future-and-past-events)
-   - [How to see Event Details](#how-to-see-event-details)
-   - [Queries](#queries)
-   - [Event Creation](#event-creation)
-10. [Current Issues](#current-issues)
-    - [Calendar Mobile](#calendar-mobile)
-    - [Federated Sign in redirect](#federated-sign-in-redirect)
-    - [Admin Access](#admin-access)
-    - [Booking Places on Events](#booking-places-on-events)
-11. [About Us](#about-us)
+- [Resources](#resources)
+- [Pages](#pages)
+- [Components](#components)
+- [Dev Tools](#dev-tools)
+- [Current Issues](#current-issues)
+- [About Us](#about-us)
+- [Contributors](#contributors)
 
-## Project Intro
+---
 
-- Dot to Dot is a community-focused organization dedicated to reconnecting communities with local makers and artisans. The Dot to Dot booking system aims to create inspiring events that showcases talents in the local community. Through a specialised log-in system, this allows users to have a personalised experience, to track bookings whilst also allowing artist to create their own unique events with the help of an additional admin page. This project was completed over two weeks following the principles of Agile Methodology by incorporating small iterative sprints, daily-standups and demos. Using pair-programming, the application was curated and improved dynamically over the duration of the project.
+## Resources
 
-## Useful Links
+### Useful Links
 
-- [Live site](https://union-client-project.web.app/splash)
-- [Trello](https://trello.com/b/sbk9bjjC/union-dot-to-dot)
-- [Figma](https://www.figma.com/file/qQW5RX4O4crZ2uBmt7japR/Client-Project---Event?node-id=330%3A665&mode=dev)
+- [Live site - Hosted by Firebase](https://union-client-project.web.app/splash)
+- [KanBan Board - Trello](https://trello.com/b/sbk9bjjC/union-dot-to-dot)
+- [UI Wire-frame - Figma](https://www.figma.com/file/qQW5RX4O4crZ2uBmt7japR/Client-Project---Event?node-id=330%3A665&mode=dev)
 
-## Quickstart
+### Quick-start
 
-1. Install the dependencies with `npm install`.
-2. Run the application with `npm run dev`.
+1. Clone the repository `git clone project-url`.
+2. Install the dependencies with `npm install`.
+3. Run the application with `npm run dev`.
 
-## File Structure 🗂️
+### File Structure 🗂️
 
 - Components: Contains all generic components that are shared across pages. They should be generic and reusable, and testable in isolation.
 - Pages: Contains our different application views. Generally, any requests should be activated here so that any children components don't have to. For example, if we have a 'User Details' view, we should dispatch our network requests for user information from here.
 - Styles: Consists of global style files that should be made available across our application.
 
-## Testing ⚗️
+### Testing ⚗️
 
 - This project utilizes Vitest with React Testing Library (RTL).
 - All component folders will have an associated test file within the same folder. Each component is tested independently (unit testing) to ensure they work in isolation and aren't affected by external factors(such as other components).
 - Any test that would use the 'render' function from RTL, use the 'customRender' function from testUtils.js. This adds routing by default so we can easily test components that include route/link logic. An example can be seen in `src/pages/Home`.
 
-## Code Quality 🌟
+### Code Quality 🌟
 
 - This project uses Prettier and ESLint to increase code readability and consistency.
 
+---
+
 ## Pages
+
+- [Home](#home)
+- [Events](#events)
+- [Calendar](#calendar)
+- [About](#about)
+- [Account](#account)
+- [Splash](#splash)
+- [Login](#login)
+- [Register](#register)
+- [Error](#error)
+- [Admin Page](#admin-page)
 
 ### Home
 
@@ -217,7 +196,15 @@ type RegisterProps = {
 - The user must be an administrator to view this page. There is functionality added to the nav bar component and the app.tsx routes that allow conditional rendering according to the current user being an admin or not.
 - The current user has to be set as an admin on the firebase database manually, as default all users are set to not being an administrator.
 
+---
+
 ## Components
+
+- [Button](#button)
+- [Federated Sign In](#federated-sign-in)
+- [Nav](#nav)
+- [Header](#header)
+- [Events Booking Popup Window](#events-booking-popup-window)
 
 ### Button
 
@@ -309,7 +296,21 @@ This popup window provides three main actions: closing the popup, navigating to 
 - **Viewing the Calendar** : If you wish to view the calendar or manage your bookings, you can do so by clicking the "VIEW CALENDAR" button.
 - **Canceling a Booking** : To cancel a booking that you've previously made, you can click on the "CANCEL BOOKING" button.
 
+---
+
 ## Dev Tools
+
+- [Mock Data](#mock-data)
+- [SnapShot FireBase](#snapshot-firebase)
+- [FirebaseSnapshots](#firebasesnapshots)
+- [Firebase Auth persistence](#firebase-auth-persistence)
+- [How to Create New Users](#how-to-create-new-users)
+- [Data Structure](#data-structure)
+- [User Events](#user-events)
+- [How To See Future and Past Events](#how-to-see-future-and-past-events)
+- [How to see Event Details](#how-to-see-event-details)
+- [Queries](#queries)
+- [Event Creation](#event-creation)
 
 ### Mock Data
 
@@ -406,6 +407,8 @@ The form requires all input fields be filled out, and then is sent to the databa
 
 Users can stipulate the event name, category, date, capacity and description, as well as having the option to upload/add images.
 
+---
+
 ## Current Issues
 
 ### Calendar Mobile
@@ -427,3 +430,23 @@ Users can stipulate the event name, category, date, capacity and description, as
 ## About Us
 
 - This project has been crafted by a dedicated group of junior developers currently undergoing one of \_nology's comprehensive training courses to become full-stack developers. We embarked on this journey to expand our skills and gain hands-on experience in building real-world applications. We understand that learning is an ongoing process, and we wholeheartedly welcome any feedback, suggestions, or constructive criticism on this project. Your insights are invaluable to us as they not only enhance the quality of this project but also contribute to our growth as developers. Feel free to share your thoughts and ideas with us, and together, we can continue our journey of improvement and learning
+
+### Contributors
+
+\_nologists
+
+- [Chu Lam](https://github.com/Koji47)</br>
+- [Daniela Gutperl](https://github.com/ElaM8)</br>
+- [Jugraj Sing](https://github.com/akajugz)</br>
+- [Luca Gilardenghi](https://github.com/churlish404)</br>
+- [Luke Welbourn](https://github.com/luke-welbourn)</br>
+- [Max Swaine](https://github.com/maxswaine)</br>
+- [Nick Phelan](https://github.com/nmWolfe)</br>
+- [Nicole Denheim](https://github.com/NDenheim)</br>
+- [Szabolcs Sziklai](https://github.com/sabifromtherock)</br>
+- [Tufiale Chowdhury](https://github.com/Tufiale)</br>
+
+Coaches
+
+- [Charlie Richardson](https://github.com/Charlie-robin)
+- [Ollie Robins](https://github.com/olirob93)

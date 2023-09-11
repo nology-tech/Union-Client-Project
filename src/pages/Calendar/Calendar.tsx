@@ -208,6 +208,7 @@ const filterHistoricUserEvents = userEvents.filter((event) => {
                 }
           </div>
       </div>
+    
     </Layout>
   );
 };
