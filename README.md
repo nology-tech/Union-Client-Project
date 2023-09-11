@@ -1,16 +1,62 @@
-# Dot to Dot - Proof of Concept
+# Union Client Project
+
+## Table of Contents
+
+1. [Contributors](#contributors)
+2. [Quickstart](#quickstart)
+3. [File Structure](#file-structure)
+4. [Testing](#testing)
+5. [Code Quality](#code-quality)
+6. [Pages](#pages)
+   - [Home](#home)
+   - [Events](#events)
+   - [Calendar](#calendar)
+   - [About](#about)
+   - [Account](#account)
+   - [Splash](#splash)
+   - [Login](#login)
+   - [Register](#register)
+   - [Error](#error)
+   - [Admin](#admin)
+7. [Components](#components)
+   - [Button](#button)
+   - [EventCard](#eventcard)
+   - [FederatedSignIn](#fedsignin)
+   - [Form](#form)
+   - [Gallery](#gallery)
+   - [Header](#header)
+   - [InputBox](#inputbox)
+   - [Layout](#layout)
+   - [LoadingSpinner](#loadingspinner)
+   - [Nav](#nav)
+   - [SearchBar](#searchbar)
+   - [Events Booking Popup Window](#events-booking-popup-window)
+8. [Dev Tools](#dev-tools)
+   - [Mock Data](#mock-data)
+   - [SnapShot FireBase](#snapshot-firebase)
+   - [FirebaseSnapshots](#firebasesnapshots)
+   - [Firebase Auth persistence](#firebase-auth-persistence)
+   - [How to Create New Users](#how-to-create-new-users)
+   - [Data Structure](#data-structure)
+   - [User Events](#user-events)
+   - [How To See Future and Past Events](#how-to-see-future-and-past-events)
+   - [How to see Event Details](#how-to-see-event-details)
+   - [Queries](#queries)
+   - [Event Creation](#event-creation)
+9. [About Us](#about-us)
 
 ## Contributors
-Chu Lam - https://github.com/Koji47</br> 
-Daniela Gutperl - https://github.com/ElaM8</br>
-Jugraj Singh - https://github.com/akajugz</br>
-Luca Gilardenghi - https://github.com/churlish404</br>
-Luke Welbourn - https://github.com/luke-welbourn</br>
-Max Swaine - https://github.com/maxswaine</br>
-Nick Phelan - https://github.com/nmWolfe</br>
-Nicole Denheim - https://github.com/NDenheim</br>
-Szabolcs Sziklai - https://github.com/sabifromtherock</br>
-Tufiale Chowdhury - https://github.com/Tufiale</br>
+
+[Chu Lam](https://github.com/Koji47)</br> 
+[Daniela Gutperl](https://github.com/ElaM8)</br>
+[Jugraj Sing](https://github.com/akajugz)</br>
+[Luca Gilardenghi](https://github.com/churlish404)</br>
+[Luke Welbourn](https://github.com/luke-welbourn)</br>
+[Max Swaine](https://github.com/maxswaine)</br>
+[Nick Phelan](https://github.com/nmWolfe)</br>
+[Nicole Denheim](https://github.com/NDenheim)</br>
+[Szabolcs Sziklai](https://github.com/sabifromtherock)</br>
+[Tufiale Chowdhury](https://github.com/Tufiale)</br>
 
 ## Quickstart
 
