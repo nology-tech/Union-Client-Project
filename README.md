@@ -1,60 +1,4 @@
-# Union Client Project
-
-## Table of Contents
-
-- [Union Client Project](#union-client-project)
-  - [Table of Contents](#table-of-contents)
-  - [Project Intro](#project-intro)
-    - [Useful Links](#useful-links)
-  - [Quick-start](#quick-start)
-  - [File Structure 🗂️](#file-structure-️)
-  - [Testing ⚗️](#testing-️)
-  - [Code Quality 🌟](#code-quality-)
-  - [Pages](#pages)
-    - [Home](#home)
-    - [Events](#events)
-    - [Calendar](#calendar)
-    - [About](#about)
-    - [Account](#account)
-    - [Splash](#splash)
-    - [Login](#login)
-    - [Register](#register)
-    - [Error](#error)
-    - [Admin Page](#admin-page)
-  - [Components](#components)
-    - [Button](#button)
-    - [Federated Sign In](#federated-sign-in)
-    - [Nav](#nav)
-    - [Header](#header)
-    - [Events Booking Popup Window](#events-booking-popup-window)
-  - [Dev Tools](#dev-tools)
-    - [Mock Data](#mock-data)
-    - [SnapShot FireBase](#snapshot-firebase)
-    - [FirebaseSnapshots](#firebasesnapshots)
-    - [Firebase Auth persistence](#firebase-auth-persistence)
-    - [How to Create New Users](#how-to-create-new-users)
-    - [Data Structure](#data-structure)
-    - [User Events](#user-events)
-    - [How To See Future and Past Events](#how-to-see-future-and-past-events)
-    - [How to see Event Details](#how-to-see-event-details)
-    - [Queries](#queries)
-    - [Event Creation](#event-creation)
-  - [Current Issues](#current-issues)
-    - [Calendar Mobile](#calendar-mobile)
-    - [Federated Sign in redirect](#federated-sign-in-redirect)
-    - [Admin Access](#admin-access)
-    - [Booking Places on Events](#booking-places-on-events)
-  - [About Us](#about-us)
-    - [Contributors](#contributors)
-
-10. [Current Issues](#current-issues)
-    - [Calendar Mobile](#calendar-mobile)
-    - [Federated Sign in redirect](#federated-sign-in-redirect)
-    - [Admin Access](#admin-access)
-    - [Booking Places on Events](#booking-places-on-events)
-11. [About Us](#about-us)
-
-## Project Intro
+# Union Client Project - Dot to DOt
 
 > Dot to Dot is a community-focused organization dedicated to reconnecting communities with local makers and artisans. The Dot to Dot booking system aims to create inspiring events that showcases talents in the local community.
 
@@ -62,35 +6,62 @@ Through a specialised log-in system, this allows users to have a personalised ex
 
 This project was completed over two weeks following the principles of Agile Methodology by incorporating small iterative sprints, daily-standups and demos. Using pair-programming, the application was curated and improved dynamically over the duration of the project.
 
+## Table of Contents
+
+- [Resources](#resources)
+- [Pages](#pages)
+- [Components](#components)
+- [Dev Tools](#dev-tools)
+- [Current Issues](#current-issues)
+- [About Us](#about-us)
+- [Contributors](#contributors)
+
+---
+
+## Resources
+
 ### Useful Links
 
 - [Live site - Hosted by Firebase](https://union-client-project.web.app/splash)
 - [KanBan Board - Trello](https://trello.com/b/sbk9bjjC/union-dot-to-dot)
 - [UI Wire-frame - Figma](https://www.figma.com/file/qQW5RX4O4crZ2uBmt7japR/Client-Project---Event?node-id=330%3A665&mode=dev)
 
-## Quick-start
+### Quick-start
 
 1. Clone the repository `git clone project-url`.
 2. Install the dependencies with `npm install`.
 3. Run the application with `npm run dev`.
 
-## File Structure 🗂️
+### File Structure 🗂️
 
 - Components: Contains all generic components that are shared across pages. They should be generic and reusable, and testable in isolation.
 - Pages: Contains our different application views. Generally, any requests should be activated here so that any children components don't have to. For example, if we have a 'User Details' view, we should dispatch our network requests for user information from here.
 - Styles: Consists of global style files that should be made available across our application.
 
-## Testing ⚗️
+### Testing ⚗️
 
 - This project utilizes Vitest with React Testing Library (RTL).
 - All component folders will have an associated test file within the same folder. Each component is tested independently (unit testing) to ensure they work in isolation and aren't affected by external factors(such as other components).
 - Any test that would use the 'render' function from RTL, use the 'customRender' function from testUtils.js. This adds routing by default so we can easily test components that include route/link logic. An example can be seen in `src/pages/Home`.
 
-## Code Quality 🌟
+### Code Quality 🌟
 
 - This project uses Prettier and ESLint to increase code readability and consistency.
 
+---
+
 ## Pages
+
+- [Home](#home)
+- [Events](#events)
+- [Calendar](#calendar)
+- [About](#about)
+- [Account](#account)
+- [Splash](#splash)
+- [Login](#login)
+- [Register](#register)
+- [Error](#error)
+- [Admin Page](#admin-page)
 
 ### Home
 
@@ -225,7 +196,15 @@ type RegisterProps = {
 - The user must be an administrator to view this page. There is functionality added to the nav bar component and the app.tsx routes that allow conditional rendering according to the current user being an admin or not.
 - The current user has to be set as an admin on the firebase database manually, as default all users are set to not being an administrator.
 
+---
+
 ## Components
+
+- [Button](#button)
+- [Federated Sign In](#federated-sign-in)
+- [Nav](#nav)
+- [Header](#header)
+- [Events Booking Popup Window](#events-booking-popup-window)
 
 ### Button
 
@@ -317,7 +296,21 @@ This popup window provides three main actions: closing the popup, navigating to 
 - **Viewing the Calendar** : If you wish to view the calendar or manage your bookings, you can do so by clicking the "VIEW CALENDAR" button.
 - **Canceling a Booking** : To cancel a booking that you've previously made, you can click on the "CANCEL BOOKING" button.
 
+---
+
 ## Dev Tools
+
+- [Mock Data](#mock-data)
+- [SnapShot FireBase](#snapshot-firebase)
+- [FirebaseSnapshots](#firebasesnapshots)
+- [Firebase Auth persistence](#firebase-auth-persistence)
+- [How to Create New Users](#how-to-create-new-users)
+- [Data Structure](#data-structure)
+- [User Events](#user-events)
+- [How To See Future and Past Events](#how-to-see-future-and-past-events)
+- [How to see Event Details](#how-to-see-event-details)
+- [Queries](#queries)
+- [Event Creation](#event-creation)
 
 ### Mock Data
 
@@ -414,6 +407,8 @@ The form requires all input fields be filled out, and then is sent to the databa
 
 Users can stipulate the event name, category, date, capacity and description, as well as having the option to upload/add images.
 
+---
+
 ## Current Issues
 
 ### Calendar Mobile
@@ -438,6 +433,8 @@ Users can stipulate the event name, category, date, capacity and description, as
 
 ### Contributors
 
+\_nologists
+
 - [Chu Lam](https://github.com/Koji47)</br>
 - [Daniela Gutperl](https://github.com/ElaM8)</br>
 - [Jugraj Sing](https://github.com/akajugz)</br>
@@ -448,3 +445,8 @@ Users can stipulate the event name, category, date, capacity and description, as
 - [Nicole Denheim](https://github.com/NDenheim)</br>
 - [Szabolcs Sziklai](https://github.com/sabifromtherock)</br>
 - [Tufiale Chowdhury](https://github.com/Tufiale)</br>
+
+Coaches
+
+- [Charlie Richardson](https://github.com/Charlie-robin)
+- [Ollie Robins](https://github.com/olirob93)
